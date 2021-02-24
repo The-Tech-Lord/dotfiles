@@ -32,9 +32,9 @@ call plug#end()
 " --------------------------- General Settings ------------------------------
 syntax on
 set number
-set number relativenumber						" Turns on 'Hybrid' mode (Absolute and Relative) for line numbers
+set number relativenumber
 set ts=4
-set confirm										" Confirms if you want to save when quitting
+set confirm
 set mouse=a
 set background=dark
 set noshowmode
