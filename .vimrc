@@ -19,7 +19,7 @@ Plug 'dense-analysis/ale'
 
 " -- Git VCS --
 Plug 'mhinz/vim-signify'
-
+" ---------------------aaaaaaaaaaaaaa
 " -- Syntax Highlighting Plugins --
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'vim-pandoc/vim-pandoc-syntax'
