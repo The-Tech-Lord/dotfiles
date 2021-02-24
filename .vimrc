@@ -117,7 +117,7 @@ nnoremap <Leader>clac :!clang -Wall -Wextra "./*.c"<CR>
 
 
 " -- Clojure Compiler Mappings --
-
+map <Leader>t tnb
 
 " -- Run Executable Files / Run MakeFile --
 map <Leader>r :!./a.out<CR>
