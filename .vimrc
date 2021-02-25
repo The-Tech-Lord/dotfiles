@@ -93,7 +93,9 @@ map <Leader>coci :CocInstall coc-tsserver coc-json coc-python coc-lua coc-clangd
 
 
 " -- Java Compiler Mappings --
-
+" nnoremap <Leader>jc :!javac "%"<CR>
+" nnoremap <Leader>jca :!javac "./*.java"<CR>
+" nnoremap <Leader>jr :!java 
 
 " -- GNU = GCC Compiler Mappings (C17) --
 nnoremap gc :!gcc -std=c17 "%"<CR>
