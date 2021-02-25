@@ -2,11 +2,11 @@
 call plug#begin('~/.vim/plugged')
 
 " -- General Plugins --
-Plug 'vim-airline/vim-airline'
-Plug 'preservim/nerdtree'
 Plug 'mhinz/vim-startify'
-Plug 'jiangmiao/auto-pairs'
+Plug 'preservim/nerdtree'
+Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdcommenter'
+Plug 'MattesGroeger/vim-bookmarks'
 Plug 'kien/ctrlp.vim'
 
 " -- Color Schemes / Themes --
@@ -17,7 +17,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 
-" -- Git VCS --
+" -- Syntax Related Plugins --
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+
+" -- Git Related Plugins --
 Plug 'mhinz/vim-signify'
 
 " -- Syntax Highlighting Plugins --
@@ -39,6 +43,7 @@ set mouse=a
 set background=dark
 set noshowmode
 set updatetime=80
+set termwinsize=8x200
 let mapleader = ","
 " ---------------------------------------------------------------------------
 
@@ -63,8 +68,11 @@ colorscheme gruvbox
 
 
 
-" ---------------------------- General Key Mappings -------------------------
-  
+" -------------------------- General Key Mappings ---------------------------
+ 
+" -- Vim Terimnal Mappings --
+map <Leader>t :botright term<CR>
+
 " -- NERDTree Key Mappings --
 map <Leader>nt :NERDTreeToggle<CR>
 
@@ -76,12 +84,18 @@ map <C-k> :tabl<CR>
 map <C-h> :tabp<CR>
 map <C-l> :tabn<CR>
 
+" -- Vim Bookmarks Key Mappings --
+nmap <Leader>bt <Plug>BookmarkToggle
+nmap <Leader>l <Plug>BookmarkNext
+nmap <Leader>h <Plug>BookmarkPrev
+nmap <Leader>bsa <Plug>BookmarkShowAll
+nmap <Leader>bc <Plug>BookmarkClear
+nmap <Leader>bca <Plug>BookmarkClearAll
 
-" -- COC Key Mappings --
+" -- COC Key Mappings / COC Language Server Key Mappings --
 map cocs :CocList<CR>
-
-" -- COC Language Server Installer --
 map <Leader>coci :CocInstall coc-tsserver coc-json coc-python coc-lua coc-clangd coc-html coc-css<CR>
+map <Leader>cocu :CocUpdate
 
 " ---------------------------------------------------------------------------
 
