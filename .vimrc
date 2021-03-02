@@ -6,12 +6,14 @@ Plug 'mhinz/vim-startify'
 Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdcommenter'
-Plug 'MattesGroeger/vim-bookmarks'
 Plug 'kien/ctrlp.vim'
 
 " -- Color Schemes / Themes --
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline-themes'
+
+" -- Productivity --
+Plug 'MattesGroeger/vim-bookmarks'
 
 " -- Debugging Plugins --
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -21,32 +23,36 @@ Plug 'dense-analysis/ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 
-" -- Git Related Plugins --
-Plug 'mhinz/vim-signify'
-
 " -- Syntax Highlighting Plugins --
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+
+" -- Git Related Plugins --
+Plug 'mhinz/vim-signify'
 
 call plug#end()
 " ---------------------------------------------------------------------------
 
 
 
+
+" ===========================================================================
+"                             + Vim Settings +
+" ===========================================================================
+
+
 " --------------------------- General Settings ------------------------------
 syntax on
-set number
-set number relativenumber
+set number relativenumber							" Absolute + Relative Number Modes
 set ts=4
 set confirm
 set mouse=a
 set background=dark
-set noshowmode
+set noshowmode										" Doesn't show Vim mode in command line
 set updatetime=80
-set termwinsize=8x200
-let mapleader = ","
+set termwinsize=8x200								" Terminal Size is 8x200
+let mapleader = ","									" Leader Mapping
 " ---------------------------------------------------------------------------
-
 
 
 " --------------------------- Other Settings --------------------------------
@@ -60,12 +66,18 @@ let g:airline_theme = 'owo'
 
 " -- Gruvbox Settings --
 let g:gruvbox_contrast_dark = 'medium'
+let g:gruvbox_sign_column = 'dark0_soft'
 let g:gruvbox_vert_split = 'bg1'
-let g:gruvbox_hls_cursor = 'bg1'
 colorscheme gruvbox
 
 " ---------------------------------------------------------------------------
 
+
+
+
+" ===========================================================================
+"                              + KEY MAPPINGS +
+" ===========================================================================
 
 
 " -------------------------- General Key Mappings ---------------------------
@@ -100,16 +112,10 @@ map <Leader>cocu :CocUpdate
 " ---------------------------------------------------------------------------
 
 
-
 " ------------------- Compiler / Programming Key Mappings -------------------
 
 " -- Python 3 Compiler Mappings --
-
-
 " -- Java Compiler Mappings --
-" nnoremap <Leader>jc :!javac "%"<CR>
-" nnoremap <Leader>jca :!javac "./*.java"<CR>
-" nnoremap <Leader>jr :!java 
 
 " -- GNU = GCC Compiler Mappings (C17) --
 nnoremap gc :!gcc -std=c17 "%"<CR>
@@ -128,27 +134,46 @@ nnoremap <Leader>clap :!clang -Wall -Wextra "./*.cpp"<CR>
 nnoremap <Leader>clac :!clang -Wall -Wextra "./*.c"<CR>
 
 " -- Lua Compiler Mappings --
-
-
 " -- Perl Compiler Mappings --
-
-
 " -- Clojure Compiler Mappings --
 
+" ---------------------------------------------------------------------------
 
-" -- Run Executable Files / Run MakeFile --
-map <Leader>r :!./a.out<CR>
-map <Leader>m :!make<CR>
 
-" -- Git Add / Commit / Push --
-map <Leader><C-g>ac :!git add .; git commit -m "Quick Commit - Vim Macro"<CR> 
+" ----------------- Git Version Control System Key Mappings -----------------
+
+map <Leader><C-g>acp :!git add .; git commit -m "Quick Commit - Vim Macro"; git push<CR> 
 map <Leader><C-g>a :!git add "%"<CR>
+map <Leader><C-g>c :!git commit -m "Quick Commit - Wim Macro"<CR>
 map <Leader><C-g>p :!git push<CR>
 
 " -- Dotfiles Add / Commit / Push --
-map <C-d>dac :!dotfiles add .; dotfiles commit -m "Dotfile Update - Vim Macro"<CR>
+map <C-d>dac :!dotfiles add .; dotfiles commit -m "Dotfile Update - Vim Macro"; dotfiles push<CR>
 map <C-d>da :!dotfiles add "%"<CR>
 map <C-d>dp :!dotfiles push origin master<CR>
 
 " ---------------------------------------------------------------------------
 
+
+" ------------------------ Run Executable Programs --------------------------
+
+" -- Run Executable Files --
+map <Leader>r :!./a.out<CR>
+
+" -- Run MakeFile --
+map <Leader>m :!make<CR>
+
+" ---------------------------------------------------------------------------
+
+
+
+
+" ===========================================================================
+"                             To Be Allocated
+" ===========================================================================
+
+
+" ---------------------------------------------------------------------------
+
+
+" ---------------------------------------------------------------------------
