@@ -148,9 +148,10 @@ map <Leader><C-g>c :!git commit -m "Quick Commit - Wim Macro"<CR>
 map <Leader><C-g>p :!git push<CR>
 
 " -- Dotfiles Add / Commit / Push --
-map <C-d>dac :!dotfiles add .; dotfiles commit -m "Dotfile Update - Vim Macro"; dotfiles push<CR>
-map <C-d>da :!dotfiles add "%"<CR>
-map <C-d>dp :!dotfiles push origin master<CR>
+map <C-d>dac :botright term<CR>dotfiles add "%"; dotfiles commit -m "Dotfile Update - Vim Macro"; dotfiles push<CR>
+map <C-d>dc :botright term<CR>dotfiles commit -m "Dotfile Update - Wim Macro"<CR>
+map <C-d>da :botright term<CR>dotfiles add "%"<CR>
+map <C-d>dp :botright term<CR>dotfiles push origin master<CR>
 
 " ---------------------------------------------------------------------------
 
