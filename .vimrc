@@ -107,7 +107,7 @@ nmap <Leader>bca <Plug>BookmarkClearAll
 " -- COC Key Mappings / COC Language Server Key Mappings --
 map cocs :CocList<CR>
 map <Leader>coci :CocInstall coc-tsserver coc-json coc-python coc-lua coc-clangd coc-html coc-css<CR>
-map <Leader>cocu :CocUpdate
+map <Leader>cocu :CocUpdate<CR>
 
 " ---------------------------------------------------------------------------
 
@@ -142,16 +142,17 @@ nnoremap <Leader>clac :!clang -Wall -Wextra "./*.c"<CR>
 
 " ----------------- Git Version Control System Key Mappings -----------------
 
-map <Leader><C-g>acp :!git add .; git commit -m "Quick Commit - Vim Macro"; git push<CR> 
-map <Leader><C-g>a :!git add "%"<CR>
-map <Leader><C-g>c :!git commit -m "Quick Commit - Wim Macro"<CR>
-map <Leader><C-g>p :!git push<CR>
+map <Leader><C-g>as :botright term<CR>git add "%"<CR>
+map <Leader><C-g>aa :botrifght term<CR>git add .<CR>
+map <Leader><C-g>c :botright term<CR>git commit -m "Quick Commit - Wim Macro"<CR>
+map <Leader><C-g>p :botright term<CR>git push<CR>
+map <Leader><C-g>acp :botright term<CR>git add .; git commit -m "Quick Commit - Vim Macro"; git push<CR> 
 
 " -- Dotfiles Add / Commit / Push --
-map <C-d>dac :botright term<CR>dotfiles add "%"; dotfiles commit -m "Dotfile Update - Vim Macro"; dotfiles push<CR>
+map <C-d>da :botright term<CR>dotfiles add 
 map <C-d>dc :botright term<CR>dotfiles commit -m "Dotfile Update - Wim Macro"<CR>
-map <C-d>da :botright term<CR>dotfiles add "%"<CR>
 map <C-d>dp :botright term<CR>dotfiles push origin master<CR>
+map <C-d>dcp :botright term<CR>dotfiles commit -m "Dotfile Update - Vim Macro"; dotfiles push origin master<CR>
 
 " ---------------------------------------------------------------------------
 
@@ -159,10 +160,10 @@ map <C-d>dp :botright term<CR>dotfiles push origin master<CR>
 " ------------------------ Run Executable Programs --------------------------
 
 " -- Run Executable Files --
-map <Leader>r :!./a.out<CR>
+map <Leader>r :botright term<CR>./a.out<CR>
 
 " -- Run MakeFile --
-map <Leader>m :!make<CR>
+map <Leader>m :botright term<CR>make<CR>
 
 " ---------------------------------------------------------------------------
 
