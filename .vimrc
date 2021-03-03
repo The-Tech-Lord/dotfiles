@@ -1,4 +1,8 @@
-" ----------------------- Vim-Plug Package Manager --------------------------
+" ===========================================================================
+"                              + Vim Plugins +
+" ===========================================================================
+
+" ---------------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 
 " -- General --
@@ -44,11 +48,9 @@ call plug#end()
 
 
 
-
 " ===========================================================================
 "                             + Vim Settings +
 " ===========================================================================
-
 
 " --------------------------- General Settings ------------------------------
 syntax on
@@ -62,7 +64,6 @@ set updatetime=80
 set termwinsize=8x200								" Terminal Size is 8x200
 let mapleader = ","									" Leader Mapping
 " ---------------------------------------------------------------------------
-
 
 " --------------------------- Other Settings --------------------------------
 
@@ -83,11 +84,9 @@ colorscheme gruvbox
 
 
 
-
 " ===========================================================================
 "                              + KEY MAPPINGS +
 " ===========================================================================
-
 
 " -------------------------- General Key Mappings ---------------------------
  
@@ -120,7 +119,6 @@ map <Leader>cocu :CocUpdate<CR>
 
 " ---------------------------------------------------------------------------
 
-
 " ------------------- Compiler / Programming Key Mappings -------------------
 
 " -- Python 3 Compiler Mappings --
@@ -142,7 +140,6 @@ nnoremap gpa :!g++ -std=c++17 -Wall -Wextra -Wextra ./*.cpp<CR>
 
 " ---------------------------------------------------------------------------
 
-
 " ----------------- Git Version Control System Key Mappings -----------------
 
 map <Leader><C-g>s :botright term<CR>git status<CR>
@@ -156,13 +153,12 @@ map <Leader><C-g>acp :botright term<CR>git add .; git commit -m "Quick Commit - 
 " -- Dotfiles Add / Commit / Push --
 map <C-d>ds :botright term<CR>dotfiles status<CR>
 
-map <C-d>da :botright term<CR>dotfiles add .<CR>
+map <C-d>da :botright term<CR>dotfiles add .<CR>exit<CR>
 map <C-d>dc :botright term<CR>dotfiles commit -m "Dotfile Update - Wim Macro"<CR>exit<CR>
 map <C-d>dp :botright term<CR>dotfiles push origin master<CR>
-map <C-d>dcp :botright term<CR>dotfiles commit -m "Dotfile Update - Vim Macro"; dotfiles push origin master<CR>
+map <C-d>dacp :botright term<CR>dotfiles add .<CR>dotfiles commit -m "Dotfile Update - Vim Macro"; dotfiles push origin master<CR>
 
 " ---------------------------------------------------------------------------
-
 
 " ----------------------------- Run Programs --------------------------------
 
@@ -176,11 +172,9 @@ map <Leader>m :botright term<CR>make<CR>
 
 
 
-
 " ===========================================================================
 "                             To Be Allocated
 " ===========================================================================
-
 
 " ---------------------------------------------------------------------------
 
