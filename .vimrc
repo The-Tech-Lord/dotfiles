@@ -1,7 +1,7 @@
 " ----------------------- Vim-Plug Package Manager --------------------------
 call plug#begin('~/.vim/plugged')
 
-" -- General Plugins --
+" -- General --
 Plug 'mhinz/vim-startify'
 Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
@@ -15,19 +15,19 @@ Plug 'vim-airline/vim-airline-themes'
 " -- Productivity --
 Plug 'MattesGroeger/vim-bookmarks'
 
-" -- Debugging Plugins --
+" -- Debugging --
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 
-" -- Syntax Related Plugins --
+" -- Syntax Related --
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 
-" -- Syntax Highlighting Plugins --
+" -- Syntax Highlighting --
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 
-" -- Git Related Plugins --
+" -- Git Related --
 Plug 'mhinz/vim-signify'
 
 call plug#end()
@@ -57,14 +57,14 @@ let mapleader = ","									" Leader Mapping
 
 " --------------------------- Other Settings --------------------------------
 
-" -- NERDTree Settings --
+" -- NERDTree --
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 
-" -- Airline Settings --
+" -- Airline --
 let g:airline_theme = 'owo'
 
-" -- Gruvbox Settings --
+" -- Gruvbox --
 let g:gruvbox_contrast_dark = 'medium'
 let g:gruvbox_sign_column = 'dark0_soft'
 let g:gruvbox_vert_split = 'bg1'
@@ -85,10 +85,10 @@ colorscheme gruvbox
 " -- Vim Terimnal Mappings --
 map <Leader>t :botright term<CR>
 
-" -- NERDTree Key Mappings --
+" -- NERDTree --
 map <Leader>nt :NERDTreeToggle<CR>
 
-" -- Vim Tabs Key Mappings --
+" -- Vim Tabs --
 nmap tnb :tabnew<CR>
 nmap tno :tabnew 
 map <C-j> :tabr<CR>
@@ -96,7 +96,7 @@ map <C-k> :tabl<CR>
 map <C-h> :tabp<CR>
 map <C-l> :tabn<CR>
 
-" -- Vim Bookmarks Key Mappings --
+" -- Vim Bookmarks --
 nmap <Leader>bt <Plug>BookmarkToggle
 nmap <Leader>l <Plug>BookmarkNext
 nmap <Leader>h <Plug>BookmarkPrev
@@ -104,7 +104,7 @@ nmap <Leader>bsa <Plug>BookmarkShowAll
 nmap <Leader>bc <Plug>BookmarkClear
 nmap <Leader>bca <Plug>BookmarkClearAll
 
-" -- COC Key Mappings / COC Language Server Key Mappings --
+" -- COC / COC Language Server --
 map cocs :CocList<CR>
 map <Leader>coci :CocInstall coc-tsserver coc-json coc-python coc-lua coc-clangd coc-html coc-css<CR>
 map <Leader>cocu :CocUpdate<CR>
@@ -117,25 +117,19 @@ map <Leader>cocu :CocUpdate<CR>
 " -- Python 3 Compiler Mappings --
 " -- Java Compiler Mappings --
 
-" -- GNU = GCC Compiler Mappings (C17) --
+" -- GNU/GCC (C17) --
 nnoremap gc :!gcc -std=c17 "%"<CR>
 nnoremap gcs :!gcc -std=c17 -Wall -Wextra -Werror "%"<CR>
 nnoremap gca :!gcc -std=c17 -Wall -Wextra -Wextra ./*.c<CR>
 
-" -- GNU = G++ Compiler Mappings (C++17) --
+" -- GNU/G++ (C++17) --
 nnoremap gp :!g++ -std=c++17 "%"<CR>
 nnoremap gps :!g++ -std=c++17 -Wall -Wextra -Werror "%"<CR>
 nnoremap gpa :!g++ -std=c++17 -Wall -Wextra -Wextra ./*.cpp<CR>
 
-" -- CLANG Compiler Mappings --
-nnoremap <Leader>cl :!clang "%"<CR>
-nnoremap <Leader>cls :!clang -Wall -Wextra "%"<CR>
-nnoremap <Leader>clap :!clang -Wall -Wextra "./*.cpp"<CR>
-nnoremap <Leader>clac :!clang -Wall -Wextra "./*.c"<CR>
-
-" -- Lua Compiler Mappings --
-" -- Perl Compiler Mappings --
-" -- Clojure Compiler Mappings --
+" -- Lua --
+" -- Perl --
+" -- Clojure --
 
 " ---------------------------------------------------------------------------
 
@@ -157,7 +151,7 @@ map <C-d>dcp :botright term<CR>dotfiles commit -m "Dotfile Update - Vim Macro"; 
 " ---------------------------------------------------------------------------
 
 
-" ------------------------ Run Executable Programs --------------------------
+" ----------------------------- Run Programs --------------------------------
 
 " -- Run Executable Files --
 map <Leader>r :botright term<CR>./a.out<CR>
