@@ -50,7 +50,6 @@ set mouse=a
 set background=dark
 set noshowmode										" Doesn't show Vim mode in command line
 set updatetime=80
-set termwinsize=8x200								" Terminal Size is 8x200
 let mapleader = ","									" Leader Mapping
 " ---------------------------------------------------------------------------
 
