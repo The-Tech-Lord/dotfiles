@@ -2,10 +2,9 @@
 call plug#begin('~/.vim/plugged')
 
 " -- General Plugins --
-Plug 'vim-airline/vim-airline'
-Plug 'preservim/nerdtree'
 Plug 'mhinz/vim-startify'
-Plug 'jiangmiao/auto-pairs'
+Plug 'preservim/nerdtree'
+Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdcommenter'
 Plug 'kien/ctrlp.vim'
 
@@ -13,35 +12,47 @@ Plug 'kien/ctrlp.vim'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline-themes'
 
+" -- Productivity --
+Plug 'MattesGroeger/vim-bookmarks'
+
 " -- Debugging Plugins --
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 
-" -- Git VCS --
-Plug 'mhinz/vim-signify'
+" -- Syntax Related Plugins --
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
 
 " -- Syntax Highlighting Plugins --
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+
+" -- Git Related Plugins --
+Plug 'mhinz/vim-signify'
 
 call plug#end()
 " ---------------------------------------------------------------------------
 
 
 
+
+" ===========================================================================
+"                             + Vim Settings +
+" ===========================================================================
+
+
 " --------------------------- General Settings ------------------------------
 syntax on
-set number
-set number relativenumber
+set number relativenumber							" Absolute + Relative Number Modes
 set ts=4
 set confirm
 set mouse=a
 set background=dark
-set noshowmode
+set noshowmode										" Doesn't show Vim mode in command line
 set updatetime=80
-let mapleader = ","
+set termwinsize=8x200								" Terminal Size is 8x200
+let mapleader = ","									" Leader Mapping
 " ---------------------------------------------------------------------------
-
 
 
 " --------------------------- Other Settings --------------------------------
@@ -55,16 +66,25 @@ let g:airline_theme = 'owo'
 
 " -- Gruvbox Settings --
 let g:gruvbox_contrast_dark = 'medium'
+let g:gruvbox_sign_column = 'dark0_soft'
 let g:gruvbox_vert_split = 'bg1'
-let g:gruvbox_hls_cursor = 'bg1'
 colorscheme gruvbox
 
 " ---------------------------------------------------------------------------
 
 
 
-" ---------------------------- General Key Mappings -------------------------
-  
+
+" ===========================================================================
+"                              + KEY MAPPINGS +
+" ===========================================================================
+
+
+" -------------------------- General Key Mappings ---------------------------
+ 
+" -- Vim Terimnal Mappings --
+map <Leader>t :botright term<CR>
+
 " -- NERDTree Key Mappings --
 map <Leader>nt :NERDTreeToggle<CR>
 
@@ -76,26 +96,26 @@ map <C-k> :tabl<CR>
 map <C-h> :tabp<CR>
 map <C-l> :tabn<CR>
 
+" -- Vim Bookmarks Key Mappings --
+nmap <Leader>bt <Plug>BookmarkToggle
+nmap <Leader>l <Plug>BookmarkNext
+nmap <Leader>h <Plug>BookmarkPrev
+nmap <Leader>bsa <Plug>BookmarkShowAll
+nmap <Leader>bc <Plug>BookmarkClear
+nmap <Leader>bca <Plug>BookmarkClearAll
 
-" -- COC Key Mappings --
+" -- COC Key Mappings / COC Language Server Key Mappings --
 map cocs :CocList<CR>
-
-" -- COC Language Server Installer --
 map <Leader>coci :CocInstall coc-tsserver coc-json coc-python coc-lua coc-clangd coc-html coc-css<CR>
+map <Leader>cocu :CocUpdate<CR>
 
 " ---------------------------------------------------------------------------
-
 
 
 " ------------------- Compiler / Programming Key Mappings -------------------
 
 " -- Python 3 Compiler Mappings --
-
-
 " -- Java Compiler Mappings --
-" nnoremap <Leader>jc :!javac "%"<CR>
-" nnoremap <Leader>jca :!javac "./*.java"<CR>
-" nnoremap <Leader>jr :!java 
 
 " -- GNU = GCC Compiler Mappings (C17) --
 nnoremap gc :!gcc -std=c17 "%"<CR>
@@ -114,27 +134,48 @@ nnoremap <Leader>clap :!clang -Wall -Wextra "./*.cpp"<CR>
 nnoremap <Leader>clac :!clang -Wall -Wextra "./*.c"<CR>
 
 " -- Lua Compiler Mappings --
-
-
 " -- Perl Compiler Mappings --
-
-
 " -- Clojure Compiler Mappings --
-
-
-" -- Run Executable Files / Run MakeFile --
-map <Leader>r :!./a.out<CR>
-map <Leader>m :!make<CR>
-
-" -- Git Add / Commit / Push --
-map <Leader><C-g>ac :!git add .; git commit -m "Quick Commit - Vim Macro"<CR> 
-map <Leader><C-g>a :!git add "%"<CR>
-map <Leader><C-g>p :!git push<CR>
-
-" -- Dotfiles Add / Commit / Push --
-map <C-d>dac :!dotfiles add .; dotfiles commit -m "Dotfile Update - Vim Macro"<CR>
-map <C-d>da :!dotfiles add "%"<CR>
-map <C-d>dp :!dotfiles push origin master<CR>
 
 " ---------------------------------------------------------------------------
 
+
+" ----------------- Git Version Control System Key Mappings -----------------
+
+map <Leader><C-g>as :botright term<CR>git add "%"<CR>
+map <Leader><C-g>aa :botrifght term<CR>git add .<CR>
+map <Leader><C-g>c :botright term<CR>git commit -m "Quick Commit - Wim Macro"<CR>
+map <Leader><C-g>p :botright term<CR>git push<CR>
+map <Leader><C-g>acp :botright term<CR>git add .; git commit -m "Quick Commit - Vim Macro"; git push<CR> 
+
+" -- Dotfiles Add / Commit / Push --
+map <C-d>da :botright term<CR>dotfiles add .<CR>
+map <C-d>dc :botright term<CR>dotfiles commit -m "Dotfile Update - Wim Macro"<CR>exit<CR>
+map <C-d>dp :botright term<CR>dotfiles push origin master<CR>
+map <C-d>dcp :botright term<CR>dotfiles commit -m "Dotfile Update - Vim Macro"; dotfiles push origin master<CR>
+
+" ---------------------------------------------------------------------------
+
+
+" ------------------------ Run Executable Programs --------------------------
+
+" -- Run Executable Files --
+map <Leader>r :botright term<CR>./a.out<CR>
+
+" -- Run MakeFile --
+map <Leader>m :botright term<CR>make<CR>
+
+" ---------------------------------------------------------------------------
+
+
+
+
+" ===========================================================================
+"                             To Be Allocated
+" ===========================================================================
+
+
+" ---------------------------------------------------------------------------
+
+
+" ---------------------------------------------------------------------------
