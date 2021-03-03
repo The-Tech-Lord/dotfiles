@@ -150,7 +150,7 @@ map <Leader><C-g>acp :botright term<CR>git add .; git commit -m "Quick Commit - 
 
 " -- Dotfiles Add / Commit / Push --
 map <C-d>da :botright term<CR>dotfiles add 
-map <C-d>dc :botright term<CR>dotfiles commit -m "Dotfile Update - Wim Macro"<CR>
+map <C-d>dc :botright term<CR>dotfiles commit -m "Dotfile Update - Wim Macro"<CR>exit<CR>
 map <C-d>dp :botright term<CR>dotfiles push origin master<CR>
 map <C-d>dcp :botright term<CR>dotfiles commit -m "Dotfile Update - Vim Macro"; dotfiles push origin master<CR>
 
