@@ -114,6 +114,7 @@ nmap <Leader>bca <Plug>BookmarkClearAll
 
 " -- COC / COC Language Server --
 map cocs :CocList<CR>
+" [ Python, *Java, C, Json, HTML, CSS, JSON, TypeScript, Lua, *Perl, *Clojure ]
 map <Leader>coci :CocInstall coc-tsserver coc-json coc-python coc-lua coc-clangd coc-html coc-css<CR>
 map <Leader>cocu :CocUpdate<CR>
 
