@@ -30,6 +30,15 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 " -- Git Related --
 Plug 'mhinz/vim-signify'
 
+" -- Plugin Types to Get --
+" * Web Development (HTML, CSS)
+" * JavaScript
+" * Java
+" * Python
+" * Lua
+" * Perl
+" * Clojure
+
 call plug#end()
 " ---------------------------------------------------------------------------
 
@@ -136,6 +145,8 @@ nnoremap gpa :!g++ -std=c++17 -Wall -Wextra -Wextra ./*.cpp<CR>
 
 " ----------------- Git Version Control System Key Mappings -----------------
 
+map <Leader><C-g>s :botright term<CR>git status<CR>
+
 map <Leader><C-g>as :botright term<CR>git add "%"<CR>
 map <Leader><C-g>aa :botrifght term<CR>git add .<CR>
 map <Leader><C-g>c :botright term<CR>git commit -m "Quick Commit - Wim Macro"<CR>
@@ -143,6 +154,8 @@ map <Leader><C-g>p :botright term<CR>git push<CR>
 map <Leader><C-g>acp :botright term<CR>git add .; git commit -m "Quick Commit - Vim Macro"; git push<CR> 
 
 " -- Dotfiles Add / Commit / Push --
+map <C-d>ds :botright term<CR>dotfiles status<CR>
+
 map <C-d>da :botright term<CR>dotfiles add .<CR>
 map <C-d>dc :botright term<CR>dotfiles commit -m "Dotfile Update - Wim Macro"<CR>exit<CR>
 map <C-d>dp :botright term<CR>dotfiles push origin master<CR>
