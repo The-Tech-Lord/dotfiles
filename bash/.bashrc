@@ -1,46 +1,20 @@
-#  _______ __  __ _____  __  __ __   __        _  _   _       ____            _
-# |__   __|  \/  |  __ \|  \/  /_ | / /    /\ | || | ( )     |  _ \          | |
-#    | |  | \  / | |__) | \  / || |/ /_   /  \| || |_|/ ___  | |_) | __ _ ___| |__  _ __ ___
-#    | |  | |\/| |  ___/| |\/| || | '_ \ / /\ \__   _| / __| |  _ < / _` / __| '_ \| '__/ __|
-#    | |  | |  | | |    | |  | || | (_) / ____ \ | |   \__ \ | |_) | (_| \__ \ | | | | | (__
-#    |_|  |_|  |_|_|    |_|  |_||_|\___/_/    \_\|_|   |___/ |____/ \__,_|___/_| |_|_|  \___|
-
-
-# Gitlab: https://gitlab.com/dotfiles
-
-# =============================================== + Aliases + ==================================================
-
-# --------------------------------------------------------------------------------------------------------------
-alias RCLONE_START="rclone --vfs-cache-mode writes mount 'one drive': ~/'OneDrive - Brockton Public Schools'"
-
-# Git Bare Repo Aliases
-alias vim-files="/usr/bin/git --git-dir=$HOME/.vim-files/ --work-tree=$HOME"
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-
-# Learning Programming Aliases
 alias cprogp="cd Documents/GitLab/Learning-Programming/'C Programming'/Practice"
 alias cprog="cd Documents/GitLab/Learning-Programming/'C Programming'"
 alias jprog="cd Documents/GitLab/Learning-Programming/'Java Programming'"
 alias jsprog="cd Documents/GitLab/Learning-Programming/'JavaScript Programming'"
 
-# System Aliases
 alias btm="btm --color gruvbox --mem_as_value --battery"
 alias cat="bat"
 
-# Git Aliases
 alias gitAll="git add . && git commit -m \"Quick Commit\" && git push"
 alias glg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 
-# Neofetch Aliases
+alias vim-files="/usr/bin/git --git-dir=$HOME/.vim-files/ --work-tree=$HOME"
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+
 alias neofetch_ASCII="neofetch --ascii_logo_size small --ascii_colors 5 --ascii --source /home/tpm16a4/tsubomi_kido_happy.txt"
 alias neofetch_IMG="neofetch --w3m /home/tpm16a4/Pictures/KidoTsubomiAnnoyedMekakushiDonalds.png"
-# --------------------------------------------------------------------------------------------------------------
 
-
-
-# ===================================== + Pre-Registered Bash Configurations + =================================
-
-# --------------------------------------------------------------------------------------------------------------
 #export TERM="xterm-256color"
 
 # Checks if something is interactive
@@ -179,16 +153,10 @@ ex () {
 	fi
 }
 
-# --------------------------------------------------------------------------------------------------------------
-
-# Powerline --------------------------
 #powerline-daemon -q
 #POWERLINE_BASH_CONTINUATION=1
 #POWERLINE_BASH_SELECT=1
 #. /usr/share/powerline/bindings/bash/powerline.sh
-# ------------------------------------
-
-# -------------------------------------------- Auto-Run Commands -----------------------------------------------
 
 # Checks if Tmux exists and other conditions
 #if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
@@ -204,9 +172,6 @@ ex () {
 	#neofetch_ASCII
 #fi
 
-# --------------------------------------------------------------------------------------------------------------
-
-# ---------------------------------------------- Prompt String -------------------------------------------------
 # A two-line colored Bash prompt (PS1) with Git branch and a line decoration
 # which adjusts automatically to the width of the terminal.
 # Recognizes and shows Git, SVN and Fossil branch/revision.
@@ -242,4 +207,3 @@ PS_INFO="$GREEN\u@\h$RESET:$BLUE\w"
 PS_GIT="$YELLOW\$PS_BRANCH"
 PS_TIME="\[\033[\$((COLUMNS-10))G\] $RED[\t]"
 export PS1="\${PS_FILL}\[\033[0G\]${PS_INFO} ${PS_GIT}${PS_TIME}\n${RESET}\$ "
-# --------------------------------------------------------------------------------------------------------------
