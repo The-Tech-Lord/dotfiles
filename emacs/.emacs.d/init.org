@@ -42,6 +42,7 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (setq inhibit-splash-screen t)                     ;; Startup Screen
 (setq make-backup-files nil)
 (setq backward-delete-char-untabify-method nil)
+
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -67,21 +68,22 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 ** ToDo
 #+BEGIN_SRC emacs-lisp
 (setq org-todo-keywords
-	  '((sequence "TODO" "IN-PROGRESS" "|" "DONE")
-		(sequence "BUG" "|" "FIXED")
+		'((sequence "TODO" "IN-PROGRESS" "|" "DONE")
+		  (sequence "BUG" "|" "FIXED")
+		  )
 		)
 #+END_SRC
 
 ** Source Block
 #+BEGIN_SRC emacs-lisp
 (setq org-src-preserve-indentation t
-      org-edit-src-content-indentation 0)
+    org-edit-src-content-indentation '0)
 #+END_SRC
 
 * Key Mappings
 ** General
 #+BEGIN_SRC emacs-lisp
-
+(global-set-key (kbd "C-t") 'tab-new)
 #+END_SRC
 
 * Other
