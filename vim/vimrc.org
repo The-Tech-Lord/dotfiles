@@ -1,0 +1,561 @@
+#+TITLE: TPM16A4's Vimrc
+#+DATE: 6/19/2023 19:42
+#+AUTHOR: The Programming M16A4
+#+PROPERTY: header-args:vimrc :tangle yes :tangle .vimrc
+
+*  _______ _____  __  __ __   __		_  _   _	  __	  ___
+* |__	__|  __ \|	\/	/_ | / /	/\ | || | ( )	  \ \	 / (_)
+* 	 | |  | |__) | \  / || |/ /_   /  \| || |_|/ ___   \ \	/ / _ _ __ ___	_ __ ___
+*    | |  |  ___/| |\/| || | '_ \ / /\ \__	 _| / __|	\ \/ / | | '_ ` _ \| '__/ __|
+*    | |  | |	 | |  | || | (_) / ____ \ | |	\__ \	 \	/  | | | | | | | | | (__
+*    |_|  |_|	 |_|  |_||_|\___/_/    \_\|_|	|___/	  \/   |_|_| |_| |_|_|	\___|
+
+GitHub: https://github.com/The-Tech-Lord/dotfiles
+
+" 'Wake up to reality! Nothing ever goes as planned in this accursed world. The longer you live, the more you
+" realize that the only things that truly exist in this reality are merely pain, suffering and futility.
+" Listen, everywhere you look in this world, wherever there is light, there will always be shadows to be found
+" as well. As long as there is a concept of victors, the vanquished will also exist. The selfish intent of
+" wanting to preserve peace, initiates war. and hatred is born in order to protect love.
+" There are nexuses causal relationships that cannot be separated' - [Madara Uchiha]
+
+" 'If you know the enemy and know yourself you need not fear the results of a
+" hundred battles' - [Sun Tzu: The Art of War]
+
+" 'You're not a real programmer unless you have severe Imposter Syndrome' - [The Programming M16A4]
+
+* Vim Plug Package Manager
+#+BEGIN_SRC vimrc
+call plug#begin('~/.vim/plugged')
+#+END_SRC
+
+** General
+#+BEGIN_SRC vimrc
+Plug 'mhinz/vim-startify'
+Plug 'preservim/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'scrooloose/nerdcommenter'
+#+END_SRC
+
+** Color Schemes / Themes
+#+BEGIN_SRC vimrc
+Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ghifarit53/tokyonight-vim'
+#+END_SRC
+
+** Productivity
+#+BEGIN_SRC vimrc
+Plug 'junegunn/fzf.vim'
+#+END_SRC
+
+** Debugging
+#+BEGIN_SRC vimrc
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'dense-analysis/ale'
+#+END_SRC
+
+** Syntax Related
+#+BEGIN_SRC vimrc
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+#+END_SRC
+
+** Syntax Highlighting
+#+BEGIN_SRC vimrc
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'uiiaoo/java-syntax.vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'yuezk/vim-js'
+#+END_SRC
+
+** Git Related
+#+BEGIN_SRC vimrc
+Plug 'mhinz/vim-signify'
+#+END_SRC
+
+** Other Plugins
+#+BEGIN_SRC vimrc
+Plug 'vimsence/vimsence'
+#+END_SRC
+
+#+BEGIN_SRC vimrc
+call plug#end()
+#+END_SRC
+
+* Vim Settings
+** General
+#+BEGIN_SRC vimrc
+let mapleader = ","
+#+END_SRC
+
+#+BEGIN_SRC vimrc
+syntax on										" This is self explanatory like com'on guys
+set background=dark
+set number relativenumber
+set cursorline									" Highlights the cursor line
+set nowrap										" Prevents line of text/code to be wrapped around to another line
+set mouse=a
+set confirm
+#+END_SRC
+
+#+BEGIN_SRC vimrc
+set tabstop=4									" Sets Tab Width
+set shiftwidth=4
+#+END_SRC
+
+#+BEGIN_SRC vimrc
+set noshowmode
+set updatetime=80
+set termwinsize=9x200							" Sets Terminal Window Height and Width
+set scrolloff=20								" Offsets the Cursor Top and Bottom
+set textwidth=0									" Stops Vim from Inserting a Line Break
+set spell spelllang=en_us
+set signcolumn=number
+#+END_SRC
+
+** WSL Settings
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+** Plugin Settings
+*** Airline
+#+BEGIN_SRC vimrc
+let g:airline_theme = 'owo'
+let g:airline#extensions#branch#enabled=1
+#+END_SRC
+  
+*** NERDTree
+#+BEGIN_SRC vimrc
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
+let g:NERDTreeShowHidden=1
+let g:NERDTreeNaturalSort=1
+let g:NERDTreeIgnore=['\.png$', '\.jpg$', '\.jpeg$', '\.jfif$', '\Pictures$']
+#+END_SRC
+
+*** Gruvbox
+#+BEGIN_SRC vimrc
+let g:gruvbox_contrast_dark = 'soft'
+let g:gruvbox_sign_column = 'dark0_soft'
+let g:gruvbox_vert_split = 'bg1'
+#+END_SRC
+
+*** Tokyonight
+#+BEGIN_SRC vimrc
+let g:tokyonight_style = 'night'
+let g:tokyonight_enable_italic = 0
+#+END_SRC
+
+*** Vimsence [ Discord Presence ]
+#+BEGIN_SRC vimrc
+let g:vimsense_client_id = '552207212840353822'
+let g:vimsense_small_text = 'Vim'
+let g:vimsense_small_image = 'vim'
+let g:vimsense_editing_details = 'Editing: {}'
+let g:vimsense_editing_state = 'Working on: {}'
+let g:vimsense_file_explorer_text = 'In NERDTree'
+let g:vimsense_file_explorer_details = 'Looking for files'
+let g:vimsense_custom_icons = {'filetype': 'iconname'}
+#+END_SRC
+
+* Vim Commands / Vim Command Abbreviations
+** Command Abbreviations
+#+BEGIN_SRC vimrc
+command! -nargs=* TERM botright term<Space><args>
+command! -nargs=* TERMS botright term ++shell<Space><args>
+#+END_SRC
+
+* Abbreviations
+#+BEGIN_SRC vimrc
+iabbrev &*() " --------------------------------------------------------------------------------------------------------------
+#+END_SRC
+
+* Key Mappings
+** General
+*** File Sourcing
+#+BEGIN_SRC vimrc
+nmap <Leader><ESC> :source $MYVIMRC<CR>
+#+END_SRC
+
+*** Arrow Key Disabler [ Normal Mode ]
+#+BEGIN_SRC vimrc
+noremap <UP> <Nop>
+noremap <DOWN> <Nop>
+noremap <LEFT> <Nop>
+noremap <RIGHT> <Nop>
+#+END_SRC
+
+*** Vim Key Mappings
+#+BEGIN_SRC vimrc
+nmap <Leader>. :wq<CR>
+nmap <Leader>; :w<CR>
+nmap <Leader><Leader> :q<CR>
+nmap <Leader>t :botright term<CR>
+#+END_SRC
+
+*** Vim Split Resizing
+#+BEGIN_SRC vimrc
+nnoremap <C-S-RIGHT> 5<C-w>>
+nnoremap <C-S-LEFT> 5<C-w><
+nnoremap <C-S-UP> 5<C-w>+
+nnoremap <C-S-DOWN> 5<C-w>-
+
+nnoremap <C-RIGHT> 3<C-w>>
+nnoremap <C-LEFT> 3<C-w><
+nnoremap <C-UP> 3<C-w>+
+nnoremap <C-DOWN> 3<C-w>-
+#+END_SRC
+
+*** Vim Tabs
+#+BEGIN_SRC vimrc
+nmap tnb :tabnew<CR>
+nmap tno :tabnew<Space>
+nmap <C-j> :tabr<CR>
+nmap <C-K> :tabl<CR>
+nmap <C-h> :tabp<CR>
+nmap <C-l> :tabn<CR>
+#+END_SRC
+
+*** NERDTree
+#+BEGIN_SRC vimrc
+nmap <Leader>nt :NERDTreeToggle<CR>
+#+END_SRC
+
+*** COC / COC Language Server
+- [X] Python
+- [X] Java
+- [X] C
+- [X] Json
+- [X] HTML
+- [X] CSS
+- [X] JSON
+- [X] TypeScript
+- [X] Lua
+- [ ] Perl
+- [ ] Clojure
+- [ ] Rust
+#+BEGIN_SRC vimrc
+let g:coc_global_extensions = ['coc-python', 'coc-java', 'coc-clangd', 'coc-tsserver', 'coc-json', 'coc-html', 'coc-css']
+nmap <Leader>cocu :CocUpdate<CR>
+nmap <Leader>cocl :CocList<CR>
+#+END_SRC
+
+** Regex Key
+#+BEGIN_SRC vimrc
+nmap <C-a> :%s/\s\+$//e<CR>
+#+END_SRC
+
+** Compiler Key Mappings
+#+BEGIN_SRC vimrc
+nnoremap <F2>1 :call Compile("S")<CR>
+nnoremap <F2>2 :call Compile("A")<CR>
+#+END_SRC
+
+The Keybindings below are usually for compiling or running programs with certain settings on other than the ones in the Compile function
+
+*** Monty Python vi Britannia III
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+*** Universal Pain
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+*** GCC (C17)
+#+BEGIN_SRC vimrc
+autocmd FileType c nnoremap <buffer> <F2>31 :execute 'TERMS gcc -std=c17 "%"; ./a.out'<CR>
+#+END_SRC
+
+*** G++ (C++17)
+#+BEGIN_SRC vimrc
+autocmd FileType cpp nnoremap <buffer> <F2>31 :execute 'TERMS g++ -std=c++17 "%"; ./a.out'<CR>
+#+END_SRC
+
+*** Microsoft Java
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+*** 0 == "0"
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+*** Lua[1]
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+*** Perl
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+*** Common Lisp
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+*** Insecurity
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+*** Haskell
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+*** Crab Rave
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+*** Assembly
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+*** Google Sonic the Hedgehog
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+** Program Execution
+#+BEGIN_SRC vimrc
+nmap <Leader>r :TERM ./a.out<CR>
+nmap <Leader>m :TERM make<CR>
+#+END_SRC
+
+** Git
+#+BEGIN_SRC vimrc
+nmap <Leader>1 :execute 'botright term ++shell' 'git add "%"'<CR>
+nmap <Leader>2 :execute 'botright term ++shell' 'git add .'<CR>
+nmap <Leader>3 :execute 'botright term ++shell' 'git commit -m "Quick Commit - Wim Macro"'<CR>
+nmap <Leader>4 :execute 'botright term ++shell' 'git push'<CR>
+
+nnoremap <Leader>5 :execute 'botright term ++shell' 'git add "%"; git commit -m "Quick Commit - Wim Macro"; git push'<CR>
+nnoremap <Leader>6 :execute 'botright term ++shell' 'git add .; git commit -m "Quick Commit - Vim Macro"; git push'<CR>
+
+nmap <Leader>7 :execute 'git status'<CR>
+nmap <Leader>lg :TERM<CR>git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all<CR>
+#+END_SRC
+
+* Funky Vim Functions
+'Getting freaky on a Friday Night yeah!'
+
+#+BEGIN_SRC vimrc
+function Compile(Mode)
+	" Description: Multi Filetype Compiler Function (Uses Parameters to Ensure all Errors are Found)
+
+	execute ':w'
+	if a:Mode == "S"
+		if expand('%:e') ==# 'py'
+			exec 'TERMS python3 "%"'
+		elseif expand('%:e') ==# 'c'
+			exec 'TERMS gcc -std=c17 -Wall -Wextra -Werror "%"; ./a.out'
+		elseif expand('%:e') ==# 'cpp'
+			exec 'TERMS g++ -std=c++17 -Wall -Wextra -Werror "%"; ./a.out'
+		elseif expand('%:e') ==# 'java'
+			exec 'TERMS java "%"'
+		elseif expand('%:e') ==# 'js'
+			exec 'TERMS node "%"'
+		endif
+	elseif a:Mode == "A"
+		if expand('%:e') ==# 'py'
+			exec 'TERMS python3 ./*.py'
+		elseif expand('%:e') ==# 'c'
+			exec 'TERMS gcc -std=c17 -Wall -Wextra -Werror ./*.c'
+		elseif expand('%:e') ==# 'cpp'
+			exec 'TERMS g++ -std=c++17 -Wall -Wextra -Werror ./*.cpp'
+		elseif expand('%:e') ==# 'java'
+			exec 'javac *.java'
+		endif
+	endif
+endfunction
+
+function Header_Guard_Setup()
+	" Description: Header Guard Auto Setup Function
+
+	let l:filename = toupper(expand("%:r"))
+	if (getline("1") !~ '#ifndef ' . filename)
+		exe "normal!ggO#ifndef " . l:filename . "_H"
+		exe "normal!o#define " . l:filename . "_H"
+		" Am I YandereDev yet?
+		exe "normal!3o"
+		exe "normal!o#endif"
+		exe "normal!1j"
+		exe "normal!dd"
+		exe "normal!2k"
+	endif
+endfunction
+
+"function Theme_Checker_Setter()
+	" Description: Checks the Theme and Changes Accordingly
+
+	"let fileExtensions = ['html', 'css']
+	"let fileNameCheck = index(l:fileExtensions, expand('%:e'))
+	"if g:colors_name ==# 'gruvbox'
+		"if l:fileNameCheck == 0
+			"set termguicolors
+			"colorscheme tokyonight
+			"return 4
+		"endif
+	"elseif g:colors_name ==# 'tokyonight'
+		"if l:fileNameCheck == -1
+			"set notermguicolors
+			"colorscheme gruvbox
+			"return 5
+		"endif
+	"endif
+"endfunction
+
+function WSL_Settings_Setter()
+	" Description: Checks if Vim is in WSL or Linux and applies appropriate settings
+
+	let wsl_uname = substitute(system('uname'), '\n', '', '')
+	if wsl_uname == 'Linux'
+		let wsl_lines = readfile("/proc/version")
+		if wsl_lines[0] =~ "Microsoft" " Checks if /proc/version contains any instance of the word Microsoft
+			colorscheme gruvbox
+			highlight Normal guibg=NONE ctermbg=NONE
+			highlight CursorLine guibg=NONE ctermbg=NONE gui=underline cterm=underline
+			return 854 " Try and figure out what the number is for
+		endif
+	endif
+	colorscheme gruvbox
+	return 528 " Try and figure out what the number is for
+endfunction
+
+#+END_SRC
+
+* Conditionals
+Can be used if they just didn't somehow work in a function or some other reason
+
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+* Debugging
+If you think that a print function isn't 'real' debugging you're not a real programmer.
+
+** Print Statements
+#+BEGIN_SRC vimrc
+autocmd FileType python inoremap <buffer> <C-p> print("You made it here! - Debugging\n")
+autocmd FileType c inoremap <buffer> <C-p> printf("You made it here! - Debugging\n");
+autocmd FileType cpp inoremap <buffer> <C-p> cout << "You made it here! - Debugging" << endl;
+autocmd FileType cs inoremap <buffer> <C-p> Console.WriteLine("You made it here! - Debugging\n");
+autocmd FileType java inoremap <buffer> <C-p> System.out.println("You made it here! - Debugging\n");
+autocmd FileType rs inoremap <buffer> <C-p> println!("You made it here! - Debugging\n");
+autocmd FileType lua inoremap <buffer> <C-p> io.write("You made it here! - Debugging\n");
+autocmd FileType perl inoremap <buffer> <C-p> printf "You made it here! - Debugging\n";
+autocmd FileType pascal inoremap <buffer> <C-p> writeln("You made it here! - Debugging\n");
+#+END_SRC
+
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+* Auto Run Commands
+Non-specific autocmd commands like when starting up Vim or when in a certain mode like Insert or Visual. Not really meant for commands for programming specifically like autocomplete, insertion or templates.
+
+** Theme Switcher
+#+BEGIN_SRC vimrc
+"autocmd BufLeave,BufEnter * :call Theme_Checker_Setter()
+#+END_SRC
+
+** NERDTree
+#+BEGIN_SRC vimrc
+" Quits NERDTree if it's the last buffer
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+						\ quit | endif
+" Prevents other buffers from replacing the NERDTree buffer
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+	\ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+" Refreshes NERDTree when entering its buffer
+autocmd BufEnter NERD_tree_* | execute 'normal R'
+#+END_SRC
+
+** WSL Detector
+#+BEGIN_SRC vimrc
+autocmd VimEnter * :call WSL_Settings_Setter()
+#+END_SRC
+
+* Autocompletions
+** Python
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+** C
+#+BEGIN_SRC vimrc
+autocmd BufNewFile,FileType c nnoremap <buffer> <C-P> :r ~/.vim/templates/c_setup.c<CR>i<BS><ESC>
+autocmd BufNewFile,FileType *.h :call Header_Guard_Setup()
+#+END_SRC
+
+** C++
+#+BEGIN_SRC vimrc
+autocmd BufNewFile,FileType cpp nnoremap <buffer> <C-P> :r ~/.vim/templates/cpp_setup.cpp<CR>i<BS><ESC>
+autocmd BufNewFile,FileType *.hpp :call Header_Guard_Setup()
+#+END_SRC
+
+** C#
+#+BEGIN_SRC vimrc
+autocmd BufNewFile,FileType cs nnoremap <buffer> <C-P> :r ~/.vim/templates/cs_setup.cs<CR>i<BS><ESC>
+#+END_SRC
+
+** Java
+#+BEGIN_SRC vimrc
+autocmd BufNewFile,FileType java nnoremap <buffer> <C-P> :r ~/.vim/templates/java_setup.java<CR>i<BS><ESC>
+autocmd Filetype java iabbrev <buffer> sout System.out.println(
+#+END_SRC
+
+** Rust
+#+BEGIN_SRC vimrc
+autocmd BufNewFile,Filetype rs nnoremap <buffer> <C-P> :r ~/.vim/templates/rust_setup.rs<CR>i<BS><ESC>
+#+END_SRC
+
+** Lua
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+** Perl
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+** Haskell
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+** HTML
+#+BEGIN_SRC vimrc
+autocmd BufNewFile,FileType html nnoremap <buffer> <C-P> :r ~/.vim/templates/html_setup.html<CR>i<BS><ESC>
+#+END_SRC
+
+** CSS
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+* Macroinstructions
+I didn't have to do this but I like being able to just see my macros without having to use the :register command.
+
+#+BEGIN_SRC vimrc
+
+#+END_SRC
+
+* Miscellaneous Sht
+Just some random stuff like showing the time or printing out a Nyan cat stuff like that
+
+#+BEGIN_SRC vimrc
+
+#+END_SRC
