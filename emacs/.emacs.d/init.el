@@ -9,7 +9,7 @@
 (setq column-number-mode t)
 (global-display-line-numbers-mode)
 
-(setq inhibit-splash-screen t) ;; Startup Screen
+(setq inhibit-splash-screen t)                     ;; Startup Screen
 (setq make-backup-files nil)
 (setq backward-delete-char-untabify-method nil)
 (scroll-bar-mode -1)
@@ -18,13 +18,16 @@
 
 (set-default 'truncate-line t)
 (global-visual-line-mode t)
-(windmove-default-keybindings)
-(add-hook 'window-setup-hook 'toggle-frame-maximized t)
+(windmove-default-keybindings)                             ;; Adds Window Switching Keybindings
+(add-hook 'window-setup-hook 'toggle-frame-maximized t)    ;; Maximizes Window
 
 (setq c-default-style "linux")
 (setq c-basic-offset 4)
 
-
+(setq org-todo-keywords
+	  '((sequence "TODO" "IN-PROGRESS" "|" "DONE")
+		(sequence "BUG" "|" "FIXED")
+		)
 
 (setq org-src-preserve-indentation t
       org-edit-src-content-indentation 0)

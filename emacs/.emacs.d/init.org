@@ -57,6 +57,7 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 
 ** Language Specific (Major/Minor Mode)
 *** CC Mode
+**** C
 #+BEGIN_SRC emacs-lisp
 (setq c-default-style "linux")
 (setq c-basic-offset 4)
@@ -65,7 +66,10 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 * Org Mode
 ** ToDo
 #+BEGIN_SRC emacs-lisp
-
+(setq org-todo-keywords
+	  '((sequence "TODO" "IN-PROGRESS" "|" "DONE")
+		(sequence "BUG" "|" "FIXED")
+		)
 #+END_SRC
 
 ** Source Block
