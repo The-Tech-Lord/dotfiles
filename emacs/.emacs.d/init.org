@@ -83,6 +83,11 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 * Key Mappings
 ** General
 #+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+** Tabs
+#+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-t") 'tab-new)
 #+END_SRC
 
