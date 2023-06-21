@@ -3,7 +3,7 @@
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
-;; test
+;;test
 
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode t)
@@ -14,6 +14,7 @@
 (setq inhibit-splash-screen t)                     ;; Startup Screen
 (setq make-backup-files nil)
 (setq backward-delete-char-untabify-method nil)
+
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -34,6 +35,8 @@
 
 (setq org-src-preserve-indentation t
     org-edit-src-content-indentation '0)
+
+
 
 (global-set-key (kbd "C-t") 'tab-new)
 
