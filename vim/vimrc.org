@@ -12,17 +12,17 @@
 
 GitHub: https://github.com/The-Tech-Lord/dotfiles
 
-" 'Wake up to reality! Nothing ever goes as planned in this accursed world. The longer you live, the more you
-" realize that the only things that truly exist in this reality are merely pain, suffering and futility.
-" Listen, everywhere you look in this world, wherever there is light, there will always be shadows to be found
-" as well. As long as there is a concept of victors, the vanquished will also exist. The selfish intent of
-" wanting to preserve peace, initiates war. and hatred is born in order to protect love.
-" There are nexuses causal relationships that cannot be separated' - [Madara Uchiha]
+- 'Wake up to reality! Nothing ever goes as planned in this accursed world. The longer you live, the more you
+realize that the only things that truly exist in this reality are merely pain, suffering and futility.
+Listen, everywhere you look in this world, wherever there is light, there will always be shadows to be found
+as well. As long as there is a concept of victors, the vanquished will also exist. The selfish intent of
+wanting to preserve peace, initiates war. and hatred is born in order to protect love.
+There are nexuses causal relationships that cannot be separated' - [Madara Uchiha]
 
-" 'If you know the enemy and know yourself you need not fear the results of a
-" hundred battles' - [Sun Tzu: The Art of War]
+- 'If you know the enemy and know yourself you need not fear the results of a
+hundred battles' - [Sun Tzu: The Art of War]
 
-" 'You're not a real programmer unless you have severe Imposter Syndrome' - [The Programming M16A4]
+- 'You're not a real programmer unless you have severe Imposter Syndrome' - [The Programming M16A4]
 
 * Vim Plug Package Manager
 #+BEGIN_SRC vimrc
@@ -55,13 +55,13 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 #+END_SRC
 
-** Syntax Related
+** Syntax
 #+BEGIN_SRC vimrc
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 #+END_SRC
 
-** Syntax Highlighting
+*** Highlighting
 #+BEGIN_SRC vimrc
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -70,7 +70,7 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'yuezk/vim-js'
 #+END_SRC
 
-** Git Related
+** Git
 #+BEGIN_SRC vimrc
 Plug 'mhinz/vim-signify'
 #+END_SRC
@@ -85,34 +85,36 @@ call plug#end()
 #+END_SRC
 
 * Vim Settings
-** General
 #+BEGIN_SRC vimrc
 let mapleader = ","
 #+END_SRC
 
+** General
 #+BEGIN_SRC vimrc
 syntax on										" This is self explanatory like com'on guys
 set background=dark
-set number relativenumber
-set cursorline									" Highlights the cursor line
 set nowrap										" Prevents line of text/code to be wrapped around to another line
-set mouse=a
 set confirm
+set noshowmode
+set updatetime=80
+set termwinsize=9x200							" Sets Terminal Window Height and Width
+set textwidth=0									" Stops Vim from Inserting a Line Break
+set spell spelllang=en_us
 #+END_SRC
 
+** Tabs
 #+BEGIN_SRC vimrc
 set tabstop=4									" Sets Tab Width
 set shiftwidth=4
 #+END_SRC
 
+** Mouse / Cursor
 #+BEGIN_SRC vimrc
-set noshowmode
-set updatetime=80
-set termwinsize=9x200							" Sets Terminal Window Height and Width
-set scrolloff=20								" Offsets the Cursor Top and Bottom
-set textwidth=0									" Stops Vim from Inserting a Line Break
-set spell spelllang=en_us
+set mouse=a
+set cursorline									" Highlights the cursor line
 set signcolumn=number
+set number relativenumber
+set scrolloff=20								" Offsets the Cursor Top and Bottom
 #+END_SRC
 
 ** WSL Settings

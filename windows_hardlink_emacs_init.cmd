@@ -1,0 +1,1 @@
+mklink /H C:\Users\ryanh\AppData\Roaming\.emacs.d\init.el C:\Users\ryanh\Documents\GitHub\dotfiles\emacs\.emacs.d\init.el

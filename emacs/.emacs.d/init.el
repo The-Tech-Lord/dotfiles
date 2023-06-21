@@ -3,6 +3,8 @@
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
+;; test
+
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode t)
 
@@ -25,14 +27,15 @@
 (setq c-basic-offset 4)
 
 (setq org-todo-keywords
-	  '((sequence "TODO" "IN-PROGRESS" "|" "DONE")
-		(sequence "BUG" "|" "FIXED")
+		'((sequence "TODO" "IN-PROGRESS" "|" "DONE")
+		  (sequence "BUG" "|" "FIXED")
+		  )
 		)
 
 (setq org-src-preserve-indentation t
-      org-edit-src-content-indentation 0)
+    org-edit-src-content-indentation '0)
 
-
+(global-set-key (kbd "C-t") 'tab-new)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
