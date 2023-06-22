@@ -15,7 +15,6 @@
 GitHub: https://github.com/The-Tech-Lord/dotfiles
 
 * Package Manager
-** Melpa
 #+BEGIN_SRC emacs-lisp
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -37,7 +36,7 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-display-line-numbers-mode)
 #+END_SRC
 
-*** Disabled
+** Disabled
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-splash-screen t)                     ;; Startup Screen
 (setq make-backup-files nil)
@@ -48,7 +47,7 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (tool-bar-mode -1)
 #+END_SRC
 
-*** Other
+** Other
 #+BEGIN_SRC emacs-lisp
 (set-default 'truncate-line t)
 (global-visual-line-mode t)
@@ -82,15 +81,40 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 
 * Key Mappings
 ** Disabled
+| Key       | Command             |
+|-----------+---------------------|
+| C-n       | next-line           |
+| C-f       | forward-char        |
+| C-b       | backward-char       |
+| C-p       | previous-line       |
+| M-<       | beginning-of-buffer |
+| M->       | end-of-buffer       |
+| C-<prior> | scroll-right        |
+| C-<next>  | scroll-left         |
+|-----------+---------------------|
+| C-z       | suspend-frame       |
+|-----------+---------------------|
+| C-x t O   | tab-previous        |
+| C-x t o   | tab-next            |
+| C-x t 0   | tab-close           |
+| C-x t 2   | tab-new             |
+
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-n"))
 (global-unset-key (kbd "C-f"))
 (global-unset-key (kbd "C-b"))
 (global-unset-key (kbd "C-p"))
-(global-unset-key (kbd "C-<prior>"))
-(global-unset-key (kbd "C-<next>"))
 (global-unset-key (kbd "M-<"))
 (global-unset-key (kbd "M->"))
+(global-unset-key (kbd "C-<prior>"))
+(global-unset-key (kbd "C-<next>"))
+
+(global-unset-key (kbd "C-z"))
+
+(global-unset-key (kbd "C-x t 0"))
+(global-unset-key (kbd "C-x t 2"))
+(global-unset-key (kbd "C-x t O"))
+(global-unset-key (kbd "C-x t o"))
 #+END_SRC
 
 ** Global Bindings
@@ -102,7 +126,13 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 
 *** Tabs
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-t") 'tab-new)
+(global-set-key (kbd "C-x t 0") 'tab-close)
+(global-set-key (kbd "C-x t 2") 'tab-new)
+#+END_SRC
+
+*** VCS
+#+BEGIN_SRC emacs-lisp
+
 #+END_SRC
 
 ** Local Bindings
