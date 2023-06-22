@@ -81,6 +81,19 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 
 * Key Mappings
 ** Disabled
+| Key | Command       |
+|-----+---------------|
+| C-z | suspend-frame |
+| C-t | transpose-key |
+
+#+BEGIN_SRC emacs-lisp
+;; Something
+(global-unset-key (kbd "C-z"))
+(global-unset-key (kbd "C-t"))
+#+END_SRC
+
+** Global Bindings
+*** Movement
 | Key       | Command             |
 |-----------+---------------------|
 | C-n       | next-line           |
@@ -91,19 +104,8 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 | M->       | end-of-buffer       |
 | C-<prior> | scroll-right        |
 | C-<next>  | scroll-left         |
-|-----------+---------------------|
-| C-z       | suspend-frame       |
-| C-t       | transpose-key       |
-|-----------+---------------------|
-| C-x t o   | tab-next            |
-| C-x t O   | tab-previous        |
-| C-x t u   | tab-undo            |
-|-----------+---------------------|
-| C-x v v   | vc-next-action      |
-|           |                     |
 
 #+BEGIN_SRC emacs-lisp
-;; Movement
 (global-unset-key (kbd "C-n"))
 (global-unset-key (kbd "C-f"))
 (global-unset-key (kbd "C-b"))
@@ -112,22 +114,8 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-unset-key (kbd "M->"))
 (global-unset-key (kbd "C-<prior>"))
 (global-unset-key (kbd "C-<next>"))
-
-;; Something
-(global-unset-key (kbd "C-z"))
-(global-unset-key (kbd "C-t"))
-
-;; Tabs
-(global-unset-key (kbd "C-x t o"))
-(global-unset-key (kbd "C-x t O"))
-(global-unset-key (kbd "C-x t u"))
-
-;; VCS
-(global-unset-key (kbd "C-x v v"))
 #+END_SRC
 
-** Global Bindings
-*** Movement
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-<prior>") 'beginning-of-buffer)
 (global-set-key (kbd "C-<next>") 'end-of-buffer)
@@ -137,6 +125,19 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'tabs-map)
 (global-set-key (kbd "C-t") 'tabs-map)
+#+END_SRC
+
+| Key     | Command      |
+|---------+--------------|
+| C-x t o | tab-next     |
+| C-x t O | tab-previous |
+| C-x t u | tab-undo     |
+|         |              |
+
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x t o"))
+(global-unset-key (kbd "C-x t O"))
+(global-unset-key (kbd "C-x t u"))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -152,8 +153,23 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-set-key (kbd "C-v") 'vcs-map)
 #+END_SRC
 
+| Key     | Command        |
+|---------+----------------|
+| C-x v v | vc-next-action |
+| C-x v + | vc-update      |
+| C-x v P | vc-push        |
+|         |                |
+
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x v v"))
+(global-unset-key (kbd "C-x v +"))
+(global-unset-key (kbd "C-x v P"))
+#+END_SRC
+
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-v v") 'vc-next-action)
+(global-set-key (kbd "C-v p") 'vc-push)
+(global-set-key (kbd "C-v P") 'vc-update)
 #+END_SRC
 
 ** Local Bindings
