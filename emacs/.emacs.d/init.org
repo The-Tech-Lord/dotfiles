@@ -81,14 +81,34 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 #+END_SRC
 
 * Key Mappings
-** General
+** Disabled
 #+BEGIN_SRC emacs-lisp
-
+(global-unset-key (kbd "C-n"))
+(global-unset-key (kbd "C-f"))
+(global-unset-key (kbd "C-b"))
+(global-unset-key (kbd "C-p"))
+(global-unset-key (kbd "C-<prior>"))
+(global-unset-key (kbd "C-<next>"))
+(global-unset-key (kbd "M-<"))
+(global-unset-key (kbd "M->"))
 #+END_SRC
 
-** Tabs
+** Global Bindings
+*** Movement
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<prior>") 'beginning-of-buffer)
+(global-set-key (kbd "C-<next>") 'end-of-buffer)
+#+END_SRC
+
+*** Tabs
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-t") 'tab-new)
+#+END_SRC
+
+** Local Bindings
+*** CC Mode
+#+BEGIN_SRC emacs-lisp
+
 #+END_SRC
 
 * Other

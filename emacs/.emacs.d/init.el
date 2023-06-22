@@ -3,8 +3,6 @@
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
-;;test
-
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode t)
 
@@ -36,9 +34,21 @@
 (setq org-src-preserve-indentation t
     org-edit-src-content-indentation '0)
 
+(global-unset-key (kbd "C-n"))
+(global-unset-key (kbd "C-f"))
+(global-unset-key (kbd "C-b"))
+(global-unset-key (kbd "C-p"))
+(global-unset-key (kbd "C-<prior>"))
+(global-unset-key (kbd "C-<next>"))
+(global-unset-key (kbd "M-<"))
+(global-unset-key (kbd "M->"))
 
+(global-set-key (kbd "C-<prior>") 'beginning-of-buffer)
+(global-set-key (kbd "C-<next>") 'end-of-buffer)
 
 (global-set-key (kbd "C-t") 'tab-new)
+
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
