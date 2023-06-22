@@ -34,19 +34,44 @@
 (setq org-src-preserve-indentation t
     org-edit-src-content-indentation '0)
 
+;; Something
+(global-unset-key (kbd "C-z"))
+(global-unset-key (kbd "C-t"))
+
 (global-unset-key (kbd "C-n"))
 (global-unset-key (kbd "C-f"))
 (global-unset-key (kbd "C-b"))
 (global-unset-key (kbd "C-p"))
-(global-unset-key (kbd "C-<prior>"))
-(global-unset-key (kbd "C-<next>"))
 (global-unset-key (kbd "M-<"))
 (global-unset-key (kbd "M->"))
+(global-unset-key (kbd "C-<prior>"))
+(global-unset-key (kbd "C-<next>"))
 
 (global-set-key (kbd "C-<prior>") 'beginning-of-buffer)
 (global-set-key (kbd "C-<next>") 'end-of-buffer)
 
-(global-set-key (kbd "C-t") 'tab-new)
+(define-prefix-command 'tabs-map)
+(global-set-key (kbd "C-t") 'tabs-map)
+
+(global-unset-key (kbd "C-x t o"))
+(global-unset-key (kbd "C-x t O"))
+(global-unset-key (kbd "C-x t u"))
+
+(global-set-key (kbd "C-t t") 'tab-new)
+(global-set-key (kbd "C-t w") 'tab-close)
+(global-set-key (kbd "C-t W") 'tab-close-other)
+(global-set-key (kbd "C-t u") 'tab-undo)
+
+(define-prefix-command 'vcs-map)
+(global-set-key (kbd "C-v") 'vcs-map)
+
+(global-unset-key (kbd "C-x v v"))
+(global-unset-key (kbd "C-x v +"))
+(global-unset-key (kbd "C-x v P"))
+
+(global-set-key (kbd "C-v v") 'vc-next-action)
+(global-set-key (kbd "C-v p") 'vc-push)
+(global-set-key (kbd "C-v P") 'vc-update)
 
 
 
