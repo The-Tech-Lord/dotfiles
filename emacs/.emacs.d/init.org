@@ -68,9 +68,7 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 #+BEGIN_SRC emacs-lisp
 (setq org-todo-keywords
 		'((sequence "TODO" "IN-PROGRESS" "|" "DONE")
-		  (sequence "BUG" "|" "FIXED")
-		  )
-		)
+		  (sequence "BUG" "|" "FIXED")))
 #+END_SRC
 
 ** Source Block
@@ -87,12 +85,11 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 | C-t | transpose-key |
 
 #+BEGIN_SRC emacs-lisp
-;; Something
 (global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-t"))
 #+END_SRC
 
-** Global Bindings
+** Global
 *** Movement
 | Key       | Command             |
 |-----------+---------------------|
@@ -127,14 +124,21 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-set-key (kbd "C-t") 'tabs-map)
 #+END_SRC
 
-| Key     | Command      |
-|---------+--------------|
-| C-x t o | tab-next     |
-| C-x t O | tab-previous |
-| C-x t u | tab-undo     |
-|         |              |
+| Key     | Command         |
+|---------+-----------------|
+| C-x t 0 | tab-close       |
+| C-x t 1 | tab-close-other |
+| C-x t 2 | tab-new         |
+| C-x t G | tab-group       |
+| C-x t o | tab-next        |
+| C-x t O | tab-previous    |
+| C-x t u | tab-undo        |
 
 #+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x t 0"))
+(global-unset-key (kbd "C-x t 1"))
+(global-unset-key (kbd "C-x t 2"))
+(global-unset-key (kbd "C-x t G"))
 (global-unset-key (kbd "C-x t o"))
 (global-unset-key (kbd "C-x t O"))
 (global-unset-key (kbd "C-x t u"))
@@ -158,7 +162,6 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 | C-x v v | vc-next-action |
 | C-x v + | vc-update      |
 | C-x v P | vc-push        |
-|         |                |
 
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x v v"))
@@ -172,8 +175,52 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-set-key (kbd "C-v P") 'vc-update)
 #+END_SRC
 
-** Local Bindings
+** Major Mode
 *** CC Mode
+| Key     | Command      |
+|---------+--------------|
+| C-c C-o | c-set-offset |
+|         |              |
+
+#+BEGIN_SRC emacs-lisp
+(defun c-unset-bindings()
+	)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'c-initialization-hook
+		  )
+
+(add-hook 'c-mode-common-hook
+		  )
+
+(add-hook 'c-mode-hook
+		  )
+
+(add-hook 'c++-mode-hook
+		  )
+
+(add-hook 'objc-mode-hook
+		  )
+
+(add-hook 'java-mode-hook
+		  )
+
+(add-hook 'idl-mode-hook
+		  )
+
+(add-hook 'pike-mode-hook
+		  )
+
+(add-hook 'awk-mode-hook
+		  )
+#+END_SRC
+
+** Minor Mode
+| Key | Command |
+|-----+---------|
+|     |         |
+
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC

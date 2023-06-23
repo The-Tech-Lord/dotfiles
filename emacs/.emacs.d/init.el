@@ -27,14 +27,11 @@
 
 (setq org-todo-keywords
 		'((sequence "TODO" "IN-PROGRESS" "|" "DONE")
-		  (sequence "BUG" "|" "FIXED")
-		  )
-		)
+		  (sequence "BUG" "|" "FIXED")))
 
 (setq org-src-preserve-indentation t
     org-edit-src-content-indentation '0)
 
-;; Something
 (global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-t"))
 
@@ -53,6 +50,10 @@
 (define-prefix-command 'tabs-map)
 (global-set-key (kbd "C-t") 'tabs-map)
 
+(global-unset-key (kbd "C-x t 0"))
+(global-unset-key (kbd "C-x t 1"))
+(global-unset-key (kbd "C-x t 2"))
+(global-unset-key (kbd "C-x t G"))
 (global-unset-key (kbd "C-x t o"))
 (global-unset-key (kbd "C-x t O"))
 (global-unset-key (kbd "C-x t u"))
@@ -72,6 +73,36 @@
 (global-set-key (kbd "C-v v") 'vc-next-action)
 (global-set-key (kbd "C-v p") 'vc-push)
 (global-set-key (kbd "C-v P") 'vc-update)
+
+(defun c-unset-bindings()
+	)
+
+(add-hook 'c-initialization-hook
+		  )
+
+(add-hook 'c-mode-common-hook
+		  )
+
+(add-hook 'c-mode-hook
+		  )
+
+(add-hook 'c++-mode-hook
+		  )
+
+(add-hook 'objc-mode-hook
+		  )
+
+(add-hook 'java-mode-hook
+		  )
+
+(add-hook 'idl-mode-hook
+		  )
+
+(add-hook 'pike-mode-hook
+		  )
+
+(add-hook 'awk-mode-hook
+		  )
 
 
 
