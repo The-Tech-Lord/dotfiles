@@ -124,15 +124,25 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-set-key (kbd "C-t") 'tabs-map)
 #+END_SRC
 
-| Key     | Command         |
-|---------+-----------------|
-| C-x t 0 | tab-close       |
-| C-x t 1 | tab-close-other |
-| C-x t 2 | tab-new         |
-| C-x t G | tab-group       |
-| C-x t o | tab-next        |
-| C-x t O | tab-previous    |
-| C-x t u | tab-undo        |
+| Key       | Command                       |
+|-----------+-------------------------------|
+| C-x t 0   | tab-close                     |
+| C-x t 1   | tab-close-other               |
+| C-x t 2   | tab-new                       |
+| C-x t G   | tab-group                     |
+| C-x t o   | tab-next                      |
+| C-x t O   | tab-previous                  |
+| C-x t u   | tab-undo                      |
+| C-x t C-r | find-file-read-only-other-tab |
+| C-x t r   | tab-rename                    |
+| C-x t n   | tab-duplicate                 |
+| C-x t t   | other-tab-prefix              |
+| C-x t M   | tab-move-to                   |
+| C-x t N   | tab-new-to                    |
+| C-x t C-f | find-file-other-tab           |
+| C-x t f   | find-file-other-tab           |
+| C-x t RET | tab-switch                    |
+| C-x t d   | dired-other-tab               |
 
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x t 0"))
@@ -142,6 +152,18 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-unset-key (kbd "C-x t o"))
 (global-unset-key (kbd "C-x t O"))
 (global-unset-key (kbd "C-x t u"))
+
+(global-unset-key (kbd "C-x t C-r"))
+(global-unset-key (kbd "C-x t r"))
+(global-unset-key (kbd "C-x t n"))
+
+(global-unset-key (kbd "C-x t t"))
+(global-unset-key (kbd "C-x t M"))
+(global-unset-key (kbd "C-x t N"))
+(global-unset-key (kbd "C-x t C-f"))
+(global-unset-key (kbd "C-x t f"))
+(global-unset-key (kbd "C-x t RET"))
+(global-unset-key (kbd "C-x t d"))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -149,6 +171,9 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-set-key (kbd "C-t w") 'tab-close)
 (global-set-key (kbd "C-t W") 'tab-close-other)
 (global-set-key (kbd "C-t u") 'tab-undo)
+(global-set-key (kbd "C-t d") 'dired-other-tab)
+(global-set-key (kbd "C-t D") 'tab-duplicate)
+(global-set-key (kbd "C-t C-f") 'find-file-other-tab)
 #+END_SRC
 
 *** VCS
@@ -183,37 +208,37 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 |         |              |
 
 #+BEGIN_SRC emacs-lisp
-(defun c-unset-bindings()
-	)
+;;(defun c-unset-bindings()
+;;	)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(add-hook 'c-initialization-hook
-		  )
+;;(add-hook 'c-initialization-hook
+;;		  )
 
-(add-hook 'c-mode-common-hook
-		  )
+;;(add-hook 'c-mode-common-hook
+;;		  )
 
-(add-hook 'c-mode-hook
-		  )
+;;(add-hook 'c-mode-hook
+;;		  )
 
-(add-hook 'c++-mode-hook
-		  )
+;;(add-hook 'c++-mode-hook
+;;		  )
 
-(add-hook 'objc-mode-hook
-		  )
+;;(add-hook 'objc-mode-hook
+;;		  )
 
-(add-hook 'java-mode-hook
-		  )
+;;(add-hook 'java-mode-hook
+;;		  )
 
-(add-hook 'idl-mode-hook
-		  )
+;;(add-hook 'idl-mode-hook
+;;		  )
 
-(add-hook 'pike-mode-hook
-		  )
+;;(add-hook 'pike-mode-hook
+;;		  )
 
-(add-hook 'awk-mode-hook
-		  )
+;;(add-hook 'awk-mode-hook
+;;		  )
 #+END_SRC
 
 ** Minor Mode
