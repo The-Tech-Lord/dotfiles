@@ -634,20 +634,29 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 #+END_SRC
 
 *** Highlighting
+#+BEGIN_SRC emacs-lisp
+(define-prefix-command 'hi-map)
+(global-set-key (kbd "M-m") 'hi-map)
+#+END_SRC
+
 **** Unbinded
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-s h ."))    ;; hightlight-symbol-at-point
-(global-unset-key (kbd "M-s h f"))    ;; hi-lock-find-patterns
-(global-unset-key (kbd "M-s h l"))    ;; highlight-lines-matching-regexp
 (global-unset-key (kbd "M-s h p"))    ;; highlight-phrase
 (global-unset-key (kbd "M-s h r"))    ;; highlight-regexp
 (global-unset-key (kbd "M-s h u"))    ;; unhighlight-regexp
+(global-unset-key (kbd "M-s h l"))    ;; highlight-lines-matching-regexp
+(global-unset-key (kbd "M-s h f"))    ;; hi-lock-find-patterns
 (global-unset-key (kbd "M-s h w"))    ;; hi-lock-write-interactive-patterns
 #+END_SRC
 
 **** Binded
 #+BEGIN_SRC emacs-lisp
-
+(global-set-key (kbd "M-m h") 'highlight-symbol-at-point)
+(global-set-key (kbd "M-m p") 'highlight-phrase)
+(global-set-key (kbd "M-m x") 'highlight-regexp)
+(global-set-key (kbd "M-m u") 'unhighlight-regexp)
+(global-set-key (kbd "M-m l") 'highlight-lines-matching-regexp)
 #+END_SRC
 
 *** Other
