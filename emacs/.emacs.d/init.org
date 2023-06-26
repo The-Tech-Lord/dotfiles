@@ -83,13 +83,26 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 **** Unbinded
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-w"))    ;; kill-region
+(global-unset-key (kbd "S-<delete>"))    ;; kill-region
 (global-unset-key (kbd "C-y"))    ;; yank
+(global-unset-key (kbd "S-<insert>"))    ;; yank
+(global-unset-key (kbd "S-<insertchar>"))    ;; yank
 (global-unset-key (kbd "M-w"))    ;; kill-ring-save
 
 (global-unset-key (kbd "C-x u"))    ;; undo
+(global-unset-key (kbd "C-_"))    ;; undo
+(global-unset-key (kbd "C-M-_"))    ;; undo-redo
+
 (global-unset-key (kbd "C-x h"))    ;; mark-whole-buffer
 (global-unset-key (kbd "C-x C-SPC"))    ;; pop-global-mark
 (global-unset-key (kbd "C-x C-@"))    ;; pop-global-mark
+(global-unset-key (kbd "M-="))    ;; count-words-region
+(global-unset-key (kbd "M-@"))    ;; mark-word
+(global-unset-key (kbd "C-x C-p"))    ;; mark-page
+(global-unset-key (kbd "C-x C-d"))    ;; list-directory
+(global-unset-key (kbd "C-x l"))    ;; count-lines-page
+
+(global-unset-key (kbd "C-M-<mouse-1>"))    ;; mouse-set-point
 #+END_SRC
 
 **** Binded
@@ -97,6 +110,18 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-set-key (kbd "C-.") 'kill-region)
 (global-set-key (kbd "C-;") 'yank)
 (global-set-key (kbd "M-'") 'kill-ring-save)
+#+END_SRC
+
+*** Searching
+**** Unbinded
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x C-f"))    ;; find-file-read-only
+(global-unset-key (kbd "C-x C-r"))    ;; find-file-read-only
+(global-unset-key (kbd "M-."))    ;; xref-find-definitions
+(global-unset-key (kbd "M-?"))    ;; xref-find-references
+(global-unset-key (kbd "C-M-."))    ;; xref-find-apropos
+
+(global-unset-key (kbd "M-$"))    ;; ispell-word
 #+END_SRC
 
 *** Text Manipulation
@@ -111,15 +136,32 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-unset-key (kbd "M-t"))    ;; tranpose-words
 (global-unset-key (kbd "M-d"))    ;; kill-word
 (global-unset-key (kbd "M-DEL"))    ;; backward-kill-word
+(global-unset-key (kbd "C-<insert>"))    ;; kill-ring-save
+(global-unset-key (kbd "C-<insertchar>"))    ;; kill-ring-save
 
 (global-unset-key (kbd "C-d"))    ;; delete-char
 (global-unset-key (kbd "M-k"))    ;; kill-sentence
+(global-unset-key (kbd "C-x C-t"))    ;; transpose-lines
 (global-unset-key (kbd "C-DEL"))    ;; backward-kill-sentece
 (global-unset-key (kbd "C-x DEL"))    ;; backward-kill-sentence
 (global-unset-key (kbd "M-q"))    ;; fill-paragraph
+(global-unset-key (kbd "C-S-<backspace>"))    ;; kill-whole-line
+(global-unset-key (kbd "C-<backspace>"))    ;; backward-kill-word
+(global-unset-key (kbd "C-<delete>"))    ;; kill-word
+(global-unset-key (kbd "C-<down>"))    ;; forward-paragraph
+(global-unset-key (kbd "C-M-\\"))    ;; indent-region
+(global-unset-key (kbd "M-("))    ;; insert-parentheses
+(global-unset-key (kbd "C-M-i"))    ;; complete-symbol
+(global-unset-key (kbd "C-M-j"))    ;; default-indent-new-line
+(global-unset-key (kbd "C-M-o"))    ;; split-line
+(global-unset-key (kbd "C-x TAB"))    ;; indent-rigidly
+(global-unset-key (kbd "M-\\"))    ;; delete-horizontal-space
+(global-unset-key (kbd "M-^"))    ;; delete-indentation
 
 (global-unset-key (kbd "C-x C-l"))    ;; downcase-region
 (global-unset-key (kbd "C-x C-u"))    ;; upcase-region
+
+(global-unset-key (kbd "C-x i"))    ;; insert-file
 #+END_SRC
 
 ***** Whitespace
@@ -132,6 +174,10 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 ***** Searching
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-z"))    ;; zap-to-char
+(global-unset-key (kbd "C-M-r"))    ;; isearch-backward-regexp
+(global-unset-key (kbd "C-M-s"))    ;; isearch-forward-regexp
+(global-unset-key (kbd "C-M-%"))    ;; query-replace-regexp
+(global-unset-key (kbd "M-%"))    ;; query-replace
 #+END_SRC
 
 **** Binding
@@ -149,9 +195,12 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 
 (global-unset-key (kbd "M-f"))    ;; forward-word
 (global-unset-key (kbd "M-b"))    ;; backward-word
+(global-unset-key (kbd "ESC <left>"))    ;; backward-word
 
 (global-unset-key (kbd "M-a"))    ;; backward-sentence
 (global-unset-key (kbd "M-e"))    ;; forward-sentence
+
+(global-unset-key (kbd "C-<up>"))    ;; backward-paragraph
 #+END_SRC
 
 ***** Whitespace
@@ -162,6 +211,7 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 ***** Scrolling
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-<"))    ;; beginning-of-buffer
+(global-unset-key (kbd "C-M-l"))    ;; reposition-window
 (global-unset-key (kbd "M->"))    ;; end-of-buffer
 (global-unset-key (kbd "M-v"))    ;; scroll-down-command
 (global-unset-key (kbd "C-M-S-v"))    ;; scroll-other-window-down
@@ -170,6 +220,34 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-unset-key (kbd "C-<prior>"))    ;; scroll-right
 (global-unset-key (kbd "C-x <"))    ;; scroll-left
 (global-unset-key (kbd "C-x >"))    ;; scroll-right
+(global-unset-key (kbd "S-<wheel-down>"))    ;; mwheel-scroll
+(global-unset-key (kbd "S-<wheel-left>"))    ;; mwheel-scroll
+(global-unset-key (kbd "S-<wheel-right>"))    ;; mwheel-scroll
+(global-unset-key (kbd "S-<wheel-up>"))    ;; mwheel-scroll
+(global-unset-key (kbd "M-<next>"))    ;; scroll-other-window
+(global-unset-key (kbd "M-<prior>"))    ;; scroll-other-window-down
+(global-unset-key (kbd "M-<wheel-down>"))    ;; mwheel-scroll
+(global-unset-key (kbd "M-<wheel-left>"))    ;; mwheel-scroll
+(global-unset-key (kbd "M-<wheel-right>"))    ;; mwheel-scroll
+(global-unset-key (kbd "M-<wheel-up>"))    ;; mwheel-scroll
+(global-unset-key (kbd "C-M-a"))    ;; beginning-of-defun
+(global-unset-key (kbd "C-M-<end>"))    ;; end-of-defun
+(global-unset-key (kbd "C-M-<home>"))    ;; beginning-of-defun
+(global-unset-key (kbd "C-M-e"))    ;; end-of-defun
+(global-unset-key (kbd "M-<home>"))    ;; beginning-of-buffer-other-window
+(global-unset-key (kbd "M-<begin>"))    ;; beginning-of-buffer-other-window
+(global-unset-key (kbd "ESC C-<end>"))    ;; end-of-defun
+(global-unset-key (kbd "ESC C-<home>"))    ;; beginning-of-defun
+(global-unset-key (kbd "ESC <begin>"))    ;; beginning-of-buffer-other-window
+(global-unset-key (kbd "ESC <end>"))    ;; end-of-buffer-other-window
+(global-unset-key (kbd "M-<end>"))    ;; end-of-buffer-other-window
+(global-unset-key (kbd "ESC <next>"))    ;; scroll-other-window
+(global-unset-key (kbd "ESC <prior>"))    ;; scroll-other-window-down
+(global-unset-key (kbd "C-<home>"))    ;; beginning-of-buffer
+(global-unset-key (kbd "C-M-v"))    ;; scroll-other-window
+(global-unset-key (kbd "C-<end>"))    ;; end-of-buffer
+(global-unset-key (kbd "ESC <home>"))    ;; beginning-of-buffer-other-window
+(global-unset-key (kbd "<Scroll Lock>"))    ;; scroll-lock-mode
 
 (global-unset-key (kbd "C-n"))    ;; next-line
 (global-unset-key (kbd "C-p"))    ;; previous-line
@@ -519,6 +597,7 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 
 (global-unset-key (kbd "C-x C-k RET"))    ;; kmacro-edit-macro
 (global-unset-key (kbd "C-x C-k C-e"))    ;; kmacro-edit-macro-repeat
+(global-unset-key (kbd "S-<mouse-3>"))    ;; kmarcro-end-call-mouse
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -607,6 +686,7 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-unset-key (kbd "C-x 2"))    ;; split-window-below
 (global-unset-key (kbd "C-x 3"))    ;; split-window-right
 (global-unset-key (kbd "C-x ^"))    ;; enlarge-window
+(global-unset-key (kbd "C-x -"))    ;; shrink-window-if-larger-than-buffer
 #+END_SRC
 
 ***** Other
@@ -649,8 +729,6 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 
 ***** Other
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-w 1") 'same-window-prefix)
-(global-set-key (kbd "C-w 4") 'other-window-prefix)
 (global-set-key (kbd "C-w m") 'compose-mail-other-window)
 (global-set-key (kbd "C-w p") 'project-other-window-command)
 #+END_SRC
@@ -673,7 +751,13 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x C-<left>"))    ;; previous-buffer
 (global-unset-key (kbd "C-x C-<right>"))    ;; next-buffer
+(global-unset-key (kbd "C-x <left>"))    ;; previous-buffer
+(global-unset-key (kbd "C-x <right>"))    ; next-buffer
 (global-unset-key (kbd "C-x b"))    ;; switch-to-buffer
+(global-unset-key (kbd "C-x C-c"))    ;; save-buffers-kill-terminal
+(global-unset-key (kbd "C-x C-b"))    ;; list-buffers
+(global-unset-key (kbd "C-x k"))    ;; kill-buffer
+\(global-unset-key (kbd "C-x s"))    ;; save-some-buffers
 #+END_SRC
 
 *** Frames
@@ -692,6 +776,8 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-unset-key (kbd "C-x 5 c"))    ;; clone-frame
 (global-unset-key (kbd "C-x 5 o"))    ;; other-frame
 (global-unset-key (kbd "C-x 5 C-o"))    ;; display-buffer-other-frame
+(global-unset-key (kbd "M-<f10>"))    ;; toggle-frame-maximized
+(global-unset-key (kbd "ESC <f10>"))    ;; toggle-frame-maximized
 #+END_SRC
 
 ***** Searching
@@ -705,6 +791,10 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 
 ***** Other
 #+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-z"))    ;; suspend-frame
+(global-unset-key (kbd "C-x z"))    ;; suspend-frame
+(global-unset-key (kbd "C-x C-z"))    ;; suspend-frame
+
 (global-unset-key (kbd "C-x 5 5"))    ;; other-frame-prefix
 (global-unset-key (kbd "C-x 5 m"))    ;; compose-mail-other-frame
 (global-unset-key (kbd "C-x 5 p"))    ;; project-other-frame-command
@@ -750,6 +840,9 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-unset-key (kbd "C-x a p"))    ;; expand-jump-to-previous-slot
 (global-unset-key (kbd "C-x a i g"))    ;; inverse-add-global-abbrev
 (global-unset-key (kbd "C-x a i l"))    ;; inverse-add-mode-abbrev
+(global-unset-key (kbd "C-x '"))    ;; expand-abbrev
+(global-unset-key (kbd "C-M-/"))    ;; dabbrev-completion
+(global-unset-key (kbd "M-/"))    ;; abbrev-expand
 #+END_SRC
 
 *** Highlighting
@@ -802,138 +895,106 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 
 *** Other
 **** Unbinded
+***** Prefixes
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-@"))    ;; set-mark-command
-(global-unset-key (kbd "C-z"))    ;; suspend-frame
-(global-unset-key (kbd "C-x z"))    ;; suspend-frame
-(global-unset-key (kbd "C-x C-z"))    ;; suspend-frame
-(global-unset-key (kbd "M-~"))    ;; not-modified
-(global-unset-key (kbd "C-_"))    ;; undo
-(global-unset-key (kbd "C-x f"))    ;; set-fill-column
-(global-unset-key (kbd "C-x i"))    ;; insert-file
-(global-unset-key (kbd "C-x k"))    ;; kill-buffer
-(global-unset-key (kbd "C-x l"))    ;; count-lines-page
-(global-unset-key (kbd "C-x C-q"))    ;; read-only-mode
-(global-unset-key (kbd "C-x C-f"))    ;; find-file-read-only
-(global-unset-key (kbd "C-x C-r"))    ;; find-file-read-only
-(global-unset-key (kbd "C-x C-p"))    ;; mark-page
-(global-unset-key (kbd "C-x C-d"))    ;; list-directory
-(global-unset-key (kbd "C-x $"))    ;; set-selective-display
-(global-unset-key (kbd "C-x ."))    ;; set-fill-prefix
-(global-unset-key (kbd "C-x ="))    ;; what-cursor-position
-(global-unset-key (kbd "C-x C-v"))    ;; find-alternate-file
-(global-unset-key (kbd "C-x ;"))    ;; comment-set-column
-(global-unset-key (kbd "C-x \\"))    ;; activate-transient-input-method
+(global-unset-key (kbd "C-x *"))    ;; calc-dispatch
+(global-unset-key (kbd "C-x 4"))    ;; ctrl-x-4-prefix
+(global-unset-key (kbd "C-x 5"))    ;; ctrl-x-5-prefix
+(global-unset-key (kbd "C-x 6"))    ;; 2C-command
+(global-unset-key (kbd "C-x C-k"))    ;; kmacro-keymap
+(global-unset-key (kbd "C-x v"))    ;; vc-prefix-map
+#+END_SRC
+
+***** Scaling
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x C-+"))    ;; text-scale-adjust
 (global-unset-key (kbd "C-x C--"))    ;; text-scale-adjust
 (global-unset-key (kbd "C-x C-0"))    ;; text-scale-adjust
 (global-unset-key (kbd "C-x C-="))    ;; text-scale-adjust
-(global-unset-key (kbd "C-x <left>"))    ;; previous-buffer
-(global-unset-key (kbd "C-x <right>"))    ; next-buffer
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-M-@"))    ;; mark-sexp
-(global-unset-key (kbd "C-M-a"))    ;; beginning-of-defun
-(global-unset-key (kbd "C-M-b"))    ;; backward-sexp
-(global-unset-key (kbd "C-M-c"))    ;; exit-recursive-edit
-(global-unset-key (kbd "C-M-d"))    ;; down-list
-(global-unset-key (kbd "C-M-e"))    ;; end-of-defun
-(global-unset-key (kbd "C-M-f"))    ;; forward-sexp
-(global-unset-key (kbd "C-M-h"))    ;; mark-defun
-(global-unset-key (kbd "C-M-i"))    ;; complete-symbol
-(global-unset-key (kbd "C-M-j"))    ;; default-indent-new-line
-(global-unset-key (kbd "C-M-k"))    ;; kill-sexp
-(global-unset-key (kbd "C-M-l"))    ;; reposition-window
-(global-unset-key (kbd "C-M-n"))    ;; forward-list
-(global-unset-key (kbd "C-M-o"))    ;; split-line
-(global-unset-key (kbd "C-M-p"))    ;; backward-list
-(global-unset-key (kbd "C-M-r"))    ;; isearch-backward-regexp
-(global-unset-key (kbd "C-M-s"))    ;; isearch-forward-regexp
-(global-unset-key (kbd "C-M-u"))    ;; backward-up-list
-(global-unset-key (kbd "C-M-v"))    ;; scroll-other-window
-(global-unset-key (kbd "C-M-w"))    ;; append-next-kill
-(global-unset-key (kbd "C-M-\\"))    ;; indent-region
-(global-unset-key (kbd "C-M-_"))    ;; undo-redo
-(global-unset-key (kbd "C-M-SPC"))    ;; mark-sexp
-(global-unset-key (kbd "C-M-%"))    ;; query-replace-regexp
-(global-unset-key (kbd "C-M--"))    ;; negative-argument
-(global-unset-key (kbd "C-M-."))    ;; xref-find-apropos
-(global-unset-key (kbd "C-M-/"))    ;; dabbrev-completion
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "ESC C-<backspace>"))    ;; backward-kill-sexp
-(global-unset-key (kbd "ESC C-<delete>"))    ;; backward-kill-sexp
-(global-unset-key (kbd "ESC C-<down>"))    ;; down-list
-(global-unset-key (kbd "ESC C-<end>"))    ;; end-of-defun
-(global-unset-key (kbd "ESC C-<home>"))    ;; beginning-of-defun
-(global-unset-key (kbd "ESC C-<left>"))    ;; backward-sexp
-(global-unset-key (kbd "ESC C-<right>"))    ;; forward-sexp
-(global-unset-key (kbd "ESC C-<up>"))    ;; backward-up-list
-(global-unset-key (kbd "ESC <begin>"))    ;; beginning-of-buffer-other-window
-(global-unset-key (kbd "ESC <end>"))    ;; end-of-buffer-other-window
-(global-unset-key (kbd "ESC <f10>"))    ;; toggle-frame-maximized
-(global-unset-key (kbd "ESC <home>"))    ;; beginning-of-buffer-other-window
-(global-unset-key (kbd "ESC <left>"))    ;; backward-word
-(global-unset-key (kbd "ESC <next>"))    ;; scroll-other-window
-(global-unset-key (kbd "ESC <prior>"))    ;; scroll-other-window-down
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-M-<end>"))    ;; end-of-defun
-(global-unset-key (kbd "C-M-<home>"))    ;; beginning-of-defun
-(global-unset-key (kbd "C-M-<mouse-1>"))    ;; mouse-set-point
-(global-unset-key (kbd "C-M-<left>"))    ;; backward-sexp
-(global-unset-key (kbd "C-M-<right>"))    ;; forward-sexp
-(global-unset-key (kbd "C-M-<up>"))    ;; backward-up-list
-(global-unset-key (kbd "C-S-<backspace>"))    ;; kill-whole-line
-(global-unset-key (kbd "C-<backspace>"))    ;; backward-kill-word
-(global-unset-key (kbd "C-<delete>"))    ;; kill-word
-(global-unset-key (kbd "C-<down>"))    ;; forward-paragraph
-(global-unset-key (kbd "C-<down-mouse-1>"))    ;; mouse-buffer-menu
-(global-unset-key (kbd "C-<down-mouse-2>"))    ;; facemenu-menu
-(global-unset-key (kbd "C-<drag-n-drop>"))    ;; w32-drag-n-drop-other-frame
-(global-unset-key (kbd "C-<end>"))    ;; end-of-buffer
-(global-unset-key (kbd "C-<f10>"))    ;; buffer-menu-open
-(global-unset-key (kbd "C-<home>"))    ;; beginning-of-buffer
-(global-unset-key (kbd "C-<insert>"))    ;; kill-ring-save
-(global-unset-key (kbd "C-<insertchar>"))    ;; kill-ring-save
-(global-unset-key (kbd "C-<up>"))    ;; backward-paragraph
 (global-unset-key (kbd "C-<wheel-down>"))    ;; mouse-wheel-text-scale
 (global-unset-key (kbd "C-<wheel-up>"))    ;; mouse-wheel-text-scale
 #+END_SRC
 
+***** Sexp
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-<begin>"))    ;; beginning-of-bugger-other-window
+(global-unset-key (kbd "C-M-@"))    ;; mark-sexp
+(global-unset-key (kbd "C-M-b"))    ;; backward-sexp
+(global-unset-key (kbd "C-M-SPC"))    ;; mark-sexp
+(global-unset-key (kbd "ESC C-<backspace>"))    ;; backward-kill-sexp
+(global-unset-key (kbd "ESC C-<delete>"))    ;; backward-kill-sexp
+(global-unset-key (kbd "C-M-<left>"))    ;; backward-sexp
+(global-unset-key (kbd "C-M-<right>"))    ;; forward-sexp
+(global-unset-key (kbd "ESC C-<left>"))    ;; backward-sexp
+(global-unset-key (kbd "ESC C-<right>"))    ;; forward-sexp
+(global-unset-key (kbd "C-M-k"))    ;; kill-sexp
+(global-unset-key (kbd "C-x C-e"))    ;; eval-last-sexp
+(global-unset-key (kbd "C-M-f"))    ;; forward-sexp
+#+END_SRC
+
+***** Lists
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-M-d"))    ;; down-list
+(global-unset-key (kbd "C-M-n"))    ;; forward-list
+(global-unset-key (kbd "C-M-p"))    ;; backward-list
+(global-unset-key (kbd "C-M-u"))    ;; backward-up-list
+(global-unset-key (kbd "C-M-<up>"))    ;; backward-up-list
+(global-unset-key (kbd "ESC C-<down>"))    ;; down-list
+(global-unset-key (kbd "ESC C-<up>"))    ;; backward-up-list
+#+END_SRC
+
+***** Secondary Mouse
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-<down-mouse-1>"))    ;; mouse-drag-secondary
 (global-unset-key (kbd "M-<drag-mouse-1>"))    ;; mouse-set-secondary
-(global-unset-key (kbd "M-<end>"))    ;; end-of-buffer-other-window
-(global-unset-key (kbd "M-<f10>"))    ;; toggle-frame-maximized
-(global-unset-key (kbd "M-<home>"))    ;; beginning-of-buffer-other-window
 (global-unset-key (kbd "M-<mouse-1>"))    ;; mouse-start-secondary
 (global-unset-key (kbd "M-<mouse-2>"))    ;; mouse-yank-secondary
 (global-unset-key (kbd "M-<mouse-3>"))    ;; mouse-secondary-save-then-kill
-(global-unset-key (kbd "M-<next>"))    ;; scroll-other-window
-(global-unset-key (kbd "M-<prior>"))    ;; scroll-other-window-down
-(global-unset-key (kbd "M-<wheel-down>"))    ;; mwheel-scroll
-(global-unset-key (kbd "M-<wheel-left>"))    ;; mwheel-scroll
-(global-unset-key (kbd "M-<wheel-right>"))    ;; mwheel-scroll
-(global-unset-key (kbd "M-<wheel-up>"))    ;; mwheel-scroll
-(global-unset-key (kbd "<Scroll Lock>"))    ;; scroll-lock-mode
+#+END_SRC
+
+***** Menus
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "S-<down-mouse-1>"))    ;; mouse-appearance-menu
+(global-unset-key (kbd "S-<f10>"))    ;; context-menu-open
+(global-unset-key (kbd "M-`"))    ;; tmm-menubar
+(global-unset-key (kbd "C-<down-mouse-1>"))    ;; mouse-buffer-menu
+(global-unset-key (kbd "C-<down-mouse-2>"))    ;; facemenu-menu
+(global-unset-key (kbd "C-<f10>"))    ;; buffer-menu-open
+#+END_SRC
+
+***** Shell
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "M-!"))    ;; shell-command
+(global-unset-key (kbd "M-&"))    ;; async-shell-command
+(global-unset-key (kbd "M-|"))    ;; shell-command-on-region
+#+END_SRC
+
+***** Other
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-@"))    ;; set-mark-command
+(global-unset-key (kbd "M-~"))    ;; not-modified
+(global-unset-key (kbd "C-x f"))    ;; set-fill-column
+(global-unset-key (kbd "C-x $"))    ;; set-selective-display
+(global-unset-key (kbd "C-x ."))    ;; set-fill-prefix
+(global-unset-key (kbd "C-x ="))    ;; what-cursor-position
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "S-<delete>"))    ;; kill-region
-(global-unset-key (kbd "S-<down-mouse-1>"))    ;; mouse-appearance-menu
-(global-unset-key (kbd "S-<f10>"))    ;; context-menu-open
-(global-unset-key (kbd "S-<insert>"))    ;; yank
-(global-unset-key (kbd "S-<insertchar>"))    ;; yank
-(global-unset-key (kbd "S-<mouse-3>"))    ;; kmarcro-end-call-mouse
-(global-unset-key (kbd "S-<wheel-down>"))    ;; mwheel-scroll
-(global-unset-key (kbd "S-<wheel-left>"))    ;; mwheel-scroll
-(global-unset-key (kbd "S-<wheel-right>"))    ;; mwheel-scroll
-(global-unset-key (kbd "S-<wheel-up>"))    ;; mwheel-scroll
+(global-unset-key (kbd "C-x C-q"))    ;; read-only-mode
+(global-unset-key (kbd "C-x C-v"))    ;; find-alternate-file
+(global-unset-key (kbd "C-x ;"))    ;; comment-set-column
+(global-unset-key (kbd "C-x \\"))    ;; activate-transient-input-method
+(global-unset-key (kbd "C-x C-n"))    ;; set-goal-column
+(global-unset-key (kbd "C-M-c"))    ;; exit-recursive-edit
+(global-unset-key (kbd "C-M-h"))    ;; mark-defun
+(global-unset-key (kbd "C-M-w"))    ;; append-next-kill
+(global-unset-key (kbd "C-M--"))    ;; negative-argument
+(global-unset-key (kbd "C-<drag-n-drop>"))    ;; w32-drag-n-drop-other-frame
+(global-unset-key (kbd "M-X"))    ;; execute-extended-command-for-buffer
+(global-unset-key (kbd "M-:"))    ;; eval-expression
+(global-unset-key (kbd "M-;"))    ;; comment-dwim
+(global-unset-key (kbd "M-,"))    ;; xref-pop-marker-stack
+(global-unset-key (kbd "M--"))    ;; negative-argument
+(global-unset-key (kbd "M-)"))    ;; move-past-close-and-reindent
 #+END_SRC
 
 ** Local
