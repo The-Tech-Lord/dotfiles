@@ -23,14 +23,13 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 #+END_SRC
 
 * Emacs Settings
-** General
-*** Tabs
+** Tabs
 #+BEGIN_SRC emacs-lisp
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode t)
 #+END_SRC
 
-*** Line Number Column
+** Line Number Column
 #+BEGIN_SRC emacs-lisp
 (setq column-number-mode t)
 (global-display-line-numbers-mode)
@@ -41,7 +40,10 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (setq inhibit-splash-screen t)                     ;; Startup Screen
 (setq make-backup-files nil)
 (setq backward-delete-char-untabify-method nil)
+#+END_SRC
 
+** GUI
+#+BEGIN_SRC emacs-lisp
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -55,12 +57,14 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)    ;; Maximizes Window
 #+END_SRC
 
-** Language Specific (Major/Minor Mode)
-*** CC Mode
-**** C
+* Mode Settings
+** CC Mode
+*** C
 #+BEGIN_SRC emacs-lisp
-(setq c-default-style "linux")
-(setq c-basic-offset 4)
+(defun c-mode-settings()
+  (setq c-default-style "linux")
+  (setq c-basic-offset 4)
+  )
 #+END_SRC
 
 * Org Mode
@@ -71,7 +75,7 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 		  (sequence "BUG" "|" "FIXED")))
 #+END_SRC
 
-** Source Block
+** SRC Block
 #+BEGIN_SRC emacs-lisp
 (setq org-src-preserve-indentation t
     org-edit-src-content-indentation '0)
@@ -83,26 +87,40 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 **** Unbinded
 ***** Killing
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-y"))    ;; yank
-(global-unset-key (kbd "S-<insert>"))    ;; yank
-(global-unset-key (kbd "S-<insertchar>"))    ;; yank
-
 (global-unset-key (kbd "C-w"))    ;; kill-region
 (global-unset-key (kbd "S-<delete>"))    ;; kill-region
 (global-unset-key (kbd "M-w"))    ;; kill-ring-save
 (global-unset-key (kbd "C-<insert>"))    ;; kill-ring-save
 (global-unset-key (kbd "C-<insertchar>"))    ;; kill-ring-save
 (global-unset-key (kbd "C-M-w"))    ;; append-next-kill
+(global-unset-key (kbd "C-S-<backspace>"))    ;; kill-whole-line
+#+END_SRC
 
+****** Words
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-d"))    ;; kill-word
 (global-unset-key (kbd "C-<delete>"))    ;; kill-word
 (global-unset-key (kbd "M-DEL"))    ;; backward-kill-word
 (global-unset-key (kbd "C-<backspace>"))    ;; backward-kill-word
+#+END_SRC
+
+****** Sentences
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-k"))    ;; kill-sentence
 (global-unset-key (kbd "C-DEL"))    ;; backward-kill-sentece
 (global-unset-key (kbd "C-x DEL"))    ;; backward-kill-sentence
-(global-unset-key (kbd "C-S-<backspace>"))    ;; kill-whole-line
+#+END_SRC
 
+***** Not-Really Killing
+****** Yank
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-y"))    ;; yank
+(global-unset-key (kbd "S-<insert>"))    ;; yank
+(global-unset-key (kbd "S-<insertchar>"))    ;; yank
+#+END_SRC
+
+****** Undo
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-_"))    ;; undo
 (global-unset-key (kbd "C-x u"))    ;; undo
 (global-unset-key (kbd "C-M-_"))    ;; undo-redo
@@ -1794,23 +1812,26 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 *** Abbrev
 **** Unbinded
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-x a C-a"))    ;; add-mode-abbrev
-(global-unset-key (kbd "C-x a '"))    ;; expand-abbrev
 (global-unset-key (kbd "C-x a +"))    ;; add-mode-abbrev
-(global-unset-key (kbd "C-x a -"))    ;; inverse-add-global-abbrev
-(global-unset-key (kbd "C-x a e"))    ;; expand-abbrev
-(global-unset-key (kbd "C-x a g"))    ;; add-global-abbrev
 (global-unset-key (kbd "C-x a l"))    ;; add-mode-abbrev
+(global-unset-key (kbd "C-x a C-a"))    ;; add-mode-abbrev
+(global-unset-key (kbd "C-x a g"))    ;; add-global-abbrev
+(global-unset-key (kbd "C-x a -"))    ;; inverse-add-global-abbrev
+
+(global-unset-key (kbd "M-/"))    ;; abbrev-expand
+(global-unset-key (kbd "C-x '"))    ;; expand-abbrev
+(global-unset-key (kbd "C-x a '"))    ;; expand-abbrev
+(global-unset-key (kbd "C-x a e"))    ;; expand-abbrev
 (global-unset-key (kbd "C-x a n"))    ;; expand-jump-to-next-slot
 (global-unset-key (kbd "C-x a p"))    ;; expand-jump-to-previous-slot
-(global-unset-key (kbd "C-x a i g"))    ;; inverse-add-global-abbrev
+
 (global-unset-key (kbd "C-x a i l"))    ;; inverse-add-mode-abbrev
-(global-unset-key (kbd "C-x '"))    ;; expand-abbrev
+(global-unset-key (kbd "C-x a i g"))    ;; inverse-add-global-abbrev
+
 (global-unset-key (kbd "C-M-/"))    ;; dabbrev-completion
-(global-unset-key (kbd "M-/"))    ;; abbrev-expand
 #+END_SRC
 
-*** Highlighting s
+*** Highlighting
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'hi-map)
 (global-set-key (kbd "M-m") 'hi-map)
@@ -1919,7 +1940,7 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 ***** Menus
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-`"))    ;; tmm-menubar
-(global-unset-key (kbd "S-<f10>"))    ;; context-menu-open
+;;(global-unset-key (kbd "S-<f10>"))    ;; context-menu-open
 (global-unset-key (kbd "C-<f10>"))    ;; buffer-menu-open
 (global-unset-key (kbd "C-<down-mouse-2>"))    ;; facemenu-menu
 (global-unset-key (kbd "S-<down-mouse-1>"))    ;; mouse-appearance-menu
@@ -1964,36 +1985,44 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 ;;		  )
 #+END_SRC
 
+** C Mode
 #+BEGIN_SRC emacs-lisp
-;;(add-hook 'c-mode-hook
-;;		  )
+(add-hook 'c-mode-hook
+		  'c-mode-settings
+		  )
 #+END_SRC
 
+** C++ Mode
 #+BEGIN_SRC emacs-lisp
 ;;(add-hook 'c++-mode-hook
 ;;		  )
 #+END_SRC
 
+** Obj-C Mode
 #+BEGIN_SRC emacs-lisp
 ;;(add-hook 'objc-mode-hook
 ;;		  )
 #+END_SRC
 
+** Java Mode
 #+BEGIN_SRC emacs-lisp
 ;;(add-hook 'java-mode-hook
 ;;		  )
 #+END_SRC
 
+** Idl Mode
 #+BEGIN_SRC emacs-lisp
 ;;(add-hook 'idl-mode-hook
 ;;		  )
 #+END_SRC
 
+** Pike Mode
 #+BEGIN_SRC emacs-lisp
 ;;(add-hook 'pike-mode-hook
 ;;		  )
 #+END_SRC
 
+** Awk Mode
 #+BEGIN_SRC emacs-lisp
 ;;(add-hook 'awk-mode-hook
 ;;		  )
