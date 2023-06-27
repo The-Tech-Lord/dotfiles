@@ -122,7 +122,7 @@ set scrolloff=20								" Offsets the Cursor Top and Bottom
 
 #+END_SRC
 
-** Plugin Settings
+** Plugins
 *** Airline
 #+BEGIN_SRC vimrc
 let g:airline_theme = 'owo'
@@ -163,8 +163,7 @@ let g:vimsense_file_explorer_details = 'Looking for files'
 let g:vimsense_custom_icons = {'filetype': 'iconname'}
 #+END_SRC
 
-* Vim Commands / Vim Command Abbreviations
-** Command Abbreviations
+* Vim Commands
 #+BEGIN_SRC vimrc
 command! -nargs=* TERM botright term<Space><args>
 command! -nargs=* TERMS botright term ++shell<Space><args>
@@ -465,11 +464,6 @@ autocmd FileType pascal inoremap <buffer> <C-p> writeln("You made it here! - Deb
 
 * Auto Run Commands
 Non-specific autocmd commands like when starting up Vim or when in a certain mode like Insert or Visual. Not really meant for commands for programming specifically like autocomplete, insertion or templates.
-
-** Theme Switcher
-#+BEGIN_SRC vimrc
-"autocmd BufLeave,BufEnter * :call Theme_Checker_Setter()
-#+END_SRC
 
 ** NERDTree
 #+BEGIN_SRC vimrc
