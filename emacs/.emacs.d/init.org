@@ -94,6 +94,11 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-unset-key (kbd "C-<insertchar>"))    ;; kill-ring-save
 (global-unset-key (kbd "C-M-w"))    ;; append-next-kill
 (global-unset-key (kbd "C-S-<backspace>"))    ;; kill-whole-line
+
+(global-unset-key (kbd "ESC C-<delete>"))    ;; backward-kill-sexp
+(global-unset-key (kbd "ESC C-<backspace>"))    ;; backward-kill-sexp
+
+(global-unset-key (kbd "C-M-k"))    ;; kill-sexp
 #+END_SRC
 
 ****** Words
@@ -271,6 +276,14 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 
 (global-unset-key (kbd "C-x ["))    ;; backward-page
 (global-unset-key (kbd "C-x ]"))    ;; forward-page
+
+(global-unset-key (kbd "C-M-f"))    ;; forward-sexp
+(global-unset-key (kbd "C-M-<right>"))    ;; forward-sexp
+(global-unset-key (kbd "ESC C-<left>"))    ;; backward-sexp
+(global-unset-key (kbd "ESC C-<right>"))    ;; forward-sexp
+
+(global-unset-key (kbd "C-M-b"))    ;; backward-sexp
+(global-unset-key (kbd "C-M-<left>"))    ;; backward-sexp
 
 (global-unset-key (kbd "<Scroll Lock>"))    ;; scroll-lock-mode
 #+END_SRC
@@ -1897,33 +1910,25 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-unset-key (kbd "C-x C--"))    ;; text-scale-adjust
 (global-unset-key (kbd "C-x C-0"))    ;; text-scale-adjust
 (global-unset-key (kbd "C-x C-="))    ;; text-scale-adjust
-(global-unset-key (kbd "C-<wheel-down>"))    ;; mouse-wheel-text-scale
 (global-unset-key (kbd "C-<wheel-up>"))    ;; mouse-wheel-text-scale
+(global-unset-key (kbd "C-<wheel-down>"))    ;; mouse-wheel-text-scale
 #+END_SRC
 
-***** Sexp
+***** Expressions
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-M-@"))    ;; mark-sexp
-(global-unset-key (kbd "C-M-b"))    ;; backward-sexp
 (global-unset-key (kbd "C-M-SPC"))    ;; mark-sexp
-(global-unset-key (kbd "ESC C-<backspace>"))    ;; backward-kill-sexp
-(global-unset-key (kbd "ESC C-<delete>"))    ;; backward-kill-sexp
-(global-unset-key (kbd "C-M-<left>"))    ;; backward-sexp
-(global-unset-key (kbd "C-M-<right>"))    ;; forward-sexp
-(global-unset-key (kbd "ESC C-<left>"))    ;; backward-sexp
-(global-unset-key (kbd "ESC C-<right>"))    ;; forward-sexp
-(global-unset-key (kbd "C-M-k"))    ;; kill-sexp
-(global-unset-key (kbd "C-x C-e"))    ;; eval-last-sexp
-(global-unset-key (kbd "C-M-f"))    ;; forward-sexp
 #+END_SRC
 
 ***** Lists
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-M-d"))    ;; down-list
 (global-unset-key (kbd "ESC C-<down>"))    ;; down-list
+
 (global-unset-key (kbd "C-M-n"))    ;; forward-list
 (global-unset-key (kbd "C-M-p"))    ;; backward-list
 (global-unset-key (kbd "C-M-u"))    ;; backward-up-list
+
 (global-unset-key (kbd "C-M-<up>"))    ;; backward-up-list
 (global-unset-key (kbd "ESC C-<up>"))    ;; backward-up-list
 #+END_SRC
@@ -1940,7 +1945,7 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 ***** Menus
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-`"))    ;; tmm-menubar
-;;(global-unset-key (kbd "S-<f10>"))    ;; context-menu-open
+(global-unset-key (kbd "S-<f10>"))    ;; context-menu-open
 (global-unset-key (kbd "C-<f10>"))    ;; buffer-menu-open
 (global-unset-key (kbd "C-<down-mouse-2>"))    ;; facemenu-menu
 (global-unset-key (kbd "S-<down-mouse-1>"))    ;; mouse-appearance-menu
@@ -1955,8 +1960,13 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 #+END_SRC
 
 ***** Other
+****** Evaluation
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-:"))    ;; eval-expression
+(global-unset-key (kbd "C-x C-e"))    ;; eval-last-sexp
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-X"))    ;; execute-extended-command-for-buffer
 (global-unset-key (kbd "C-@"))    ;; set-mark-command
 (global-unset-key (kbd "M-~"))    ;; not-modified
