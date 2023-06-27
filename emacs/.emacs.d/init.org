@@ -187,14 +187,25 @@ Even though some of these modes are obscure, I've created functions for them for
 #+END_SRC
 
 ***** Marks
+****** General
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-@"))    ;; mark-word
 (global-unset-key (kbd "C-x C-p"))    ;; mark-page
 (global-unset-key (kbd "C-M-h"))    ;; mark-defun
 (global-unset-key (kbd "C-x h"))    ;; mark-whole-buffer
+#+END_SRC
+
+****** Expressions
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-M-@"))    ;; mark-sexp
+(global-unset-key (kbd "C-M-SPC"))    ;; mark-sexp
+#+END_SRC
+
+****** Popping
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "M-,"))    ;; xref-pop-marker-stack
 (global-unset-key (kbd "C-x C-@"))    ;; pop-global-mark
 (global-unset-key (kbd "C-x C-SPC"))    ;; pop-global-mark
-(global-unset-key (kbd "M-,"))    ;; xref-pop-marker-stack
 #+END_SRC
 
 ***** Counting
@@ -426,8 +437,8 @@ Even though some of these modes are obscure, I've created functions for them for
 
 *** Rectangles
 #+BEGIN_SRC emacs-lisp
-(define-prefix-command 'rect-map)
-(global-set-key (kbd "M-t") 'rect-map)
+(define-prefix-command 'rect-prfx)
+(global-set-key (kbd "M-t") 'rect-prfx)
 #+END_SRC
 
 **** Unbinded
@@ -466,8 +477,8 @@ Even though some of these modes are obscure, I've created functions for them for
 
 *** Tabs
 #+BEGIN_SRC emacs-lisp
-(define-prefix-command 'tabs-map)
-(global-set-key (kbd "C-t") 'tabs-map)
+(define-prefix-command 'tabs-prfx)
+(global-set-key (kbd "C-t") 'tabs-prfx)
 #+END_SRC
 
 **** Unbinding
@@ -530,8 +541,8 @@ Even though some of these modes are obscure, I've created functions for them for
 
 *** VCS
 #+BEGIN_SRC emacs-lisp
-(define-prefix-command 'vcs-map)
-(global-set-key (kbd "C-v") 'vcs-map)
+(define-prefix-command 'vcs-prfx)
+(global-set-key (kbd "C-v") 'vcs-prfx)
 #+END_SRC
 
 **** Unbinding
@@ -615,8 +626,8 @@ Even though some of these modes are obscure, I've created functions for them for
 
 *** Projects
 #+BEGIN_SRC emacs-lisp
-(define-prefix-command 'project-map)
-(global-set-key (kbd "C-p") 'project-map)
+(define-prefix-command 'project-prfx)
+(global-set-key (kbd "C-p") 'project-prfx)
 #+END_SRC
 
 **** Unbinding
@@ -680,8 +691,8 @@ Even though some of these modes are obscure, I've created functions for them for
 
 *** Registers
 #+BEGIN_SRC emacs-lisp
-(define-prefix-command 'register-map)
-(global-set-key (kbd "M-r") 'register-map)
+(define-prefix-command 'register-prfx)
+(global-set-key (kbd "M-r") 'register-prfx)
 #+END_SRC
 
 **** Unbinded
@@ -797,8 +808,8 @@ Even though some of these modes are obscure, I've created functions for them for
 
 *** Windows
 #+BEGIN_SRC emacs-lisp
-(define-prefix-command 'windows-map)
-(global-set-key (kbd "C-w") 'windows-map)
+(define-prefix-command 'windows-prfx)
+(global-set-key (kbd "C-w") 'windows-prfx)
 #+END_SRC
 
 **** Unbinded
@@ -911,23 +922,56 @@ Even though some of these modes are obscure, I've created functions for them for
 #+END_SRC
 
 *** Buffers
-**** Unbinded
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-x C-<left>"))    ;; previous-buffer
+(define-prefix-command 'buffers-prfx)
+(global-set-key (kbd "M-b") 'buffers-prfx)
+#+END_SRC
+
+**** Unbinded
+***** Switching
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x b"))    ;; switch-to-buffer
+(global-unset-key (kbd "C-x <right>"))    ; next-buffer
 (global-unset-key (kbd "C-x C-<right>"))    ;; next-buffer
 (global-unset-key (kbd "C-x <left>"))    ;; previous-buffer
-(global-unset-key (kbd "C-x <right>"))    ; next-buffer
-(global-unset-key (kbd "C-x b"))    ;; switch-to-buffer
-(global-unset-key (kbd "C-x C-c"))    ;; save-buffers-kill-terminal
-(global-unset-key (kbd "C-x C-b"))    ;; list-buffers
-(global-unset-key (kbd "C-x k"))    ;; kill-buffer
+(global-unset-key (kbd "C-x C-<left>"))    ;; previous-buffer
+#+END_SRC
+
+***** Management
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x s"))    ;; save-some-buffers
+(global-unset-key (kbd "C-x C-b"))    ;; list-buffers
+#+END_SRC
+
+***** Killing
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x k"))    ;; kill-buffer
+(global-unset-key (kbd "C-x C-c"))    ;; save-buffers-kill-terminal
+#+END_SRC
+
+**** Binded
+***** Switching
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-b <left>") 'previous-buffer)
+(global-set-key (kbd "M-b <right>") 'next-buffer)
+#+END_SRC
+
+***** Management
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-b s") 'save-some-buffers)
+(global-set-key (kbd "M-b l") 'list-buffers)
+#+END_SRC
+
+***** Killing
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-b k") 'kill-buffer)
+(global-set-key (kbd "M-b x") 'save-buffers-kill-terminal)
 #+END_SRC
 
 *** Frames
 #+BEGIN_SRC emacs-lisp
-(define-prefix-command 'frames-map)
-(global-set-key (kbd "C-f") 'frames-map)
+(define-prefix-command 'frames-prfx)
+(global-set-key (kbd "C-f") 'frames-prfx)
 #+END_SRC
 
 **** Unbinded
@@ -1025,8 +1069,8 @@ Even though some of these modes are obscure, I've created functions for them for
 
 *** Highlighting
 #+BEGIN_SRC emacs-lisp
-(define-prefix-command 'hi-map)
-(global-set-key (kbd "M-m") 'hi-map)
+(define-prefix-command 'hi-prfx)
+(global-set-key (kbd "M-m") 'hi-prfx)
 #+END_SRC
 
 **** Unbinded
@@ -1072,8 +1116,8 @@ Even though some of these modes are obscure, I've created functions for them for
 #+END_SRC
 
 *** Other
-**** Unbinded
-***** Prefixes
+**** Prefixes
+***** Unbinded
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x *"))    ;; calc-dispatch
 (global-unset-key (kbd "C-x 4"))    ;; ctrl-x-4-prefix
@@ -1083,7 +1127,8 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-unset-key (kbd "C-x v"))    ;; vc-prefix-map
 #+END_SRC
 
-***** Scaling
+**** Scaling
+***** Unbinded
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x C-+"))    ;; text-scale-adjust
 (global-unset-key (kbd "C-x C--"))    ;; text-scale-adjust
@@ -1093,13 +1138,34 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-unset-key (kbd "C-<wheel-down>"))    ;; mouse-wheel-text-scale
 #+END_SRC
 
-***** Super Sex
+**** Secondary Mouse
+***** Unbinded
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-M-@"))    ;; mark-sexp
-(global-unset-key (kbd "C-M-SPC"))    ;; mark-sexp
+(global-unset-key (kbd "M-<down-mouse-1>"))    ;; mouse-drag-secondary
+(global-unset-key (kbd "M-<drag-mouse-1>"))    ;; mouse-set-secondary
+(global-unset-key (kbd "M-<mouse-1>"))    ;; mouse-start-secondary
+(global-unset-key (kbd "M-<mouse-2>"))    ;; mouse-yank-secondary
+(global-unset-key (kbd "M-<mouse-3>"))    ;; mouse-secondary-save-then-kill
 #+END_SRC
 
-***** Lists
+**** Menus
+***** Unbinded
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "M-`"))    ;; tmm-menubar
+(global-unset-key (kbd "S-<f10>"))    ;; context-menu-open
+(global-unset-key (kbd "C-<f10>"))    ;; buffer-menu-open
+(global-unset-key (kbd "C-<down-mouse-2>"))    ;; facemenu-menu
+(global-unset-key (kbd "S-<down-mouse-1>"))    ;; mouse-appearance-menu
+(global-unset-key (kbd "C-<down-mouse-1>"))    ;; mouse-buffer-menu
+#+END_SRC
+
+***** Binded
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+**** Lists
+***** Unbinded
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-M-d"))    ;; down-list
 (global-unset-key (kbd "ESC C-<down>"))    ;; down-list
@@ -1112,26 +1178,13 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-unset-key (kbd "ESC C-<up>"))    ;; backward-up-list
 #+END_SRC
 
-***** Secondary Mouse
+***** Binded
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-<down-mouse-1>"))    ;; mouse-drag-secondary
-(global-unset-key (kbd "M-<drag-mouse-1>"))    ;; mouse-set-secondary
-(global-unset-key (kbd "M-<mouse-1>"))    ;; mouse-start-secondary
-(global-unset-key (kbd "M-<mouse-2>"))    ;; mouse-yank-secondary
-(global-unset-key (kbd "M-<mouse-3>"))    ;; mouse-secondary-save-then-kill
+
 #+END_SRC
 
-***** Menus
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-`"))    ;; tmm-menubar
-(global-unset-key (kbd "S-<f10>"))    ;; context-menu-open
-(global-unset-key (kbd "C-<f10>"))    ;; buffer-menu-open
-(global-unset-key (kbd "C-<down-mouse-2>"))    ;; facemenu-menu
-(global-unset-key (kbd "S-<down-mouse-1>"))    ;; mouse-appearance-menu
-(global-unset-key (kbd "C-<down-mouse-1>"))    ;; mouse-buffer-menu
-#+END_SRC
-
-***** Commando
+**** Commando
+***** Unbinded
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-!"))    ;; shell-command
 (global-unset-key (kbd "M-&"))    ;; async-shell-command
@@ -1139,13 +1192,46 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-unset-key (kbd "M-X"))    ;; execute-extended-command-for-buffer
 #+END_SRC
 
-***** Other
-****** Evaluation
+***** Binded
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+***** Evaluation
+****** Unbinded
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-:"))    ;; eval-expression
 (global-unset-key (kbd "C-x C-e"))    ;; eval-last-sexp
 #+END_SRC
 
+****** Binded
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+**** Narrowing
+#+BEGIN_SRC emacs-lisp
+(define-prefix-command 'narrow-prfx)
+(global-set-key (kbd "M-n") 'narrow-prfx)
+#+END_SRC
+
+***** Unbinded
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x n d"))    ;; narrow-to-defun
+(global-unset-key (kbd "C-x n n"))    ;; narrow-to-region
+(global-unset-key (kbd "C-x n p"))    ;; narrow-to-page
+(global-unset-key (kbd "C-x n w"))    ;; widen
+#+END_SRC
+
+***** Binding
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-n d") 'narrow-to-defun)
+(global-set-key (kbd "M-n r") 'narrow-to-region)
+(global-set-key (kbd "M-n p") 'narrow-to-page)
+(global-set-key (kbd "M-n w") 'widen)
+#+END_SRC
+
+**** Other
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-@"))    ;; set-mark-command
 (global-unset-key (kbd "M-~"))    ;; not-modified
