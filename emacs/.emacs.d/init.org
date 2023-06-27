@@ -58,12 +58,58 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 #+END_SRC
 
 * Mode Settings
+Even though some of these modes are obscure, I've created functions for them for the sake of completion.
+
 ** CC Mode
+#+BEGIN_SRC emacs-lisp
+(defun c-init-settings()
+  )
+
+(defun c-common-settings()
+  )
+#+END_SRC
+
 *** C
 #+BEGIN_SRC emacs-lisp
 (defun c-mode-settings()
   (setq c-default-style "linux")
   (setq c-basic-offset 4)
+  )
+#+END_SRC
+
+*** C++
+#+BEGIN_SRC emacs-lisp
+(defun cpp-mode-settings()
+  )
+#+END_SRC
+
+*** Obj-C
+#+BEGIN_SRC emacs-lisp
+(defun objc-mode-settings()
+  )
+#+END_SRC
+
+*** Java
+#+BEGIN_SRC emacs-lisp
+(defun java-mode-settings()
+  )
+#+END_SRC
+
+*** Idl
+#+BEGIN_SRC emacs-lisp
+(defun idl-mode-settings()
+  )
+#+END_SRC
+
+*** Pike
+#+BEGIN_SRC emacs-lisp
+(defun pike-mode-settings()
+  )
+#+END_SRC
+
+*** Awk
+#+BEGIN_SRC emacs-lisp
+(defun awk-mode-settings()
   )
 #+END_SRC
 
@@ -2001,55 +2047,64 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 #+END_SRC
 
 * Hooks
+** CC Mode
 #+BEGIN_SRC emacs-lisp
-;;(add-hook 'c-initialization-hook
-;;		  )
+(add-hook 'c-initialization-hook
+		  'c-init-settings
+		  )
 
-;;(add-hook 'c-mode-common-hook
-;;		  )
+(add-hook 'c-mode-common-hook
+		  'c-common-settings
+		  )
 #+END_SRC
 
-** C Mode
+*** C Mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'c-mode-hook
 		  'c-mode-settings
 		  )
 #+END_SRC
 
-** C++ Mode
+*** C++ Mode
 #+BEGIN_SRC emacs-lisp
-;;(add-hook 'c++-mode-hook
-;;		  )
+(add-hook 'c++-mode-hook
+		  'cpp-mode-settings
+		  )
 #+END_SRC
 
-** Obj-C Mode
+*** Obj-C Mode
 #+BEGIN_SRC emacs-lisp
-;;(add-hook 'objc-mode-hook
-;;		  )
+(add-hook 'objc-mode-hook
+		  'objc-mode-settings
+		  )
 #+END_SRC
 
-** Java Mode
+*** Java Mode
 #+BEGIN_SRC emacs-lisp
-;;(add-hook 'java-mode-hook
-;;		  )
+(add-hook 'java-mode-hook
+		  'java-mode-settings
+		  )
 #+END_SRC
 
-** Idl Mode
+*** Idl Mode
 #+BEGIN_SRC emacs-lisp
-;;(add-hook 'idl-mode-hook
-;;		  )
+(add-hook 'idl-mode-hook
+		  'idl-mode-settings
+		  )
 #+END_SRC
 
-** Pike Mode
+*** Pike Mode
 #+BEGIN_SRC emacs-lisp
-;;(add-hook 'pike-mode-hook
-;;		  )
+(add-hook 'pike-mode-hook
+		  'pike-mode-settings
+		  )
 #+END_SRC
 
-** Awk Mode
+*** Awk Mode
 #+BEGIN_SRC emacs-lisp
-;;(add-hook 'awk-mode-hook
-;;		  )
+(add-hook 'awk-mode-hook
+		  'awk-mode-settings
+		  )
 #+END_SRC
 
 * Abbreviations
@@ -2058,6 +2113,7 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 #+END_SRC
 
 * Other
+** Custom Set Variables
 #+BEGIN_SRC emacs-lisp
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
