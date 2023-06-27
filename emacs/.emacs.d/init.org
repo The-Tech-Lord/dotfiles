@@ -264,19 +264,25 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 ***** Scrolling
 ****** General
 #+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-n"))    ;; next-line
+(global-unset-key (kbd "C-p"))    ;; previous-line
+
 (global-unset-key (kbd "M-<"))    ;; beginning-of-buffer
 (global-unset-key (kbd "C-<home>"))    ;; beginning-of-buffer
 (global-unset-key (kbd "M->"))    ;; end-of-buffer
 (global-unset-key (kbd "C-<end>"))    ;; end-of-buffer
+(global-unset-key (kbd "C-v"))    ;; scroll-up-command
 (global-unset-key (kbd "M-v"))    ;; scroll-down-command
 (global-unset-key (kbd "C-M-l"))    ;; reposition-window
-
-(global-unset-key (kbd "C-n"))    ;; next-line
-(global-unset-key (kbd "C-p"))    ;; previous-line
 
 (global-unset-key (kbd "C-x ["))    ;; backward-page
 (global-unset-key (kbd "C-x ]"))    ;; forward-page
 
+(global-unset-key (kbd "<Scroll Lock>"))    ;; scroll-lock-mode
+#+END_SRC
+
+****** Expressions
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-M-f"))    ;; forward-sexp
 (global-unset-key (kbd "C-M-<right>"))    ;; forward-sexp
 (global-unset-key (kbd "ESC C-<left>"))    ;; backward-sexp
@@ -284,8 +290,6 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 
 (global-unset-key (kbd "C-M-b"))    ;; backward-sexp
 (global-unset-key (kbd "C-M-<left>"))    ;; backward-sexp
-
-(global-unset-key (kbd "<Scroll Lock>"))    ;; scroll-lock-mode
 #+END_SRC
 
 ****** Defun
@@ -1764,16 +1768,26 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 **** Unbinded
 ***** General
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-x 5 0"))    ;; delete-frame
-(global-unset-key (kbd "C-x 5 1"))    ;; delete-other-frames
 (global-unset-key (kbd "C-x 5 2"))    ;; make-frame-command
 (global-unset-key (kbd "C-x 5 b"))    ;; switch-to-buffer-other-frame
 (global-unset-key (kbd "C-x 5 c"))    ;; clone-frame
 (global-unset-key (kbd "C-x 5 o"))    ;; other-frame
 (global-unset-key (kbd "C-x 5 C-o"))    ;; display-buffer-other-frame
+
+(global-unset-key (kbd "C-<drag-n-drop>"))    ;; w32-drag-n-drop-other-frame
+#+END_SRC
+
+***** Management
+****** Size
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-<f10>"))    ;; toggle-frame-maximized
 (global-unset-key (kbd "ESC <f10>"))    ;; toggle-frame-maximized
-(global-unset-key (kbd "C-<drag-n-drop>"))    ;; w32-drag-n-drop-other-frame
+#+END_SRC
+
+****** Deletion
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x 5 0"))    ;; delete-frame
+(global-unset-key (kbd "C-x 5 1"))    ;; delete-other-frames
 #+END_SRC
 
 ***** Searching
@@ -1914,7 +1928,7 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-unset-key (kbd "C-<wheel-down>"))    ;; mouse-wheel-text-scale
 #+END_SRC
 
-***** Expressions
+***** Super Sex
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-M-@"))    ;; mark-sexp
 (global-unset-key (kbd "C-M-SPC"))    ;; mark-sexp
@@ -1952,11 +1966,12 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-unset-key (kbd "C-<down-mouse-1>"))    ;; mouse-buffer-menu
 #+END_SRC
 
-***** Shell
+***** Commando
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-!"))    ;; shell-command
 (global-unset-key (kbd "M-&"))    ;; async-shell-command
 (global-unset-key (kbd "M-|"))    ;; shell-command-on-region
+(global-unset-key (kbd "M-X"))    ;; execute-extended-command-for-buffer
 #+END_SRC
 
 ***** Other
@@ -1967,7 +1982,6 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-X"))    ;; execute-extended-command-for-buffer
 (global-unset-key (kbd "C-@"))    ;; set-mark-command
 (global-unset-key (kbd "M-~"))    ;; not-modified
 (global-unset-key (kbd "C-x f"))    ;; set-fill-column
