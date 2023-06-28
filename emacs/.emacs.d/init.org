@@ -75,8 +75,6 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 #+END_SRC
 
 * Mode Settings
-Even though some of these modes are obscure, I've created functions for them for the sake of completion.
-
 ** Major Mode
 *** CC Mode
 #+BEGIN_SRC emacs-lisp
@@ -90,7 +88,7 @@ Even though some of these modes are obscure, I've created functions for them for
 **** C
 #+BEGIN_SRC emacs-lisp
 (defun c-mode-settings()
-  (setq c-default-style "linux")
+  (setq c-default-style "linux")    ;; Makes curly braces format how they're supposed to
   (setq c-basic-offset 4)
   )
 #+END_SRC
@@ -1662,4 +1660,24 @@ By Text Manipulation, I don't refer to manipulating text in general but rather t
 		  'awk-mode-settings
 		  'awk-mode-bindings
 		  )
+#+END_SRC
+
+** Org Mode
+#+BEGIN_SRC emacs-lisp
+(add-hook '
+#+END_SRC
+
+** ToDo Mode
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+** RMail
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+** nXML Mode
+#+BEGIN_SRC emacs-lisp
+
 #+END_SRC
