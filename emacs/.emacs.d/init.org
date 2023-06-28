@@ -27,10 +27,18 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 #+END_SRC
 
 * Emacs Settings
+** User Interface
+#+BEGIN_SRC emacs-lisp
+(scroll-bar-mode -1)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+#+END_SRC
+
 ** Tabs
 #+BEGIN_SRC emacs-lisp
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode t)
+(setq backward-delete-char-untabify-method nil)
 #+END_SRC
 
 ** Line Number Column
@@ -39,22 +47,10 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-display-line-numbers-mode)
 #+END_SRC
 
-** Disabled
+** Other
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-splash-screen t)                     ;; Startup Screen
 (setq make-backup-files nil)
-(setq backward-delete-char-untabify-method nil)
-#+END_SRC
-
-** GUI
-#+BEGIN_SRC emacs-lisp
-(scroll-bar-mode -1)
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-#+END_SRC
-
-** Other
-#+BEGIN_SRC emacs-lisp
 (windmove-default-keybindings)                             ;; Adds Window Switching Keybindings
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)    ;; Maximizes Window
 #+END_SRC
@@ -138,7 +134,6 @@ Even though some of these modes are obscure, I've created functions for them for
 * Org Mode
 ** ToDo
 #+BEGIN_SRC emacs-lisp
-
 (setq org-todo-keywords
 		'((sequence "TODO" "IN-PROGRESS" "|" "DONE")
 		  (sequence "BUG" "|" "FIXED")))
@@ -152,16 +147,15 @@ Even though some of these modes are obscure, I've created functions for them for
 
 * Bindings
 ** Global
-*** General
+*** Killing
 **** Unbinded
-***** Killing
-****** Region
+***** Region
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-w"))    ;; kill-region
 (global-unset-key (kbd "S-<delete>"))    ;; kill-region
 #+END_SRC
 
-****** Kill Ring
+***** Kill Ring
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-w"))    ;; kill-ring-save
 (global-unset-key (kbd "C-<insert>"))    ;; kill-ring-save
@@ -169,7 +163,7 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-unset-key (kbd "C-M-w"))    ;; append-next-kill
 #+END_SRC
 
-****** Words
+***** Words
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-d"))    ;; kill-word
 (global-unset-key (kbd "C-<delete>"))    ;; kill-word
@@ -177,7 +171,7 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-unset-key (kbd "C-<backspace>"))    ;; backward-kill-word
 #+END_SRC
 
-****** Sentences
+***** Sentences
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-k"))    ;; kill-sentence
 (global-unset-key (kbd "C-DEL"))    ;; backward-kill-sentece
@@ -185,7 +179,7 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-unset-key (kbd "C-S-<backspace>"))    ;; kill-whole-line
 #+END_SRC
 
-****** "Hey. Sex?"
+***** "Hey. Sex?"
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-M-k"))    ;; kill-sexp
 (global-unset-key (kbd "ESC C-<delete>"))    ;; backward-kill-sexp
@@ -214,7 +208,7 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-unset-key (kbd "M-\\"))    ;; delete-horizontal-space
 #+END_SRC
 
-***** Marks
+***** Marking
 ****** General
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-@"))    ;; mark-word
@@ -253,138 +247,20 @@ Even though some of these modes are obscure, I've created functions for them for
 #+END_SRC
 
 **** Binded
-***** Killing
-****** Region
+***** Region
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-.") 'kill-region)
 #+END_SRC
 
-****** Kill Ring
+***** Kill Ring
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "M-'") 'kill-ring-save)
 #+END_SRC
 
-***** Not-Really Killing
-****** Yank
+**** Not-Really Killing
+***** Yank
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-;") 'yank)
-#+END_SRC
-
-*** Searching
-#+BEGIN_SRC emacs-lisp
-(define-prefix-command 'search-prfx)
-(global-set-key (kbd "C-s") 'search-prfx)
-#+END_SRC
-
-**** Unbinded
-***** Regular
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-s"))    ;; isearch-forward
-(global-unset-key (kbd "C-r"))    ;; isearch-backward
-#+END_SRC
-
-***** Files
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-x C-v"))    ;; find-alternate-file
-(global-unset-key (kbd "C-x C-f"))    ;; find-file-read-only
-(global-unset-key (kbd "C-x C-r"))    ;; find-file-read-only
-#+END_SRC
-
-***** Regex or Something
-****** Replace
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-%"))    ;; query-replace
-(global-unset-key (kbd "C-M-%"))    ;; query-replace-regexp
-#+END_SRC
-
-****** Xref
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-."))    ;; xref-find-definitions
-(global-unset-key (kbd "M-?"))    ;; xref-find-references
-(global-unset-key (kbd "C-M-."))    ;; xref-find-apropos
-#+END_SRC
-
-****** Instances
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-M-r"))    ;; isearch-backward-regexp
-(global-unset-key (kbd "C-M-s"))    ;; isearch-forward-regexp
-(global-unset-key (kbd "M-z"))    ;; zap-to-char
-#+END_SRC
-
-**** Binded
-***** Regular
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-f") 'isearch-forward)
-(global-set-key (kbd "C-S-f") 'isearch-backward)
-#+END_SRC
-
-***** Regex or Something
-****** Replace
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-s r") 'query-replace)
-(global-set-key (kbd "C-s R") 'query-replace-regexp)
-#+END_SRC
-
-****** Xref
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-****** Instances
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-*** Text Manipulation
-By Text Manipulation, I don't refer to manipulating text in general but rather the text itself (e.g., changing the case of a letter from uppercase to lowercase).
-
-**** Unbinding
-***** General
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-q"))    ;; fill-paragraph
-
-(global-unset-key (kbd "C-M-i"))    ;; complete-symbol
-(global-unset-key (kbd "C-M-j"))    ;; default-indent-new-line
-(global-unset-key (kbd "C-M-o"))    ;; split-line
-
-(global-unset-key (kbd "M-)"))    ;; move-past-close-and-reindent
-(global-unset-key (kbd "C-x \\"))    ;; activate-transient-input-method
-#+END_SRC
-
-***** Transposing
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-t"))    ;; transpose-key
-(global-unset-key (kbd "M-t"))    ;; tranpose-words
-(global-unset-key (kbd "C-x C-t"))    ;; transpose-lines
-#+END_SRC
-
-***** Cases
-****** Words
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-l"))    ;; downcase-word
-(global-unset-key (kbd "M-u"))    ;; upcase-word
-(global-unset-key (kbd "M-c"))    ;; capitalize-word
-#+END_SRC
-
-****** Regions
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-x C-l"))    ;; downcase-region
-(global-unset-key (kbd "C-x C-u"))    ;; upcase-region
-#+END_SRC
-
-***** Whitespace
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-i"))    ;; tab-to-tab-stop
-(global-unset-key (kbd "M-j"))    ;; default-indent-new-line
-(global-unset-key (kbd "M-SPC"))    ;; just-one-space
-(global-unset-key (kbd "C-x TAB"))    ;; indent-rigidly
-(global-unset-key (kbd "C-M-\\"))    ;; indent-region
-#+END_SRC
-
-**** Binding
-***** General
-#+BEGIN_SRC emacs-lisp
-
 #+END_SRC
 
 *** Movement
@@ -544,6 +420,111 @@ By Text Manipulation, I don't refer to manipulating text in general but rather t
 (global-set-key (kbd "C-M-<next>") 'end-of-buffer)
 #+END_SRC
 
+*** Searching
+#+BEGIN_SRC emacs-lisp
+(define-prefix-command 'search-prfx)
+(global-set-key (kbd "M-s") 'search-prfx)
+#+END_SRC
+
+**** Unbinded
+***** Files
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x C-v"))    ;; find-alternate-file
+(global-unset-key (kbd "C-x C-f"))    ;; find-file-read-only
+(global-unset-key (kbd "C-x C-r"))    ;; find-file-read-only
+#+END_SRC
+
+***** Regex or Something
+****** Replace
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "M-%"))    ;; query-replace
+(global-unset-key (kbd "C-M-%"))    ;; query-replace-regexp
+#+END_SRC
+
+****** Xref
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "M-."))    ;; xref-find-definitions
+(global-unset-key (kbd "M-?"))    ;; xref-find-references
+(global-unset-key (kbd "C-M-."))    ;; xref-find-apropos
+#+END_SRC
+
+****** Instances
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-M-r"))    ;; isearch-backward-regexp
+(global-unset-key (kbd "C-M-s"))    ;; isearch-forward-regexp
+(global-unset-key (kbd "M-z"))    ;; zap-to-char
+#+END_SRC
+
+**** Binded
+***** Regex or Something
+****** Replace
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-s r") 'query-replace)
+(global-set-key (kbd "M-s R") 'query-replace-regexp)
+#+END_SRC
+
+****** Xref
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+****** Instances
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+*** Text Manipulation
+By Text Manipulation, I don't refer to manipulating text in general but rather the text itself (e.g., changing the case of a letter from uppercase to lowercase).
+
+**** Unbinding
+***** General
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "M-q"))    ;; fill-paragraph
+
+(global-unset-key (kbd "C-M-i"))    ;; complete-symbol
+(global-unset-key (kbd "C-M-j"))    ;; default-indent-new-line
+(global-unset-key (kbd "C-M-o"))    ;; split-line
+
+(global-unset-key (kbd "M-)"))    ;; move-past-close-and-reindent
+(global-unset-key (kbd "C-x \\"))    ;; activate-transient-input-method
+#+END_SRC
+
+***** Transposing
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-t"))    ;; transpose-key
+(global-unset-key (kbd "M-t"))    ;; tranpose-words
+(global-unset-key (kbd "C-x C-t"))    ;; transpose-lines
+#+END_SRC
+
+***** Cases
+****** Words
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "M-l"))    ;; downcase-word
+(global-unset-key (kbd "M-u"))    ;; upcase-word
+(global-unset-key (kbd "M-c"))    ;; capitalize-word
+#+END_SRC
+
+****** Regions
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x C-l"))    ;; downcase-region
+(global-unset-key (kbd "C-x C-u"))    ;; upcase-region
+#+END_SRC
+
+***** Whitespace
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "M-i"))    ;; tab-to-tab-stop
+(global-unset-key (kbd "M-j"))    ;; default-indent-new-line
+(global-unset-key (kbd "M-SPC"))    ;; just-one-space
+(global-unset-key (kbd "C-x TAB"))    ;; indent-rigidly
+(global-unset-key (kbd "C-M-\\"))    ;; indent-region
+#+END_SRC
+
+**** Binding
+***** General
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
 *** Rectangles
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'rect-prfx)
@@ -656,7 +637,7 @@ By Text Manipulation, I don't refer to manipulating text in general but rather t
 (global-set-key (kbd "C-t p") 'project-other-tab-command)
 #+END_SRC
 
-*** VCS
+*** Version Control
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'vcs-prfx)
 (global-set-key (kbd "C-v") 'vcs-prfx)
@@ -935,7 +916,38 @@ By Text Manipulation, I don't refer to manipulating text in general but rather t
 
 #+END_SRC
 
+*** Commando
+**** Unbinded
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "M-!"))    ;; shell-command
+(global-unset-key (kbd "M-&"))    ;; async-shell-command
+(global-unset-key (kbd "M-|"))    ;; shell-command-on-region
+(global-unset-key (kbd "M-X"))    ;; execute-extended-command-for-buffer
+#+END_SRC
+
+**** Binded
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+**** Evaluation
+***** Unbinded
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "M-:"))    ;; eval-expression
+(global-unset-key (kbd "C-x C-e"))    ;; eval-last-sexp
+#+END_SRC
+
+***** Binded
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
 *** Bookmarks
+#+BEGIN_SRC emacs-lisp
+(define-prefix-command 'bookmark-prfx)
+(global-set-key (kbd "C-x b") 'bookmark-prfx)
+#+END_SRC
+
 **** Unbinded
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x r m"))    ;; bookmark-set
@@ -1122,7 +1134,7 @@ By Text Manipulation, I don't refer to manipulating text in general but rather t
 *** Frames
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'frames-prfx)
-(global-set-key (kbd "C-f") 'frames-prfx)
+(global-set-key (kbd "M-f") 'frames-prfx)
 #+END_SRC
 
 **** Unbinded
@@ -1175,36 +1187,36 @@ By Text Manipulation, I don't refer to manipulating text in general but rather t
 **** Binded
 ***** General
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-f f") 'make-frame-command)
-(global-set-key (kbd "C-f b") 'switch-to-buffer-other-frame)
-(global-set-key (kbd "C-f F") 'clone-frame)
-(global-set-key (kbd "C-f o") 'other-frame)
-(global-set-key (kbd "C-f C-b") 'display-buffer-other-frame)
+(global-set-key (kbd "M-f f") 'make-frame-command)
+(global-set-key (kbd "M-f b") 'switch-to-buffer-other-frame)
+(global-set-key (kbd "M-f F") 'clone-frame)
+(global-set-key (kbd "M-f o") 'other-frame)
+(global-set-key (kbd "M-f C-b") 'display-buffer-other-frame)
 #+END_SRC
 
 ***** Management
 ****** Size
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-f F") 'toggle-frame-maximized)
+(global-set-key (kbd "M-f F") 'toggle-frame-maximized)
 #+END_SRC
 
 ****** Deletion
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-f w") 'delete-frame)
-(global-set-key (kbd "C-f W") 'delete-other-frames)
+(global-set-key (kbd "M-f w") 'delete-frame)
+(global-set-key (kbd "M-f W") 'delete-other-frames)
 #+END_SRC
 
 ***** Searching
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-f C-f") 'find-file-other-frame)
-(global-set-key (kbd "C-f d") 'dired-other-frame)
+(global-set-key (kbd "M-f C-f") 'find-file-other-frame)
+(global-set-key (kbd "M-f d") 'dired-other-frame)
 #+END_SRC
 
 ***** Other
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-f 5") 'other-frame-prefix)
-(global-set-key (kbd "C-f m") 'compose-mail-other-frame)
-(global-set-key (kbd "C-f p") 'project-other-frame-command)
+(global-set-key (kbd "M-f 5") 'other-frame-prefix)
+(global-set-key (kbd "M-f m") 'compose-mail-other-frame)
+(global-set-key (kbd "M-f p") 'project-other-frame-command)
 #+END_SRC
 
 *** Abbrev
@@ -1267,12 +1279,6 @@ By Text Manipulation, I don't refer to manipulating text in general but rather t
 (global-set-key (kbd "M-m u") 'unhighlight-regexp)
 #+END_SRC
 
-*** RMail
-**** Unbinded
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-x m"))    ;; compose-mail
-#+END_SRC
-
 *** Langcodo
 **** Unbinded
 #+BEGIN_SRC emacs-lisp
@@ -1289,8 +1295,7 @@ By Text Manipulation, I don't refer to manipulating text in general but rather t
 (global-unset-key (kbd "C-x RET C-\\"))    ;; set-input-method
 #+END_SRC
 
-*** Other
-**** Help
+*** Help
 #+BEGIN_SRC emacs-lisp
 ;; (global-unset-key (kbd "<f1> C-a"))    ;; about-emacs
 ;; (global-unset-key (kbd "<f1> C-c"))    ;; describe-copying
@@ -1339,6 +1344,18 @@ By Text Manipulation, I don't refer to manipulating text in general but rather t
 ;; (global-unset-key (kbd "<f1> v"))    ;; describe-variable
 ;; (global-unset-key (kbd "<f1> w"))    ;; where-is
 ;; (global-unset-key (kbd "<f1> x"))    ;; describe-command
+#+END_SRC
+
+*** Other
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-@"))    ;; set-mark-command
+(global-unset-key (kbd "M-~"))    ;; not-modified
+(global-unset-key (kbd "C-x f"))    ;; set-fill-column
+(global-unset-key (kbd "C-x ."))    ;; set-fill-prefix
+(global-unset-key (kbd "C-x C-n"))    ;; set-goal-column
+(global-unset-key (kbd "C-x $"))    ;; set-selective-display
+(global-unset-key (kbd "C-x ="))    ;; what-cursor-position
+(global-unset-key (kbd "C-x ;"))    ;; comment-set-column
 #+END_SRC
 
 **** Prefixes
@@ -1401,32 +1418,6 @@ By Text Manipulation, I don't refer to manipulating text in general but rather t
 
 #+END_SRC
 
-**** Commando
-***** Unbinded
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-!"))    ;; shell-command
-(global-unset-key (kbd "M-&"))    ;; async-shell-command
-(global-unset-key (kbd "M-|"))    ;; shell-command-on-region
-(global-unset-key (kbd "M-X"))    ;; execute-extended-command-for-buffer
-#+END_SRC
-
-***** Binded
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-***** Evaluation
-****** Unbinded
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-:"))    ;; eval-expression
-(global-unset-key (kbd "C-x C-e"))    ;; eval-last-sexp
-#+END_SRC
-
-****** Binded
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
 **** Narrowing
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'narrow-prfx)
@@ -1455,19 +1446,7 @@ By Text Manipulation, I don't refer to manipulating text in general but rather t
 (global-unset-key (kbd "C-x i"))    ;; insert-file
 #+END_SRC
 
-**** Other
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-@"))    ;; set-mark-command
-(global-unset-key (kbd "M-~"))    ;; not-modified
-(global-unset-key (kbd "C-x f"))    ;; set-fill-column
-(global-unset-key (kbd "C-x ."))    ;; set-fill-prefix
-(global-unset-key (kbd "C-x C-n"))    ;; set-goal-column
-(global-unset-key (kbd "C-x $"))    ;; set-selective-display
-(global-unset-key (kbd "C-x ="))    ;; what-cursor-position
-(global-unset-key (kbd "C-x ;"))    ;; comment-set-column
-#+END_SRC
-
-*** Literally Doesn't Work
+**** Literally Doesn't Work
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-$"))    ;; ispell-word
 #+END_SRC
@@ -1476,45 +1455,145 @@ By Text Manipulation, I don't refer to manipulating text in general but rather t
 *** Major Mode
 **** CC Mode
 ***** C Lang
+****** General
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+****** Main Defun
 #+BEGIN_SRC emacs-lisp
 (defun c-mode-bindings()
   )
 #+END_SRC
 
 ***** C++
+****** General
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+****** Main Defun
 #+BEGIN_SRC emacs-lisp
 (defun cpp-mode-bindings()
   )
 #+END_SRC
 
 ***** Obj-C
+****** General
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+****** Main Defun
 #+BEGIN_SRC emacs-lisp
 (defun objc-mode-bindings()
   )
 #+END_SRC
 
 ***** Java
+****** General
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+****** Main Defun
 #+BEGIN_SRC emacs-lisp
 (defun java-mode-bindings()
   )
 #+END_SRC
 
 ***** Idl
+****** General
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+****** Main Defun
 #+BEGIN_SRC emacs-lisp
 (defun idl-mode-bindings()
   )
 #+END_SRC
 
 ***** Pike
+****** General
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+****** Main Defun
 #+BEGIN_SRC emacs-lisp
 (defun pike-mode-bindings()
   )
 #+END_SRC
 
 ***** Awk
+****** General
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+****** Main Defun
 #+BEGIN_SRC emacs-lisp
 (defun awk-mode-bindings()
   )
+#+END_SRC
+
+**** Org Mode
+***** Unbinded
+****** Todo
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+***** Binded
+****** ToDo
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+**** ToDo Mode
+***** Unbinded
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+***** Binded
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+**** RMail
+***** Unbinded
+****** Composing
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x m"))    ;; compose-mail
+#+END_SRC
+
+****** Management
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+***** Binded
+****** Composing
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+****** Management
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+**** nXML Mode
+***** Unbinded
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+***** Binded
+#+BEGIN_SRC emacs-lisp
+
 #+END_SRC
 
 * Hooks
