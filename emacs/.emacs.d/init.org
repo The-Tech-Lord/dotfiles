@@ -55,16 +55,34 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 
 ** Other
 #+BEGIN_SRC emacs-lisp
-(set-default 'truncate-line t)
-(global-visual-line-mode t)
 (windmove-default-keybindings)                             ;; Adds Window Switching Keybindings
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)    ;; Maximizes Window
+#+END_SRC
+
+** Custom Settings
+*** Custom Set Variables
+#+BEGIN_SRC emacs-lisp
+(custom-set-variables
+ '(custom-enabled-themes '(gruvbox-dark-medium))
+ '(custom-safe-themes
+ '("b1a691bb67bd8bd85b76998caf2386c9a7b2ac98a116534071364ed6489b695d" "fa49766f2acb82e0097e7512ae4a1d6f4af4d6f4655a48170d0a00bcb7183970" "3e374bb5eb46eb59dbd92578cae54b16de138bc2e8a31a2451bf6fdb0f3fd81b" "19a2c0b92a6aa1580f1be2deb7b8a8e3a4857b6c6ccf522d00547878837267e7" "2ff9ac386eac4dffd77a33e93b0c8236bb376c5a5df62e36d4bfa821d56e4e20" "72ed8b6bffe0bfa8d097810649fd57d2b598deef47c992920aef8b5d9599eefe" "d80952c58cf1b06d936b1392c38230b74ae1a2a6729594770762dc0779ac66b7" default))
+ '(package-selected-packages
+   '(toc-org csharp-mode yascroll vimrc-mode elcord gruvbox-theme)
+   )
+ )
+#+END_SRC
+
+*** Custom Set Faces
+#+BEGIN_SRC emacs-lisp
+(custom-set-faces
+   )
 #+END_SRC
 
 * Mode Settings
 Even though some of these modes are obscure, I've created functions for them for the sake of completion.
 
-** CC Mode
+** Major Mode
+*** CC Mode
 #+BEGIN_SRC emacs-lisp
 (defun c-init-settings()
   )
@@ -73,7 +91,7 @@ Even though some of these modes are obscure, I've created functions for them for
   )
 #+END_SRC
 
-*** C
+**** C
 #+BEGIN_SRC emacs-lisp
 (defun c-mode-settings()
   (setq c-default-style "linux")
@@ -81,37 +99,37 @@ Even though some of these modes are obscure, I've created functions for them for
   )
 #+END_SRC
 
-*** C++
+**** C++
 #+BEGIN_SRC emacs-lisp
 (defun cpp-mode-settings()
   )
 #+END_SRC
 
-*** Obj-C
+**** Obj-C
 #+BEGIN_SRC emacs-lisp
 (defun objc-mode-settings()
   )
 #+END_SRC
 
-*** Java
+**** Java
 #+BEGIN_SRC emacs-lisp
 (defun java-mode-settings()
   )
 #+END_SRC
 
-*** Idl
+**** Idl
 #+BEGIN_SRC emacs-lisp
 (defun idl-mode-settings()
   )
 #+END_SRC
 
-*** Pike
+**** Pike
 #+BEGIN_SRC emacs-lisp
 (defun pike-mode-settings()
   )
 #+END_SRC
 
-*** Awk
+**** Awk
 #+BEGIN_SRC emacs-lisp
 (defun awk-mode-settings()
   )
@@ -120,6 +138,7 @@ Even though some of these modes are obscure, I've created functions for them for
 * Org Mode
 ** ToDo
 #+BEGIN_SRC emacs-lisp
+
 (setq org-todo-keywords
 		'((sequence "TODO" "IN-PROGRESS" "|" "DONE")
 		  (sequence "BUG" "|" "FIXED")))
@@ -166,7 +185,7 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-unset-key (kbd "C-S-<backspace>"))    ;; kill-whole-line
 #+END_SRC
 
-****** "Hey, sex?"
+****** "Hey. Sex?"
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-M-k"))    ;; kill-sexp
 (global-unset-key (kbd "ESC C-<delete>"))    ;; backward-kill-sexp
@@ -234,14 +253,36 @@ Even though some of these modes are obscure, I've created functions for them for
 #+END_SRC
 
 **** Binded
+***** Killing
+****** Region
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-.") 'kill-region)
-(global-set-key (kbd "C-;") 'yank)
+#+END_SRC
+
+****** Kill Ring
+#+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "M-'") 'kill-ring-save)
 #+END_SRC
 
+***** Not-Really Killing
+****** Yank
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-;") 'yank)
+#+END_SRC
+
 *** Searching
+#+BEGIN_SRC emacs-lisp
+(define-prefix-command 'search-prfx)
+(global-set-key (kbd "C-s") 'search-prfx)
+#+END_SRC
+
 **** Unbinded
+***** Regular
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-s"))    ;; isearch-forward
+(global-unset-key (kbd "C-r"))    ;; isearch-backward
+#+END_SRC
+
 ***** Files
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x C-v"))    ;; find-alternate-file
@@ -270,20 +311,33 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-unset-key (kbd "M-z"))    ;; zap-to-char
 #+END_SRC
 
-****** Literally Doesn't Work
+**** Binded
+***** Regular
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-$"))    ;; ispell-word
+(global-set-key (kbd "C-f") 'isearch-forward)
+(global-set-key (kbd "C-S-f") 'isearch-backward)
 #+END_SRC
 
-**** Binded
 ***** Regex or Something
+****** Replace
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-s r") 'query-replace)
+(global-set-key (kbd "C-s R") 'query-replace-regexp)
+#+END_SRC
+
 ****** Xref
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-.") 'xref-find-definitions)    ;; xref-find-definitions
-(global-set-key (kbd "M-?") 'xref-find-references)    ;; xref-find-references
+
+#+END_SRC
+
+****** Instances
+#+BEGIN_SRC emacs-lisp
+
 #+END_SRC
 
 *** Text Manipulation
+By Text Manipulation, I don't refer to manipulating text in general but rather the text itself (e.g., changing the case of a letter from uppercase to lowercase).
+
 **** Unbinding
 ***** General
 #+BEGIN_SRC emacs-lisp
@@ -297,12 +351,7 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-unset-key (kbd "C-x \\"))    ;; activate-transient-input-method
 #+END_SRC
 
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-("))    ;; insert-parentheses
-(global-unset-key (kbd "C-x i"))    ;; insert-file
-#+END_SRC
-
-***** Transpose
+***** Transposing
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-t"))    ;; transpose-key
 (global-unset-key (kbd "M-t"))    ;; tranpose-words
@@ -340,7 +389,7 @@ Even though some of these modes are obscure, I've created functions for them for
 
 *** Movement
 **** Unbinding
-***** General
+***** Walking++
 ****** Char
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-f"))    ;; forward-char
@@ -502,11 +551,15 @@ Even though some of these modes are obscure, I've created functions for them for
 #+END_SRC
 
 **** Unbinded
-***** General
+***** Clipboard I Think
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x r y"))    ;; yank-rectangle
 (global-unset-key (kbd "C-x r k"))    ;; kill-rectangle
 (global-unset-key (kbd "C-x r d"))    ;; delete-rectangle
+#+END_SRC
+
+***** ExTra ExTra
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x r c"))    ;; clear-rectangle
 (global-unset-key (kbd "C-x r o"))    ;; open-rectangle
 (global-unset-key (kbd "C-x r t"))    ;; string-rectangle
@@ -542,16 +595,20 @@ Even though some of these modes are obscure, I've created functions for them for
 #+END_SRC
 
 **** Unbinding
-***** General
+***** Management
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x t 2"))    ;; tab-new
 (global-unset-key (kbd "C-x t 0"))    ;; tab-close
 (global-unset-key (kbd "C-x t 1"))    ;; tab-close-other
 (global-unset-key (kbd "C-x t u"))    ;; tab-undo
 (global-unset-key (kbd "C-x t n"))    ;; tab-duplicate
+(global-unset-key (kbd "C-x t G"))    ;; tab-group
+#+END_SRC
+
+***** Switching
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x t o"))    ;; tab-next
 (global-unset-key (kbd "C-x t O"))    ;; tab-previous
-(global-unset-key (kbd "C-x t G"))    ;; tab-group
 #+END_SRC
 
 ***** Searching
@@ -608,33 +665,46 @@ Even though some of these modes are obscure, I've created functions for them for
 **** Unbinding
 ***** General
 #+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x v d"))    ;; vc-dir
+(global-unset-key (kbd "C-x v i"))    ;; vc-register
+#+END_SRC
+
+***** Updating
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x v v"))    ;; vc-next-action
 (global-unset-key (kbd "C-x v +"))    ;; vc-update
 (global-unset-key (kbd "C-x v P"))    ;; vc-push
-(global-unset-key (kbd "C-x v i"))    ;; vc-register
-(global-unset-key (kbd "C-x v d"))    ;; vc-dir
-
-(global-unset-key (kbd "C-x v G"))    ;; vc-ignore
 (global-unset-key (kbd "C-x v m"))    ;; vc-merge
 (global-unset-key (kbd "C-x v u"))    ;; vc-revert
+#+END_SRC
+
+****** Management
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x v G"))    ;; vc-ignore
 (global-unset-key (kbd "C-x v x"))    ;; vc-delete-file
 #+END_SRC
 
 ***** Records
+****** Diffs
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x v ="))    ;; vc-diff
 (global-unset-key (kbd "C-x v D"))    ;; vc-root-diff
 (global-unset-key (kbd "C-x v M D"))    ;; vc-diff-mergebase
-(global-unset-key (kbd "C-x v h"))    ;; vc-region-history
+#+END_SRC
+
+****** Logs
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x v l"))    ;; vc-print-log
 (global-unset-key (kbd "C-x v L"))    ;; vc-print-root-log
-(global-unset-key (kbd "C-x v M L"))    ;; vc-log-mergebase
 (global-unset-key (kbd "C-x v O"))    ;; vc-log-outgoing
 (global-unset-key (kbd "C-x v I"))    ;; vc-log-incoming
+#+END_SRC
 
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x v h"))    ;; vc-region-history
+(global-unset-key (kbd "C-x v M L"))    ;; vc-log-mergebase
 (global-unset-key (kbd "C-x v a"))    ;; vc-annotate
 (global-unset-key (kbd "C-x v g"))    ;; vc-annotate
-
 (global-unset-key (kbd "C-x v ~"))    ;; vc-revision-other-window
 #+END_SRC
 
@@ -700,7 +770,7 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-unset-key (kbd "C-x p p"))    ;; project-switch-project
 #+END_SRC
 
-***** Commands
+***** Commando
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x p s"))    ;; project-shell
 (global-unset-key (kbd "C-x p !"))    ;; project-shell-command
@@ -730,7 +800,7 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-set-key (kbd "C-p p") 'project-switch-project)
 #+END_SRC
 
-***** Commands
+***** Commando
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-p s") 'project-shell)
 (global-set-key (kbd "C-p S") 'project-shell-command)
@@ -757,14 +827,22 @@ Even though some of these modes are obscure, I've created functions for them for
 
 **** Unbinded
 ***** Manipulation
+****** Insertion
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x r C-@"))    ;; point-to-register
 (global-unset-key (kbd "C-x r C-SPC"))    ;; point-to-register
 (global-unset-key (kbd "C-x r SPC"))    ;; point-to-register
 (global-unset-key (kbd "C-x r n"))    ;; number-to-register
+#+END_SRC
 
+****** Copying
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x r s"))    ;; copy-to-register
 (global-unset-key (kbd "C-x r x"))    ;; copy-to-register
+#+END_SRC
+
+****** Manipulation++
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x r +"))    ;; increment-register
 #+END_SRC
 
@@ -784,9 +862,14 @@ Even though some of these modes are obscure, I've created functions for them for
 
 **** Binded
 ***** Manipulation
+****** Insertion
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "M-r n") 'number-to-register)
 (global-set-key (kbd "M-r x") 'copy-to-register)
+#+END_SRC
+
+****** Manipulation++
+#+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "M-r +") 'increment-register)
 #+END_SRC
 
@@ -855,21 +938,30 @@ Even though some of these modes are obscure, I've created functions for them for
 *** Bookmarks
 **** Unbinded
 #+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x r m"))    ;; bookmark-set
 (global-unset-key (kbd "C-x r M"))    ;; bookmark-set-no-overwrite
 (global-unset-key (kbd "C-x r b"))    ;; bookmark-jump
 (global-unset-key (kbd "C-x r l"))    ;; bookmark-bmenu-list
-(global-unset-key (kbd "C-x r m"))    ;; bookmark-set
 #+END_SRC
 
 **** Binded
 #+BEGIN_SRC emacs-lisp
-
+(global-set-key (kbd "C-x b s") 'bookmark-set)
+(global-set-key (kbd "C-x b S") 'bookmark-set-no-overwrite)
+(global-set-key (kbd "C-x b j") 'bookmark-jump)
+(global-set-key (kbd "C-x b l") 'bookmark-lmenu-list)
 #+END_SRC
 
 *** Windows
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'windows-prfx)
 (global-set-key (kbd "C-w") 'windows-prfx)
+#+END_SRC
+
+**** Defun
+#+BEGIN_SRC emacs-lisp
+(defun window-sizer()
+  )
 #+END_SRC
 
 **** Unbinded
@@ -940,7 +1032,6 @@ Even though some of these modes are obscure, I've created functions for them for
 ***** General
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-w b") 'display-buffer)
-
 (global-set-key (kbd "C-w B") 'switch-to-buffer-other-window)
 (global-set-key (kbd "C-w c") 'clone-indirect-buffer-other-window)
 #+END_SRC
@@ -1042,8 +1133,6 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-unset-key (kbd "C-x 5 c"))    ;; clone-frame
 (global-unset-key (kbd "C-x 5 o"))    ;; other-frame
 (global-unset-key (kbd "C-x 5 C-o"))    ;; display-buffer-other-frame
-
-(global-unset-key (kbd "C-<drag-n-drop>"))    ;; w32-drag-n-drop-other-frame
 #+END_SRC
 
 ***** Management
@@ -1070,20 +1159,22 @@ Even though some of these modes are obscure, I've created functions for them for
 
 ***** Other
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-z"))    ;; suspend-frame
-(global-unset-key (kbd "C-x z"))    ;; suspend-frame
-(global-unset-key (kbd "C-x C-z"))    ;; suspend-frame
-
 (global-unset-key (kbd "C-x 5 5"))    ;; other-frame-prefix
 (global-unset-key (kbd "C-x 5 m"))    ;; compose-mail-other-frame
 (global-unset-key (kbd "C-x 5 p"))    ;; project-other-frame-command
+(global-unset-key (kbd "C-<drag-n-drop>"))    ;; w32-drag-n-drop-other-frame
+#+END_SRC
+
+****** Suspend
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-z"))    ;; suspend-frame
+(global-unset-key (kbd "C-x z"))    ;; suspend-frame
+(global-unset-key (kbd "C-x C-z"))    ;; suspend-frame
 #+END_SRC
 
 **** Binded
 ***** General
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-f w") 'delete-frame)
-(global-set-key (kbd "C-f W") 'delete-other-frames)
 (global-set-key (kbd "C-f f") 'make-frame-command)
 (global-set-key (kbd "C-f b") 'switch-to-buffer-other-frame)
 (global-set-key (kbd "C-f F") 'clone-frame)
@@ -1091,10 +1182,21 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-set-key (kbd "C-f C-b") 'display-buffer-other-frame)
 #+END_SRC
 
+***** Management
+****** Size
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-f F") 'toggle-frame-maximized)
+#+END_SRC
+
+****** Deletion
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-f w") 'delete-frame)
+(global-set-key (kbd "C-f W") 'delete-other-frames)
+#+END_SRC
+
 ***** Searching
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-f C-f") 'find-file-other-frame)
-(global-set-key (kbd "C-f x") 'xref-find-definitions-other-frame)
 (global-set-key (kbd "C-f d") 'dired-other-frame)
 #+END_SRC
 
@@ -1107,24 +1209,36 @@ Even though some of these modes are obscure, I've created functions for them for
 
 *** Abbrev
 **** Unbinded
+***** Creation
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x a +"))    ;; add-mode-abbrev
 (global-unset-key (kbd "C-x a l"))    ;; add-mode-abbrev
 (global-unset-key (kbd "C-x a C-a"))    ;; add-mode-abbrev
 (global-unset-key (kbd "C-x a g"))    ;; add-global-abbrev
+(global-unset-key (kbd "C-x a i l"))    ;; inverse-add-mode-abbrev
 (global-unset-key (kbd "C-x a -"))    ;; inverse-add-global-abbrev
+(global-unset-key (kbd "C-x a i g"))    ;; inverse-add-global-abbrev
+#+END_SRC
 
+***** Expansion
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-/"))    ;; abbrev-expand
 (global-unset-key (kbd "C-x '"))    ;; expand-abbrev
 (global-unset-key (kbd "C-x a '"))    ;; expand-abbrev
 (global-unset-key (kbd "C-x a e"))    ;; expand-abbrev
 (global-unset-key (kbd "C-x a n"))    ;; expand-jump-to-next-slot
 (global-unset-key (kbd "C-x a p"))    ;; expand-jump-to-previous-slot
+#+END_SRC
 
-(global-unset-key (kbd "C-x a i l"))    ;; inverse-add-mode-abbrev
-(global-unset-key (kbd "C-x a i g"))    ;; inverse-add-global-abbrev
-
+***** Completion
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-M-/"))    ;; dabbrev-completion
+#+END_SRC
+
+**** Binded
+***** Unnamed
+#+BEGIN_SRC emacs-lisp
+
 #+END_SRC
 
 *** Highlighting
@@ -1138,10 +1252,10 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-unset-key (kbd "M-s h ."))    ;; hightlight-symbol-at-point
 (global-unset-key (kbd "M-s h p"))    ;; highlight-phrase
 (global-unset-key (kbd "M-s h r"))    ;; highlight-regexp
-(global-unset-key (kbd "M-s h u"))    ;; unhighlight-regexp
 (global-unset-key (kbd "M-s h l"))    ;; highlight-lines-matching-regexp
 (global-unset-key (kbd "M-s h f"))    ;; hi-lock-find-patterns
 (global-unset-key (kbd "M-s h w"))    ;; hi-lock-write-interactive-patterns
+(global-unset-key (kbd "M-s h u"))    ;; unhighlight-regexp
 #+END_SRC
 
 **** Binded
@@ -1149,8 +1263,8 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-set-key (kbd "M-m h") 'highlight-symbol-at-point)
 (global-set-key (kbd "M-m p") 'highlight-phrase)
 (global-set-key (kbd "M-m x") 'highlight-regexp)
-(global-set-key (kbd "M-m u") 'unhighlight-regexp)
 (global-set-key (kbd "M-m l") 'highlight-lines-matching-regexp)
+(global-set-key (kbd "M-m u") 'unhighlight-regexp)
 #+END_SRC
 
 *** RMail
@@ -1159,72 +1273,72 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-unset-key (kbd "C-x m"))    ;; compose-mail
 #+END_SRC
 
-*** Language and Coding System
+*** Langcodo
 **** Unbinded
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-x RET C-\\"))    ;; set-input-method
 (global-unset-key (kbd "C-x RET F"))    ;; set-file-name-coding-system
 (global-unset-key (kbd "C-x RET X"))    ;; set-next-selection-coding-system
 (global-unset-key (kbd "C-x RET c"))    ;; universal-coding-system-argument
-(global-unset-key (kbd "C-x RET f"))    ;; set-buffer-file-coding-system
 (global-unset-key (kbd "C-x RET k"))    ;; set-keyboard-coding-system
-(global-unset-key (kbd "C-x RET l"))    ;; set-language-environment
+(global-unset-key (kbd "C-x RET f"))    ;; set-buffer-file-coding-system
 (global-unset-key (kbd "C-x RET p"))    ;; set-buffer-process-coding-system
 (global-unset-key (kbd "C-x RET r"))    ;; revert-buffer-with-coding-system
 (global-unset-key (kbd "C-x RET t"))    ;; set-terminal-coding-system
 (global-unset-key (kbd "C-x RET x"))    ;; set-selection-coding-system
+(global-unset-key (kbd "C-x RET l"))    ;; set-language-environment
+(global-unset-key (kbd "C-x RET C-\\"))    ;; set-input-method
 #+END_SRC
 
 *** Other
 **** Help
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "<f1> C-a"))    ;; about-emacs
-(global-unset-key (kbd "<f1> C-c"))    ;; describe-copying
-(global-unset-key (kbd "<f1> C-d"))    ;; view-emcas-debugging
-(global-unset-key (kbd "<f1> C-e"))    ;; view-external-packages
-(global-unset-key (kbd "<f1> C-f"))    ;; view-emacs-FAQ
-(global-unset-key (kbd "<f1> C-h"))    ;; help-for-help
-(global-unset-key (kbd "<f1> RET"))    ;; view-order-manuals
-(global-unset-key (kbd "<f1> C-n"))    ;; view-emacs-news
-(global-unset-key (kbd "<f1> C-o"))    ;; describe-distribution
-(global-unset-key (kbd "<f1> C-p"))    ;; view-emacs-problems
-(global-unset-key (kbd "<f1> C-s"))    ;; search-forward-help-for-help
-(global-unset-key (kbd "<f1> C-t"))    ;; view-emacs-todo
-(global-unset-key (kbd "<f1> C-w"))    ;; describe-no-warranty
-(global-unset-key (kbd "<f1> C-\\"))    ;; describe-input-method
-(global-unset-key (kbd "<f1> ."))    ;; display-local-help
-(global-unset-key (kbd "<f1> 4"))    ;; Prefix Command
-(global-unset-key (kbd "<f1> ?"))    ;; help-for-help
-(global-unset-key (kbd "<f1> C"))    ;; describe-coding-system
-(global-unset-key (kbd "<f1> F"))    ;; Info-goto-emacs-command-code
-(global-unset-key (kbd "<f1> I"))    ;; describe-input-method
-(global-unset-key (kbd "<f1> K"))    ;; Info-goto-emacs-key-command-node
-(global-unset-key (kbd "<f1> L"))    ;; describe-language-environment
-(global-unset-key (kbd "<f1> P"))    ;; describe-package
-(global-unset-key (kbd "<f1> R"))    ;; info-display-manual
-(global-unset-key (kbd "<f1> S"))    ;; info-lookup-symbol
-(global-unset-key (kbd "<f1> a"))    ;; apropos-command
-(global-unset-key (kbd "<f1> b"))    ;; describe-bindings
-(global-unset-key (kbd "<f1> c"))    ;; describe-key-briefly
-(global-unset-key (kbd "<f1> d"))    ;; apropos-documentation
-(global-unset-key (kbd "<f1> e"))    ;; view-ech-area-messages
-(global-unset-key (kbd "<f1> f"))    ;; describe-function
-(global-unset-key (kbd "<f1> g"))    ;; describe-gnu-project
-(global-unset-key (kbd "<f1> h"))    ;; view-hello-file
-(global-unset-key (kbd "<f1> i"))    ;; info
-(global-unset-key (kbd "<f1> k"))    ;; describe-key
-(global-unset-key (kbd "<f1> l"))    ;; view-lossage
-(global-unset-key (kbd "<f1> m"))    ;; describe-mode
-(global-unset-key (kbd "<f1> n"))    ;; view-emacs-news
-(global-unset-key (kbd "<f1> o"))    ;; describe-symbol
-(global-unset-key (kbd "<f1> p"))    ;; finder-by-keyword
-(global-unset-key (kbd "<f1> q"))    ;; help-quit
-(global-unset-key (kbd "<f1> r"))    ;; info-emacs-manual
-(global-unset-key (kbd "<f1> s"))    ;; describe-syntax
-(global-unset-key (kbd "<f1> t"))    ;; help-with-tutorial
-(global-unset-key (kbd "<f1> v"))    ;; describe-variable
-(global-unset-key (kbd "<f1> w"))    ;; where-is
-(global-unset-key (kbd "<f1> x"))    ;; describe-command
+;; (global-unset-key (kbd "<f1> C-a"))    ;; about-emacs
+;; (global-unset-key (kbd "<f1> C-c"))    ;; describe-copying
+;; (global-unset-key (kbd "<f1> C-d"))    ;; view-emcas-debugging
+;; (global-unset-key (kbd "<f1> C-e"))    ;; view-external-packages
+;; (global-unset-key (kbd "<f1> C-f"))    ;; view-emacs-FAQ
+;; (global-unset-key (kbd "<f1> C-h"))    ;; help-for-help
+;; (global-unset-key (kbd "<f1> RET"))    ;; view-order-manuals
+;; (global-unset-key (kbd "<f1> C-n"))    ;; view-emacs-news
+;; (global-unset-key (kbd "<f1> C-o"))    ;; describe-distribution
+;; (global-unset-key (kbd "<f1> C-p"))    ;; view-emacs-problems
+;; (global-unset-key (kbd "<f1> C-s"))    ;; search-forward-help-for-help
+;; (global-unset-key (kbd "<f1> C-t"))    ;; view-emacs-todo
+;; (global-unset-key (kbd "<f1> C-w"))    ;; describe-no-warranty
+;; (global-unset-key (kbd "<f1> C-\\"))    ;; describe-input-method
+;; (global-unset-key (kbd "<f1> ."))    ;; display-local-help
+;; (global-unset-key (kbd "<f1> 4"))    ;; Prefix Command
+;; (global-unset-key (kbd "<f1> ?"))    ;; help-for-help
+;; (global-unset-key (kbd "<f1> C"))    ;; describe-coding-system
+;; (global-unset-key (kbd "<f1> F"))    ;; Info-goto-emacs-command-code
+;; (global-unset-key (kbd "<f1> I"))    ;; describe-input-method
+;; (global-unset-key (kbd "<f1> K"))    ;; Info-goto-emacs-key-command-node
+;; (global-unset-key (kbd "<f1> L"))    ;; describe-language-environment
+;; (global-unset-key (kbd "<f1> P"))    ;; describe-package
+;; (global-unset-key (kbd "<f1> R"))    ;; info-display-manual
+;; (global-unset-key (kbd "<f1> S"))    ;; info-lookup-symbol
+;; (global-unset-key (kbd "<f1> a"))    ;; apropos-command
+;; (global-unset-key (kbd "<f1> b"))    ;; describe-bindings
+;; (global-unset-key (kbd "<f1> c"))    ;; describe-key-briefly
+;; (global-unset-key (kbd "<f1> d"))    ;; apropos-documentation
+;; (global-unset-key (kbd "<f1> e"))    ;; view-ech-area-messages
+;; (global-unset-key (kbd "<f1> f"))    ;; describe-function
+;; (global-unset-key (kbd "<f1> g"))    ;; describe-gnu-project
+;; (global-unset-key (kbd "<f1> h"))    ;; view-hello-file
+;; (global-unset-key (kbd "<f1> i"))    ;; info
+;; (global-unset-key (kbd "<f1> k"))    ;; describe-key
+;; (global-unset-key (kbd "<f1> l"))    ;; view-lossage
+;; (global-unset-key (kbd "<f1> m"))    ;; describe-mode
+;; (global-unset-key (kbd "<f1> n"))    ;; view-emacs-news
+;; (global-unset-key (kbd "<f1> o"))    ;; describe-symbol
+;; (global-unset-key (kbd "<f1> p"))    ;; finder-by-keyword
+;; (global-unset-key (kbd "<f1> q"))    ;; help-quit
+;; (global-unset-key (kbd "<f1> r"))    ;; info-emacs-manual
+;; (global-unset-key (kbd "<f1> s"))    ;; describe-syntax
+;; (global-unset-key (kbd "<f1> t"))    ;; help-with-tutorial
+;; (global-unset-key (kbd "<f1> v"))    ;; describe-variable
+;; (global-unset-key (kbd "<f1> w"))    ;; where-is
+;; (global-unset-key (kbd "<f1> x"))    ;; describe-command
 #+END_SRC
 
 **** Prefixes
@@ -1270,21 +1384,14 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-unset-key (kbd "C-<down-mouse-1>"))    ;; mouse-buffer-menu
 #+END_SRC
 
-***** Binded
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
 **** Lists
 ***** Unbinded
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-M-d"))    ;; down-list
 (global-unset-key (kbd "ESC C-<down>"))    ;; down-list
-
 (global-unset-key (kbd "C-M-n"))    ;; forward-list
 (global-unset-key (kbd "C-M-p"))    ;; backward-list
 (global-unset-key (kbd "C-M-u"))    ;; backward-up-list
-
 (global-unset-key (kbd "C-M-<up>"))    ;; backward-up-list
 (global-unset-key (kbd "ESC C-<up>"))    ;; backward-up-list
 #+END_SRC
@@ -1342,6 +1449,12 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-set-key (kbd "M-n w") 'widen)
 #+END_SRC
 
+**** Insertion
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "M-("))    ;; insert-parentheses
+(global-unset-key (kbd "C-x i"))    ;; insert-file
+#+END_SRC
+
 **** Other
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-@"))    ;; set-mark-command
@@ -1354,12 +1467,53 @@ Even though some of these modes are obscure, I've created functions for them for
 (global-unset-key (kbd "C-x ;"))    ;; comment-set-column
 #+END_SRC
 
+*** Literally Doesn't Work
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "M-$"))    ;; ispell-word
+#+END_SRC
+
 ** Local
 *** Major Mode
 **** CC Mode
 ***** C Lang
 #+BEGIN_SRC emacs-lisp
 (defun c-mode-bindings()
+  )
+#+END_SRC
+
+***** C++
+#+BEGIN_SRC emacs-lisp
+(defun cpp-mode-bindings()
+  )
+#+END_SRC
+
+***** Obj-C
+#+BEGIN_SRC emacs-lisp
+(defun objc-mode-bindings()
+  )
+#+END_SRC
+
+***** Java
+#+BEGIN_SRC emacs-lisp
+(defun java-mode-bindings()
+  )
+#+END_SRC
+
+***** Idl
+#+BEGIN_SRC emacs-lisp
+(defun idl-mode-bindings()
+  )
+#+END_SRC
+
+***** Pike
+#+BEGIN_SRC emacs-lisp
+(defun pike-mode-bindings()
+  )
+#+END_SRC
+
+***** Awk
+#+BEGIN_SRC emacs-lisp
+(defun awk-mode-bindings()
   )
 #+END_SRC
 
@@ -1375,7 +1529,7 @@ Even though some of these modes are obscure, I've created functions for them for
 		  )
 #+END_SRC
 
-*** C Mode
+*** C Lang
 #+BEGIN_SRC emacs-lisp
 (add-hook 'c-mode-hook
 		  'c-mode-settings
@@ -1383,17 +1537,19 @@ Even though some of these modes are obscure, I've created functions for them for
 		  )
 #+END_SRC
 
-*** C++ Mode
+*** C++
 #+BEGIN_SRC emacs-lisp
 (add-hook 'c++-mode-hook
 		  'cpp-mode-settings
+		  'cpp-mode-bindings
 		  )
 #+END_SRC
 
-*** Obj-C Mode
+*** Obj-C
 #+BEGIN_SRC emacs-lisp
 (add-hook 'objc-mode-hook
 		  'objc-mode-settings
+		  'objc-mode-bindings
 		  )
 #+END_SRC
 
@@ -1401,6 +1557,7 @@ Even though some of these modes are obscure, I've created functions for them for
 #+BEGIN_SRC emacs-lisp
 (add-hook 'java-mode-hook
 		  'java-mode-settings
+		  'java-mode-bindings
 		  )
 #+END_SRC
 
@@ -1408,6 +1565,7 @@ Even though some of these modes are obscure, I've created functions for them for
 #+BEGIN_SRC emacs-lisp
 (add-hook 'idl-mode-hook
 		  'idl-mode-settings
+		  'idl-mode-bindings
 		  )
 #+END_SRC
 
@@ -1415,6 +1573,7 @@ Even though some of these modes are obscure, I've created functions for them for
 #+BEGIN_SRC emacs-lisp
 (add-hook 'pike-mode-hook
 		  'pike-mode-settings
+		  'pike-mode-bindings
 		  )
 #+END_SRC
 
@@ -1422,29 +1581,6 @@ Even though some of these modes are obscure, I've created functions for them for
 #+BEGIN_SRC emacs-lisp
 (add-hook 'awk-mode-hook
 		  'awk-mode-settings
+		  'awk-mode-bindings
 		  )
-#+END_SRC
-
-* Other
-  :PROPERTIES:
-  :VISIBILITY: folded
-  :END:
-** Custom Set Variables
-#+BEGIN_SRC emacs-lisp
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(gruvbox-dark-medium))
- '(custom-safe-themes
- '("b1a691bb67bd8bd85b76998caf2386c9a7b2ac98a116534071364ed6489b695d" "fa49766f2acb82e0097e7512ae4a1d6f4af4d6f4655a48170d0a00bcb7183970" "3e374bb5eb46eb59dbd92578cae54b16de138bc2e8a31a2451bf6fdb0f3fd81b" "19a2c0b92a6aa1580f1be2deb7b8a8e3a4857b6c6ccf522d00547878837267e7" "2ff9ac386eac4dffd77a33e93b0c8236bb376c5a5df62e36d4bfa821d56e4e20" "72ed8b6bffe0bfa8d097810649fd57d2b598deef47c992920aef8b5d9599eefe" "d80952c58cf1b06d936b1392c38230b74ae1a2a6729594770762dc0779ac66b7" default))
- '(package-selected-packages
- '(toc-org csharp-mode yascroll vimrc-mode elcord gruvbox-theme)))
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   )
 #+END_SRC
