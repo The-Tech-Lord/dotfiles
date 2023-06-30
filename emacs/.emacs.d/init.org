@@ -13,6 +13,8 @@
 *                                                                                                                 __/ |
 *                                                                                                                |___/ 
 
+"I'm an organization junkie" - Tsudo
+
 GitHub: https://github.com/The-Tech-Lord/dotfiles
 
 * Package Manager
@@ -34,17 +36,17 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (tool-bar-mode -1)
 #+END_SRC
 
-** Tabs
+*** Line Number Column
+#+BEGIN_SRC emacs-lisp
+(setq column-number-mode t)
+(global-display-line-numbers-mode)
+#+END_SRC
+
+** Tab Space
 #+BEGIN_SRC emacs-lisp
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode t)
 (setq backward-delete-char-untabify-method nil)
-#+END_SRC
-
-** Line Number Column
-#+BEGIN_SRC emacs-lisp
-(setq column-number-mode t)
-(global-display-line-numbers-mode)
 #+END_SRC
 
 ** Other
@@ -129,12 +131,20 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 
 *** Monty Python
 #+BEGIN_SRC emacs-lisp
-
+(defun python-mode-settings()
+  )
 #+END_SRC
 
 *** Microsoft Java
 #+BEGIN_SRC emacs-lisp
+(defun cs-mode-settings()
+  )
+#+END_SRC
 
+*** Hexl Mode
+#+BEGIN_SRC emacs-lisp
+(defun hexl-mode-settings()
+  )
 #+END_SRC
 
 *** Org Mode
@@ -142,13 +152,15 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 #+BEGIN_SRC emacs-lisp
 (setq org-todo-keywords
 		'((sequence "TODO" "IN-PROGRESS" "|" "DONE")
-		  (sequence "BUG" "|" "FIXED")))
+		  (sequence "BUG" "|" "FIXED")
+		  )
+		)
 #+END_SRC
 
 **** SRC Block
 #+BEGIN_SRC emacs-lisp
-(setq org-src-preserve-indentation t
-    org-edit-src-content-indentation '0)
+(setq org-src-preserve-indentation t)
+(setq org-edit-src-content-indentation '0)
 #+END_SRC
 
 * Bindings
@@ -207,10 +219,17 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 #+END_SRC
 
 ******* Deletion
+******** Basic
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-d"))    ;; delete-char
+#+END_SRC
+
+******** Whitespace
+- just-one-space is similar to delete-horizontal-space, but it ensures that one space is separating two words.
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-^"))    ;; delete-indentation
 (global-unset-key (kbd "M-\\"))    ;; delete-horizontal-space
+(global-unset-key (kbd "M-SPC"))    ;; just-one-space
 #+END_SRC
 
 ****** Other Murderous Commands
@@ -245,6 +264,7 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 ***** Unbinded
 ****** General
 #+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-@"))    ;; set-mark-command
 (global-unset-key (kbd "M-@"))    ;; mark-word
 (global-unset-key (kbd "C-x C-p"))    ;; mark-page
 (global-unset-key (kbd "C-M-h"))    ;; mark-defun
@@ -364,11 +384,19 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 
 **** Indenting
 ***** Unbinded
+- Even though the manual states that M-j and C-M-j are mapped to comment-indent-new-line, default-indent-new-line can deliver the same features.
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-j"))    ;; default-indent-new-line
+(global-unset-key (kbd "C-M-j"))    ;; default-indent-new-line
 (global-unset-key (kbd "C-x TAB"))    ;; indent-rigidly
 (global-unset-key (kbd "C-M-\\"))    ;; indent-region
 (global-unset-key (kbd "M-)"))    ;; move-past-close-and-reindent
+#+END_SRC
+
+**** Comments
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x ;"))    ;; comment-set-column
+(global-unset-key (kbd "M-;"))    ;; comment-dwim
 #+END_SRC
 
 **** Movement
@@ -402,6 +430,7 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 ****** Whitespace
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-m"))    ;; back-to-indentation
+(global-unset-key (kbd "M-i"))    ;; tab-to-tab-stop
 #+END_SRC
 
 ****** Scrolling
@@ -1271,41 +1300,60 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-unset-key (kbd "C-x ("))    ;; kmacro-start-macro
 (global-unset-key (kbd "C-x C-k s"))    ;; kmacro-start-macro
 (global-unset-key (kbd "C-x C-k C-s"))    ;; kmacro-start-macro
-(global-unset-key (kbd "C-x C-k C-k"))    ;; kmacro-end-or-call-macro-repeat
-(global-unset-key (kbd "C-x e"))    ;; kmacro-end-and-call-macro
 (global-unset-key (kbd "C-x )"))    ;; kmacro-end-macro
-
-(global-unset-key (kbd "C-x C-k RET"))    ;; kmacro-edit-macro
-(global-unset-key (kbd "C-x C-k C-e"))    ;; kmacro-edit-macro-repeat
+(global-unset-key (kbd "C-x e"))    ;; kmacro-end-and-call-macro
 (global-unset-key (kbd "S-<mouse-3>"))    ;; kmarcro-end-call-mouse
 #+END_SRC
 
+****** Counter
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x C-k C-a"))    ;; kmacro-add-counter
 (global-unset-key (kbd "C-x C-k C-c"))    ;; kmacro-set-counter
-(global-unset-key (kbd "C-x C-k C-d"))    ;; kmacro-delete-ring-head
-
-(global-unset-key (kbd "C-x C-k C-f"))    ;; kmacro-set-format
 (global-unset-key (kbd "C-x C-k TAB"))    ;; kmacro-insert-counter
+#+END_SRC
 
+****** Ring
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x C-k C-l"))    ;; kmacro-call-ring-2nd-repeat
-
 (global-unset-key (kbd "C-x C-k C-n"))    ;; kmacro-cycle-ring-next
 (global-unset-key (kbd "C-x C-k C-p"))    ;; kmacro-cycle-ring-previous
-
+(global-unset-key (kbd "C-x C-k C-k"))    ;; kmacro-end-or-call-macro-repeat
+(global-unset-key (kbd "C-x C-k C-d"))    ;; kmacro-delete-ring-head
 (global-unset-key (kbd "C-x C-k C-t"))    ;; kmacro-swap-ring
-(global-unset-key (kbd "C-x C-k C-v"))    ;; kmacro-view-macro-repeat
+#+END_SRC
+
+****** Editing
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x C-k SPC"))    ;; kmacro-step-edit-macro
-(global-unset-key (kbd "C-x C-k b"))    ;; kmacro-bind-to-key
-(global-unset-key (kbd "C-x C-k d"))    ;; kmacro-redisplay
+(global-unset-key (kbd "C-x C-k RET"))    ;; kmacro-edit-macro
+(global-unset-key (kbd "C-x C-k C-e"))    ;; kmacro-edit-macro-repeat
 (global-unset-key (kbd "C-x C-k e"))    ;; edit-kbd-macro
 (global-unset-key (kbd "C-x C-k l"))    ;; kmacro-edit-lossage
-(global-unset-key (kbd "C-x C-k n"))    ;; kmacro-name-last-macro
-(global-unset-key (kbd "C-x C-k q"))    ;; kbd-macro-query
-(global-unset-key (kbd "C-x C-k r"))    ;; apply-macro-to-region-lines
+#+END_SRC
 
-(global-unset-key (kbd "C-x C-k x"))    ;; kmacro-to-register
+****** Sessions
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x C-k n"))    ;; kmacro-name-last-macro
+(global-unset-key (kbd "C-x C-k b"))    ;; kmacro-bind-to-key
+#+END_SRC
+
+****** Management
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x q"))    ;; kbd-macro-query
+(global-unset-key (kbd "C-x C-k q"))    ;; kbd-macro-query
+(global-unset-key (kbd "C-x C-k d"))    ;; kmacro-redisplay
+#+END_SRC
+
+****** Utilization
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x C-k r"))    ;; apply-macro-to-region-lines
+(global-unset-key (kbd "C-x C-k C-f"))    ;; kmacro-set-format
+#+END_SRC
+
+****** Other
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x C-k C-v"))    ;; kmacro-view-macro-repeat
+(global-unset-key (kbd "C-x C-k x"))    ;; kmacro-to-register
 #+END_SRC
 
 ***** Binded
@@ -1315,13 +1363,13 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 #+END_SRC
 
 **** Bookmarks
-**** Prfx
+***** Prfx
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'bookmark-prfx)
 (global-set-key (kbd "C-x b") 'bookmark-prfx)
 #+END_SRC
 
-**** Unbinded
+***** Unbinded
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x r m"))    ;; bookmark-set
 (global-unset-key (kbd "C-x r M"))    ;; bookmark-set-no-overwrite
@@ -1329,12 +1377,50 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-unset-key (kbd "C-x r l"))    ;; bookmark-bmenu-list
 #+END_SRC
 
-**** Binded
+***** Binded
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-x b s") 'bookmark-set)
 (global-set-key (kbd "C-x b S") 'bookmark-set-no-overwrite)
 (global-set-key (kbd "C-x b j") 'bookmark-jump)
 (global-set-key (kbd "C-x b l") 'bookmark-bmenu-list)
+#+END_SRC
+
+**** Narrowing
+***** Prfx
+#+BEGIN_SRC emacs-lisp
+(define-prefix-command 'narrow-prfx)
+(global-set-key (kbd "M-n") 'narrow-prfx)
+#+END_SRC
+
+***** Unbinded
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x n d"))    ;; narrow-to-defun
+(global-unset-key (kbd "C-x n n"))    ;; narrow-to-region
+(global-unset-key (kbd "C-x n p"))    ;; narrow-to-page
+(global-unset-key (kbd "C-x n w"))    ;; widen
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x $"))    ;; set-selective-display
+#+END_SRC
+
+***** Binded
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-n d") 'narrow-to-defun)
+(global-set-key (kbd "M-n r") 'narrow-to-region)
+(global-set-key (kbd "M-n p") 'narrow-to-page)
+(global-set-key (kbd "M-n w") 'widen)
+#+END_SRC
+
+**** Insertion
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "M-("))    ;; insert-parentheses
+(global-unset-key (kbd "C-x i"))    ;; insert-file
+#+END_SRC
+
+**** Completion
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-M-i"))    ;; complete-symbol
 #+END_SRC
 
 *** Commando
@@ -1347,6 +1433,11 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-unset-key (kbd "M-X"))    ;; execute-extended-command-for-buffer
 #+END_SRC
 
+****** Recursion
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-M-c"))    ;; exit-recursive-edit
+#+END_SRC
+
 ***** Evaluation
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-:"))    ;; eval-expression
@@ -1354,7 +1445,7 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 #+END_SRC
 
 **** Binded
-***** Commnands
+***** Commands
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
@@ -1364,8 +1455,9 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 
 #+END_SRC
 
-*** Coding System
-**** Unbinded
+*** Language Systems
+**** Character Coding System
+***** Unbinded
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x RET F"))    ;; set-file-name-coding-system
 (global-unset-key (kbd "C-x RET X"))    ;; set-next-selection-coding-system
@@ -1380,7 +1472,22 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-unset-key (kbd "C-x RET C-\\"))    ;; set-input-method
 #+END_SRC
 
+**** Language
+***** Unbinded
+****** Spell Check
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "M-$"))    ;; ispell-word
+#+END_SRC
+
+****** Foreign Insertion
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x \\"))    ;; activate-transient-input-method
+#+END_SRC
+
 *** Help
+    :PROPERTIES:
+	:VISIBILITY: folded
+	:END:
 **** Unbinded
 #+BEGIN_SRC emacs-lisp
 ;; (global-unset-key (kbd "<f1> C-a"))    ;; about-emacs
@@ -1432,9 +1539,13 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 ;; (global-unset-key (kbd "<f1> x"))    ;; describe-command
 #+END_SRC
 
-*** Non-Essentials
+*** Other
+    :PROPERTIES:
+	:VISIBILITY: folded
+	:END:
 **** Prefixes
 ***** Unbinded
+Non-user created prefixes
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x *"))    ;; calc-dispatch
 (global-unset-key (kbd "C-x 4"))    ;; ctrl-x-4-prefix
@@ -1453,6 +1564,11 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-unset-key (kbd "C-x C-="))    ;; text-scale-adjust
 (global-unset-key (kbd "C-<wheel-up>"))    ;; mouse-wheel-text-scale
 (global-unset-key (kbd "C-<wheel-down>"))    ;; mouse-wheel-text-scale
+#+END_SRC
+
+***** Binded
+#+BEGIN_SRC emacs-lisp
+
 #+END_SRC
 
 **** Secondary Mouse
@@ -1476,39 +1592,6 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-unset-key (kbd "C-<down-mouse-1>"))    ;; mouse-buffer-menu
 #+END_SRC
 
-**** Narrowing
-#+BEGIN_SRC emacs-lisp
-(define-prefix-command 'narrow-prfx)
-(global-set-key (kbd "M-n") 'narrow-prfx)
-#+END_SRC
-
-***** Unbinded
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-x n d"))    ;; narrow-to-defun
-(global-unset-key (kbd "C-x n n"))    ;; narrow-to-region
-(global-unset-key (kbd "C-x n p"))    ;; narrow-to-page
-(global-unset-key (kbd "C-x n w"))    ;; widen
-#+END_SRC
-
-***** Binded
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-n d") 'narrow-to-defun)
-(global-set-key (kbd "M-n r") 'narrow-to-region)
-(global-set-key (kbd "M-n p") 'narrow-to-page)
-(global-set-key (kbd "M-n w") 'widen)
-#+END_SRC
-
-**** Insertion
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-("))    ;; insert-parentheses
-(global-unset-key (kbd "C-x i"))    ;; insert-file
-#+END_SRC
-
-**** Literally Doesn't Work
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-$"))    ;; ispell-word
-#+END_SRC
-
 **** Extra Information
 ***** Counting
 #+BEGIN_SRC emacs-lisp
@@ -1521,27 +1604,28 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-unset-key (kbd "C-x ="))    ;; what-cursor-position
 #+END_SRC
 
-**** Other Other
+**** Arguments
+***** Unbinded
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M--"))    ;; negative-argument
 (global-unset-key (kbd "C-M--"))    ;; negative-argument
-(global-unset-key (kbd "C-x C-d"))    ;; list-directory
-(global-unset-key (kbd "M-;"))    ;; comment-dwim
-(global-unset-key (kbd "C-M-c"))    ;; exit-recursive-edit
-(global-unset-key (kbd "C-M-<mouse-1>"))    ;; mouse-set-point
-(global-unset-key (kbd "M-i"))    ;; tab-to-tab-stop
-(global-unset-key (kbd "M-SPC"))    ;; just-one-space
-(global-unset-key (kbd "M-q"))    ;; fill-paragraph
-(global-unset-key (kbd "C-M-i"))    ;; complete-symbol
-(global-unset-key (kbd "C-x \\"))    ;; activate-transient-input-method
-(global-unset-key (kbd "C-M-j"))    ;; default-indent-new-line
-(global-unset-key (kbd "C-@"))    ;; set-mark-command
-(global-unset-key (kbd "M-~"))    ;; not-modified
-(global-unset-key (kbd "C-x f"))    ;; set-fill-column
+#+END_SRC
+
+**** Filling
+***** Unbinded
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x ."))    ;; set-fill-prefix
+(global-unset-key (kbd "C-x f"))    ;; set-fill-column
+(global-unset-key (kbd "M-q"))    ;; fill-paragraph
+#+END_SRC
+
+**** You Serve XENO Purpose! You should Kill Yourself NOW!!
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-M-<mouse-1>"))    ;; mouse-set-point
+(global-unset-key (kbd "M-~"))    ;; not-modified
+
+(global-unset-key (kbd "C-x C-d"))    ;; list-directory
 (global-unset-key (kbd "C-x C-n"))    ;; set-goal-column
-(global-unset-key (kbd "C-x $"))    ;; set-selective-display
-(global-unset-key (kbd "C-x ;"))    ;; comment-set-column
 #+END_SRC
 
 ** Local
@@ -1631,60 +1715,61 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
   )
 #+END_SRC
 
-**** Org Mode
-***** Unbinded
-****** Todo
+**** The Amazing World of Emacs
+***** Org Mode
+****** Unbinded
+******* Todo
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
 
-***** Binded
-****** ToDo
+****** Binded
+******* ToDo
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
 
-**** ToDo Mode
-***** Unbinded
+***** ToDo Mode
+****** Unbinded
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
 
-***** Binded
+****** Binded
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
 
-**** RMail
-***** Unbinded
-****** Composing
+***** RMail
+****** Unbinded
+******* Composing
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x m"))    ;; compose-mail
 #+END_SRC
 
-****** Management
+******* Management
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
 
-***** Binded
-****** Composing
+****** Binded
+******* Composing
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
 
-****** Management
+******* Management
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
 
-**** nXML Mode
-***** Unbinded
+***** nXML Mode
+****** Unbinded
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
 
-***** Binded
+****** Binded
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
@@ -1763,6 +1848,11 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 #+END_SRC
 
 ** Microsoft Java
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+** Hexl
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
