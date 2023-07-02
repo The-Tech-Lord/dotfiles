@@ -55,7 +55,7 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 ** Other
 #+BEGIN_SRC emacs-lisp
 (setq make-backup-files nil)
-(setq fill-column 150)
+(setq-default fill-column 150)
 #+END_SRC
 
 ** Custom Settings
@@ -214,27 +214,6 @@ Themes:
 (global-unset-key (kbd "C-<down>"))    ;; forward-paragraph
 #+END_SRC
 
-****** Whitespace
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-m"))    ;; back-to-indentation
-(global-unset-key (kbd "M-i"))    ;; tab-to-tab-stop
-#+END_SRC
-
-****** Scrolling
-******* Basic
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-v"))    ;; scroll-up-command
-(global-unset-key (kbd "M-v"))    ;; scroll-down-command
-#+END_SRC
-
-******* Begend
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-<"))    ;; beginning-of-buffer
-(global-unset-key (kbd "C-<home>"))    ;; beginning-of-buffer
-(global-unset-key (kbd "M->"))    ;; end-of-buffer
-(global-unset-key (kbd "C-<end>"))    ;; end-of-buffer
-#+END_SRC
-
 ******* Pages
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x ["))    ;; backward-page
@@ -259,6 +238,27 @@ Themes:
 (global-unset-key (kbd "C-M-e"))    ;; end-of-defun
 (global-unset-key (kbd "C-M-<end>"))    ;; end-of-defun
 (global-unset-key (kbd "ESC C-<end>"))    ;; end-of-defun
+#+END_SRC
+
+****** Whitespace
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "M-m"))    ;; back-to-indentation
+(global-unset-key (kbd "M-i"))    ;; tab-to-tab-stop
+#+END_SRC
+
+****** Scrolling
+******* Basic
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-v"))    ;; scroll-up-command
+(global-unset-key (kbd "M-v"))    ;; scroll-down-command
+#+END_SRC
+
+******* Begend
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "M-<"))    ;; beginning-of-buffer
+(global-unset-key (kbd "C-<home>"))    ;; beginning-of-buffer
+(global-unset-key (kbd "M->"))    ;; end-of-buffer
+(global-unset-key (kbd "C-<end>"))    ;; end-of-buffer
 #+END_SRC
 
 ******* Other Window
@@ -330,6 +330,7 @@ Themes:
 (global-unset-key (kbd "M-g c"))    ;; goto-char
 (global-unset-key (kbd "M-g g"))    ;; goto-line
 (global-unset-key (kbd "M-g M-g"))    ;; goto-line
+(global-unset-key (kbd "C-x n g"))    ;; goto-line-relative
 #+END_SRC
 
 ****** Other
@@ -378,6 +379,7 @@ Themes:
 #+END_SRC
 
 ******** Straights
+I called this header "Straights" because it allowed me to be more inclusive of commands that involved sentences and one's that involved lines.
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-k"))    ;; kill-sentence
 (global-unset-key (kbd "C-DEL"))    ;; backward-kill-sentence
@@ -385,7 +387,9 @@ Themes:
 (global-unset-key (kbd "C-S-<backspace>"))    ;; kill-whole-line
 #+END_SRC
 
-******** "Hey. Sex?"
+******** Moisty
+I named this after a phrase by MoistCr1TiKaL where he said "Hey!, Sex?". I decided to rename this header as "Moisty" as it'll encompase the hilarity
+of his content and also the original "Hey. Sex?" thing was bothering me.
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-M-k"))    ;; kill-sexp
 (global-unset-key (kbd "ESC C-<delete>"))    ;; backward-kill-sexp
@@ -418,6 +422,7 @@ Themes:
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-^"))    ;; delete-indentation
 (global-unset-key (kbd "M-\\"))    ;; delete-horizontal-space
+(global-unset-key (kbd "C-x C-o"))    ;; delete-blank-lines
 (global-unset-key (kbd "M-SPC"))    ;; just-one-space
 #+END_SRC
 
@@ -459,9 +464,10 @@ Themes:
 #+END_SRC
 
 ***** Unbinded
-****** General
+****** Setup
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-@"))    ;; set-mark-command
+(global-unset-key (kbd "C-x C-x"))    ;; exchange-point-and-mark
 #+END_SRC
 
 ****** Chunks
@@ -487,7 +493,7 @@ Themes:
 #+END_SRC
 
 ***** Binded
-****** General
+****** Setup
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
@@ -511,49 +517,49 @@ Themes:
 **** Rectangles
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'rect-prfx)
-(global-set-key (kbd "M-t") 'rect-prfx)
+(global-set-key (kbd "M-r") 'rect-prfx)
 #+END_SRC
 
 ***** Unbinded
-****** Clipboard I Think
+****** Clipboard
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x r y"))    ;; yank-rectangle
 (global-unset-key (kbd "C-x r k"))    ;; kill-rectangle
-(global-unset-key (kbd "C-x r d"))    ;; delete-rectangle
 #+END_SRC
 
-****** ExTra ExTra
+****** Utilization
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x r c"))    ;; clear-rectangle
 (global-unset-key (kbd "C-x r o"))    ;; open-rectangle
 (global-unset-key (kbd "C-x r t"))    ;; string-rectangle
+(global-unset-key (kbd "C-x r d"))    ;; delete-rectangle
 #+END_SRC
 
-****** Other
+****** ExTra ExTra
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x r N"))    ;; rectangle-number-lines
 (global-unset-key (kbd "C-x r r"))    ;; copy-rectangle-to-register
 #+END_SRC
 
 ***** Binded
-****** Clipboard I Think
+****** Clipboard
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-t y") 'yank-rectangle)
-(global-set-key (kbd "M-t k") 'kill-rectangle)
-(global-set-key (kbd "M-t d") 'delete-rectangle)
+(global-set-key (kbd "M-r y") 'yank-rectangle)
+(global-set-key (kbd "M-r k") 'kill-rectangle)
+#+END_SRC
+
+****** Utilization
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-r c") 'clear-rectangle)
+(global-set-key (kbd "M-r o") 'open-rectangle)
+(global-set-key (kbd "M-r s") 'string-rectangle)
+(global-set-key (kbd "M-r d") 'delete-rectangle)
 #+END_SRC
 
 ****** ExTra ExTra
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-t c") 'clear-rectangle)
-(global-set-key (kbd "M-t o") 'open-rectangle)
-(global-set-key (kbd "M-t s") 'string-rectangle)
-#+END_SRC
-
-****** Other
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-t n") 'rectangle-number-lines)
-(global-set-key (kbd "M-t R") 'copy-rectangle-to-register)
+(global-set-key (kbd "M-r n") 'rectangle-number-lines)
+(global-set-key (kbd "M-r R") 'copy-rectangle-to-register)
 #+END_SRC
 
 **** Searching
@@ -568,13 +574,6 @@ Themes:
 (global-unset-key (kbd "C-x C-v"))    ;; find-alternate-file
 (global-unset-key (kbd "C-x C-f"))    ;; find-file-read-only
 (global-unset-key (kbd "C-x C-r"))    ;; find-file-read-only
-(global-unset-key (kbd "C-x C-d"))    ;; list-directory
-#+END_SRC
-
-****** Replace
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-%"))    ;; query-replace
-(global-unset-key (kbd "C-M-%"))    ;; query-replace-regexp
 #+END_SRC
 
 ****** Xref
@@ -591,16 +590,16 @@ Themes:
 (global-unset-key (kbd "M-z"))    ;; zap-to-char
 #+END_SRC
 
+****** Replace
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "M-%"))    ;; query-replace
+(global-unset-key (kbd "C-M-%"))    ;; query-replace-regexp
+#+END_SRC
+
 ***** Binded
 ****** Files
 #+BEGIN_SRC emacs-lisp
 
-#+END_SRC
-
-****** Replace
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-s r") 'query-replace)
-(global-set-key (kbd "M-s R") 'query-replace-regexp)
 #+END_SRC
 
 ****** Xref
@@ -613,35 +612,50 @@ Themes:
 
 #+END_SRC
 
+****** Replace
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-s r") 'query-replace)
+(global-set-key (kbd "M-s R") 'query-replace-regexp)
+#+END_SRC
+
 **** Highlighting
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'hi-prfx)
-(global-set-key (kbd "M-m") 'hi-prfx)
+(global-set-key (kbd "M-p") 'hi-prfx)
 #+END_SRC
 
 ***** Unbinded
+****** General
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-s h ."))    ;; hightlight-symbol-at-point
+(global-unset-key (kbd "M-s h ."))    ;; highlight-symbol-at-point
 (global-unset-key (kbd "M-s h p"))    ;; highlight-phrase
 (global-unset-key (kbd "M-s h r"))    ;; highlight-regexp
 (global-unset-key (kbd "M-s h l"))    ;; highlight-lines-matching-regexp
-(global-unset-key (kbd "M-s h f"))    ;; hi-lock-find-patterns
-(global-unset-key (kbd "M-s h w"))    ;; hi-lock-write-interactive-patterns
 (global-unset-key (kbd "M-s h u"))    ;; unhighlight-regexp
 #+END_SRC
 
-***** Binded
+****** Hi-Lock
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-m h") 'highlight-symbol-at-point)
-(global-set-key (kbd "M-m p") 'highlight-phrase)
-(global-set-key (kbd "M-m x") 'highlight-regexp)
-(global-set-key (kbd "M-m l") 'highlight-lines-matching-regexp)
-(global-set-key (kbd "M-m u") 'unhighlight-regexp)
+(global-unset-key (kbd "M-s h f"))    ;; hi-lock-find-patterns
+(global-unset-key (kbd "M-s h w"))    ;; hi-lock-write-interactive-patterns
+#+END_SRC
+
+***** Binded
+****** General
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-p h") 'highlight-symbol-at-point)
+(global-set-key (kbd "M-p p") 'highlight-phrase)
+(global-set-key (kbd "M-p x") 'highlight-regexp)
+(global-set-key (kbd "M-p l") 'highlight-lines-matching-regexp)
+(global-set-key (kbd "M-p u") 'unhighlight-regexp)
 #+END_SRC
 
 **** Manipulation
+Commands here manipulate the style of the text (e.g., Cases) and the position of the text (e.g., Transposing, Splitting). Setting up this header was
+one of the harder one's to try and categorize as I had trouble of what would belong here as a lot of commands do some sort of "manipulation" of text.
+
 ***** Unbinding
-****** General
+****** Straights
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-M-o"))    ;; split-line
 #+END_SRC
@@ -649,7 +663,7 @@ Themes:
 ****** Transposing
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-t"))    ;; transpose-key
-(global-unset-key (kbd "M-t"))    ;; tranpose-words
+(global-unset-key (kbd "M-t"))    ;; transpose-words
 (global-unset-key (kbd "C-x C-t"))    ;; transpose-lines
 #+END_SRC
 
@@ -668,11 +682,6 @@ Themes:
 #+END_SRC
 
 ***** Binding
-****** General
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
 ****** Transposing
 #+BEGIN_SRC emacs-lisp
 
@@ -706,9 +715,15 @@ Themes:
 #+END_SRC
 
 **** Comments
+***** Unbinded
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x ;"))    ;; comment-set-column
 (global-unset-key (kbd "M-;"))    ;; comment-dwim
+#+END_SRC
+
+**** Other
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x C-d"))    ;; list-directory
 #+END_SRC
 
 *** Display
@@ -953,7 +968,7 @@ Themes:
 ****** Switching
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x b"))    ;; switch-to-buffer
-(global-unset-key (kbd "C-x <right>"))    ; next-buffer
+(global-unset-key (kbd "C-x <right>"))    ;; next-buffer
 (global-unset-key (kbd "C-x C-<right>"))    ;; next-buffer
 (global-unset-key (kbd "C-x <left>"))    ;; previous-buffer
 (global-unset-key (kbd "C-x C-<left>"))    ;; previous-buffer
@@ -964,6 +979,7 @@ Themes:
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x s"))    ;; save-some-buffers
 (global-unset-key (kbd "C-x C-b"))    ;; list-buffers
+(global-unset-key (kbd "C-x C-q"))    ;; read-only-mode
 #+END_SRC
 
 ******* Creation
@@ -981,6 +997,7 @@ Themes:
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x x g"))    ;; revert-buffer-quick
 (global-unset-key (kbd "C-x x r"))    ;; rename-buffer
+(global-unset-key (kbd "C-x x u"))    ;; rename-uniquely
 (global-unset-key (kbd "C-x x i"))    ;; insert-buffer
 #+END_SRC
 
@@ -1278,6 +1295,22 @@ Themes:
 (global-set-key (kbd "C-p r") 'project-query-replace-regexp)
 #+END_SRC
 
+**** Compilation
+***** Unbinded
+****** Errors
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x `"))    ;; next-error
+(global-unset-key (kbd "M-g M-n"))    ;; next-error
+(global-unset-key (kbd "M-g n"))    ;; next-error
+(global-unset-key (kbd "M-g M-p"))    ;; previous-error
+(global-unset-key (kbd "M-g p"))    ;; previous-error
+#+END_SRC
+
+***** Binded
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
 *** Convenience
 **** Abbrev
 ***** Unbinded
@@ -1337,7 +1370,7 @@ Themes:
 **** Registers
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'register-prfx)
-(global-set-key (kbd "M-r") 'register-prfx)
+(global-set-key (kbd "M-t") 'register-prfx)
 #+END_SRC
 
 ***** Unbinded
@@ -1379,29 +1412,29 @@ Themes:
 ****** Manipulation
 ******* Storing
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-r n") 'number-to-register)
+(global-set-key (kbd "M-t n") 'number-to-register)
 #+END_SRC
 
 ******* Copying
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-r x") 'copy-to-register)
+(global-set-key (kbd "M-t x") 'copy-to-register)
 #+END_SRC
 
 ******* Values
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-r +") 'increment-register)
+(global-set-key (kbd "M-t +") 'increment-register)
 #+END_SRC
 
 ****** Insertion
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-r i") 'insert-register)
-(global-set-key (kbd "M-r j") 'jump-to-register)
+(global-set-key (kbd "M-t i") 'insert-register)
+(global-set-key (kbd "M-t j") 'jump-to-register)
 #+END_SRC
 
 ****** Other
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-r f") 'frameset-to-register)
-(global-set-key (kbd "M-r w") 'window-configuration-to-register)
+(global-set-key (kbd "M-t f") 'frameset-to-register)
+(global-set-key (kbd "M-t w") 'window-configuration-to-register)
 #+END_SRC
 
 **** Macros
@@ -1566,8 +1599,9 @@ Themes:
 (global-unset-key (kbd "M-$"))    ;; ispell-word
 #+END_SRC
 
-****** Foreign
+****** Insertion
 #+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x 8 RET"))    ;; insert-char
 (global-unset-key (kbd "C-x \\"))    ;; activate-transient-input-method
 #+END_SRC
 
@@ -1579,6 +1613,8 @@ Themes:
 (global-unset-key (kbd "M-&"))    ;; async-shell-command
 (global-unset-key (kbd "M-|"))    ;; shell-command-on-region
 (global-unset-key (kbd "M-X"))    ;; execute-extended-command-for-buffer
+(global-unset-key (kbd "C-x M-:"))    ;; repeat-complex-command
+(global-unset-key (kbd "C-x ESC ESC"))    ;; repeat-complex-command
 #+END_SRC
 
 ****** Recursion
@@ -1589,6 +1625,7 @@ Themes:
 ****** Evaluation
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-:"))    ;; eval-expression
+(global-unset-key (kbd "M-ESC :"))    ;; eval-expression
 (global-unset-key (kbd "C-x C-e"))    ;; eval-last-sexp
 #+END_SRC
 
@@ -1725,6 +1762,9 @@ Non-user created prefixes
 (global-unset-key (kbd "C-M-<mouse-1>"))    ;; mouse-set-point
 (global-unset-key (kbd "M-~"))    ;; not-modified
 (global-unset-key (kbd "C-x C-n"))    ;; set-goal-column
+(global-unset-key (kbd "C-x x f"))    ;; font-lock-update
+(global-unset-key (kbd "C-x x t"))    ;; toggle-truncate-lines
+(global-unset-key (kbd "M-ESC ESC"))    ;; keyboard-escape-quit
 #+END_SRC
 
 ** Local
@@ -1874,6 +1914,11 @@ Non-user created prefixes
 #+END_SRC
 
 ****** Binded
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+***** Shell Mode
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
