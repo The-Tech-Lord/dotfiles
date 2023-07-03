@@ -209,26 +209,18 @@ Themes:
 (global-unset-key (kbd "M-e"))    ;; forward-sentence
 #+END_SRC
 
-******* Paragraphs
+******* Expressions
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-<up>"))    ;; backward-paragraph
-(global-unset-key (kbd "C-<down>"))    ;; forward-paragraph
+(global-unset-key (kbd "C-M-f"))    ;; forward-sexp
+(global-unset-key (kbd "ESC C-<left>"))    ;; backward-sexp
+(global-unset-key (kbd "ESC C-<right>"))    ;; forward-sexp
+(global-unset-key (kbd "C-M-b"))    ;; backward-sexp
 #+END_SRC
 
 ******* Pages
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x ["))    ;; backward-page
 (global-unset-key (kbd "C-x ]"))    ;; forward-page
-#+END_SRC
-
-******* Expressions
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-M-f"))    ;; forward-sexp
-(global-unset-key (kbd "C-M-<right>"))    ;; forward-sexp
-(global-unset-key (kbd "ESC C-<left>"))    ;; backward-sexp
-(global-unset-key (kbd "ESC C-<right>"))    ;; forward-sexp
-(global-unset-key (kbd "C-M-b"))    ;; backward-sexp
-(global-unset-key (kbd "C-M-<left>"))    ;; backward-sexp
 #+END_SRC
 
 ******* Defun
@@ -349,32 +341,13 @@ Themes:
 
 ******* Sentences
 #+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-******* Paragraphs
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-******* Pages
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-******* Expressions
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-******* Defun
-#+BEGIN_SRC emacs-lisp
-
+(global-set-key (kbd "C-M-<left>") 'backward-sentence)
+(global-set-key (kbd "C-M-<right>") 'forward-sentence)
 #+END_SRC
 
 ****** Whitespace
 #+BEGIN_SRC emacs-lisp
-
+(global-set-key (kbd "C-M-a") 'back-to-indentation)
 #+END_SRC
 
 ****** Scrolling
@@ -387,8 +360,8 @@ Themes:
 ******* Other Window
 ******** Begend
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-M-<prior>") 'beginning-of-buffer)
-(global-set-key (kbd "C-M-<next>") 'end-of-buffer)
+(global-set-key (kbd "C-M-<prior>") 'beginning-of-buffer-other-window)
+(global-set-key (kbd "C-M-<next>") 'end-of-buffer-other-window)
 #+END_SRC
 
 ****** Lists
@@ -503,11 +476,11 @@ This header basically refers to commands that don't "kill" text, hence "Pacifist
 **** Marking
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'mark-prfx)
-(global-set-key (kbd "<f5>") 'mark-prfx)
+(global-set-key (kbd "M-SPC") 'mark-prfx)
 #+END_SRC
 
 ***** Unbinded
-****** Setup
+****** Setting
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-@"))    ;; set-mark-command
 (global-unset-key (kbd "C-x C-x"))    ;; exchange-point-and-mark
@@ -536,34 +509,44 @@ This header basically refers to commands that don't "kill" text, hence "Pacifist
 #+END_SRC
 
 ***** Binded
-****** Setup
+****** Setting
 #+BEGIN_SRC emacs-lisp
-
+(global-set-key (kbd "M-SPC M-SPC") 'exchange-point-and-mark)
 #+END_SRC
 
 ****** Chunks
 ******* General
 #+BEGIN_SRC emacs-lisp
-
+(global-set-key (kbd "M-SPC w") 'mark-word)
+(global-set-key (kbd "M-SPC d") 'mark-defun)
+(global-set-key (kbd "M-SPC b") 'mark-whole-buffer)
 #+END_SRC
 
 ******* Expressions
 #+BEGIN_SRC emacs-lisp
-
+(global-set-key (kbd "M-SPC s") 'mark-sexp)
 #+END_SRC
 
 ****** Popping
 #+BEGIN_SRC emacs-lisp
-
+(global-set-key (kbd "M-SPC x") 'xref-pop-marker-stack)
+(global-set-key (kbd "M-SPC p") 'pop-global-mark)
 #+END_SRC
 
 **** Rectangles
+I went with the cursed combination of M-, as I felt that it was easier to use than M-r (the previous setting). It also made more sense to me as I felt
+that it was similar to Marking and having it nearby was able to let me organize the commands on the keyboard.
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'rect-prfx)
-(global-set-key (kbd "M-r") 'rect-prfx)
+(global-set-key (kbd "M-,") 'rect-prfx)
 #+END_SRC
 
 ***** Unbinded
+****** Setting
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-x SPC"))    ;; rectangle-mark-mode
+#+END_SRC
+
 ****** Clipboard
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x r y"))    ;; yank-rectangle
@@ -585,24 +568,31 @@ This header basically refers to commands that don't "kill" text, hence "Pacifist
 #+END_SRC
 
 ***** Binded
+****** Setting
+I went with this configuration since M-SPC was being used for Marking and C-SPC was already being used for the default Marking command, so using a
+combination of M and C felt better to use rather than C-x SPC (I'd be able to enter Rectangle Mode with just one hand).
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-M-SPC") 'rectangle-mark-mode)
+#+END_SRC
+
 ****** Clipboard
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-r y") 'yank-rectangle)
-(global-set-key (kbd "M-r k") 'kill-rectangle)
+(global-set-key (kbd "M-, y") 'yank-rectangle)
+(global-set-key (kbd "M-, k") 'kill-rectangle)
 #+END_SRC
 
 ****** Utilization
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-r c") 'clear-rectangle)
-(global-set-key (kbd "M-r o") 'open-rectangle)
-(global-set-key (kbd "M-r s") 'string-rectangle)
-(global-set-key (kbd "M-r d") 'delete-rectangle)
+(global-set-key (kbd "M-, c") 'clear-rectangle)
+(global-set-key (kbd "M-, o") 'open-rectangle)
+(global-set-key (kbd "M-, s") 'string-rectangle)
+(global-set-key (kbd "M-, d") 'delete-rectangle)
 #+END_SRC
 
 ****** ExTra ExTra
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-r n") 'rectangle-number-lines)
-(global-set-key (kbd "M-r R") 'copy-rectangle-to-register)
+(global-set-key (kbd "M-, n") 'rectangle-number-lines)
+(global-set-key (kbd "M-, R") 'copy-rectangle-to-register)
 #+END_SRC
 
 **** Searching
