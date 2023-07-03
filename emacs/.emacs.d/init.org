@@ -58,8 +58,8 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (setq-default fill-column 150)
 #+END_SRC
 
-** Custom Settings
-*** Variables
+* Custom Settings
+** Variables
 Convenience:
 - toc-org: Table of Contents creator
 Modes:
@@ -67,7 +67,6 @@ Modes:
 - vimrc-mode: Major mode for vimrc configuration files
 Themes:
 - gruvbox-theme
-
 #+BEGIN_SRC emacs-lisp
 (custom-set-variables
  '(custom-enabled-themes '(gruvbox-dark-medium))
@@ -79,7 +78,7 @@ Themes:
  )
 #+END_SRC
 
-*** Faces
+** Faces
 #+BEGIN_SRC emacs-lisp
 (custom-set-faces
    )
@@ -89,6 +88,8 @@ Themes:
 ** Major Mode
 *** CC Mode
 #+BEGIN_SRC emacs-lisp
+(setq c-default-style "linux")    ;; Makes curly braces format how they're supposed to
+
 (defun c-init-settings()
   )
 
@@ -99,7 +100,6 @@ Themes:
 **** C
 #+BEGIN_SRC emacs-lisp
 (defun c-mode-settings()
-  (setq c-default-style "linux")    ;; Makes curly braces format how they're supposed to
   (setq c-basic-offset 4)
   )
 #+END_SRC
@@ -164,7 +164,8 @@ Themes:
 #+BEGIN_SRC emacs-lisp
 (setq org-todo-keywords
 		'((sequence "TODO" "IN-PROGRESS" "NEAR-COMP" "|" "DONE")
-		  (sequence "BUG" "|" "FIXED")))
+		  (sequence "BUG" "MINOR" "MAJOR" "|" "FIXED" "HOTFIX")
+		  (sequence "Heh")))
 #+END_SRC
 
 ***** Faces
@@ -340,6 +341,42 @@ Themes:
 #+END_SRC
 
 ***** Binding
+****** Chunks
+******* Words
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+******* Sentences
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+******* Paragraphs
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+******* Pages
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+******* Expressions
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+******* Defun
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+****** Whitespace
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
 ****** Scrolling
 ******* Begend
 #+BEGIN_SRC emacs-lisp
@@ -352,6 +389,11 @@ Themes:
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-M-<prior>") 'beginning-of-buffer)
 (global-set-key (kbd "C-M-<next>") 'end-of-buffer)
+#+END_SRC
+
+****** Lists
+#+BEGIN_SRC emacs-lisp
+
 #+END_SRC
 
 **** Killing
@@ -397,6 +439,7 @@ of his content and also the original "Hey. Sex?" thing was bothering me.
 #+END_SRC
 
 ****** Pacifist
+This header basically refers to commands that don't "kill" text, hence "Pacifist."
 ******* Yank
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-y"))    ;; yank
@@ -441,14 +484,14 @@ of his content and also the original "Hey. Sex?" thing was bothering me.
 #+END_SRC
 
 ***** Binded
-****** Region
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-.") 'kill-region)
-#+END_SRC
-
 ****** Kill Ring
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "M-'") 'kill-ring-save)
+#+END_SRC
+
+****** Region
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-.") 'kill-region)
 #+END_SRC
 
 ****** Pacifist
@@ -726,11 +769,11 @@ one of the harder one's to try and categorize as I had trouble of what would bel
 (global-unset-key (kbd "C-x C-d"))    ;; list-directory
 #+END_SRC
 
-*** Display
+*** Display Management
 **** Frames
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'frames-prfx)
-(global-set-key (kbd "M-f") 'frames-prfx)
+(global-set-key (kbd "C-f") 'frames-prfx)
 #+END_SRC
 
 ***** Unbinded
@@ -789,40 +832,40 @@ one of the harder one's to try and categorize as I had trouble of what would bel
 ****** Management
 ******* Adjustment
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-f F") 'toggle-frame-maximized)
+(global-set-key (kbd "C-f F") 'toggle-frame-maximized)
 #+END_SRC
 
 ******* Creation
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-f f") 'make-frame-command)
-(global-set-key (kbd "M-f F") 'clone-frame)
+(global-set-key (kbd "C-f f") 'make-frame-command)
+(global-set-key (kbd "C-f F") 'clone-frame)
 #+END_SRC
 
 ******* Deletion
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-f w") 'delete-frame)
-(global-set-key (kbd "M-f W") 'delete-other-frames)
+(global-set-key (kbd "C-f w") 'delete-frame)
+(global-set-key (kbd "C-f W") 'delete-other-frames)
 #+END_SRC
 
 ****** Other Frame
 ******* General
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-f 5") 'other-frame-prefix)
-(global-set-key (kbd "M-f C-b") 'display-buffer-other-frame)
-(global-set-key (kbd "M-f m") 'compose-mail-other-frame)
-(global-set-key (kbd "M-f p") 'project-other-frame-command)
+(global-set-key (kbd "C-f 5") 'other-frame-prefix)
+(global-set-key (kbd "C-f C-b") 'display-buffer-other-frame)
+(global-set-key (kbd "C-f m") 'compose-mail-other-frame)
+(global-set-key (kbd "C-f p") 'project-other-frame-command)
 #+END_SRC
 
 ******* Switching
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-f o") 'other-frame)
-(global-set-key (kbd "M-f b") 'switch-to-buffer-other-frame)
+(global-set-key (kbd "C-f o") 'other-frame)
+(global-set-key (kbd "C-f b") 'switch-to-buffer-other-frame)
 #+END_SRC
 
 ******* Searching
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-f C-f") 'find-file-other-frame)
-(global-set-key (kbd "M-f d") 'dired-other-frame)
+(global-set-key (kbd "C-f C-f") 'find-file-other-frame)
+(global-set-key (kbd "C-f d") 'dired-other-frame)
 #+END_SRC
 
 **** Windows
@@ -955,7 +998,7 @@ one of the harder one's to try and categorize as I had trouble of what would bel
 **** Buffers
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'buffers-prfx)
-(global-set-key (kbd "M-b") 'buffers-prfx)
+(global-set-key (kbd "C-b") 'buffers-prfx)
 #+END_SRC
 
 ***** Functions
@@ -1004,24 +1047,23 @@ one of the harder one's to try and categorize as I had trouble of what would bel
 ***** Binded
 ****** Switching
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-b <left>") 'previous-buffer)
-(global-set-key (kbd "M-b <right>") 'next-buffer)
+(global-set-key (kbd "C-b <left>") 'previous-buffer)
+(global-set-key (kbd "C-b <right>") 'next-buffer)
 #+END_SRC
 
 ****** Management
 ******* General
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-b s") 'save-some-buffers)
-(global-set-key (kbd "M-b l") 'list-buffers)
+(global-set-key (kbd "C-b s") 'save-some-buffers)
+(global-set-key (kbd "C-b l") 'list-buffers)
 #+END_SRC
 
 ******* Killing
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-b k") 'kill-buffer)
-(global-set-key (kbd "M-b x") 'save-buffers-kill-terminal)
+(global-set-key (kbd "C-b k") 'kill-buffer)
+(global-set-key (kbd "C-b x") 'save-buffers-kill-terminal)
 #+END_SRC
 
-*** Project Management
 **** Tabs
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'tabs-prfx)
@@ -1114,6 +1156,7 @@ one of the harder one's to try and categorize as I had trouble of what would bel
 (global-set-key (kbd "C-t C-f") 'find-file-other-tab)
 #+END_SRC
 
+*** Project Management
 **** Version Control
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'vcs-prfx)
@@ -1311,7 +1354,7 @@ one of the harder one's to try and categorize as I had trouble of what would bel
 
 #+END_SRC
 
-*** Convenience
+*** Quality of Life
 **** Abbrev
 ***** Unbinded
 ****** Creation
@@ -1566,8 +1609,8 @@ one of the harder one's to try and categorize as I had trouble of what would bel
 (global-set-key (kbd "M-n w") 'widen)
 #+END_SRC
 
-*** Emacs Systems
-**** Character Coding
+*** Systems
+**** D/Enoding
 ***** Unbinded
 ****** Specifics
 #+BEGIN_SRC emacs-lisp
@@ -1594,7 +1637,7 @@ one of the harder one's to try and categorize as I had trouble of what would bel
 
 **** Language
 ***** Unbinded
-****** Spell Check
+****** Grammer
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-$"))    ;; ispell-word
 #+END_SRC
@@ -1698,6 +1741,22 @@ one of the harder one's to try and categorize as I had trouble of what would bel
 ;; (global-unset-key (kbd "<f1> x"))    ;; describe-command
 #+END_SRC
 
+**** Menus
+***** Unbinded
+****** General
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "M-`"))    ;; tmm-menubar
+(global-unset-key (kbd "S-<f10>"))    ;; context-menu-open
+(global-unset-key (kbd "C-<f10>"))    ;; buffer-menu-open
+(global-unset-key (kbd "C-<down-mouse-1>"))    ;; mouse-buffer-menu
+#+END_SRC
+
+****** Customization
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-<down-mouse-2>"))    ;; facemenu-menu
+(global-unset-key (kbd "S-<down-mouse-1>"))    ;; mouse-appearance-menu
+#+END_SRC
+
 **** Prefixes
 ***** Unbinded
 Non-user created prefixes
@@ -1710,18 +1769,7 @@ Non-user created prefixes
 (global-unset-key (kbd "C-x v"))    ;; vc-prefix-map
 #+END_SRC
 
-**** Menus
-***** Unbinded
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-`"))    ;; tmm-menubar
-(global-unset-key (kbd "S-<f10>"))    ;; context-menu-open
-(global-unset-key (kbd "C-<f10>"))    ;; buffer-menu-open
-(global-unset-key (kbd "C-<down-mouse-2>"))    ;; facemenu-menu
-(global-unset-key (kbd "S-<down-mouse-1>"))    ;; mouse-appearance-menu
-(global-unset-key (kbd "C-<down-mouse-1>"))    ;; mouse-buffer-menu
-#+END_SRC
-
-**** Scaling
+**** Compensation
 ***** Functions
 #+BEGIN_SRC emacs-lisp
 (defun text-scaler()
@@ -1743,7 +1791,7 @@ Non-user created prefixes
 
 #+END_SRC
 
-**** Extra Information
+**** Informative
 ***** Unbinded
 ****** Counting
 #+BEGIN_SRC emacs-lisp
@@ -1756,7 +1804,7 @@ Non-user created prefixes
 (global-unset-key (kbd "C-x ="))    ;; what-cursor-position
 #+END_SRC
 
-**** You Serve XENO Purpose! You should Kill Yourself NOW!!
+**** Sakura
 ***** Unbinded
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-M-<mouse-1>"))    ;; mouse-set-point
@@ -1854,7 +1902,7 @@ Non-user created prefixes
   )
 #+END_SRC
 
-**** The Amazing World of Emacs
+**** The Founding Fathers
 ***** Org Mode
 ****** Unbinded
 ******* Todo
@@ -1957,10 +2005,155 @@ Non-user created prefixes
 (global-set-key (kbd "C-x a c") 'center-line)
 #+END_SRC
 
+*** Ammusements
+#+BEGIN_SRC emacs-lisp
+(define-prefix-command 'ammusements-prfx)
+(global-set-key (kbd "C-<tab>") 'ammusements-prfx)
+#+END_SRC
+
+**** Blackbox
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<tab> b") 'blackbox)
+#+END_SRC
+
+**** Mpuz
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<tab> m") 'mpuz)
+#+END_SRC
+
+**** Bubbles
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<tab> B") 'bubbles)
+#+END_SRC
+
+**** Decipher
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<tab> d") 'decipher)
+#+END_SRC
+
+**** Dissociated Press
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<tab> D") 'dissociated-press)
+#+END_SRC
+
+**** Dunnet
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<tab> C-d") 'dunnet)
+#+END_SRC
+
+**** Gomoku
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<tab> g") 'gomoku)
+#+END_SRC
+
+**** Hanoi
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<tab> h") 'hanoi)
+#+END_SRC
+
+**** Life
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<tab> l") 'life)
+#+END_SRC
+
+**** Morse Region
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<tab> M") 'morse-region)
+#+END_SRC
+
+**** Pong
+***** Unbinded
+****** Controls
+#+BEGIN_SRC emacs-lisp
+(defun pong-controls-unbind()
+  (local-unset-key (kbd "2"))    ;; pong-move-down
+  (local-unset-key (kbd "4"))    ;; pong-move-left
+  (local-unset-key (kbd "6"))    ;; pong-move-right
+  (local-unset-key (kbd "8"))    ;; pong-move-up
+  (local-unset-key (kbd "<down>"))    ;; pong-move-down
+  (local-unset-key (kbd "<left>"))    ;; pong-move-left
+  (local-unset-key (kbd "<right>"))    ;; pong-move-right
+  (local-unset-key (kbd "<up>"))    ;; pong-move-up
+  )
+#+END_SRC
+
+***** Binded
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<tab> p") 'pong)
+#+END_SRC
+
+****** Controls
+#+BEGIN_SRC emacs-lisp
+(defun pong-controls()
+  (local-set-key (kbd "w") 'pong-move-left)
+  (local-set-key (kbd "s") 'pong-move-right)
+  (local-set-key (kbd "o") 'pong-move-up)
+  (local-set-key (kbd "l") 'pong-move-down)
+  )
+#+END_SRC
+
+**** Snake
+***** Unbinded
+****** Controls
+#+BEGIN_SRC emacs-lisp
+(defun snake-controls-unbind()
+  )
+#+END_SRC
+
+***** Binded
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<tab> s") 'snake)
+#+END_SRC
+
+****** Controls
+#+BEGIN_SRC emacs-lisp
+(defun snake-controls()
+  )
+#+END_SRC
+
+**** Tetris
+***** Unbinded
+****** Controls
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+***** Binded
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<tab> t") 'tetris)
+#+END_SRC
+
+****** Controls
+#+BEGIN_SRC emacs-lisp
+(defun tetris-controls()
+  )
+#+END_SRC
+
+**** Solitaire
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<tab> S") 'solitaire)
+#+END_SRC
+
+**** Zone
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<tab> z") 'zone)
+#+END_SRC
+
+**** Butterfly
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<tab> C-b") 'butterfly)
+#+END_SRC
+
+**** Doctor
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<tab> C-D") 'doctor)
+#+END_SRC
+
 * Hooks
 ** CC Mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'c-initialization-hook
+		  'cc-mode-bindings
 		  'c-init-settings
 		  )
 
@@ -1973,7 +2166,6 @@ Non-user created prefixes
 #+BEGIN_SRC emacs-lisp
 (add-hook 'c-mode-hook
 		  'c-mode-settings
-		  'c-mode-bindings
 		  )
 #+END_SRC
 
@@ -1981,7 +2173,6 @@ Non-user created prefixes
 #+BEGIN_SRC emacs-lisp
 (add-hook 'c++-mode-hook
 		  'cpp-mode-settings
-		  'cpp-mode-bindings
 		  )
 #+END_SRC
 
@@ -1989,7 +2180,6 @@ Non-user created prefixes
 #+BEGIN_SRC emacs-lisp
 (add-hook 'objc-mode-hook
 		  'objc-mode-settings
-		  'objc-mode-bindings
 		  )
 #+END_SRC
 
@@ -1997,7 +2187,6 @@ Non-user created prefixes
 #+BEGIN_SRC emacs-lisp
 (add-hook 'java-mode-hook
 		  'java-mode-settings
-		  'java-mode-bindings
 		  )
 #+END_SRC
 
@@ -2005,7 +2194,6 @@ Non-user created prefixes
 #+BEGIN_SRC emacs-lisp
 (add-hook 'idl-mode-hook
 		  'idl-mode-settings
-		  'idl-mode-bindings
 		  )
 #+END_SRC
 
@@ -2013,7 +2201,6 @@ Non-user created prefixes
 #+BEGIN_SRC emacs-lisp
 (add-hook 'pike-mode-hook
 		  'pike-mode-settings
-		  'pike-mode-bindings
 		  )
 #+END_SRC
 
@@ -2021,7 +2208,6 @@ Non-user created prefixes
 #+BEGIN_SRC emacs-lisp
 (add-hook 'awk-mode-hook
 		  'awk-mode-settings
-		  'awk-mode-bindings
 		  )
 #+END_SRC
 
@@ -2047,7 +2233,7 @@ Non-user created prefixes
 		  )
 #+END_SRC
 
-** The Amazing World of Emacs
+** The Founding Fathers
 *** Org Mode
 #+BEGIN_SRC emacs-lisp
 
@@ -2064,6 +2250,12 @@ Non-user created prefixes
 #+END_SRC
 
 *** nXML Mode
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+** Ammusements
+*** Pong
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
