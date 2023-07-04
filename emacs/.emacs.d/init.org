@@ -444,6 +444,11 @@ This header basically refers to commands that don't "kill" text, hence "Pacifist
 (global-set-key (kbd "C-;") 'yank)
 #+END_SRC
 
+******* Deletion
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
 **** Marking
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'mark-prfx)
@@ -548,8 +553,8 @@ combination of M and C felt better to use rather than C-x SPC (I'd be able to en
 
 ****** Clipboard
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-, y") 'yank-rectangle)
-(global-set-key (kbd "M-, k") 'kill-rectangle)
+(global-set-key (kbd "M-, ;") 'yank-rectangle)
+(global-set-key (kbd "M-, .") 'kill-rectangle)
 #+END_SRC
 
 ****** Utilization
@@ -1110,7 +1115,7 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 #+END_SRC
 
 ***** Functions
-Shows incoming and outgoing logs before one will want to commit
+Shows incoming and outgoing logs before one will want to commit. If given a prefix, it will emphasize a type of logging command (e.g., vc-print-log).
 #+BEGIN_SRC emacs-lisp
 (defun pre-logs()
   )
