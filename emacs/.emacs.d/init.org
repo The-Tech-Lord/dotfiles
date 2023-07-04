@@ -177,6 +177,16 @@ Themes:
 #+END_SRC
 
 * Bindings
+** Decodes
+Credit:
+https://emacs.stackexchange.com/questions/10271/how-to-bind-c-for-real-seriously-for-real-this-time
+https://emacs.stackexchange.com/questions/220/how-to-bind-c-i-as-different-from-tab
+#+BEGIN_SRC emacs-lisp
+(define-key input-decode-map [?\C-i] [C-i])    ;; TAB
+(define-key input-decode-map [?\C-m] [C-m])    ;; RET
+(define-key input-decode-map [?\C-\[] (kbd "<C-[>"))    ;; ESC
+#+END_SRC
+
 ** Global
 *** Essentials
 **** Movement
@@ -559,10 +569,10 @@ combination of M and C felt better to use rather than C-x SPC (I'd be able to en
 
 ****** Utilization
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-, c") 'clear-rectangle)
-(global-set-key (kbd "M-, o") 'open-rectangle)
-(global-set-key (kbd "M-, s") 'string-rectangle)
-(global-set-key (kbd "M-, d") 'delete-rectangle)
+;; (global-set-key (kbd "M-, c") 'clear-rectangle)
+;; (global-set-key (kbd "M-, o") 'open-rectangle)
+;; (global-set-key (kbd "M-, s") 'string-rectangle)
+;; (global-set-key (kbd "M-, d") 'delete-rectangle)
 #+END_SRC
 
 ****** ExTra ExTra
@@ -826,7 +836,7 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 #+END_SRC
 
 ***** Functions
-When called, it will allow one to adjust windows using the idea of Macros and Cents. { and } will be used for Cent adjustments while [ and ] will be
+When called, it will allow one to adjust windows using the idea of Macros and Cents. C-{ and C-} will be used for Cent adjustments while C-[ and C-] will be
 used for Macro adjustments.
 
 An implementation idea is that I could create a window adjusment minor mode that will allow more options for creating key bindings.
@@ -1228,8 +1238,8 @@ Shows outgoing logs when comitting.
 ****** Records
 ******* Diffs
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-v =") 'vc-diff)
-(global-set-key (kbd "C-v +") 'vc-root-diff)
+(global-set-key (kbd "C-v D") 'vc-diff)
+(global-set-key (kbd "C-v C-d") 'vc-root-diff)
 #+END_SRC
 
 ******* Logs
@@ -1998,6 +2008,17 @@ Non-user created prefixes
 (global-set-key (kbd "C-x a c") 'center-line)
 #+END_SRC
 
+**** Rectangle Mark Mode
+***** Unbinded
+The plan here is to use association lists to map and unmap keybindings within the minor mode.
+****** Utilization
+#+BEGIN_SRC emacs-lisp
+(defun rect-util-unbind()
+  (define-key rectangle-mark-mode-map (kbd "C-o") nil)    ;; open-rectangle
+  (define-key rectangle-mark-mode-map (kbd "C-t") nil)    ;; string-rectangle
+  )
+#+END_SRC
+
 *** Ammusements
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'ammusements-prfx)
@@ -2250,3 +2271,4 @@ Non-user created prefixes
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
+
