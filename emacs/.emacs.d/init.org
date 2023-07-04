@@ -327,19 +327,6 @@ Themes:
 #+END_SRC
 
 ***** Binding
-****** Chunks
-******* Sentences
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-M-<left>") 'backward-sentence)
-(global-set-key (kbd "C-M-<right>") 'forward-sentence)
-#+END_SRC
-
-******* Expressions
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-M-<up>") 'forward-sexp)
-(global-set-key (kbd "C-M-<down>") 'backward-sexp)
-#+END_SRC
-
 ****** Whitespace
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-M-a") 'back-to-indentation)
@@ -350,18 +337,6 @@ Themes:
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-<prior>") 'beginning-of-buffer)
 (global-set-key (kbd "C-<next>") 'end-of-buffer)
-#+END_SRC
-
-******* Other Window
-******** Begend
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-M-<prior>") 'beginning-of-buffer-other-window)
-(global-set-key (kbd "C-M-<next>") 'end-of-buffer-other-window)
-#+END_SRC
-
-****** Lists
-#+BEGIN_SRC emacs-lisp
-
 #+END_SRC
 
 **** Killing
@@ -461,17 +436,6 @@ This header basically refers to commands that don't "kill" text, hence "Pacifist
 ****** Region
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-.") 'kill-region)
-#+END_SRC
-
-****** Chunks
-******* Words
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-******* Straights
-#+BEGIN_SRC emacs-lisp
-
 #+END_SRC
 
 ****** Pacifist
@@ -726,17 +690,6 @@ one of the harder one's to try and categorize as I had trouble of what would bel
 
 #+END_SRC
 
-****** Cases
-******* Words
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-******* Regions
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
 **** Indenting
 ***** Unbinded
 ****** Newline
@@ -761,6 +714,7 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 #+END_SRC
 
 **** Other
+***** Unbinded
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x C-d"))    ;; list-directory
 #+END_SRC
@@ -930,6 +884,7 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 
 ****** 2C
 #+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "<f2>"))    ;; 2C-command
 (global-unset-key (kbd "<f2> 2"))    ;; 2C-two-columns
 (global-unset-key (kbd "<f2> b"))    ;; 2C-associate-buffer
 (global-unset-key (kbd "<f2> s"))    ;; 2C-split
@@ -1152,6 +1107,19 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'vcs-prfx)
 (global-set-key (kbd "C-v") 'vcs-prfx)
+#+END_SRC
+
+***** Functions
+Shows incoming and outgoing logs before one will want to commit
+#+BEGIN_SRC emacs-lisp
+(defun pre-logs()
+  )
+#+END_SRC
+
+Shows current diffs
+#+BEGIN_SRC emacs-lisp
+(defun diffs()
+  )
 #+END_SRC
 
 ***** Unbinding
@@ -1478,8 +1446,10 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 (global-unset-key (kbd "C-x ("))    ;; kmacro-start-macro
 (global-unset-key (kbd "C-x C-k s"))    ;; kmacro-start-macro
 (global-unset-key (kbd "C-x C-k C-s"))    ;; kmacro-start-macro
+(global-unset-key (kbd "<f3>"))    ;; kmacro-start-macro-or-insert-counter
 (global-unset-key (kbd "C-x )"))    ;; kmacro-end-macro
 (global-unset-key (kbd "C-x e"))    ;; kmacro-end-and-call-macro
+(global-unset-key (kbd "<f4>"))    ;; kamcro-end-or-call-macro
 (global-unset-key (kbd "S-<mouse-3>"))    ;; kmarcro-end-call-mouse
 #+END_SRC
 
@@ -1547,15 +1517,6 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 (global-unset-key (kbd "C-x r M"))    ;; bookmark-set-no-overwrite
 (global-unset-key (kbd "C-x r b"))    ;; bookmark-jump
 (global-unset-key (kbd "C-x r l"))    ;; bookmark-bmenu-list
-#+END_SRC
-
-***** Binded
-****** General
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-x b s") 'bookmark-set)
-(global-set-key (kbd "C-x b S") 'bookmark-set-no-overwrite)
-(global-set-key (kbd "C-x b j") 'bookmark-jump)
-(global-set-key (kbd "C-x b l") 'bookmark-bmenu-list)
 #+END_SRC
 
 **** Insertion
@@ -1736,6 +1697,7 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 ***** Unbinded
 ****** General
 #+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "<f10>"))    ;; menu-bar-open
 (global-unset-key (kbd "M-`"))    ;; tmm-menubar
 (global-unset-key (kbd "S-<f10>"))    ;; context-menu-open
 (global-unset-key (kbd "C-<f10>"))    ;; buffer-menu-open
