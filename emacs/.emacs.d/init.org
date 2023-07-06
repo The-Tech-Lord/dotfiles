@@ -45,6 +45,11 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-display-line-numbers-mode)
 #+END_SRC
 
+** Whitespace Mode
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
 ** Tab Space
 #+BEGIN_SRC emacs-lisp
 (setq-default tab-width 4)
@@ -213,12 +218,14 @@ https://emacs.stackexchange.com/questions/220/how-to-bind-c-i-as-different-from-
 (global-unset-key (kbd "M-e"))    ;; forward-sentence
 #+END_SRC
 
-******* Expressions
+******* Moisty
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-M-f"))    ;; forward-sexp
+(global-unset-key (kbd "C-M-<right>"))    ;; forward-sexp
 (global-unset-key (kbd "ESC C-<left>"))    ;; backward-sexp
 (global-unset-key (kbd "ESC C-<right>"))    ;; forward-sexp
 (global-unset-key (kbd "C-M-b"))    ;; backward-sexp
+(global-unset-key (kbd "C-M-<left>"))    ;; backward-sexp
 #+END_SRC
 
 ******* Pages
@@ -356,6 +363,7 @@ https://emacs.stackexchange.com/questions/220/how-to-bind-c-i-as-different-from-
 (global-unset-key (kbd "M-w"))    ;; kill-ring-save
 (global-unset-key (kbd "C-<insert>"))    ;; kill-ring-save
 (global-unset-key (kbd "C-<insertchar>"))    ;; kill-ring-save
+(global-unset-key (kbd "C-M-w"))    ;; append-next-kill
 #+END_SRC
 
 ****** Region
@@ -432,11 +440,6 @@ This header basically refers to commands that don't "kill" text, hence "Pacifist
 (global-unset-key (kbd "M-<mouse-3>"))    ;; mouse-secondary-save-then-kill
 #+END_SRC
 
-****** Other Murderous Commands
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-M-w"))    ;; append-next-kill
-#+END_SRC
-
 ***** Binded
 ****** Kill Ring
 #+BEGIN_SRC emacs-lisp
@@ -455,6 +458,7 @@ This header basically refers to commands that don't "kill" text, hence "Pacifist
 #+END_SRC
 
 ******* Deletion
+******** Whitespace
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
@@ -481,7 +485,7 @@ This header basically refers to commands that don't "kill" text, hence "Pacifist
 (global-unset-key (kbd "C-x C-p"))    ;; mark-page
 #+END_SRC
 
-******* Expressions
+******* Moisty
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-M-@"))    ;; mark-sexp
 (global-unset-key (kbd "C-M-SPC"))    ;; mark-sexp
@@ -505,7 +509,7 @@ This header basically refers to commands that don't "kill" text, hence "Pacifist
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "M-SPC w") 'mark-word)
 (global-set-key (kbd "M-SPC d") 'mark-defun)
-(global-set-key (kbd "M-SPC b") 'mark-whole-buffer)
+(global-set-key (kbd "M-SPC C-a") 'mark-whole-buffer)
 #+END_SRC
 
 ******* Expressions
@@ -569,19 +573,20 @@ combination of M and C felt better to use rather than C-x SPC (I'd be able to en
 
 ****** Utilization
 #+BEGIN_SRC emacs-lisp
-;; (global-set-key (kbd "M-, c") 'clear-rectangle)
-;; (global-set-key (kbd "M-, o") 'open-rectangle)
-;; (global-set-key (kbd "M-, s") 'string-rectangle)
-;; (global-set-key (kbd "M-, d") 'delete-rectangle)
+(global-set-key (kbd "M-, c") 'clear-rectangle)
+(global-set-key (kbd "M-, o") 'open-rectangle)
+(global-set-key (kbd "M-, s") 'string-rectangle)
+(global-set-key (kbd "M-, d") 'delete-rectangle)
 #+END_SRC
 
 ****** ExTra ExTra
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-, n") 'rectangle-number-lines)
 (global-set-key (kbd "M-, R") 'copy-rectangle-to-register)
 #+END_SRC
 
 **** Searching
+I would like to go with C-s, but that was taken by isearch-forward already. Tried to remap it but the command already had some specifics to it that
+wouldn't allow rebinding a practical possibility.
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'search-prfx)
 (global-set-key (kbd "M-s") 'search-prfx)
@@ -602,7 +607,7 @@ combination of M and C felt better to use rather than C-x SPC (I'd be able to en
 (global-unset-key (kbd "C-M-."))    ;; xref-find-apropos
 #+END_SRC
 
-****** Instances
+****** Regexp
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-M-r"))    ;; isearch-backward-regexp
 (global-unset-key (kbd "C-M-s"))    ;; isearch-forward-regexp
@@ -617,17 +622,13 @@ combination of M and C felt better to use rather than C-x SPC (I'd be able to en
 ***** Binded
 ****** Files
 #+BEGIN_SRC emacs-lisp
-
+(global-set-key (kbd "M-s C-f") 'find-alternate-file)
 #+END_SRC
 
 ****** Xref
 #+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-****** Instances
-#+BEGIN_SRC emacs-lisp
-
+(global-set-key (kbd "M-s ?") 'xref-find-definitions)
+(global-set-key (kbd "M-s C-?") 'xref-find-references)
 #+END_SRC
 
 ****** Replace
@@ -647,6 +648,10 @@ combination of M and C felt better to use rather than C-x SPC (I'd be able to en
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-s h ."))    ;; highlight-symbol-at-point
 (global-unset-key (kbd "M-s h p"))    ;; highlight-phrase
+#+END_SRC
+
+****** Regexp
+#+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-s h r"))    ;; highlight-regexp
 (global-unset-key (kbd "M-s h l"))    ;; highlight-lines-matching-regexp
 (global-unset-key (kbd "M-s h u"))    ;; unhighlight-regexp
@@ -663,6 +668,10 @@ combination of M and C felt better to use rather than C-x SPC (I'd be able to en
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "M-p h") 'highlight-symbol-at-point)
 (global-set-key (kbd "M-p p") 'highlight-phrase)
+#+END_SRC
+
+****** Regexp
+#+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "M-p x") 'highlight-regexp)
 (global-set-key (kbd "M-p l") 'highlight-lines-matching-regexp)
 (global-set-key (kbd "M-p u") 'unhighlight-regexp)
@@ -680,7 +689,7 @@ one of the harder one's to try and categorize as I had trouble of what would bel
 
 ****** Transposing
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-t"))    ;; transpose-key
+(global-unset-key (kbd "C-t"))    ;; transpose-chars
 (global-unset-key (kbd "M-t"))    ;; transpose-words
 (global-unset-key (kbd "C-x C-t"))    ;; transpose-lines
 #+END_SRC
@@ -701,8 +710,12 @@ one of the harder one's to try and categorize as I had trouble of what would bel
 
 ***** Binding
 ****** Transposing
+Idea for better implementation: Create a minor mode for these little shits
 #+BEGIN_SRC emacs-lisp
-
+(global-set-key (kbd "C-x C-r") 'transpose-chars)
+(global-set-key (kbd "C-x C-t") 'transpose-words)
+(global-set-key (kbd "C-x C-y") 'transpose-lines)
+(global-set-key (kbd "C-x C-u") 'transpose-sentences)
 #+END_SRC
 
 **** Indenting
@@ -719,6 +732,17 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 (global-unset-key (kbd "C-x TAB"))    ;; indent-rigidly
 (global-unset-key (kbd "C-M-\\"))    ;; indent-region
 (global-unset-key (kbd "M-)"))    ;; move-past-close-and-reindent
+#+END_SRC
+
+***** Binded
+****** Newline
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+****** Formatting
+#+BEGIN_SRC emacs-lisp
+
 #+END_SRC
 
 **** Comments
@@ -763,9 +787,9 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 
 ******* Suspend
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-z"))    ;; suspend-frame
-(global-unset-key (kbd "C-x z"))    ;; suspend-frame
-(global-unset-key (kbd "C-x C-z"))    ;; suspend-frame
+;; (global-unset-key (kbd "C-z"))    ;; suspend-frame
+;; (global-unset-key (kbd "C-x z"))    ;; suspend-frame
+;; (global-unset-key (kbd "C-x C-z"))    ;; suspend-frame
 #+END_SRC
 
 ****** Other Frame
@@ -804,7 +828,7 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 ******* Deletion
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-f w") 'delete-frame)
-(global-set-key (kbd "C-f W") 'delete-other-frames)
+(global-set-key (kbd "C-f 1") 'delete-other-frames)
 #+END_SRC
 
 ****** Other Frame
@@ -951,7 +975,6 @@ An implementation idea is that I could create a window adjusment minor mode that
 (global-set-key (kbd "C-w C-d") 'dired-jump-other-window)
 (global-set-key (kbd "C-w B") 'switch-to-buffer-other-window)
 (global-set-key (kbd "C-w c") 'clone-indirect-buffer-other-window)
-(global-set-key (kbd "C-w .") 'xref-find-definitions-other-window)
 (global-set-key (kbd "C-w d") 'dired-other-window)
 #+END_SRC
 
@@ -999,7 +1022,6 @@ When called, I can continuously press [ or ] to switch between buffers.
 ******* Killing
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x k"))    ;; kill-buffer
-(global-unset-key (kbd "C-x C-c"))    ;; save-buffers-kill-terminal
 #+END_SRC
 
 ****** Other
@@ -2167,7 +2189,6 @@ The plan here is to use association lists to map and unmap keybindings within th
 ** CC Mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'c-initialization-hook
-		  'cc-mode-bindings
   		  'cc-common-bindings
 		  )
 #+END_SRC
