@@ -196,7 +196,7 @@ https://emacs.stackexchange.com/questions/220/how-to-bind-c-i-as-different-from-
 #+BEGIN_SRC emacs-lisp
 (define-key input-decode-map [?\C-i] [C-i])    ;; TAB
 (define-key input-decode-map [?\C-m] [C-m])    ;; RET
-(define-key input-decode-map [?\C-\[] (kbd "<C-[>"))    ;; ESC
+(define-key input-decode-map [?\C-\[] [C-\[])    ;; ESC
 #+END_SRC
 
 ** Global
@@ -793,9 +793,9 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 
 ******* Suspend
 #+BEGIN_SRC emacs-lisp
-;; (global-unset-key (kbd "C-z"))    ;; suspend-frame
-;; (global-unset-key (kbd "C-x z"))    ;; suspend-frame
-;; (global-unset-key (kbd "C-x C-z"))    ;; suspend-frame
+(global-unset-key (kbd "C-z"))    ;; suspend-frame
+(global-unset-key (kbd "C-x z"))    ;; suspend-frame
+(global-unset-key (kbd "C-x C-z"))    ;; suspend-frame
 #+END_SRC
 
 ****** Other Frame
