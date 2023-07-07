@@ -25,52 +25,53 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (package-initialize)
 #+END_SRC
 
-* Emacs Settings
-** Startup Screen
+* Settings
+** Emacs Settings
+*** Startup Screen
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-splash-screen t)                     ;; Startup Screen
 #+END_SRC
 
-** User Interface
-*** General
+*** User Interface
+**** General
 #+BEGIN_SRC emacs-lisp
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 #+END_SRC
 
-*** Line Number Column
+**** Line Number Column
 #+BEGIN_SRC emacs-lisp
 (setq column-number-mode t)
 (global-display-line-numbers-mode)
 #+END_SRC
 
-** Whitespace Mode
+*** Whitespace Mode
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
 
-** Tab Space
+*** Tab Space
 #+BEGIN_SRC emacs-lisp
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode t)
 (setq backward-delete-char-untabify-method nil)
 #+END_SRC
 
-** Git
+*** Git
 The plan here is that when a git window is opened, it won't display the line numbers.
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
 
-** Other
+*** Other
 #+BEGIN_SRC emacs-lisp
 (setq make-backup-files nil)
 (setq-default fill-column 150)
 #+END_SRC
 
-* Custom Settings
-** Variables
+** Custom Settings
+*** Variables
 Convenience:
 - toc-org: Table of Contents creator
 Modes:
@@ -89,83 +90,83 @@ Themes:
  )
 #+END_SRC
 
-** Faces
+*** Faces
 #+BEGIN_SRC emacs-lisp
 (custom-set-faces
    )
 #+END_SRC
 
-* Mode Settings
-** Major Mode
-*** CC Mode
+** Mode Settings
+*** Major Mode
+**** CC Mode
 #+BEGIN_SRC emacs-lisp
 (setq c-default-style "linux")    ;; Makes curly braces format how they're supposed to
 #+END_SRC
 
-**** C
+***** C
 #+BEGIN_SRC emacs-lisp
 (defun c-mode-settings()
   (setq c-basic-offset 4)
   )
 #+END_SRC
 
-**** C++
+***** C++
 #+BEGIN_SRC emacs-lisp
 (defun cpp-mode-settings()
   )
 #+END_SRC
 
-**** Obj-C
+***** Obj-C
 #+BEGIN_SRC emacs-lisp
 (defun objc-mode-settings()
   )
 #+END_SRC
 
-**** Java
+***** Java
 #+BEGIN_SRC emacs-lisp
 (defun java-mode-settings()
   )
 #+END_SRC
 
-**** Idl
+***** Idl
 #+BEGIN_SRC emacs-lisp
 (defun idl-mode-settings()
   )
 #+END_SRC
 
-**** Pike
+***** Pike
 #+BEGIN_SRC emacs-lisp
 (defun pike-mode-settings()
   )
 #+END_SRC
 
-**** Awk
+***** Awk
 #+BEGIN_SRC emacs-lisp
 (defun awk-mode-settings()
   )
 #+END_SRC
 
-*** Monty Python
+**** Monty Python
 #+BEGIN_SRC emacs-lisp
 (defun python-mode-settings()
   )
 #+END_SRC
 
-*** Microsoft Java
+**** Microsoft Java
 #+BEGIN_SRC emacs-lisp
 (defun cs-mode-settings()
   )
 #+END_SRC
 
-*** Hexl Mode
+**** Hexl Mode
 #+BEGIN_SRC emacs-lisp
 (defun hexl-mode-settings()
   )
 #+END_SRC
 
-*** Org Mode
-**** ToDo
-***** Keywords
+**** Org Mode
+***** ToDo
+****** Keywords
 #+BEGIN_SRC emacs-lisp
 (setq org-todo-keywords
 		'((sequence "TODO" "IN-PROGRESS" "NEAR-COMP" "|" "DONE")
@@ -173,15 +174,15 @@ Themes:
 		  (sequence "Heh")))
 #+END_SRC
 
-***** Faces
+****** Faces
 #+BEGIN_SRC emacs-lisp
 (setq org-todo-keyword-faces
 	  '(("TODO" . org-warning) ("IN-PROGRESS" . "yellow") ("NEAR-COMP" . "orange") ("DONE" . "green")
 		("BUG" . org-warning) ("FIXED" . "green")))
 #+END_SRC
 
-**** SRC Block
-***** Indentation
+***** SRC Block
+****** Indentation
 #+BEGIN_SRC emacs-lisp
 (setq org-src-preserve-indentation t)
 (setq org-edit-src-content-indentation '0)
@@ -862,16 +863,6 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 (global-set-key (kbd "C-w") 'windows-prfx)
 #+END_SRC
 
-***** Functions
-When called, it will allow one to adjust windows using the idea of Macros and Cents. C-{ and C-} will be used for Cent adjustments while C-[ and C-] will be
-used for Macro adjustments.
-
-An implementation idea is that I could create a window adjusment minor mode that will allow more options for creating key bindings.
-#+BEGIN_SRC emacs-lisp
-(defun window-adjust()
-  )
-#+END_SRC
-
 ***** Unbinded
 ****** Management
 ******* Adjustment
@@ -1150,26 +1141,6 @@ When called, I can continuously press [ or ] to switch between buffers.
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'vcs-prfx)
 (global-set-key (kbd "C-v") 'vcs-prfx)
-#+END_SRC
-
-***** Functions
-Shows incoming and outgoing logs before one will want to commit.
-If given a prefix, it will emphasize a type of logging command (e.g., vc-print-log). A hook may be used depending on how this is implemented.
-#+BEGIN_SRC emacs-lisp
-(defun pre-logs()
-  )
-#+END_SRC
-
-Shows current diffs.
-#+BEGIN_SRC emacs-lisp
-(defun diffs()
-  )
-#+END_SRC
-
-Shows outgoing logs when comitting.
-#+BEGIN_SRC emacs-lisp
-(defun committing-pre-logs()
-  )
 #+END_SRC
 
 ***** Unbinding
@@ -2192,89 +2163,91 @@ The plan here is to use association lists to map and unmap keybindings within th
 (global-set-key (kbd "C-` C-D") 'doctor)
 #+END_SRC
 
-* Mode Definitions
-** Manipulation Mode
+* Define Modes
+** Minor Mode
+*** Manipulation Mode
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+*** Window Mode
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
 
 * Hooks
-** CC Mode
+** Development
+*** Major Mode
+**** CC Mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'c-initialization-hook
   		  'cc-common-bindings
 		  )
 #+END_SRC
 
-*** C Lang
+***** C
 #+BEGIN_SRC emacs-lisp
 (add-hook 'c-mode-hook
 		  'c-mode-settings
 		  )
 #+END_SRC
 
-*** C++
+***** C++
 #+BEGIN_SRC emacs-lisp
 (add-hook 'c++-mode-hook
 		  'cpp-mode-settings
 		  )
 #+END_SRC
 
-*** Obj-C
+***** Obj-C
 #+BEGIN_SRC emacs-lisp
 (add-hook 'objc-mode-hook
 		  'objc-mode-settings
 		  )
 #+END_SRC
 
-*** Java Mode
+***** Java Mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'java-mode-hook
 		  'java-mode-settings
 		  )
 #+END_SRC
 
-*** Idl Mode
+***** Idl Mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'idl-mode-hook
 		  'idl-mode-settings
 		  )
 #+END_SRC
 
-*** Pike Mode
+***** Pike Mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'pike-mode-hook
 		  'pike-mode-settings
 		  )
 #+END_SRC
 
-*** Awk Mode
+***** Awk Mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'awk-mode-hook
 		  'awk-mode-settings
 		  )
 #+END_SRC
 
-** Monty Python
+**** Python
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
 
-** Microsoft Java
+**** C#
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
 
-** Hexl
+*** Minor Mode
+**** Hexl
 #+BEGIN_SRC emacs-lisp
 
-#+END_SRC
-
-** Windows
-#+BEGIN_SRC emacs-lisp
-(add-hook 'window-setup-hook
-		  'toggle-frame-maximized t
-		  )
 #+END_SRC
 
 ** The Founding Fathers
@@ -2298,6 +2271,20 @@ The plan here is to use association lists to map and unmap keybindings within th
 *** nXML Mode
 #+BEGIN_SRC emacs-lisp
 
+#+END_SRC
+
+** Windows
+#+BEGIN_SRC emacs-lisp
+(add-hook 'window-setup-hook
+		  'toggle-frame-maximized t
+		  )
+#+END_SRC
+
+** Rectangle
+#+BEGIN_SRC emacs-lisp
+(add-hook 'rectangle-mark-mode-hook
+		  'rect-util-unbind
+		  )
 #+END_SRC
 
 ** Ammusements
