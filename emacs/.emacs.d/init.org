@@ -13,7 +13,7 @@
 *                                                                                                __/ |
 *                                                                                               |___/ 
 
-* Info
+* Backinfo
 I'm an organization junkie
 
 GitHub: https://github.com/The-Tech-Lord/dotfiles
@@ -763,6 +763,7 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 **** Other
 ***** Unbinded
 #+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-q"))    ;; quoted-insert
 (global-unset-key (kbd "C-x C-d"))    ;; list-directory
 #+END_SRC
 

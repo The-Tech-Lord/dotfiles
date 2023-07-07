@@ -16,7 +16,10 @@
 (setq-default indent-tabs-mode t)
 (setq backward-delete-char-untabify-method nil)
 
+
+
 (setq make-backup-files nil)
+(setq-default fill-column 150)
 
 (custom-set-variables
  '(custom-enabled-themes '(gruvbox-dark-medium))
@@ -30,14 +33,9 @@
 (custom-set-faces
    )
 
-(defun c-init-settings()
-  )
-
-(defun c-common-settings()
-  )
+(setq c-default-style "linux")    ;; Makes curly braces format how they're supposed to
 
 (defun c-mode-settings()
-  (setq c-default-style "linux")    ;; Makes curly braces format how they're supposed to
   (setq c-basic-offset 4)
   )
 
@@ -70,141 +68,21 @@
 
 (setq org-todo-keywords
 		'((sequence "TODO" "IN-PROGRESS" "NEAR-COMP" "|" "DONE")
-		  (sequence "BUG" "|" "FIXED")
-		  )
-		)
+		  (sequence "BUG" "MINOR" "MAJOR" "|" "FIXED" "HOTFIX")
+		  (sequence "Heh")))
 
 (setq org-todo-keyword-faces
 	  '(("TODO" . org-warning) ("IN-PROGRESS" . "yellow") ("NEAR-COMP" . "orange") ("DONE" . "green")
-		("BUG" . org-warning) ("FIXED" . "green")
-		)
-	  )
+		("BUG" . org-warning) ("FIXED" . "green")))
 
 (setq org-src-preserve-indentation t)
 (setq org-edit-src-content-indentation '0)
 
-(global-unset-key (kbd "M-w"))    ;; kill-ring-save
-(global-unset-key (kbd "C-<insert>"))    ;; kill-ring-save
-(global-unset-key (kbd "C-<insertchar>"))    ;; kill-ring-save
-
-(global-unset-key (kbd "C-w"))    ;; kill-region
-(global-unset-key (kbd "S-<delete>"))    ;; kill-region
-
-(global-unset-key (kbd "M-d"))    ;; kill-word
-(global-unset-key (kbd "C-<delete>"))    ;; kill-word
-(global-unset-key (kbd "M-DEL"))    ;; backward-kill-word
-(global-unset-key (kbd "C-<backspace>"))    ;; backward-kill-word
-
-(global-unset-key (kbd "M-k"))    ;; kill-sentence
-(global-unset-key (kbd "C-DEL"))    ;; backward-kill-sentence
-(global-unset-key (kbd "C-x DEL"))    ;; backward-kill-sentence
-(global-unset-key (kbd "C-S-<backspace>"))    ;; kill-whole-line
-
-(global-unset-key (kbd "C-M-k"))    ;; kill-sexp
-(global-unset-key (kbd "ESC C-<delete>"))    ;; backward-kill-sexp
-(global-unset-key (kbd "ESC C-<backspace>"))    ;; backward-kill-sexp
-
-(global-unset-key (kbd "C-y"))    ;; yank
-(global-unset-key (kbd "S-<insert>"))    ;; yank
-(global-unset-key (kbd "S-<insertchar>"))    ;; yank
-
-(global-unset-key (kbd "C-_"))    ;; undo
-(global-unset-key (kbd "C-x u"))    ;; undo
-(global-unset-key (kbd "C-M-_"))    ;; undo-redo
-
-(global-unset-key (kbd "C-d"))    ;; delete-char
-
-(global-unset-key (kbd "M-^"))    ;; delete-indentation
-(global-unset-key (kbd "M-\\"))    ;; delete-horizontal-space
-(global-unset-key (kbd "M-SPC"))    ;; just-one-space
-
-(global-unset-key (kbd "C-M-w"))    ;; append-next-kill
-
-(global-set-key (kbd "C-.") 'kill-region)
-
-(global-set-key (kbd "M-'") 'kill-ring-save)
-
-(global-set-key (kbd "C-;") 'yank)
-
-(define-prefix-command 'mark-prfx)
-(global-set-key (kbd "<f5>") 'mark-prfx)
-
-(global-unset-key (kbd "C-@"))    ;; set-mark-command
-
-(global-unset-key (kbd "M-@"))    ;; mark-word
-(global-unset-key (kbd "C-M-h"))    ;; mark-defun
-(global-unset-key (kbd "C-x h"))    ;; mark-whole-buffer
-(global-unset-key (kbd "C-x C-p"))    ;; mark-page
-
-(global-unset-key (kbd "C-M-@"))    ;; mark-sexp
-(global-unset-key (kbd "C-M-SPC"))    ;; mark-sexp
-
-(global-unset-key (kbd "M-,"))    ;; xref-pop-marker-stack
-(global-unset-key (kbd "C-x C-@"))    ;; pop-global-mark
-(global-unset-key (kbd "C-x C-SPC"))    ;; pop-global-mark
 
 
-
-
-
-
-
-
-
-(define-prefix-command 'search-prfx)
-(global-set-key (kbd "M-s") 'search-prfx)
-
-(global-unset-key (kbd "C-x C-v"))    ;; find-alternate-file
-(global-unset-key (kbd "C-x C-f"))    ;; find-file-read-only
-(global-unset-key (kbd "C-x C-r"))    ;; find-file-read-only
-(global-unset-key (kbd "C-x C-d"))    ;; list-directory
-
-(global-unset-key (kbd "M-%"))    ;; query-replace
-(global-unset-key (kbd "C-M-%"))    ;; query-replace-regexp
-
-(global-unset-key (kbd "M-."))    ;; xref-find-definitions
-(global-unset-key (kbd "M-?"))    ;; xref-find-references
-(global-unset-key (kbd "C-M-."))    ;; xref-find-apropos
-
-(global-unset-key (kbd "C-M-r"))    ;; isearch-backward-regexp
-(global-unset-key (kbd "C-M-s"))    ;; isearch-forward-regexp
-(global-unset-key (kbd "M-z"))    ;; zap-to-char
-
-
-
-(global-set-key (kbd "M-s r") 'query-replace)
-(global-set-key (kbd "M-s R") 'query-replace-regexp)
-
-
-
-
-
-(define-prefix-command 'hi-prfx)
-(global-set-key (kbd "M-m") 'hi-prfx)
-
-(global-unset-key (kbd "M-s h ."))    ;; hightlight-symbol-at-point
-(global-unset-key (kbd "M-s h p"))    ;; highlight-phrase
-(global-unset-key (kbd "M-s h r"))    ;; highlight-regexp
-(global-unset-key (kbd "M-s h l"))    ;; highlight-lines-matching-regexp
-(global-unset-key (kbd "M-s h f"))    ;; hi-lock-find-patterns
-(global-unset-key (kbd "M-s h w"))    ;; hi-lock-write-interactive-patterns
-(global-unset-key (kbd "M-s h u"))    ;; unhighlight-regexp
-
-(global-set-key (kbd "M-m h") 'highlight-symbol-at-point)
-(global-set-key (kbd "M-m p") 'highlight-phrase)
-(global-set-key (kbd "M-m x") 'highlight-regexp)
-(global-set-key (kbd "M-m l") 'highlight-lines-matching-regexp)
-(global-set-key (kbd "M-m u") 'unhighlight-regexp)
-
-(global-unset-key (kbd "M-j"))    ;; default-indent-new-line
-(global-unset-key (kbd "C-M-j"))    ;; default-indent-new-line
-
-(global-unset-key (kbd "C-x TAB"))    ;; indent-rigidly
-(global-unset-key (kbd "C-M-\\"))    ;; indent-region
-(global-unset-key (kbd "M-)"))    ;; move-past-close-and-reindent
-
-(global-unset-key (kbd "C-x ;"))    ;; comment-set-column
-(global-unset-key (kbd "M-;"))    ;; comment-dwim
+(define-key input-decode-map [?\C-i] [C-i])    ;; TAB
+(define-key input-decode-map [?\C-m] [C-m])    ;; RET
+(define-key input-decode-map [?\C-\[] [C-\[])    ;; ESC
 
 (global-unset-key (kbd "C-f"))    ;; forward-char
 (global-unset-key (kbd "C-b"))    ;; backward-char
@@ -218,8 +96,22 @@
 (global-unset-key (kbd "M-a"))    ;; backward-sentence
 (global-unset-key (kbd "M-e"))    ;; forward-sentence
 
-(global-unset-key (kbd "C-<up>"))    ;; backward-paragraph
-(global-unset-key (kbd "C-<down>"))    ;; forward-paragraph
+(global-unset-key (kbd "C-M-f"))    ;; forward-sexp
+(global-unset-key (kbd "C-M-<right>"))    ;; forward-sexp
+(global-unset-key (kbd "ESC C-<left>"))    ;; backward-sexp
+(global-unset-key (kbd "ESC C-<right>"))    ;; forward-sexp
+(global-unset-key (kbd "C-M-b"))    ;; backward-sexp
+(global-unset-key (kbd "C-M-<left>"))    ;; backward-sexp
+
+(global-unset-key (kbd "C-x ["))    ;; backward-page
+(global-unset-key (kbd "C-x ]"))    ;; forward-page
+
+(global-unset-key (kbd "C-M-a"))    ;; beginning-of-defun
+(global-unset-key (kbd "C-M-<home>"))    ;; beginning-of-defun
+(global-unset-key (kbd "ESC C-<home>"))    ;; beginning-of-defun
+(global-unset-key (kbd "C-M-e"))    ;; end-of-defun
+(global-unset-key (kbd "C-M-<end>"))    ;; end-of-defun
+(global-unset-key (kbd "ESC C-<end>"))    ;; end-of-defun
 
 (global-unset-key (kbd "M-m"))    ;; back-to-indentation
 (global-unset-key (kbd "M-i"))    ;; tab-to-tab-stop
@@ -231,23 +123,6 @@
 (global-unset-key (kbd "C-<home>"))    ;; beginning-of-buffer
 (global-unset-key (kbd "M->"))    ;; end-of-buffer
 (global-unset-key (kbd "C-<end>"))    ;; end-of-buffer
-
-(global-unset-key (kbd "C-x ["))    ;; backward-page
-(global-unset-key (kbd "C-x ]"))    ;; forward-page
-
-(global-unset-key (kbd "C-M-f"))    ;; forward-sexp
-(global-unset-key (kbd "C-M-<right>"))    ;; forward-sexp
-(global-unset-key (kbd "ESC C-<left>"))    ;; backward-sexp
-(global-unset-key (kbd "ESC C-<right>"))    ;; forward-sexp
-(global-unset-key (kbd "C-M-b"))    ;; backward-sexp
-(global-unset-key (kbd "C-M-<left>"))    ;; backward-sexp
-
-(global-unset-key (kbd "C-M-a"))    ;; beginning-of-defun
-(global-unset-key (kbd "C-M-<home>"))    ;; beginning-of-defun
-(global-unset-key (kbd "ESC C-<home>"))    ;; beginning-of-defun
-(global-unset-key (kbd "C-M-e"))    ;; end-of-defun
-(global-unset-key (kbd "C-M-<end>"))    ;; end-of-defun
-(global-unset-key (kbd "ESC C-<end>"))    ;; end-of-defun
 
 (global-unset-key (kbd "C-M-v"))    ;; scroll-other-window
 (global-unset-key (kbd "M-<next>"))    ;; scroll-other-window
@@ -295,20 +170,173 @@
 (global-unset-key (kbd "M-g c"))    ;; goto-char
 (global-unset-key (kbd "M-g g"))    ;; goto-line
 (global-unset-key (kbd "M-g M-g"))    ;; goto-line
+(global-unset-key (kbd "C-x n g"))    ;; goto-line-relative
 
 (global-unset-key (kbd "M-g TAB"))    ;; move-to-column
 (global-unset-key (kbd "<Scroll Lock>"))    ;; scroll-lock-mode
 
+(global-set-key (kbd "C-M-a") 'back-to-indentation)
+
 (global-set-key (kbd "C-<prior>") 'beginning-of-buffer)
 (global-set-key (kbd "C-<next>") 'end-of-buffer)
 
-(global-set-key (kbd "C-M-<prior>") 'beginning-of-buffer)
-(global-set-key (kbd "C-M-<next>") 'end-of-buffer)
+(global-unset-key (kbd "M-w"))    ;; kill-ring-save
+(global-unset-key (kbd "C-<insert>"))    ;; kill-ring-save
+(global-unset-key (kbd "C-<insertchar>"))    ;; kill-ring-save
+(global-unset-key (kbd "C-M-w"))    ;; append-next-kill
+
+(global-unset-key (kbd "C-w"))    ;; kill-region
+(global-unset-key (kbd "S-<delete>"))    ;; kill-region
+
+(global-unset-key (kbd "M-d"))    ;; kill-word
+(global-unset-key (kbd "C-<delete>"))    ;; kill-word
+(global-unset-key (kbd "M-DEL"))    ;; backward-kill-word
+(global-unset-key (kbd "C-<backspace>"))    ;; backward-kill-word
+
+(global-unset-key (kbd "M-k"))    ;; kill-sentence
+(global-unset-key (kbd "C-DEL"))    ;; backward-kill-sentence
+(global-unset-key (kbd "C-x DEL"))    ;; backward-kill-sentence
+(global-unset-key (kbd "C-S-<backspace>"))    ;; kill-whole-line
+(global-unset-key (kbd "M-z"))    ;; zap-to-char
+
+(global-unset-key (kbd "C-M-k"))    ;; kill-sexp
+(global-unset-key (kbd "ESC C-<delete>"))    ;; backward-kill-sexp
+(global-unset-key (kbd "ESC C-<backspace>"))    ;; backward-kill-sexp
+
+(global-unset-key (kbd "C-y"))    ;; yank
+(global-unset-key (kbd "S-<insert>"))    ;; yank
+(global-unset-key (kbd "S-<insertchar>"))    ;; yank
+
+(global-unset-key (kbd "C-_"))    ;; undo
+(global-unset-key (kbd "C-x u"))    ;; undo
+(global-unset-key (kbd "C-M-_"))    ;; undo-redo
+
+(global-unset-key (kbd "C-d"))    ;; delete-char
+
+(global-unset-key (kbd "M-^"))    ;; delete-indentation
+(global-unset-key (kbd "M-\\"))    ;; delete-horizontal-space
+(global-unset-key (kbd "C-x C-o"))    ;; delete-blank-lines
+(global-unset-key (kbd "M-SPC"))    ;; just-one-space
+
+(global-unset-key (kbd "M-<down-mouse-1>"))    ;; mouse-drag-secondary
+(global-unset-key (kbd "M-<drag-mouse-1>"))    ;; mouse-set-secondary
+(global-unset-key (kbd "M-<mouse-1>"))    ;; mouse-start-secondary
+(global-unset-key (kbd "M-<mouse-2>"))    ;; mouse-yank-secondary
+(global-unset-key (kbd "M-<mouse-3>"))    ;; mouse-secondary-save-then-kill
+
+(global-set-key (kbd "M-'") 'kill-ring-save)
+
+(global-set-key (kbd "C-.") 'kill-region)
+
+(global-set-key (kbd "C-;") 'yank)
+
+
+
+(define-prefix-command 'mark-prfx)
+(global-set-key (kbd "M-SPC") 'mark-prfx)
+
+(global-unset-key (kbd "C-@"))    ;; set-mark-command
+(global-unset-key (kbd "C-x C-x"))    ;; exchange-point-and-mark
+
+(global-unset-key (kbd "M-@"))    ;; mark-word
+(global-unset-key (kbd "C-M-h"))    ;; mark-defun
+(global-unset-key (kbd "C-x h"))    ;; mark-whole-buffer
+(global-unset-key (kbd "C-x C-p"))    ;; mark-page
+
+(global-unset-key (kbd "C-M-@"))    ;; mark-sexp
+(global-unset-key (kbd "C-M-SPC"))    ;; mark-sexp
+
+(global-unset-key (kbd "M-,"))    ;; xref-pop-marker-stack
+(global-unset-key (kbd "C-x C-@"))    ;; pop-global-mark
+(global-unset-key (kbd "C-x C-SPC"))    ;; pop-global-mark
+
+(global-set-key (kbd "M-SPC M-SPC") 'exchange-point-and-mark)
+
+(global-set-key (kbd "M-SPC w") 'mark-word)
+(global-set-key (kbd "M-SPC d") 'mark-defun)
+(global-set-key (kbd "M-SPC C-a") 'mark-whole-buffer)
+
+(global-set-key (kbd "M-SPC s") 'mark-sexp)
+
+(global-set-key (kbd "M-SPC x") 'xref-pop-marker-stack)
+(global-set-key (kbd "M-SPC p") 'pop-global-mark)
+
+(define-prefix-command 'rect-prfx)
+(global-set-key (kbd "M-,") 'rect-prfx)
+
+(global-unset-key (kbd "C-x SPC"))    ;; rectangle-mark-mode
+
+(global-unset-key (kbd "C-x r y"))    ;; yank-rectangle
+(global-unset-key (kbd "C-x r k"))    ;; kill-rectangle
+
+(global-unset-key (kbd "C-x r c"))    ;; clear-rectangle
+(global-unset-key (kbd "C-x r o"))    ;; open-rectangle
+(global-unset-key (kbd "C-x r t"))    ;; string-rectangle
+(global-unset-key (kbd "C-x r d"))    ;; delete-rectangle
+
+(global-unset-key (kbd "C-x r N"))    ;; rectangle-number-lines
+(global-unset-key (kbd "C-x r r"))    ;; copy-rectangle-to-register
+
+(global-set-key (kbd "C-M-SPC") 'rectangle-mark-mode)
+
+(global-set-key (kbd "M-, ;") 'yank-rectangle)
+(global-set-key (kbd "M-, .") 'kill-rectangle)
+
+(global-set-key (kbd "M-, c") 'clear-rectangle)
+(global-set-key (kbd "M-, o") 'open-rectangle)
+(global-set-key (kbd "M-, s") 'string-rectangle)
+(global-set-key (kbd "M-, d") 'delete-rectangle)
+
+(global-set-key (kbd "M-, R") 'copy-rectangle-to-register)
+
+(define-prefix-command 'search-prfx)
+(global-set-key (kbd "M-s") 'search-prfx)
+
+(global-unset-key (kbd "C-x C-v"))    ;; find-alternate-file
+(global-unset-key (kbd "C-x C-r"))    ;; find-file-read-only
+
+(global-unset-key (kbd "M-."))    ;; xref-find-definitions
+(global-unset-key (kbd "M-?"))    ;; xref-find-references
+(global-unset-key (kbd "C-M-."))    ;; xref-find-apropos
+
+(global-unset-key (kbd "C-M-r"))    ;; isearch-backward-regexp
+(global-unset-key (kbd "C-M-s"))    ;; isearch-forward-regexp
+
+(global-unset-key (kbd "M-%"))    ;; query-replace
+(global-unset-key (kbd "C-M-%"))    ;; query-replace-regexp
+
+(global-set-key (kbd "M-s C-f") 'find-alternate-file)
+
+(global-set-key (kbd "M-s ?") 'xref-find-definitions)
+(global-set-key (kbd "M-s C-?") 'xref-find-references)
+
+(global-set-key (kbd "M-s r") 'query-replace)
+(global-set-key (kbd "M-s R") 'query-replace-regexp)
+
+(define-prefix-command 'hi-prfx)
+(global-set-key (kbd "M-p") 'hi-prfx)
+
+(global-unset-key (kbd "M-s h ."))    ;; highlight-symbol-at-point
+(global-unset-key (kbd "M-s h p"))    ;; highlight-phrase
+
+(global-unset-key (kbd "M-s h r"))    ;; highlight-regexp
+(global-unset-key (kbd "M-s h l"))    ;; highlight-lines-matching-regexp
+(global-unset-key (kbd "M-s h u"))    ;; unhighlight-regexp
+
+(global-unset-key (kbd "M-s h f"))    ;; hi-lock-find-patterns
+(global-unset-key (kbd "M-s h w"))    ;; hi-lock-write-interactive-patterns
+
+(global-set-key (kbd "M-p h") 'highlight-symbol-at-point)
+(global-set-key (kbd "M-p p") 'highlight-phrase)
+
+(global-set-key (kbd "M-p x") 'highlight-regexp)
+(global-set-key (kbd "M-p l") 'highlight-lines-matching-regexp)
+(global-set-key (kbd "M-p u") 'unhighlight-regexp)
 
 (global-unset-key (kbd "C-M-o"))    ;; split-line
 
-(global-unset-key (kbd "C-t"))    ;; transpose-key
-(global-unset-key (kbd "M-t"))    ;; tranpose-words
+(global-unset-key (kbd "C-t"))    ;; transpose-chars
+(global-unset-key (kbd "M-t"))    ;; transpose-words
 (global-unset-key (kbd "C-x C-t"))    ;; transpose-lines
 
 (global-unset-key (kbd "M-l"))    ;; downcase-word
@@ -318,38 +346,175 @@
 (global-unset-key (kbd "C-x C-l"))    ;; downcase-region
 (global-unset-key (kbd "C-x C-u"))    ;; upcase-region
 
+(global-set-key (kbd "C-x C-r") 'transpose-chars)
+(global-set-key (kbd "C-x C-t") 'transpose-words)
+(global-set-key (kbd "C-x C-y") 'transpose-lines)
+(global-set-key (kbd "C-x C-u") 'transpose-sentences)
+
+(global-unset-key (kbd "M-j"))    ;; default-indent-new-line
+(global-unset-key (kbd "C-M-j"))    ;; default-indent-new-line
+
+(global-unset-key (kbd "C-x TAB"))    ;; indent-rigidly
+(global-unset-key (kbd "C-M-\\"))    ;; indent-region
+(global-unset-key (kbd "M-)"))    ;; move-past-close-and-reindent
 
 
 
 
 
+(global-unset-key (kbd "C-x ;"))    ;; comment-set-column
+(global-unset-key (kbd "M-;"))    ;; comment-dwim
 
+(global-unset-key (kbd "C-q"))    ;; quoted-insert
+(global-unset-key (kbd "C-x C-d"))    ;; list-directory
 
+(define-prefix-command 'frames-prfx)
+(global-set-key (kbd "C-f") 'frames-prfx)
 
-(define-prefix-command 'rect-prfx)
-(global-set-key (kbd "M-t") 'rect-prfx)
+(global-unset-key (kbd "M-<f10>"))    ;; toggle-frame-maximized
+(global-unset-key (kbd "ESC <f10>"))    ;; toggle-frame-maximized
 
-(global-unset-key (kbd "C-x r y"))    ;; yank-rectangle
-(global-unset-key (kbd "C-x r k"))    ;; kill-rectangle
-(global-unset-key (kbd "C-x r d"))    ;; delete-rectangle
+(global-unset-key (kbd "C-x 5 2"))    ;; make-frame-command
+(global-unset-key (kbd "C-x 5 c"))    ;; clone-frame
 
-(global-unset-key (kbd "C-x r c"))    ;; clear-rectangle
-(global-unset-key (kbd "C-x r o"))    ;; open-rectangle
-(global-unset-key (kbd "C-x r t"))    ;; string-rectangle
+(global-unset-key (kbd "C-x 5 0"))    ;; delete-frame
+(global-unset-key (kbd "C-x 5 1"))    ;; delete-other-frames
 
-(global-unset-key (kbd "C-x r N"))    ;; rectangle-number-lines
-(global-unset-key (kbd "C-x r r"))    ;; copy-rectangle-to-register
+(global-unset-key (kbd "C-z"))    ;; suspend-frame
+(global-unset-key (kbd "C-x z"))    ;; suspend-frame
+(global-unset-key (kbd "C-x C-z"))    ;; suspend-frame
 
-(global-set-key (kbd "M-t y") 'yank-rectangle)
-(global-set-key (kbd "M-t k") 'kill-rectangle)
-(global-set-key (kbd "M-t d") 'delete-rectangle)
+(global-unset-key (kbd "C-x 5 5"))    ;; other-frame-prefix
+(global-unset-key (kbd "C-x 5 C-o"))    ;; display-buffer-other-frame
+(global-unset-key (kbd "C-x 5 m"))    ;; compose-mail-other-frame
+(global-unset-key (kbd "C-x 5 p"))    ;; project-other-frame-command
+(global-unset-key (kbd "C-<drag-n-drop>"))    ;; w32-drag-n-drop-other-frame
 
-(global-set-key (kbd "M-t c") 'clear-rectangle)
-(global-set-key (kbd "M-t o") 'open-rectangle)
-(global-set-key (kbd "M-t s") 'string-rectangle)
+(global-unset-key (kbd "C-x 5 o"))    ;; other-frame
+(global-unset-key (kbd "C-x 5 b"))    ;; switch-to-buffer-other-frame
 
-(global-set-key (kbd "M-t n") 'rectangle-number-lines)
-(global-set-key (kbd "M-t R") 'copy-rectangle-to-register)
+(global-unset-key (kbd "C-x 5 C-f"))    ;; find-file-other-frame
+(global-unset-key (kbd "C-x 5 ."))    ;; xref-find-definitions-other-frame
+(global-unset-key (kbd "C-x 5 f"))    ;; find-file-other-frame
+(global-unset-key (kbd "C-x 5 r"))    ;; find-file-read-only-other-frame
+(global-unset-key (kbd "C-x 5 d"))    ;; dired-other-frame
+
+(global-set-key (kbd "C-f f") 'make-frame-command)
+(global-set-key (kbd "C-f F") 'clone-frame)
+
+(global-set-key (kbd "C-f w") 'delete-frame)
+(global-set-key (kbd "C-f 1") 'delete-other-frames)
+
+(global-set-key (kbd "C-f 5") 'other-frame-prefix)
+(global-set-key (kbd "C-f C-b") 'display-buffer-other-frame)
+
+(global-set-key (kbd "C-f o") 'other-frame)
+(global-set-key (kbd "C-f b") 'switch-to-buffer-other-frame)
+
+(global-set-key (kbd "C-f C-f") 'find-file-other-frame)
+(global-set-key (kbd "C-f d") 'dired-other-frame)
+
+(windmove-default-keybindings)
+(define-prefix-command 'windows-prfx)
+(global-set-key (kbd "C-w") 'windows-prfx)
+
+(global-unset-key (kbd "C-x +"))    ;; balance-windows
+(global-unset-key (kbd "C-x ^"))    ;; enlarge-window
+(global-unset-key (kbd "C-x }"))    ;; enlarge-window-horizontally
+(global-unset-key (kbd "C-x {"))    ;; shrink-window-horizontally
+(global-unset-key (kbd "C-x -"))    ;; shrink-window-if-larger-than-buffer
+
+(global-unset-key (kbd "C-x 2"))    ;; split-window-below
+(global-unset-key (kbd "C-x 3"))    ;; split-window-right
+
+(global-unset-key (kbd "C-x 0"))    ;; delete-window
+(global-unset-key (kbd "C-x 1"))    ;; delete-other-windows
+(global-unset-key (kbd "C-x 4 0"))    ;; kill-buffer-and-window
+
+(global-unset-key (kbd "C-x 4 4"))    ;; other-window-prefix
+(global-unset-key (kbd "C-x 4 C-o"))    ;; display-buffer
+(global-unset-key (kbd "C-x 4 c"))    ;; clone-indirect-buffer-other-window
+(global-unset-key (kbd "C-x 4 a"))    ;; add-change-log-entry-other-window
+(global-unset-key (kbd "C-x 4 m"))    ;; compose-mail-other-window
+(global-unset-key (kbd "C-x 4 p"))    ;; project-other-window-command
+
+(global-unset-key (kbd "C-x o"))    ;; other-window
+(global-unset-key (kbd "C-x 4 b"))    ;; switch-to-buffer-other-window
+
+(global-unset-key (kbd "C-x 4 C-f"))    ;; find-file-other-window
+(global-unset-key (kbd "C-x 4 C-j"))    ;; dired-jump-other-window
+(global-unset-key (kbd "C-x 4 ."))    ;; xref-find-definitions-other-window
+(global-unset-key (kbd "C-x 4 d"))    ;; dired-other-window
+(global-unset-key (kbd "C-x 4 f"))    ;; find-file-other-window
+(global-unset-key (kbd "C-x 4 r"))    ;; find-file-read-only-other-window
+
+(global-unset-key (kbd "C-x 4 1"))    ;; same-window-prefix
+
+(global-unset-key (kbd "<f2>"))    ;; 2C-command
+(global-unset-key (kbd "<f2> 2"))    ;; 2C-two-columns
+(global-unset-key (kbd "<f2> b"))    ;; 2C-associate-buffer
+(global-unset-key (kbd "<f2> s"))    ;; 2C-split
+(global-unset-key (kbd "<f2> <f2>"))    ;; 2C-two-columns
+(global-unset-key (kbd "C-x 6 2"))    ;; 2C-two-columns
+(global-unset-key (kbd "C-x 6 b"))    ;; 2C-associate-buffer
+(global-unset-key (kbd "C-x 6 s"))    ;; 2C-split
+(global-unset-key (kbd "C-x 6 <f2>"))    ;; 2C-two-columns
+
+(global-set-key (kbd "C-w =") 'balance-windows)
+(global-set-key (kbd "C-w <left>") 'shrink-window-horizontally)
+(global-set-key (kbd "C-w ^") 'enlarge-window)
+(global-set-key (kbd "C-w <right>") 'enlarge-window-horizontally)
+
+(global-set-key (kbd "C-w [") 'split-window-below)
+(global-set-key (kbd "C-w ]") 'split-window-right)
+
+(global-set-key (kbd "C-w w") 'delete-window)
+(global-set-key (kbd "C-w W") 'delete-other-windows)
+(global-set-key (kbd "C-w C-w") 'kill-buffer-and-window)
+
+(global-set-key (kbd "C-w b") 'display-buffer)
+
+(global-set-key (kbd "C-w C-f") 'find-file-other-window)
+(global-set-key (kbd "C-w C-d") 'dired-jump-other-window)
+(global-set-key (kbd "C-w B") 'switch-to-buffer-other-window)
+(global-set-key (kbd "C-w c") 'clone-indirect-buffer-other-window)
+(global-set-key (kbd "C-w d") 'dired-other-window)
+
+(global-set-key (kbd "C-w 4") 'same-window-prefix)
+
+(define-prefix-command 'buffers-prfx)
+(global-set-key (kbd "C-b") 'buffers-prfx)
+
+(defun buffer-continous-switch()
+  )
+
+(global-unset-key (kbd "C-x b"))    ;; switch-to-buffer
+(global-unset-key (kbd "C-x <right>"))    ;; next-buffer
+(global-unset-key (kbd "C-x C-<right>"))    ;; next-buffer
+(global-unset-key (kbd "C-x <left>"))    ;; previous-buffer
+(global-unset-key (kbd "C-x C-<left>"))    ;; previous-buffer
+
+(global-unset-key (kbd "C-x s"))    ;; save-some-buffers
+(global-unset-key (kbd "C-x C-b"))    ;; list-buffers
+(global-unset-key (kbd "C-x C-q"))    ;; read-only-mode
+
+(global-unset-key (kbd "C-x x n"))    ;; clone-buffer
+
+(global-unset-key (kbd "C-x k"))    ;; kill-buffer
+
+(global-unset-key (kbd "C-x x g"))    ;; revert-buffer-quick
+(global-unset-key (kbd "C-x x r"))    ;; rename-buffer
+(global-unset-key (kbd "C-x x u"))    ;; rename-uniquely
+(global-unset-key (kbd "C-x x i"))    ;; insert-buffer
+
+(global-set-key (kbd "C-b <left>") 'previous-buffer)
+(global-set-key (kbd "C-b <right>") 'next-buffer)
+
+(global-set-key (kbd "C-b s") 'save-some-buffers)
+(global-set-key (kbd "C-b l") 'list-buffers)
+
+(global-set-key (kbd "C-b k") 'kill-buffer)
+(global-set-key (kbd "C-b x") 'save-buffers-kill-terminal)
 
 (define-prefix-command 'tabs-prfx)
 (global-set-key (kbd "C-t") 'tabs-prfx)
@@ -443,8 +608,8 @@
 (global-set-key (kbd "C-v G") 'vc-ignore)
 (global-set-key (kbd "C-v C-x") 'vc-delete-file)
 
-(global-set-key (kbd "C-v =") 'vc-diff)
-(global-set-key (kbd "C-v +") 'vc-root-diff)
+(global-set-key (kbd "C-v D") 'vc-diff)
+(global-set-key (kbd "C-v C-d") 'vc-root-diff)
 
 (global-set-key (kbd "C-v C-p") 'vc-print-log)
 (global-set-key (kbd "C-v C-l") 'vc-print-root-log)
@@ -499,161 +664,13 @@
 (global-set-key (kbd "C-p G") 'project-or-external-find-regexp)
 (global-set-key (kbd "C-p r") 'project-query-replace-regexp)
 
-(define-prefix-command 'frames-prfx)
-(global-set-key (kbd "M-f") 'frames-prfx)
+(global-unset-key (kbd "C-x `"))    ;; next-error
+(global-unset-key (kbd "M-g M-n"))    ;; next-error
+(global-unset-key (kbd "M-g n"))    ;; next-error
+(global-unset-key (kbd "M-g M-p"))    ;; previous-error
+(global-unset-key (kbd "M-g p"))    ;; previous-error
 
-(global-unset-key (kbd "M-<f10>"))    ;; toggle-frame-maximized
-(global-unset-key (kbd "ESC <f10>"))    ;; toggle-frame-maximized
 
-(global-unset-key (kbd "C-x 5 2"))    ;; make-frame-command
-(global-unset-key (kbd "C-x 5 c"))    ;; clone-frame
-
-(global-unset-key (kbd "C-x 5 0"))    ;; delete-frame
-(global-unset-key (kbd "C-x 5 1"))    ;; delete-other-frames
-
-(global-unset-key (kbd "C-z"))    ;; suspend-frame
-(global-unset-key (kbd "C-x z"))    ;; suspend-frame
-(global-unset-key (kbd "C-x C-z"))    ;; suspend-frame
-
-(global-unset-key (kbd "C-x 5 5"))    ;; other-frame-prefix
-(global-unset-key (kbd "C-x 5 C-o"))    ;; display-buffer-other-frame
-(global-unset-key (kbd "C-x 5 m"))    ;; compose-mail-other-frame
-(global-unset-key (kbd "C-x 5 p"))    ;; project-other-frame-command
-(global-unset-key (kbd "C-<drag-n-drop>"))    ;; w32-drag-n-drop-other-frame
-
-(global-unset-key (kbd "C-x 5 o"))    ;; other-frame
-(global-unset-key (kbd "C-x 5 b"))    ;; switch-to-buffer-other-frame
-
-(global-unset-key (kbd "C-x 5 C-f"))    ;; find-file-other-frame
-(global-unset-key (kbd "C-x 5 ."))    ;; xref-find-definitions-other-frame
-(global-unset-key (kbd "C-x 5 f"))    ;; find-file-other-frame
-(global-unset-key (kbd "C-x 5 r"))    ;; find-file-read-only-other-frame
-(global-unset-key (kbd "C-x 5 d"))    ;; dired-other-frame
-
-(global-set-key (kbd "M-f F") 'toggle-frame-maximized)
-
-(global-set-key (kbd "M-f f") 'make-frame-command)
-(global-set-key (kbd "M-f F") 'clone-frame)
-
-(global-set-key (kbd "M-f w") 'delete-frame)
-(global-set-key (kbd "M-f W") 'delete-other-frames)
-
-(global-set-key (kbd "M-f 5") 'other-frame-prefix)
-(global-set-key (kbd "M-f C-b") 'display-buffer-other-frame)
-(global-set-key (kbd "M-f m") 'compose-mail-other-frame)
-(global-set-key (kbd "M-f p") 'project-other-frame-command)
-
-(global-set-key (kbd "M-f o") 'other-frame)
-(global-set-key (kbd "M-f b") 'switch-to-buffer-other-frame)
-
-(global-set-key (kbd "M-f C-f") 'find-file-other-frame)
-(global-set-key (kbd "M-f d") 'dired-other-frame)
-
-(windmove-default-keybindings)
-(define-prefix-command 'windows-prfx)
-(global-set-key (kbd "C-w") 'windows-prfx)
-
-(defun window-adjust()
-  )
-
-(global-unset-key (kbd "C-x +"))    ;; balance-windows
-(global-unset-key (kbd "C-x ^"))    ;; enlarge-window
-(global-unset-key (kbd "C-x }"))    ;; enlarge-window-horizontally
-(global-unset-key (kbd "C-x {"))    ;; shrink-window-horizontally
-(global-unset-key (kbd "C-x -"))    ;; shrink-window-if-larger-than-buffer
-
-(global-unset-key (kbd "C-x 2"))    ;; split-window-below
-(global-unset-key (kbd "C-x 3"))    ;; split-window-right
-
-(global-unset-key (kbd "C-x 0"))    ;; delete-window
-(global-unset-key (kbd "C-x 1"))    ;; delete-other-windows
-(global-unset-key (kbd "C-x 4 0"))    ;; kill-buffer-and-window
-
-(global-unset-key (kbd "C-x 4 4"))    ;; other-window-prefix
-(global-unset-key (kbd "C-x 4 C-o"))    ;; display-buffer
-(global-unset-key (kbd "C-x 4 c"))    ;; clone-indirect-buffer-other-window
-(global-unset-key (kbd "C-x 4 a"))    ;; add-change-log-entry-other-window
-(global-unset-key (kbd "C-x 4 m"))    ;; compose-mail-other-window
-(global-unset-key (kbd "C-x 4 p"))    ;; project-other-window-command
-
-(global-unset-key (kbd "C-x o"))    ;; other-window
-(global-unset-key (kbd "C-x 4 b"))    ;; switch-to-buffer-other-window
-
-(global-unset-key (kbd "C-x 4 C-f"))    ;; find-file-other-window
-(global-unset-key (kbd "C-x 4 C-j"))    ;; dired-jump-other-window
-(global-unset-key (kbd "C-x 4 ."))    ;; xref-find-definitions-other-window
-(global-unset-key (kbd "C-x 4 d"))    ;; dired-other-window
-(global-unset-key (kbd "C-x 4 f"))    ;; find-file-other-window
-(global-unset-key (kbd "C-x 4 r"))    ;; find-file-read-only-other-window
-
-(global-unset-key (kbd "C-x 4 1"))    ;; same-window-prefix
-
-(global-unset-key (kbd "<f2> 2"))    ;; 2C-two-columns
-(global-unset-key (kbd "<f2> b"))    ;; 2C-associate-buffer
-(global-unset-key (kbd "<f2> s"))    ;; 2C-split
-(global-unset-key (kbd "<f2> <f2>"))    ;; 2C-two-columns
-(global-unset-key (kbd "C-x 6 2"))    ;; 2C-two-columns
-(global-unset-key (kbd "C-x 6 b"))    ;; 2C-associate-buffer
-(global-unset-key (kbd "C-x 6 s"))    ;; 2C-split
-(global-unset-key (kbd "C-x 6 <f2>"))    ;; 2C-two-columns
-
-(global-set-key (kbd "C-w =") 'balance-windows)
-(global-set-key (kbd "C-w <left>") 'shrink-window-horizontally)
-(global-set-key (kbd "C-w ^") 'enlarge-window)
-(global-set-key (kbd "C-w <right>") 'enlarge-window-horizontally)
-
-(global-set-key (kbd "C-w 2") 'split-window-below)
-(global-set-key (kbd "C-w 3") 'split-window-right)
-
-(global-set-key (kbd "C-w 0") 'delete-window)
-(global-set-key (kbd "C-w 1") 'delete-other-windows)
-(global-set-key (kbd "C-w W") 'kill-buffer-and-window)
-
-(global-set-key (kbd "C-w b") 'display-buffer)
-(global-set-key (kbd "C-w m") 'compose-mail-other-window)
-(global-set-key (kbd "C-w p") 'project-other-window-command)
-
-(global-set-key (kbd "C-w C-f") 'find-file-other-window)
-(global-set-key (kbd "C-w C-d") 'dired-jump-other-window)
-(global-set-key (kbd "C-w B") 'switch-to-buffer-other-window)
-(global-set-key (kbd "C-w c") 'clone-indirect-buffer-other-window)
-(global-set-key (kbd "C-w .") 'xref-find-definitions-other-window)
-(global-set-key (kbd "C-w d") 'dired-other-window)
-
-(global-set-key (kbd "C-w 4") 'same-window-prefix)
-
-(define-prefix-command 'buffers-prfx)
-(global-set-key (kbd "M-b") 'buffers-prfx)
-
-(defun buffer-continous-switch()
-  )
-
-(global-unset-key (kbd "C-x b"))    ;; switch-to-buffer
-(global-unset-key (kbd "C-x <right>"))    ; next-buffer
-(global-unset-key (kbd "C-x C-<right>"))    ;; next-buffer
-(global-unset-key (kbd "C-x <left>"))    ;; previous-buffer
-(global-unset-key (kbd "C-x C-<left>"))    ;; previous-buffer
-
-(global-unset-key (kbd "C-x s"))    ;; save-some-buffers
-(global-unset-key (kbd "C-x C-b"))    ;; list-buffers
-
-(global-unset-key (kbd "C-x x n"))    ;; clone-buffer
-
-(global-unset-key (kbd "C-x k"))    ;; kill-buffer
-(global-unset-key (kbd "C-x C-c"))    ;; save-buffers-kill-terminal
-
-(global-unset-key (kbd "C-x x g"))    ;; revert-buffer-quick
-(global-unset-key (kbd "C-x x r"))    ;; rename-buffer
-(global-unset-key (kbd "C-x x i"))    ;; insert-buffer
-
-(global-set-key (kbd "M-b <left>") 'previous-buffer)
-(global-set-key (kbd "M-b <right>") 'next-buffer)
-
-(global-set-key (kbd "M-b s") 'save-some-buffers)
-(global-set-key (kbd "M-b l") 'list-buffers)
-
-(global-set-key (kbd "M-b k") 'kill-buffer)
-(global-set-key (kbd "M-b x") 'save-buffers-kill-terminal)
 
 (global-unset-key (kbd "C-x a g"))    ;; add-global-abbrev
 (global-unset-key (kbd "C-x a -"))    ;; inverse-add-global-abbrev
@@ -682,7 +699,7 @@
 
 
 (define-prefix-command 'register-prfx)
-(global-set-key (kbd "M-r") 'register-prfx)
+(global-set-key (kbd "M-t") 'register-prfx)
 
 (global-unset-key (kbd "C-x r C-@"))    ;; point-to-register
 (global-unset-key (kbd "C-x r C-SPC"))    ;; point-to-register
@@ -702,23 +719,25 @@
 (global-unset-key (kbd "C-x r w"))    ;; window-configuration-to-register
 (global-unset-key (kbd "C-x r ESC"))    ;; Prefix Command
 
-(global-set-key (kbd "M-r n") 'number-to-register)
+(global-set-key (kbd "M-t n") 'number-to-register)
 
-(global-set-key (kbd "M-r x") 'copy-to-register)
+(global-set-key (kbd "M-t x") 'copy-to-register)
 
-(global-set-key (kbd "M-r +") 'increment-register)
+(global-set-key (kbd "M-t +") 'increment-register)
 
-(global-set-key (kbd "M-r i") 'insert-register)
-(global-set-key (kbd "M-r j") 'jump-to-register)
+(global-set-key (kbd "M-t i") 'insert-register)
+(global-set-key (kbd "M-t j") 'jump-to-register)
 
-(global-set-key (kbd "M-r f") 'frameset-to-register)
-(global-set-key (kbd "M-r w") 'window-configuration-to-register)
+(global-set-key (kbd "M-t f") 'frameset-to-register)
+(global-set-key (kbd "M-t w") 'window-configuration-to-register)
 
 (global-unset-key (kbd "C-x ("))    ;; kmacro-start-macro
 (global-unset-key (kbd "C-x C-k s"))    ;; kmacro-start-macro
 (global-unset-key (kbd "C-x C-k C-s"))    ;; kmacro-start-macro
+(global-unset-key (kbd "<f3>"))    ;; kmacro-start-macro-or-insert-counter
 (global-unset-key (kbd "C-x )"))    ;; kmacro-end-macro
 (global-unset-key (kbd "C-x e"))    ;; kmacro-end-and-call-macro
+(global-unset-key (kbd "<f4>"))    ;; kamcro-end-or-call-macro
 (global-unset-key (kbd "S-<mouse-3>"))    ;; kmarcro-end-call-mouse
 
 (global-unset-key (kbd "C-x C-k C-a"))    ;; kmacro-add-counter
@@ -759,10 +778,10 @@
 (global-unset-key (kbd "C-x r b"))    ;; bookmark-jump
 (global-unset-key (kbd "C-x r l"))    ;; bookmark-bmenu-list
 
-(global-set-key (kbd "C-x b s") 'bookmark-set)
-(global-set-key (kbd "C-x b S") 'bookmark-set-no-overwrite)
-(global-set-key (kbd "C-x b j") 'bookmark-jump)
-(global-set-key (kbd "C-x b l") 'bookmark-bmenu-list)
+(global-unset-key (kbd "M-("))    ;; insert-parentheses
+(global-unset-key (kbd "C-x i"))    ;; insert-file
+
+(global-unset-key (kbd "C-M-i"))    ;; complete-symbol
 
 (define-prefix-command 'narrow-prfx)
 (global-set-key (kbd "M-n") 'narrow-prfx)
@@ -778,27 +797,6 @@
 (global-set-key (kbd "M-n r") 'narrow-to-region)
 (global-set-key (kbd "M-n p") 'narrow-to-page)
 (global-set-key (kbd "M-n w") 'widen)
-
-(global-unset-key (kbd "M-("))    ;; insert-parentheses
-(global-unset-key (kbd "C-x i"))    ;; insert-file
-
-(global-unset-key (kbd "C-M-i"))    ;; complete-symbol
-
-(global-unset-key (kbd "M-!"))    ;; shell-command
-(global-unset-key (kbd "M-&"))    ;; async-shell-command
-(global-unset-key (kbd "M-|"))    ;; shell-command-on-region
-(global-unset-key (kbd "M-X"))    ;; execute-extended-command-for-buffer
-
-(global-unset-key (kbd "C-M-c"))    ;; exit-recursive-edit
-
-(global-unset-key (kbd "M-:"))    ;; eval-expression
-(global-unset-key (kbd "C-x C-e"))    ;; eval-last-sexp
-
-
-
-
-
-
 
 (global-unset-key (kbd "C-x RET F"))    ;; set-file-name-coding-system
 (global-unset-key (kbd "C-x RET k"))    ;; set-keyboard-coding-system
@@ -816,7 +814,27 @@
 
 (global-unset-key (kbd "M-$"))    ;; ispell-word
 
+(global-unset-key (kbd "C-x 8 RET"))    ;; insert-char
 (global-unset-key (kbd "C-x \\"))    ;; activate-transient-input-method
+
+(global-unset-key (kbd "M-!"))    ;; shell-command
+(global-unset-key (kbd "M-&"))    ;; async-shell-command
+(global-unset-key (kbd "M-|"))    ;; shell-command-on-region
+(global-unset-key (kbd "M-X"))    ;; execute-extended-command-for-buffer
+(global-unset-key (kbd "C-x M-:"))    ;; repeat-complex-command
+(global-unset-key (kbd "C-x ESC ESC"))    ;; repeat-complex-command
+
+(global-unset-key (kbd "C-M-c"))    ;; exit-recursive-edit
+
+(global-unset-key (kbd "M-:"))    ;; eval-expression
+(global-unset-key (kbd "M-ESC :"))    ;; eval-expression
+(global-unset-key (kbd "C-x C-e"))    ;; eval-last-sexp
+
+
+
+
+
+
 
 ;; (global-unset-key (kbd "<f1> C-a"))    ;; about-emacs
 ;; (global-unset-key (kbd "<f1> C-c"))    ;; describe-copying
@@ -866,12 +884,24 @@
 ;; (global-unset-key (kbd "<f1> w"))    ;; where-is
 ;; (global-unset-key (kbd "<f1> x"))    ;; describe-command
 
+(global-unset-key (kbd "<f10>"))    ;; menu-bar-open
+(global-unset-key (kbd "M-`"))    ;; tmm-menubar
+(global-unset-key (kbd "S-<f10>"))    ;; context-menu-open
+(global-unset-key (kbd "C-<f10>"))    ;; buffer-menu-open
+(global-unset-key (kbd "C-<down-mouse-1>"))    ;; mouse-buffer-menu
+
+(global-unset-key (kbd "C-<down-mouse-2>"))    ;; facemenu-menu
+(global-unset-key (kbd "S-<down-mouse-1>"))    ;; mouse-appearance-menu
+
 (global-unset-key (kbd "C-x *"))    ;; calc-dispatch
 (global-unset-key (kbd "C-x 4"))    ;; ctrl-x-4-prefix
 (global-unset-key (kbd "C-x 5"))    ;; ctrl-x-5-prefix
 (global-unset-key (kbd "C-x 6"))    ;; 2C-command
 (global-unset-key (kbd "C-x C-k"))    ;; kmacro-keymap
 (global-unset-key (kbd "C-x v"))    ;; vc-prefix-map
+
+(defun text-scaler()
+  )
 
 (global-unset-key (kbd "C-x C-+"))    ;; text-scale-adjust
 (global-unset-key (kbd "C-x C--"))    ;; text-scale-adjust
@@ -882,34 +912,33 @@
 
 
 
-(global-unset-key (kbd "M-<down-mouse-1>"))    ;; mouse-drag-secondary
-(global-unset-key (kbd "M-<drag-mouse-1>"))    ;; mouse-set-secondary
-(global-unset-key (kbd "M-<mouse-1>"))    ;; mouse-start-secondary
-(global-unset-key (kbd "M-<mouse-2>"))    ;; mouse-yank-secondary
-(global-unset-key (kbd "M-<mouse-3>"))    ;; mouse-secondary-save-then-kill
-
-(global-unset-key (kbd "M-`"))    ;; tmm-menubar
-(global-unset-key (kbd "S-<f10>"))    ;; context-menu-open
-(global-unset-key (kbd "C-<f10>"))    ;; buffer-menu-open
-(global-unset-key (kbd "C-<down-mouse-2>"))    ;; facemenu-menu
-(global-unset-key (kbd "S-<down-mouse-1>"))    ;; mouse-appearance-menu
-(global-unset-key (kbd "C-<down-mouse-1>"))    ;; mouse-buffer-menu
-
 (global-unset-key (kbd "M-="))    ;; count-words-region
 (global-unset-key (kbd "C-x l"))    ;; count-lines-page
 
 (global-unset-key (kbd "C-x ="))    ;; what-cursor-position
 
-(global-unset-key (kbd "M--"))    ;; negative-argument
-(global-unset-key (kbd "C-M--"))    ;; negative-argument
-
-(global-unset-key (kbd "C-x ."))    ;; set-fill-prefix
-(global-unset-key (kbd "C-x f"))    ;; set-fill-column
-(global-unset-key (kbd "M-q"))    ;; fill-paragraph
-
 (global-unset-key (kbd "C-M-<mouse-1>"))    ;; mouse-set-point
 (global-unset-key (kbd "M-~"))    ;; not-modified
 (global-unset-key (kbd "C-x C-n"))    ;; set-goal-column
+(global-unset-key (kbd "C-x x f"))    ;; font-lock-update
+(global-unset-key (kbd "C-x x t"))    ;; toggle-truncate-lines
+(global-unset-key (kbd "M-ESC ESC"))    ;; keyboard-escape-quit
+
+(defun cc-hungry-delete()
+  (local-unset-key (kbd "C-c DEL"))    ;; c-hungry-delete-backwards
+  (local-unset-key (kbd "C-c C-DEL"))    ;; c-hungry-delete-backwards
+  (local-unset-key (kbd "C-c C-<backspace>"))    ;; c-hungry-delete-backwards
+  (local-unset-key (kbd "C-c C-<delete>"))    ;; c-hungry-delete-forward
+  (local-unset-key (kbd "C-c C-<deletechar>"))    ;; c-hungry-delete-forward
+  (local-unset-key (kbd "C-c <deletechar>"))    ;; c-hungry-delete-forward
+  (local-unset-key (kbd "C-c C-d"))    ;; c-hungry-delete-forward
+  (local-set-key (kbd "C-c C-f") 'c-hungry-delete-forward)
+  (local-set-key (kbd "C-c C-b") 'c-hungry-delete-backwards)
+  )
+
+(defun cc-common-bindings()
+  'cc-hungry-delete
+  )
 
 
 
@@ -968,47 +997,140 @@
 
 
 
-(add-hook 'c-initialization-hook
-		  'c-init-settings
-		  )
 
-(add-hook 'c-mode-common-hook
-		  'c-common-settings
+
+(global-unset-key (kbd "C-x ."))    ;; set-fill-prefix
+(global-unset-key (kbd "C-x f"))    ;; set-fill-column
+
+(global-unset-key (kbd "M-q"))    ;; fill-paragraph
+
+(global-set-key (kbd "C-x a a") 'auto-fill-mode)
+
+(global-set-key (kbd "C-x a .") 'set-fill-prefix)
+(global-set-key (kbd "C-x a f") 'set-fill-column)
+
+(global-set-key (kbd "C-x a p") 'fill-paragraph)
+(global-set-key (kbd "C-x a r") 'fill-region)
+(global-set-key (kbd "C-x a P") 'fill-region-as-paragraph)
+(global-set-key (kbd "C-x a c") 'center-line)
+
+(defun rect-util-unbind()
+  (define-key rectangle-mark-mode-map (kbd "C-o") nil)    ;; open-rectangle
+  (define-key rectangle-mark-mode-map (kbd "C-t") nil)    ;; string-rectangle
+  )
+
+
+
+(define-prefix-command 'ammusements-prfx)
+(global-set-key (kbd "C-`") 'ammusements-prfx)
+
+(global-set-key (kbd "C-` b") 'blackbox)
+
+(global-set-key (kbd "C-` m") 'mpuz)
+
+(global-set-key (kbd "C-` B") 'bubbles)
+
+(global-set-key (kbd "C-` d") 'decipher)
+
+(global-set-key (kbd "C-` D") 'dissociated-press)
+
+(global-set-key (kbd "C-` C-d") 'dunnet)
+
+(global-set-key (kbd "C-` g") 'gomoku)
+
+(global-set-key (kbd "C-` h") 'hanoi)
+
+(global-set-key (kbd "C-` l") 'life)
+
+(global-set-key (kbd "C-` M") 'morse-region)
+
+(defun pong-controls-unbind()
+  (local-unset-key (kbd "2"))    ;; pong-move-down
+  (local-unset-key (kbd "4"))    ;; pong-move-left
+  (local-unset-key (kbd "6"))    ;; pong-move-right
+  (local-unset-key (kbd "8"))    ;; pong-move-up
+  (local-unset-key (kbd "<down>"))    ;; pong-move-down
+  (local-unset-key (kbd "<left>"))    ;; pong-move-left
+  (local-unset-key (kbd "<right>"))    ;; pong-move-right
+  (local-unset-key (kbd "<up>"))    ;; pong-move-up
+  )
+
+(global-set-key (kbd "C-` p") 'pong)
+
+(defun pong-controls()
+  (local-set-key (kbd "w") 'pong-move-left)
+  (local-set-key (kbd "s") 'pong-move-right)
+  (local-set-key (kbd "o") 'pong-move-up)
+  (local-set-key (kbd "l") 'pong-move-down)
+  )
+
+(defun snake-controls-unbind()
+  )
+
+(global-set-key (kbd "C-` s") 'snake)
+
+(defun snake-controls()
+  )
+
+
+
+(global-set-key (kbd "C-` t") 'tetris)
+
+(defun tetris-controls()
+  )
+
+(global-set-key (kbd "C-` S") 'solitaire)
+
+(global-set-key (kbd "C-` z") 'zone)
+
+(global-set-key (kbd "C-` C-b") 'butterfly)
+
+(global-set-key (kbd "C-` C-D") 'doctor)
+
+
+
+
+
+(add-hook 'c-initialization-hook
+  		  'cc-common-bindings
 		  )
 
 (add-hook 'c-mode-hook
 		  'c-mode-settings
-		  'c-mode-bindings
 		  )
 
 (add-hook 'c++-mode-hook
 		  'cpp-mode-settings
-		  'cpp-mode-bindings
 		  )
 
 (add-hook 'objc-mode-hook
 		  'objc-mode-settings
-		  'objc-mode-bindings
 		  )
 
 (add-hook 'java-mode-hook
 		  'java-mode-settings
-		  'java-mode-bindings
 		  )
 
 (add-hook 'idl-mode-hook
 		  'idl-mode-settings
-		  'idl-mode-bindings
 		  )
 
 (add-hook 'pike-mode-hook
 		  'pike-mode-settings
-		  'pike-mode-bindings
 		  )
 
 (add-hook 'awk-mode-hook
 		  'awk-mode-settings
-		  'awk-mode-bindings
+		  )
+
+
+
+
+
+
+
+(add-hook 'org-mode-hook
+		  'turn-on-auto-fill
 		  )
 
 
@@ -1021,10 +1143,8 @@
 		  'toggle-frame-maximized t
 		  )
 
-
-
-
-
-
+(add-hook 'rectangle-mark-mode-hook
+		  'rect-util-unbind
+		  )
 
 
