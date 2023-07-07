@@ -26,7 +26,7 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 #+END_SRC
 
 * Settings
-** Emacs Settings
+** Emacs
 *** Startup Screen
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-splash-screen t)                     ;; Startup Screen
@@ -46,11 +46,6 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-display-line-numbers-mode)
 #+END_SRC
 
-*** Whitespace Mode
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
 *** Tab Space
 #+BEGIN_SRC emacs-lisp
 (setq-default tab-width 4)
@@ -58,7 +53,12 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (setq backward-delete-char-untabify-method nil)
 #+END_SRC
 
-*** Git
+*** Whitespace Mode
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+*** Version Control
 The plan here is that when a git window is opened, it won't display the line numbers.
 #+BEGIN_SRC emacs-lisp
 
@@ -70,7 +70,7 @@ The plan here is that when a git window is opened, it won't display the line num
 (setq-default fill-column 150)
 #+END_SRC
 
-** Custom Settings
+** Custom
 *** Variables
 Convenience:
 - toc-org: Table of Contents creator
@@ -96,7 +96,7 @@ Themes:
    )
 #+END_SRC
 
-** Mode Settings
+** Modes
 *** Major Mode
 **** CC Mode
 #+BEGIN_SRC emacs-lisp
