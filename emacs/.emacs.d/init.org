@@ -1969,6 +1969,8 @@ Non-user created prefixes
 #+END_SRC
 
 *** Minor Mode
+Though "local" refers to Major modes, I decided to include others that I think "relate" to the concept of "local."
+
 **** Auto Fill Mode
 ***** Unbinded
 ****** Parameters
