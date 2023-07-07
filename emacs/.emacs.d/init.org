@@ -57,6 +57,12 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (setq backward-delete-char-untabify-method nil)
 #+END_SRC
 
+** Git
+The plan here is that when a git window is opened, it won't display the line numbers.
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
 ** Other
 #+BEGIN_SRC emacs-lisp
 (setq make-backup-files nil)
@@ -596,7 +602,6 @@ wouldn't allow rebinding a practical possibility.
 ****** Files
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x C-v"))    ;; find-alternate-file
-(global-unset-key (kbd "C-x C-f"))    ;; find-file-read-only
 (global-unset-key (kbd "C-x C-r"))    ;; find-file-read-only
 #+END_SRC
 
@@ -836,8 +841,6 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-f 5") 'other-frame-prefix)
 (global-set-key (kbd "C-f C-b") 'display-buffer-other-frame)
-(global-set-key (kbd "C-f m") 'compose-mail-other-frame)
-(global-set-key (kbd "C-f p") 'project-other-frame-command)
 #+END_SRC
 
 ******* Switching
@@ -965,8 +968,6 @@ An implementation idea is that I could create a window adjusment minor mode that
 ******* General
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-w b") 'display-buffer)
-(global-set-key (kbd "C-w m") 'compose-mail-other-window)
-(global-set-key (kbd "C-w p") 'project-other-window-command)
 #+END_SRC
 
 ******* Searching
@@ -2041,6 +2042,12 @@ The plan here is to use association lists to map and unmap keybindings within th
   )
 #+END_SRC
 
+***** Binded
+****** Utilization
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
 *** Ammusements
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'ammusements-prfx)
@@ -2183,6 +2190,12 @@ The plan here is to use association lists to map and unmap keybindings within th
 **** Doctor
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-` C-D") 'doctor)
+#+END_SRC
+
+* Mode Definitions
+** Manipulation Mode
+#+BEGIN_SRC emacs-lisp
+
 #+END_SRC
 
 * Hooks
