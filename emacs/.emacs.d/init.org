@@ -17,7 +17,7 @@
 
 GitHub: https://github.com/The-Tech-Lord/dotfiles
 
-* Package Manager
+* Packages
 #+BEGIN_SRC emacs-lisp
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -2163,7 +2163,8 @@ The plan here is to use association lists to map and unmap keybindings within th
 (global-set-key (kbd "C-` C-D") 'doctor)
 #+END_SRC
 
-* Define Modes
+* Modal
+A place to define various modes
 ** Minor Mode
 *** Manipulation Mode
 #+BEGIN_SRC emacs-lisp
