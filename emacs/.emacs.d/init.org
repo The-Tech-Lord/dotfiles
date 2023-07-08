@@ -13,7 +13,7 @@
 *                                                                                                __/ |
 *                                                                                               |___/ 
 
-* Backinfo
+* About
 I'm an organization junkie
 
 GitHub: https://github.com/The-Tech-Lord/dotfiles
@@ -1307,8 +1307,8 @@ When called, I can continuously press [ or ] to switch between buffers.
 (global-set-key (kbd "C-p s") 'project-shell)
 (global-set-key (kbd "C-p S") 'project-shell-command)
 (global-set-key (kbd "C-p C-s") 'project-async-shell-command)
-(global-set-key (kbd "C-p c") 'project-compile)
 (global-set-key (kbd "C-p e") 'project-eshell)
+(global-set-key (kbd "C-p c") 'project-compile)
 #+END_SRC
 
 ****** Searching
@@ -2021,7 +2021,9 @@ The plan here is to use association lists to map and unmap keybindings within th
 ***** Binded
 ****** Utilization
 #+BEGIN_SRC emacs-lisp
-
+(defun rect-util-bind()
+  (define-key rectangle-mark-mode-map (kbd "C-y") 'yank-rectangle)
+  )
 #+END_SRC
 
 *** Ammusements
@@ -2169,14 +2171,22 @@ The plan here is to use association lists to map and unmap keybindings within th
 #+END_SRC
 
 * Modal
-A place to define various modes
 ** Minor Mode
+*** Kill Mode
+The main usage of this mode is when mass deletion is needed (e.g., deleting sentences or multiple words).
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
 *** Manipulation Mode
+The main usage of this mode is when mass text manipulation is need (e.g., moving around paragraphs or moving a character from one end of a word to the
+other).
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
 
 *** Window Mode
+Helps with managing and adjusting windows.
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
@@ -2290,6 +2300,7 @@ A place to define various modes
 #+BEGIN_SRC emacs-lisp
 (add-hook 'rectangle-mark-mode-hook
 		  'rect-util-unbind
+		  'rect-util-bind
 		  )
 #+END_SRC
 
