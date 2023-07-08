@@ -39,10 +39,6 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-#+END_SRC
-
-**** Line Number Column
-#+BEGIN_SRC emacs-lisp
 (setq column-number-mode t)
 (global-display-line-numbers-mode)
 #+END_SRC
@@ -191,6 +187,10 @@ Themes:
 #+END_SRC
 
 * Bindings
+The Bindings section is where you'll start to see my "wild" side. People have ventured here, only few returning with stories of a wacky, wild
+adventure. The horrors that one would see could not be described with mere words. Others have sought out to witness for themselves the tortures the
+other adventurers have faced. Soon, it'll be known that it was their greatest mistake.
+
 ** Decodes
 Credit:
 https://emacs.stackexchange.com/questions/10271/how-to-bind-c-for-real-seriously-for-real-this-time
@@ -767,6 +767,11 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 (global-unset-key (kbd "C-x C-d"))    ;; list-directory
 #+END_SRC
 
+***** Binded
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-x g") 'glasses-mode)
+#+END_SRC
+
 *** Display Management
 **** Frames
 #+BEGIN_SRC emacs-lisp
@@ -1213,7 +1218,7 @@ When called, I can continuously press [ or ] to switch between buffers.
 
 ****** Initialization
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-v I") 'vc-register)
+(global-set-key (kbd "C-v M-i") 'vc-register)
 #+END_SRC
 
 ****** Management
@@ -1222,13 +1227,13 @@ When called, I can continuously press [ or ] to switch between buffers.
 (global-set-key (kbd "C-v v") 'vc-next-action)
 (global-set-key (kbd "C-v P") 'vc-update)
 (global-set-key (kbd "C-v p") 'vc-push)
-(global-set-key (kbd "C-v m") 'vc-merge)
+(global-set-key (kbd "C-v M") 'vc-merge)
 (global-set-key (kbd "C-v U") 'vc-revert)
 #+END_SRC
 
 ******* Removal
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-v G") 'vc-ignore)
+(global-set-key (kbd "C-v x") 'vc-ignore)
 (global-set-key (kbd "C-v C-x") 'vc-delete-file)
 #+END_SRC
 
@@ -1247,13 +1252,13 @@ When called, I can continuously press [ or ] to switch between buffers.
 (global-set-key (kbd "C-v L") 'vc-log-incoming)
 (global-set-key (kbd "C-v h") 'vc-region-history)
 (global-set-key (kbd "C-v a") 'vc-annotate)
-(global-set-key (kbd "C-v ~") 'vc-revision-other-window)
+(global-set-key (kbd "C-v r") 'vc-revision-other-window)
 #+END_SRC
 
-******* Logging
+******* Tags
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-v c") 'vc-create-tag)
-(global-set-key (kbd "C-v t") 'vc-retrieve-tag)
+(global-set-key (kbd "C-v t") 'vc-create-tag)
+(global-set-key (kbd "C-v C-t") 'vc-retrieve-tag)
 #+END_SRC
 
 **** Projects
@@ -2192,6 +2197,20 @@ Helps with managing and adjusting windows.
 #+END_SRC
 
 * Hooks
+** Starup
+*** Functions
+#+BEGIN_SRC emacs-lisp
+(defun wow-wow-wubzy()
+  )
+#+END_SRC
+
+*** The Hook
+#+BEGIN_SRC emacs-lisp
+(add-hook 'emacs-startup-hook
+		  'wow-wow-wubzy
+		  )
+#+END_sRC
+
 ** Development
 *** Major Mode
 **** CC Mode
