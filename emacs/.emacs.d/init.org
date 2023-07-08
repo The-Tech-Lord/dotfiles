@@ -1241,10 +1241,10 @@ When called, I can continuously press [ or ] to switch between buffers.
 
 ******* Logs
 #+BEGIN_SRC emacs-lisp
-;; (global-set-key (kbd "C-v C-p") 'vc-print-log)
-;; (global-set-key (kbd "C-v C-l") 'vc-print-root-log)
-;; (global-set-key (kbd "C-v l") 'vc-log-outgoing)
-;; (global-set-key (kbd "C-v L") 'vc-log-incoming)
+(global-set-key (kbd "C-v C-p") 'vc-print-log)
+(global-set-key (kbd "C-v C-l") 'vc-print-root-log)
+(global-set-key (kbd "C-v l") 'vc-log-outgoing)
+(global-set-key (kbd "C-v L") 'vc-log-incoming)
 (global-set-key (kbd "C-v h") 'vc-region-history)
 (global-set-key (kbd "C-v a") 'vc-annotate)
 (global-set-key (kbd "C-v ~") 'vc-revision-other-window)
