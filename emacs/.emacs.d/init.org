@@ -2159,11 +2159,13 @@ The plan here is to use association lists to map and unmap keybindings within th
 #+END_SRC
 
 * Plasmids
-I love the Bioshock series and felt like naming the modes after characters or aspects of the Bioshock series.
-Here's where we create a mode for everything. Some have useful shit while others are barely used! It's the magnificent world of Emacs I tell you!
+I love the Bioshock series and felt like naming mode definitions after the Bioshock series.
 
-** Minor Plasmids
-*** KILL MODE
+** Eve Syringes
+*** Delta
+This mode I named after the main protagonist of Bioshock 2, the Big Daddy, Delta.
+
+This mode makes killing and deleting lots of text more convient.
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
@@ -2179,8 +2181,11 @@ it manually.
 
 #+END_SRC
 
-*** WINDOW MODE
-Helps with managing and adjusting windows.
+*** Eleanor
+This mode is named after the main objective of Delta, getting to his Little Sister, Eleanor Lamb. I went with this because of the isolated environment she lived in for her entire
+life and wanted to associate it with something that is also brings a sense of freedom, Windows.
+
+This is a relatively simple mode as it'll make adjusting and managing windows easier.
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
