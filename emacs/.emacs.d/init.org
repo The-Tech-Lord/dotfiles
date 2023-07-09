@@ -507,7 +507,7 @@ This header basically refers to commands that don't "kill" text, hence "Pacifist
 
 ****** Popping
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-,"))    ;; xref-pop-marker-stack
+(global-unset-key (kbd "M-,"))    ;; xref-pop-marker-stack
 (global-unset-key (kbd "C-x C-@"))    ;; pop-global-mark
 (global-unset-key (kbd "C-x C-SPC"))    ;; pop-global-mark
 #+END_SRC
@@ -2158,11 +2158,11 @@ The plan here is to use association lists to map and unmap keybindings within th
 (global-set-key (kbd "C-` C-D") 'doctor)
 #+END_SRC
 
-* Vigors
+* Plasmids
 I love the Bioshock series and felt like naming the modes after characters or aspects of the Bioshock series.
 Here's where we create a mode for everything. Some have useful shit while others are barely used! It's the magnificent world of Emacs I tell you!
 
-** Minor Vigors
+** Minor Plasmids
 *** KILL MODE
 #+BEGIN_SRC emacs-lisp
 
