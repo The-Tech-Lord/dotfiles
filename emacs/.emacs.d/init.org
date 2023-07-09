@@ -14,7 +14,11 @@
 *                                                                                               |___/ 
 
 * About
-I'm an organization junkie
+I actually used to use Vim, though, after a while I wanted to try out something different and decided to try GNU Emacs again (this being the third time). A reason why I went with
+GNU Emacs was that it was lightweight, i.e., it wasn't a taking 300-500MB of RAM while idling. That may be a picky reason, though goes back to when I was using a DELL Inspiron 17
+5000 2-in-1 (Intel Core i5, Intel UHD Graphics, 8GB RAM, one cooling fan). Even when just using VS Code, my laptops fans would start running.
+
+As you will see in this file, I'm an organization junkie.
 
 GitHub: https://github.com/The-Tech-Lord/dotfiles
 
@@ -34,7 +38,6 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 #+END_SRC
 
 *** User Interface
-**** General
 #+BEGIN_SRC emacs-lisp
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
@@ -43,23 +46,17 @@ GitHub: https://github.com/The-Tech-Lord/dotfiles
 (global-display-line-numbers-mode)
 #+END_SRC
 
-*** Tab Space
+*** Tabs
 #+BEGIN_SRC emacs-lisp
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode t)
 (setq backward-delete-char-untabify-method nil)
 #+END_SRC
 
-*** Version Control
-The plan here is that when a git window is opened, it won't display the line numbers.
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
 *** Other
 #+BEGIN_SRC emacs-lisp
 (setq make-backup-files nil)
-(setq-default fill-column 150)
+(setq-default fill-column 180)
 #+END_SRC
 
 ** Custom
@@ -180,6 +177,12 @@ Themes:
 (setq org-edit-src-content-indentation '0)
 #+END_SRC
 
+**** Version Control
+The plan here is that when a git window is opened, it won't display the line numbers.
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
 *** Minor Mode
 **** Whitespace Mode
 #+BEGIN_SRC emacs-lisp
@@ -192,6 +195,8 @@ adventure. The horrors that one would see could not be described with mere words
 other adventurers have faced. Soon, it'll be known that it was their greatest mistake.
 
 ** Decodes
+These parasites were taking up valuable land and resources so I needed to snip their umbilical cord.
+
 Credit:
 https://emacs.stackexchange.com/questions/10271/how-to-bind-c-for-real-seriously-for-real-this-time
 https://emacs.stackexchange.com/questions/220/how-to-bind-c-i-as-different-from-tab
@@ -533,13 +538,6 @@ This header basically refers to commands that don't "kill" text, hence "Pacifist
 #+END_SRC
 
 **** Rectangles
-I went with the cursed combination of M-, as I felt that it was easier to use than M-r (the previous setting). It also made more sense to me as I felt
-that it was similar to Marking and having it nearby was able to let me organize the commands on the keyboard.
-#+BEGIN_SRC emacs-lisp
-(define-prefix-command 'rect-prfx)
-(global-set-key (kbd "M-,") 'rect-prfx)
-#+END_SRC
-
 ***** Unbinded
 ****** Setting
 #+BEGIN_SRC emacs-lisp
@@ -572,25 +570,6 @@ I went with this configuration since M-SPC was being used for Marking and C-SPC 
 combination of M and C felt better to use rather than C-x SPC (I'd be able to enter Rectangle Mode with just one hand).
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-M-SPC") 'rectangle-mark-mode)
-#+END_SRC
-
-****** Clipboard
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-, ;") 'yank-rectangle)
-(global-set-key (kbd "M-, .") 'kill-rectangle)
-#+END_SRC
-
-****** Utilization
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-, c") 'clear-rectangle)
-(global-set-key (kbd "M-, o") 'open-rectangle)
-(global-set-key (kbd "M-, s") 'string-rectangle)
-(global-set-key (kbd "M-, d") 'delete-rectangle)
-#+END_SRC
-
-****** ExTra ExTra
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-, R") 'copy-rectangle-to-register)
 #+END_SRC
 
 **** Searching
@@ -2013,22 +1992,26 @@ Though "local" refers to Major modes, I decided to include others that I think "
 #+END_SRC
 
 **** Rectangle Mark Mode
-***** Unbinded
 The plan here is to use association lists to map and unmap keybindings within the minor mode.
+***** Unbinded
 ****** Utilization
 #+BEGIN_SRC emacs-lisp
-(defun rect-util-unbind()
+(with-eval-after-load 'rect
   (define-key rectangle-mark-mode-map (kbd "C-o") nil)    ;; open-rectangle
-  (define-key rectangle-mark-mode-map (kbd "C-t") nil)    ;; string-rectangle
-  )
+  (define-key rectangle-mark-mode-map (kbd "C-t") nil))    ;; string-rectangle
 #+END_SRC
 
 ***** Binded
 ****** Utilization
 #+BEGIN_SRC emacs-lisp
-(defun rect-util-bind()
-  (define-key rectangle-mark-mode-map (kbd "C-y") 'yank-rectangle)
-  )
+(with-eval-after-load 'rect
+  (define-key rectangle-mark-mode-map (kbd "k") 'kill-rectangle)
+  (define-key rectangle-mark-mode-map (kbd "y") 'yank-rectangle)
+  (define-key rectangle-mark-mode-map (kbd "c") 'clear-rectangle)
+  (define-key rectangle-mark-mode-map (kbd "o") 'open-rectangle)
+  (define-key rectangle-mark-mode-map (kbd "s") 'string-rectangle)
+  (define-key rectangle-mark-mode-map (kbd "d") 'delete-rectangle)
+  (define-key rectangle-mark-mode-map (kbd "R") 'copy-rectangle-to-register))
 #+END_SRC
 
 *** Ammusements
@@ -2175,22 +2158,28 @@ The plan here is to use association lists to map and unmap keybindings within th
 (global-set-key (kbd "C-` C-D") 'doctor)
 #+END_SRC
 
-* Modal
-** Minor Mode
-*** Kill Mode
-The main usage of this mode is when mass deletion is needed (e.g., deleting sentences or multiple words).
+* Vigors
+I love the Bioshock series and felt like naming the modes after characters or aspects of the Bioshock series.
+Here's where we create a mode for everything. Some have useful shit while others are barely used! It's the magnificent world of Emacs I tell you!
+
+** Minor Vigors
+*** KILL MODE
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
 
-*** Manipulation Mode
-The main usage of this mode is when mass text manipulation is need (e.g., moving around paragraphs or moving a character from one end of a word to the
-other).
+*** Atlas
+This mode is named after one of the main antagonists of Bioshock, Fontaine. I decided on this because he pretended that he was Atlas, therefore he perfectly fit the scenario that
+this mode does, Manipulation.
+
+The purpose of this mode is to make text manipulation easier and also be able to provide more varied keybindings. It'll allow movement of many sentences and paragraphs without
+having to use convoluted keybindings that break your pinky. Of course for simple manipulations, such as correcting "theer" to "there", would just need a simple global or correcting
+it manually.
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
 
-*** Window Mode
+*** WINDOW MODE
 Helps with managing and adjusting windows.
 #+BEGIN_SRC emacs-lisp
 
