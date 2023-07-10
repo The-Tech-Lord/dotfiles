@@ -14,9 +14,9 @@
 *                                                                                               |___/ 
 
 * About
-I actually used to use Vim, though, after a while I wanted to try out something different and decided to try GNU Emacs again (this being the third time). A reason why I went with
-GNU Emacs was that it was lightweight, i.e., it wasn't a taking 300-500MB of RAM while idling. That may be a picky reason, though goes back to when I was using a DELL Inspiron 17
-5000 2-in-1 (Intel Core i5, Intel UHD Graphics, 8GB RAM, one cooling fan). Even when just using VS Code, my laptops fans would start running.
+I actually used to use Vim as my main editor, though, after a while I wanted to try out something different and decided to try GNU Emacs again (this being the third time). A reason
+why I went with GNU Emacs was that it was lightweight, i.e., it wasn't a taking 300-500MB of RAM while idling. That may be a picky reason, though goes back to when I was using a
+DELL Inspiron 17 5000 2-in-1 (Intel Core i5, Intel UHD Graphics, 8GB RAM, one cooling fan). Even when just using VS Code, my laptops fans would start running.
 
 As you will see in this file, I'm an organization junkie.
 
@@ -190,9 +190,8 @@ The plan here is that when a git window is opened, it won't display the line num
 #+END_SRC
 
 * Bindings
-The Bindings section is where you'll start to see my "wild" side. People have ventured here, only few returning with stories of a wacky, wild
-adventure. The horrors that one would see could not be described with mere words. Others have sought out to witness for themselves the tortures the
-other adventurers have faced. Soon, it'll be known that it was their greatest mistake.
+This is where you'll start to see my "wild" side. People have ventured here, only few returning with stories of a wacky, wild adventure. The horrors that one would see could not be
+described with mere words. Others have sought out to witness for themselves the tortures the other adventurers have faced. Soon, it'll be known that it was their greatest mistake.
 
 ** Decodes
 These parasites were taking up valuable land and resources so I needed to snip their umbilical cord.
@@ -387,6 +386,7 @@ https://emacs.stackexchange.com/questions/220/how-to-bind-c-i-as-different-from-
 #+END_SRC
 
 ****** Chunks
+"Chunks" refers to when commands effect more than one character.
 ******* Words
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-d"))    ;; kill-word
@@ -478,6 +478,7 @@ This header basically refers to commands that don't "kill" text, hence "Pacifist
 #+END_SRC
 
 **** Marking
+Made the prefix M-SPC because it would be similar to C-SPC, that already takes care of marking.
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'mark-prfx)
 (global-set-key (kbd "M-SPC") 'mark-prfx)
@@ -507,7 +508,7 @@ This header basically refers to commands that don't "kill" text, hence "Pacifist
 
 ****** Popping
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-,"))    ;; xref-pop-marker-stack
+(global-unset-key (kbd "M-,"))    ;; xref-pop-marker-stack
 (global-unset-key (kbd "C-x C-@"))    ;; pop-global-mark
 (global-unset-key (kbd "C-x C-SPC"))    ;; pop-global-mark
 #+END_SRC
@@ -625,7 +626,7 @@ wouldn't allow rebinding a practical possibility.
 **** Highlighting
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'hi-prfx)
-(global-set-key (kbd "M-p") 'hi-prfx)
+(global-set-key (kbd "M-l") 'hi-prfx)
 #+END_SRC
 
 ***** Unbinded
@@ -651,20 +652,20 @@ wouldn't allow rebinding a practical possibility.
 ***** Binded
 ****** General
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-p h") 'highlight-symbol-at-point)
-(global-set-key (kbd "M-p p") 'highlight-phrase)
+(global-set-key (kbd "M-l h") 'highlight-symbol-at-point)
+(global-set-key (kbd "M-l p") 'highlight-phrase)
 #+END_SRC
 
 ****** Regexp
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-p x") 'highlight-regexp)
-(global-set-key (kbd "M-p l") 'highlight-lines-matching-regexp)
-(global-set-key (kbd "M-p u") 'unhighlight-regexp)
+(global-set-key (kbd "M-l x") 'highlight-regexp)
+(global-set-key (kbd "M-l l") 'highlight-lines-matching-regexp)
+(global-set-key (kbd "M-l u") 'unhighlight-regexp)
 #+END_SRC
 
 **** Manipulation
-Commands here manipulate the style of the text (e.g., Cases) and the position of the text (e.g., Transposing, Splitting). Setting up this header was
-one of the harder one's to try and categorize as I had trouble of what would belong here as a lot of commands do some sort of "manipulation" of text.
+Commands here manipulate the style of the text (e.g., Cases) and the position of the text (e.g., Transposing, Splitting). Setting up this header was one of the harder one's to try
+and categorize as I had trouble of what would belong here as a lot of commands do some sort of "manipulation" of text.
 
 ***** Unbinding
 ****** Straights
@@ -703,6 +704,13 @@ one of the harder one's to try and categorize as I had trouble of what would bel
 #+END_SRC
 
 **** Indenting
+Went with M-i as the prefix command here beacuse 1) indenting wouldn't be something I'd use very much, hence the Meta stroke, and 2) felt that C-i would probably cause problems if
+I did ever use it as the indentation command prefix; it's also just slightly easier to type.
+#+BEGIN_SRC emacs-lisp
+(define-prefix-command 'indent-prfx)
+(global-set-key (kbd "M-i") 'indent-prfx)
+#+END_SRC
+
 ***** Unbinded
 ****** Newline
 Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment-indent-new-line, default-indent-new-line can deliver the same features.
@@ -726,7 +734,9 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 
 ****** Formatting
 #+BEGIN_SRC emacs-lisp
-
+(global-set-key (kbd "M-i TAB") 'indent-rigidly)
+(global-set-key (kbd "M-i r") 'indent-region)
+(global-set-key (kbd "M-i c") 'move-past-close-and-reindent)
 #+END_SRC
 
 **** Comments
@@ -741,11 +751,6 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-q"))    ;; quoted-insert
 (global-unset-key (kbd "C-x C-d"))    ;; list-directory
-#+END_SRC
-
-***** Binded
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-x g") 'glasses-mode)
 #+END_SRC
 
 *** Display Management
@@ -1353,17 +1358,6 @@ When called, I can continuously press [ or ] to switch between buffers.
 #+END_SRC
 
 ***** Binded
-****** Creation
-******* Global
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-******* Local
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
 ****** Expansion
 #+BEGIN_SRC emacs-lisp
 
@@ -1531,6 +1525,11 @@ When called, I can continuously press [ or ] to switch between buffers.
 (global-unset-key (kbd "C-x i"))    ;; insert-file
 #+END_SRC
 
+***** Binded
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-p") 'insert-parentheses)
+#+END_SRC
+
 **** Completion
 ***** Unbinded
 #+BEGIN_SRC emacs-lisp
@@ -1566,8 +1565,19 @@ When called, I can continuously press [ or ] to switch between buffers.
 (global-set-key (kbd "M-n w") 'widen)
 #+END_SRC
 
+**** Other
+***** Binded
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-x g") 'glasses-mode)
+#+END_SRC
+
 *** Systems
-**** D/Enoding
+**** D/Encoding
+#+BEGIN_SRC emacs-lisp
+(define-prefix-command 'd/encoding-prfx)
+(global-set-key (kbd "C-z c") 'd/encoding-prfx)
+#+END_SRC
+
 ***** Unbinded
 ****** Specifics
 #+BEGIN_SRC emacs-lisp
@@ -1592,7 +1602,36 @@ When called, I can continuously press [ or ] to switch between buffers.
 (global-unset-key (kbd "C-x RET C-\\"))    ;; set-input-method
 #+END_SRC
 
+***** Binded
+****** Specifics
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-z c f") 'set-file-name-coding-system)
+(global-set-key (kbd "C-z c k") 'set-keyboard-coding-system)
+(global-set-key (kbd "C-z c t") 'set-terminal-coding-system)
+(global-set-key (kbd "C-z c s") 'set-selection-coding-system)
+#+END_SRC
+
+****** Buffer
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-z c b") 'set-buffer-file-coding-system)
+(global-set-key (kbd "C-z c p") 'set-buffer-process-coding-system)
+(global-set-key (kbd "C-z c r") 'revert-buffer-with-coding-system)
+#+END_SRC
+
+****** Other
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-z c S") 'set-next-selection-coding-system)
+(global-set-key (kbd "C-z c u") 'universal-coding-system-argument)
+(global-set-key (kbd "C-z c e") 'set-language-environment)
+(global-set-key (kbd "C-z c /") 'set-input-method)
+#+END_SRC
+
 **** Language
+#+BEGIN_SRC emacs-lisp
+(define-prefix-command 'lang-prfx)
+(global-set-key (kbd "C-z z") 'lang-prfx)
+#+END_SRC
+
 ***** Unbinded
 ****** Grammer
 #+BEGIN_SRC emacs-lisp
@@ -1605,7 +1644,24 @@ When called, I can continuously press [ or ] to switch between buffers.
 (global-unset-key (kbd "C-x \\"))    ;; activate-transient-input-method
 #+END_SRC
 
+***** Binded
+****** Grammar
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-z z w") 'ispell-word)
+#+END_SRC
+
+****** Insertion
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-z z i") 'insert-char)
+(global-set-key (kbd "C-z z /") 'activate-transient-input-method)
+#+END_SRC
+
 **** Commando
+#+BEGIN_SRC emacs-lisp
+(define-prefix-command 'commando-prfx)
+(global-set-key (kbd "C-z x") 'commando-prfx)
+#+END_SRC
+
 ***** Unbinded
 ****** Commands
 #+BEGIN_SRC emacs-lisp
@@ -1632,17 +1688,20 @@ When called, I can continuously press [ or ] to switch between buffers.
 ***** Binded
 ****** Commands
 #+BEGIN_SRC emacs-lisp
-
+(global-set-key (kbd "C-z x s") 'shell-command)
+(global-set-key (kbd "C-z x a") 'async-shell-command)
+(global-set-key (kbd "C-z x r") 'shell-command-on-region)
+(global-set-key (kbd "C-z x R") 'repeat-complex-command)
 #+END_SRC
 
 ****** Recursion
 #+BEGIN_SRC emacs-lisp
-
+(global-set-key (kbd "C-z x x") 'exit-recursive-edit)
 #+END_SRC
 
 ****** Evaluation
 #+BEGIN_SRC emacs-lisp
-
+(global-set-key (kbd "C-z x :") 'eval-expression)
 #+END_SRC
 
 *** Other
@@ -2163,28 +2222,63 @@ I love the Bioshock series and felt like naming mode definitions after it.
 This mode I named after the main protagonist of Bioshock 2, the Big Daddy, Delta.
 
 This mode makes killing and deleting lots of text more convient.
-#+BEGIN_SRC emacs-lisp
 
+Features:
+- Words
+- Sentences
+- Paragraphs
+- Expressions
+- Functions
+- Pages
+#+BEGIN_SRC emacs-lisp
+(define-minor-mode delta-mode
+  "Insert text"
+  :init-value nil
+  :lighter " Δ"
+  :keymap
+  '(("C-M-w" . split-window-below))
+  )
 #+END_SRC
 
 *** Atlas
 This mode is named after one of the main antagonists of Bioshock, Fontaine. I decided on this because he pretended that he was Atlas, therefore he perfectly fit the scenario that
 this mode does, Manipulation.
 
-The purpose of this mode is to make text manipulation easier and also be able to provide more varied keybindings. It'll allow movement of many sentences and paragraphs without
-having to use convoluted keybindings that break your pinky. Of course for simple manipulations, such as correcting "theer" to "there", would just need a simple global or correcting
-it manually.
+Features:
+- Transposing
+- Cases
 #+BEGIN_SRC emacs-lisp
-
+(define-minor-mode atlas-mode
+  "The purpose of this mode is to make text manipulation easier and also be able
+to provide more varied keybindings. It'll allow movement of many sentences and
+paragraphs without having to use convoluted keybindings that break your pinky.
+Of course for simple manipulations, such as correcting 'theer' to 'there', would
+just need a simple global or correcting it manually."
+  :init-value nil
+  :lighter " WYK"
+  :keymap
+  '(("C-M-w" . split-window-below))
+  )
 #+END_SRC
 
 *** Eleanor
 This mode is named after the main objective of Delta, getting to his Little Sister, Eleanor Lamb. I went with this because of the isolated environment she lived in for her entire
 life and wanted to associate it with something that is also brings a sense of freedom, Windows.
 
-This is a relatively simple mode as it'll make adjusting and managing windows easier.
+Features:
+- Resizing
+- Splitting
+- Swapping
 #+BEGIN_SRC emacs-lisp
-
+(define-minor-mode eleanor-mode
+  "This is mode creates an easier experience for managing
+multiple windows once you enter the mode as you have access
+to simple keybindings."
+  :init-value nil
+  :lighter " Lamb"
+  :keymap
+  '(("C-M-w" . split-window-below))
+  )
 #+END_SRC
 
 * Hooks
