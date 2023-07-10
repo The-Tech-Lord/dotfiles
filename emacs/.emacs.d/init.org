@@ -566,8 +566,6 @@ This header basically refers to commands that don't "kill" text, hence "Pacifist
 
 ***** Binded
 ****** Setting
-I went with this configuration since M-SPC was being used for Marking and C-SPC was already being used for the default Marking command, so using a
-combination of M and C felt better to use rather than C-x SPC (I'd be able to enter Rectangle Mode with just one hand).
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-M-SPC") 'rectangle-mark-mode)
 #+END_SRC
@@ -697,7 +695,6 @@ one of the harder one's to try and categorize as I had trouble of what would bel
 
 ***** Binding
 ****** Transposing
-Idea for better implementation: Create a minor mode for these little shits
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-x C-r") 'transpose-chars)
 (global-set-key (kbd "C-x C-t") 'transpose-words)
@@ -2159,7 +2156,7 @@ The plan here is to use association lists to map and unmap keybindings within th
 #+END_SRC
 
 * Plasmids
-I love the Bioshock series and felt like naming mode definitions after the Bioshock series.
+I love the Bioshock series and felt like naming mode definitions after it.
 
 ** Eve Syringes
 *** Delta
