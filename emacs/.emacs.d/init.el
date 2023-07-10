@@ -8,7 +8,6 @@
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-
 (setq column-number-mode t)
 (global-display-line-numbers-mode)
 
@@ -16,10 +15,8 @@
 (setq-default indent-tabs-mode t)
 (setq backward-delete-char-untabify-method nil)
 
-
-
 (setq make-backup-files nil)
-(setq-default fill-column 150)
+(setq-default fill-column 180)
 
 (custom-set-variables
  '(custom-enabled-themes '(gruvbox-dark-medium))
@@ -77,6 +74,8 @@
 
 (setq org-src-preserve-indentation t)
 (setq org-edit-src-content-indentation '0)
+
+
 
 
 
@@ -246,7 +245,7 @@
 (global-unset-key (kbd "C-M-@"))    ;; mark-sexp
 (global-unset-key (kbd "C-M-SPC"))    ;; mark-sexp
 
-(global-unset-key (kbd "M-,"))    ;; xref-pop-marker-stack
+(global-unset-key (kbd "M-,"))    ;; xref-pop-marker-stack
 (global-unset-key (kbd "C-x C-@"))    ;; pop-global-mark
 (global-unset-key (kbd "C-x C-SPC"))    ;; pop-global-mark
 
@@ -260,9 +259,6 @@
 
 (global-set-key (kbd "M-SPC x") 'xref-pop-marker-stack)
 (global-set-key (kbd "M-SPC p") 'pop-global-mark)
-
-(define-prefix-command 'rect-prfx)
-(global-set-key (kbd "M-,") 'rect-prfx)
 
 (global-unset-key (kbd "C-x SPC"))    ;; rectangle-mark-mode
 
@@ -278,16 +274,6 @@
 (global-unset-key (kbd "C-x r r"))    ;; copy-rectangle-to-register
 
 (global-set-key (kbd "C-M-SPC") 'rectangle-mark-mode)
-
-(global-set-key (kbd "M-, ;") 'yank-rectangle)
-(global-set-key (kbd "M-, .") 'kill-rectangle)
-
-(global-set-key (kbd "M-, c") 'clear-rectangle)
-(global-set-key (kbd "M-, o") 'open-rectangle)
-(global-set-key (kbd "M-, s") 'string-rectangle)
-(global-set-key (kbd "M-, d") 'delete-rectangle)
-
-(global-set-key (kbd "M-, R") 'copy-rectangle-to-register)
 
 (define-prefix-command 'search-prfx)
 (global-set-key (kbd "M-s") 'search-prfx)
@@ -367,6 +353,8 @@
 
 (global-unset-key (kbd "C-q"))    ;; quoted-insert
 (global-unset-key (kbd "C-x C-d"))    ;; list-directory
+
+(global-set-key (kbd "C-x g") 'glasses-mode)
 
 (define-prefix-command 'frames-prfx)
 (global-set-key (kbd "C-f") 'frames-prfx)
@@ -597,15 +585,15 @@
 
 (global-set-key (kbd "C-v d") 'vc-dir)
 
-(global-set-key (kbd "C-v I") 'vc-register)
+(global-set-key (kbd "C-v M-i") 'vc-register)
 
 (global-set-key (kbd "C-v v") 'vc-next-action)
 (global-set-key (kbd "C-v P") 'vc-update)
 (global-set-key (kbd "C-v p") 'vc-push)
-(global-set-key (kbd "C-v m") 'vc-merge)
+(global-set-key (kbd "C-v M") 'vc-merge)
 (global-set-key (kbd "C-v U") 'vc-revert)
 
-(global-set-key (kbd "C-v G") 'vc-ignore)
+(global-set-key (kbd "C-v x") 'vc-ignore)
 (global-set-key (kbd "C-v C-x") 'vc-delete-file)
 
 (global-set-key (kbd "C-v D") 'vc-diff)
@@ -617,10 +605,10 @@
 (global-set-key (kbd "C-v L") 'vc-log-incoming)
 (global-set-key (kbd "C-v h") 'vc-region-history)
 (global-set-key (kbd "C-v a") 'vc-annotate)
-(global-set-key (kbd "C-v ~") 'vc-revision-other-window)
+(global-set-key (kbd "C-v r") 'vc-revision-other-window)
 
-(global-set-key (kbd "C-v c") 'vc-create-tag)
-(global-set-key (kbd "C-v t") 'vc-retrieve-tag)
+(global-set-key (kbd "C-v t") 'vc-create-tag)
+(global-set-key (kbd "C-v C-t") 'vc-retrieve-tag)
 
 (define-prefix-command 'project-prfx)
 (global-set-key (kbd "C-p") 'project-prfx)
@@ -654,8 +642,8 @@
 (global-set-key (kbd "C-p s") 'project-shell)
 (global-set-key (kbd "C-p S") 'project-shell-command)
 (global-set-key (kbd "C-p C-s") 'project-async-shell-command)
-(global-set-key (kbd "C-p c") 'project-compile)
 (global-set-key (kbd "C-p e") 'project-eshell)
+(global-set-key (kbd "C-p c") 'project-compile)
 
 (global-set-key (kbd "C-p C-f") 'project-find-file)
 (global-set-key (kbd "C-p g") 'project-find-regexp)
@@ -1014,12 +1002,18 @@
 (global-set-key (kbd "C-x a P") 'fill-region-as-paragraph)
 (global-set-key (kbd "C-x a c") 'center-line)
 
-(defun rect-util-unbind()
+(with-eval-after-load 'rect
   (define-key rectangle-mark-mode-map (kbd "C-o") nil)    ;; open-rectangle
-  (define-key rectangle-mark-mode-map (kbd "C-t") nil)    ;; string-rectangle
-  )
+  (define-key rectangle-mark-mode-map (kbd "C-t") nil))    ;; string-rectangle
 
-
+(with-eval-after-load 'rect
+  (define-key rectangle-mark-mode-map (kbd "k") 'kill-rectangle)
+  (define-key rectangle-mark-mode-map (kbd "y") 'yank-rectangle)
+  (define-key rectangle-mark-mode-map (kbd "c") 'clear-rectangle)
+  (define-key rectangle-mark-mode-map (kbd "o") 'open-rectangle)
+  (define-key rectangle-mark-mode-map (kbd "s") 'string-rectangle)
+  (define-key rectangle-mark-mode-map (kbd "d") 'delete-rectangle)
+  (define-key rectangle-mark-mode-map (kbd "R") 'copy-rectangle-to-register))
 
 (define-prefix-command 'ammusements-prfx)
 (global-set-key (kbd "C-`") 'ammusements-prfx)
@@ -1091,6 +1085,15 @@
 
 
 
+
+
+(defun wow-wow-wubzy()
+  )
+
+(add-hook 'emacs-startup-hook
+		  'wow-wow-wubzy
+		  )
+
 (add-hook 'c-initialization-hook
   		  'cc-common-bindings
 		  )
@@ -1145,6 +1148,7 @@
 
 (add-hook 'rectangle-mark-mode-hook
 		  'rect-util-unbind
+		  'rect-util-bind
 		  )
 
 
