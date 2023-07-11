@@ -14,9 +14,9 @@
 *                                                                                               |___/ 
 
 * About
-I actually used to use Vim as my main editor, though, after a while I wanted to try out something different and decided to try GNU Emacs again (this being the third time). A reason
-why I went with GNU Emacs was that it was lightweight, i.e., it wasn't a taking 300-500MB of RAM while idling. That may be a picky reason, though goes back to when I was using a
-DELL Inspiron 17 5000 2-in-1 (Intel Core i5, Intel UHD Graphics, 8GB RAM, one cooling fan). Even when just using VS Code, my laptops fans would start running.
+I actually used to use Vim as my main editor, though, after a while I wanted to try out something different and decided to try GNU Emacs again (this being the third time). I went
+with GNU Emacs because it was lightweight and wasn't resource intensive; not knowing much about its other features. This goes back to when I was using a DELL Inspiron 15 7000
+2-in-1 (Intel Core i5, Intel UHD Graphics, 8GB RAM, one cooling fan). Using an editor like VS Code
 
 As you will see in this file, I'm an organization junkie.
 
@@ -1325,6 +1325,11 @@ When called, I can continuously press [ or ] to switch between buffers.
 
 *** Quality of Life
 **** Abbrev
+#+BEGIN_SRC emacs-lisp
+(define-prefix-command 'abbrev-prfx)
+(global-set-key (kbd "M-a") 'abbrev-prfx)
+#+END_SRC
+
 ***** Unbinded
 ****** Creation
 ******* Global
@@ -1360,12 +1365,15 @@ When called, I can continuously press [ or ] to switch between buffers.
 ***** Binded
 ****** Expansion
 #+BEGIN_SRC emacs-lisp
-
+(global-set-key (kbd "M-a /") 'abbrev-expand)
+(global-set-key (kbd "M-a e") 'expand-abbrev)
+(global-set-key (kbd "M-a n") 'expand-jump-to-next-slot)
+(global-set-key (kbd "M-a p") 'expand-jump-to-previous-slot)
 #+END_SRC
 
 ****** Completion
 #+BEGIN_SRC emacs-lisp
-
+(global-set-key (kbd "M-a C-/") 'dabbrev-completion)
 #+END_SRC
 
 **** Registers
@@ -2015,6 +2023,11 @@ Non-user created prefixes
 Though "local" refers to Major modes, I decided to include others that I think "relate" to the concept of "local."
 
 **** Auto Fill Mode
+#+BEGIN_SRC emacs-lisp
+(define-prefix-command 'autofill-prfx)
+(global-set-key (kbd "C-q") 'autofill-prfx)
+#+END_SRC
+
 ***** Unbinded
 ****** Parameters
 #+BEGIN_SRC emacs-lisp
@@ -2030,21 +2043,21 @@ Though "local" refers to Major modes, I decided to include others that I think "
 ***** Binded
 ****** Activation
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-x a a") 'auto-fill-mode)
+(global-set-key (kbd "C-q a") 'auto-fill-mode)
 #+END_SRC
 
 ****** Parameters
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-x a .") 'set-fill-prefix)
-(global-set-key (kbd "C-x a f") 'set-fill-column)
+(global-set-key (kbd "C-q .") 'set-fill-prefix)
+(global-set-key (kbd "C-q f") 'set-fill-column)
 #+END_SRC
 
 ****** Filling
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-x a p") 'fill-paragraph)
-(global-set-key (kbd "C-x a r") 'fill-region)
-(global-set-key (kbd "C-x a P") 'fill-region-as-paragraph)
-(global-set-key (kbd "C-x a c") 'center-line)
+(global-set-key (kbd "C-q p") 'fill-paragraph)
+(global-set-key (kbd "C-q r") 'fill-region)
+(global-set-key (kbd "C-q P") 'fill-region-as-paragraph)
+(global-set-key (kbd "C-q c") 'center-line)
 #+END_SRC
 
 **** Rectangle Mark Mode
@@ -2236,7 +2249,8 @@ Features:
   :init-value nil
   :lighter " Delta"
   :keymap
-  '(("C-M-w" . split-window-below))
+  '(([C-M-w] . split-window-below)
+	)
   )
 #+END_SRC
 
@@ -2245,8 +2259,8 @@ This mode is named after one of the main antagonists of Bioshock, Fontaine. I de
 this mode does, Manipulation.
 
 The purpose of this mode is to make text manipulation easier and also be able to provide more varied keybindings. It'll allow movement of many sentences and paragraphs without
-having to use convoluted keybindings that break your pinky.  Of course for simple manipulations, such as correcting 'theer' to 'there', would just need a simple global or
-correcting it manually.
+having to use convoluted keybindings that break your pinky.  Of course for simple manipulations, such as correcting 'theer' to 'there', would just need a simple global or manual
+correction.
 
 Features:
 - Transposing
@@ -2257,7 +2271,8 @@ Features:
   :init-value nil
   :lighter " WYK" ;; Would you kindly
   :keymap
-  '(([C-M w] . split-window-below))
+  '(([C-M w] . split-window-below)
+	)
   )
 #+END_SRC
 
@@ -2277,7 +2292,8 @@ Features:
   :init-value nil
   :lighter " Free"
   :keymap
-  '(([C-M-w] . split-window-below))
+  '(([C-M-w] . split-window-below)
+	)
   )
 #+END_SRC
 
@@ -2375,6 +2391,7 @@ Features:
 #+BEGIN_SRC emacs-lisp
 (add-hook 'org-mode-hook
 		  'turn-on-auto-fill
+		  'agenda-unbind
 		  )
 #+END_SRC
 
