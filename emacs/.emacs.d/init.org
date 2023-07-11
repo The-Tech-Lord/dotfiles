@@ -2232,9 +2232,9 @@ Features:
 - Pages
 #+BEGIN_SRC emacs-lisp
 (define-minor-mode delta-mode
-  "Insert text"
+  "Text"
   :init-value nil
-  :lighter " Δ"
+  :lighter " Delta"
   :keymap
   '(("C-M-w" . split-window-below))
   )
@@ -2244,20 +2244,20 @@ Features:
 This mode is named after one of the main antagonists of Bioshock, Fontaine. I decided on this because he pretended that he was Atlas, therefore he perfectly fit the scenario that
 this mode does, Manipulation.
 
+The purpose of this mode is to make text manipulation easier and also be able to provide more varied keybindings. It'll allow movement of many sentences and paragraphs without
+having to use convoluted keybindings that break your pinky.  Of course for simple manipulations, such as correcting 'theer' to 'there', would just need a simple global or
+correcting it manually.
+
 Features:
 - Transposing
 - Cases
 #+BEGIN_SRC emacs-lisp
 (define-minor-mode atlas-mode
-  "The purpose of this mode is to make text manipulation easier and also be able
-to provide more varied keybindings. It'll allow movement of many sentences and
-paragraphs without having to use convoluted keybindings that break your pinky.
-Of course for simple manipulations, such as correcting 'theer' to 'there', would
-just need a simple global or correcting it manually."
+  "Text"
   :init-value nil
-  :lighter " WYK"
+  :lighter " WYK" ;; Would you kindly
   :keymap
-  '(("C-M-w" . split-window-below))
+  '(([C-M w] . split-window-below))
   )
 #+END_SRC
 
@@ -2265,19 +2265,19 @@ just need a simple global or correcting it manually."
 This mode is named after the main objective of Delta, getting to his Little Sister, Eleanor Lamb. I went with this because of the isolated environment she lived in for her entire
 life and wanted to associate it with something that is also brings a sense of freedom, Windows.
 
+This is mode creates an easier experience for managing multiple windows once you enter the mode as you have access to simple keybindings.
+
 Features:
 - Resizing
 - Splitting
 - Swapping
 #+BEGIN_SRC emacs-lisp
 (define-minor-mode eleanor-mode
-  "This is mode creates an easier experience for managing
-multiple windows once you enter the mode as you have access
-to simple keybindings."
+  "Text"
   :init-value nil
-  :lighter " Lamb"
+  :lighter " Free"
   :keymap
-  '(("C-M-w" . split-window-below))
+  '(([C-M-w] . split-window-below))
   )
 #+END_SRC
 
