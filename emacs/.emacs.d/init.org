@@ -14,13 +14,14 @@
 *                                                                                               |___/ 
 
 * About
-I actually used to use Vim as my main editor, though, after a while I wanted to try out something different and decided to try GNU Emacs again (this being the third time). I went
-with GNU Emacs because it was lightweight and wasn't resource intensive; not knowing much about its other features. This goes back to when I was using a DELL Inspiron 15 7000
-2-in-1 (Intel Core i5, Intel UHD Graphics, 8GB RAM, one cooling fan). Using an editor like VS Code
-
-As you will see in this file, I'm an organization junkie.
-
+Website: <insert here if I ever make one>
 GitHub: https://github.com/The-Tech-Lord/dotfiles
+
+I actually used to use Vim as my main editor, though, after a while I wanted to try out something different and decided to try GNU Emacs again (this being the third time). I went
+with GNU Emacs because it was lightweight and wasn't resource intensive; not knowing much about its other features. Using an editor like VS Code while having a bunch of tabs open
+would start to ramp up my laptop's fans. This goes back to when I was using a DELL Inspiron 15 7000 2-in-1 (Intel Core i5, Intel UHD Graphics, 8GB RAM, one cooling fan).
+
+I'm also an organization junkie.
 
 * Packages
 #+BEGIN_SRC emacs-lisp
@@ -386,7 +387,8 @@ https://emacs.stackexchange.com/questions/220/how-to-bind-c-i-as-different-from-
 #+END_SRC
 
 ****** Chunks
-"Chunks" refers to when commands effect more than one character.
+Named this little category "Chunks" because I can now refer to commands that effect more than one character without having to provide dedicated lvl 6 headers everywhere.
+
 ******* Words
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-d"))    ;; kill-word
@@ -396,7 +398,9 @@ https://emacs.stackexchange.com/questions/220/how-to-bind-c-i-as-different-from-
 #+END_SRC
 
 ******* Straights
-I called this header "Straights" because it allowed me to be more inclusive of commands that involved sentences and one's that involved lines.
+Named this header "Straights" because it allowed me to be more inclusive of commands that involved sentences and one's that involved lines or commands that acted like they were
+doing their work in linear fashion.
+
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-k"))    ;; kill-sentence
 (global-unset-key (kbd "C-DEL"))    ;; backward-kill-sentence
@@ -406,8 +410,9 @@ I called this header "Straights" because it allowed me to be more inclusive of c
 #+END_SRC
 
 ******* Moisty
-I named this after a phrase by MoistCr1TiKaL where he said "Hey!, Sex?". I decided to rename this header as "Moisty" as it'll encompase the hilarity
-of his content and also the original "Hey. Sex?" thing was bothering me.
+Named this header after the phrase, by MoistCr1TiKaL, "Hey!, Sex?". I decided to rename this header to "Moisty" as it encompases the hilarity of his content; and also the original
+"Hey. Sex?" header name bothered me.
+
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-M-k"))    ;; kill-sexp
 (global-unset-key (kbd "ESC C-<delete>"))    ;; backward-kill-sexp
@@ -415,8 +420,11 @@ of his content and also the original "Hey. Sex?" thing was bothering me.
 #+END_SRC
 
 ****** Pacifist
-This header basically refers to commands that don't "kill" text, hence "Pacifist."
+Named this header to refer to commands that don't kill text, hence the title.
+
 ******* Yank
+Apparently Yank in Emacs is paste while in Vim it's copy...I don't know how I feel about this.
+
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-y"))    ;; yank
 (global-unset-key (kbd "S-<insert>"))    ;; yank
@@ -437,7 +445,6 @@ This header basically refers to commands that don't "kill" text, hence "Pacifist
 #+END_SRC
 
 ******** Whitespace
-- just-one-space is similar to delete-horizontal-space, but it ensures that one space is separating two words.
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-^"))    ;; delete-indentation
 (global-unset-key (kbd "M-\\"))    ;; delete-horizontal-space
@@ -664,7 +671,7 @@ wouldn't allow rebinding a practical possibility.
 #+END_SRC
 
 **** Manipulation
-Commands here manipulate the style of the text (e.g., Cases) and the position of the text (e.g., Transposing, Splitting). Setting up this header was one of the harder one's to try
+Commands that manipulate the style of the text (e.g., Cases) and the position of the text (e.g., Transposing, Splitting). Setting up this header was one of the harder one's to try
 and categorize as I had trouble of what would belong here as a lot of commands do some sort of "manipulation" of text.
 
 ***** Unbinding
@@ -704,8 +711,9 @@ and categorize as I had trouble of what would belong here as a lot of commands d
 #+END_SRC
 
 **** Indenting
-Went with M-i as the prefix command here beacuse 1) indenting wouldn't be something I'd use very much, hence the Meta stroke, and 2) felt that C-i would probably cause problems if
-I did ever use it as the indentation command prefix; it's also just slightly easier to type.
+Used M-i beacuse 1) indenting wouldn't be often used, hence the Meta stroke, and 2) felt that C-i would probably cause problems if I did ever use it; it's also just slightly easier
+to type M-i.
+
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'indent-prfx)
 (global-set-key (kbd "M-i") 'indent-prfx)
@@ -1951,6 +1959,8 @@ Non-user created prefixes
 #+END_SRC
 
 **** The Founding Fathers
+The Founding Fathers is a funny little thing I decided to refer to functions of Emacs that make Emacs what it is. Got the idea of "Founding Fathers" from TheRussianBadger.
+
 ***** Org Mode
 ****** Unbinded
 ******* Todo
@@ -2062,6 +2072,7 @@ Though "local" refers to Major modes, I decided to include others that I think "
 
 **** Rectangle Mark Mode
 The plan here is to use association lists to map and unmap keybindings within the minor mode.
+
 ***** Unbinded
 ****** Utilization
 #+BEGIN_SRC emacs-lisp
@@ -2084,6 +2095,8 @@ The plan here is to use association lists to map and unmap keybindings within th
 #+END_SRC
 
 *** Ammusements
+I mean, who doesn't love playing games while they're at work?!
+
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'ammusements-prfx)
 (global-set-key (kbd "C-`") 'ammusements-prfx)
@@ -2100,6 +2113,8 @@ The plan here is to use association lists to map and unmap keybindings within th
 #+END_SRC
 
 **** Bubbles
+Bubbles is where you try and remove the most amount of bubbles with the least amount of moves.
+
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-` B") 'bubbles)
 #+END_SRC
@@ -2213,16 +2228,22 @@ The plan here is to use association lists to map and unmap keybindings within th
 #+END_SRC
 
 **** Zone
+Emacs version of a screensaver.
+
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-` z") 'zone)
 #+END_SRC
 
 **** Butterfly
+Switches a bit on your drive.
+
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-` C-b") 'butterfly)
 #+END_SRC
 
 **** Doctor
+Acts like the therapist you could never afford.
+
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-` C-D") 'doctor)
 #+END_SRC
