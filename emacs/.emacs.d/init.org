@@ -34,9 +34,9 @@ I'm also an organization junkie.
 * Settings
 ** Emacs
 *** Startup Screen
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (setq inhibit-splash-screen t)                     ;; Startup Screen
-#+END_SRC
+#+end_src
 
 *** User Interface
 #+BEGIN_SRC emacs-lisp
@@ -64,9 +64,11 @@ I'm also an organization junkie.
 *** Variables
 Convenience:
 - toc-org: Table of Contents creator
+  
 Modes:
 - csharp-mode: Major mode for C#
 - vimrc-mode: Major mode for vimrc configuration files
+  
 Themes:
 - gruvbox-theme
 #+BEGIN_SRC emacs-lisp
