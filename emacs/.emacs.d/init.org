@@ -1213,8 +1213,8 @@ When called, I can continuously press [ or ] to switch between buffers.
 ******* Updating
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-v v") 'vc-next-action)
-(global-set-key (kbd "C-v P") 'vc-update)
 (global-set-key (kbd "C-v p") 'vc-push)
+(global-set-key (kbd "C-v P") 'vc-update)
 (global-set-key (kbd "C-v M") 'vc-merge)
 (global-set-key (kbd "C-v U") 'vc-revert)
 #+END_SRC
@@ -2254,6 +2254,18 @@ I love the Bioshock series and felt like naming mode definitions after it.
 *** Delta
 This mode I named after the main protagonist of Bioshock 2, the Big Daddy, Delta.
 
+#+BEGIN_SRC emacs-lisp
+(define-minor-mode delta-mode
+  "Text"
+  :init-value nil
+  :lighter " Delta"
+  :keymap
+  '(([C-M-w] . split-window-below)
+	)
+  )
+#+END_SRC
+
+*** Killing Mode
 This mode makes killing and deleting lots of text more convient.
 
 Features:
@@ -2264,10 +2276,10 @@ Features:
 - Functions
 - Pages
 #+BEGIN_SRC emacs-lisp
-(define-minor-mode delta-mode
+(define-minor-mode unnamed
   "Text"
   :init-value nil
-  :lighter " Delta"
+  :lighter " N/A"
   :keymap
   '(([C-M-w] . split-window-below)
 	)
