@@ -2276,18 +2276,17 @@ Features:
 This mode is named after one of the main antagonists of Bioshock, Fontaine. I decided on this because he pretended that he was Atlas, therefore he perfectly fit the scenario that
 this mode does, Manipulation.
 
-The purpose of this mode is to make text manipulation easier and also be able to provide more varied keybindings. It'll allow movement of many sentences and paragraphs without
-having to use convoluted keybindings that break your pinky.  Of course for simple manipulations, such as correcting 'theer' to 'there', would just need a simple global or manual
-correction.
+This mode makes text manipulation easier and also be able to provide more varied keybindings. It'll allow movement of many sentences and paragraphs without having to use convoluted
+keybindings that break your pinky.  Of course for simple manipulations, such as correcting 'theer' to 'there', would just need a simple global keybinding or manual correction.
 
 Features:
 - Transposing
 - Cases
 #+BEGIN_SRC emacs-lisp
 (define-minor-mode atlas-mode
-  "Text"
+  "Would you kindly"
   :init-value nil
-  :lighter " WYK" ;; Would you kindly
+  :lighter " Atlas"
   :keymap
   '(([C-M w] . split-window-below)
 	)
@@ -2295,11 +2294,16 @@ Features:
 #+END_SRC
 
 *** Delta
-This mode I named after the main protagonist of Bioshock 2, the Big Daddy, Delta.
+This mode is named after the main protagonist of Bioshock 2, the Big Daddy, Delta. I named this mode after Delta to be reminiscent of the Good ending route the player chooses to
+traverse through (where Eleanor Lamb saves her mother from drowning and all the little sisters are alive, the ending I got). For clarity, the quote from the character Grace
+Holloway, "You had me under a gun... yet you just walk away? No monster alive turns the other cheek. No monster does that. A thinking man does that."
 
+This mode allows the usage of features that are typically included with other Word Processors (e.g., MS Word, Libre Writer). Now adays I quite prefer to use Emacs to write shit
+since I've kinda become a crack addict about it now haha. I also don't wanna have to pay for MS Word and LibreOffice's look kinda throws me off (still very good software
+though!). SO I thought, "why not just make that in my own config?", and here we are.
 #+BEGIN_SRC emacs-lisp
 (define-minor-mode delta-mode
-  "Text"
+  "aaaaauuuuuuuggggghhhh"
   :init-value nil
   :lighter " Delta"
   :keymap
@@ -2309,10 +2313,9 @@ This mode I named after the main protagonist of Bioshock 2, the Big Daddy, Delta
 #+END_SRC
 
 *** Eleanor
-This mode is named after the main objective of Delta, getting to his Little Sister, Eleanor Lamb. I went with this because of the isolated environment she lived in for her entire
-life and wanted to associate it with something that is also brings a sense of freedom, Windows.
-
-This is mode creates an easier experience for managing multiple windows once you enter the mode as you have access to simple keybindings.
+This mode is named after the little sister that had belonged to Delta, Eleanor Lamb. I named this mode after her because if you look out the big windows of Rapture, you see a
+beautiful, glowing, yet deteriorating city. You realize that there is more that could be out there. That's when I decided to have Eleanor be the name of the mode that helps the
+user manage and adjust windows.
 
 Features:
 - Resizing
@@ -2320,7 +2323,7 @@ Features:
 - Swapping
 #+BEGIN_SRC emacs-lisp
 (define-minor-mode eleanor-mode
-  "Text"
+  "The Rapture dream is over, but in waking, I am reborn"
   :init-value nil
   :lighter " Free"
   :keymap
