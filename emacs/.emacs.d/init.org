@@ -17,11 +17,15 @@
 Website: <insert here if I ever make one>
 GitHub: https://github.com/The-Tech-Lord/dotfiles
 
-I actually used to use Vim as my main editor, though, after a while I wanted to try out something different and decided to try GNU Emacs again (this being the third time). I went
-with GNU Emacs because it was lightweight and wasn't resource intensive; not knowing much about its other features. Using an editor like VS Code while having a bunch of tabs open
-would start to ramp up my laptop's fans. This goes back to when I was using a DELL Inspiron 15 7000 2-in-1 (Intel Core i5, Intel UHD Graphics, 8GB RAM, one cooling fan).
+I started programming with Sublime Text 3 back in 9th grade and some time passes and I start using VS Code. More time passes and I start to use Vim as my main editor. I've been
+aware of GNU Emacs existence (due to my coding summer camp instructor who's used it for a while I presume) for a while and tried it out a couple times though it just didn't really
+stick with me, mostly due to the fact I thought it was a bit too complicated to use effectively. In mid June 2023 (you can check the commit history), I decided to give Emacs
+another try as I wanted to try something new since I've been using Vim for quite a while now.
 
-I'm also an organization junkie.
+I went with GNU Emacs because it was lightweight and wasn't resource intensive; not knowing much about its other features. Using an editor like VS Code while having a bunch of tabs
+open would start to ramp up my laptop's fans. This goes back to when I was using a DELL Inspiron 15 7000 2-in-1 (Intel Core i5, Intel UHD Graphics, 8GB RAM, one cooling fan).
+
+You'll soon see from my config below that I'm also an organization junkie.
 
 * Packages
 #+BEGIN_SRC emacs-lisp
@@ -68,6 +72,7 @@ Modes:
   
 Themes:
 - gruvbox-theme: If you aren't using Gruvbox, what are you doing with your life?
+
 #+BEGIN_SRC emacs-lisp
 (custom-set-variables
  '(custom-enabled-themes '(gruvbox-dark-medium))
@@ -87,7 +92,7 @@ Themes:
 
 *** Startup
 **** Launch Screen
-/I named this function after the kids show Wow Wow Wubzy simply because it sounded fun to use. This function will handle the customization of the launch screen.
+I named this function after the kids show Wow Wow Wubzy simply because it sounded fun to use. This function will handle the customization of the launch screen.
 
 #+BEGIN_SRC emacs-lisp
 (defun wow-wow-wubzy()
@@ -2257,16 +2262,18 @@ Acts like the therapist you could never afford.
 #+END_SRC
 
 * Plasmids
-I love the Bioshock series and felt like naming mode definitions after it.
+I love the Bioshock series and felt like naming mode definitions after it. Some of these modes were made to help free up some global keybindings.
 
 ** Delta
-This mode is named after the main protagonist of Bioshock 2, the Big Daddy, Delta. I named this mode after Delta to be reminiscent of the Good ending route the player chooses to
-traverse through (where Eleanor Lamb saves her mother from drowning and all the little sisters are alive, the ending I got). For clarity, the quote from the character Grace
-Holloway, "You had me under a gun... yet you just walk away? No monster alive turns the other cheek. No monster does that. A thinking man does that."
+This minor mode is named after the main protagonist of Bioshock 2, the Big Daddy, Delta. I chose Delta because it would be reminiscent of the Good ending route the player chooses
+to traverse through (Eleanor Lamb saves her mother from drowning and all the little sisters are alive, the ending I got). For clarity, I got the idea from a quote from the
+character Grace Holloway, "You had me under a gun... yet you just walk away? No monster alive turns the other cheek. No monster does that. A thinking man does that."
 
-This mode allows the usage of features that are typically included with other Word Processors (e.g., MS Word, Libre Writer). Now adays I quite prefer to use Emacs to write shit
-since I've kinda become a crack addict about it now haha. I also don't wanna have to pay for MS Word (though I may still have to pay for it if I'm ever working with others) and
-LibreOffice's look kinda throws me off (still very good software though!). So I thought, "why not just make that in my own config?", and here we are.
+I wanted to create this mode so that I can write more personal documents within Emacs without missing out on features that are included in other Word Processors (e.g., MS Word,
+Libre Writer). I didn't want to have to pay for MS Word (though I may still have to if I'm ever working with others) and LibreOffice's look kinda throws me off (still very good
+software though!). So I thought, "why not just make that in my own config?", and here we are.
+
+Why is this not a major mode you ask? Well, because of Org Mode you fucking troglodyte.
 
 Features:
 - References (MLA, APA)
@@ -2285,7 +2292,7 @@ Features:
 #+END_SRC
 
 ** Eleanor
-This mode is named after the little sister that had belonged to Delta, Eleanor Lamb. I named this mode after her because if you look out the big windows of Rapture, you see a
+This minor mode is named after the little sister that had belonged to Delta, Eleanor Lamb. I named this mode after her because if you look out the big windows of Rapture, you see a
 beautiful, glowing, yet deteriorating city. You realize that there is more that could be out there. That's when I decided to have Eleanor be the name of the mode that helps the
 user manage and adjust windows.
 
@@ -2328,8 +2335,8 @@ Features:
 #+END_SRC
 
 ** Atlas
-This mode is named after one of the main antagonists of Bioshock, Fontaine. I decided on this because he pretended that he was Atlas, therefore he perfectly fit the scenario that
-this mode does, Manipulation.
+This minor mode is named after the main main antagonist of Bioshock, Fontaine. I decided on this because of the fake persona he had created, Atlas. After thinking about that, I
+thought he'd perfectly fit the theme of this mode, Manipulation.
 
 This mode makes text manipulation easier and also be able to provide more varied keybindings. It'll allow movement of many sentences and paragraphs without having to use convoluted
 keybindings that break your pinky.  Of course for simple manipulations, such as correcting 'theer' to 'there', would just need a simple global keybinding or manual correction.
