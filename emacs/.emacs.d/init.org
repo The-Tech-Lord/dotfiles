@@ -2251,20 +2251,6 @@ Acts like the therapist you could never afford.
 I love the Bioshock series and felt like naming mode definitions after it.
 
 ** Eve Syringes
-*** Delta
-This mode I named after the main protagonist of Bioshock 2, the Big Daddy, Delta.
-
-#+BEGIN_SRC emacs-lisp
-(define-minor-mode delta-mode
-  "Text"
-  :init-value nil
-  :lighter " Delta"
-  :keymap
-  '(([C-M-w] . split-window-below)
-	)
-  )
-#+END_SRC
-
 *** Killing Mode
 This mode makes killing and deleting lots of text more convient.
 
@@ -2304,6 +2290,20 @@ Features:
   :lighter " WYK" ;; Would you kindly
   :keymap
   '(([C-M w] . split-window-below)
+	)
+  )
+#+END_SRC
+
+*** Delta
+This mode I named after the main protagonist of Bioshock 2, the Big Daddy, Delta.
+
+#+BEGIN_SRC emacs-lisp
+(define-minor-mode delta-mode
+  "Text"
+  :init-value nil
+  :lighter " Delta"
+  :keymap
+  '(([C-M-w] . split-window-below)
 	)
   )
 #+END_SRC
