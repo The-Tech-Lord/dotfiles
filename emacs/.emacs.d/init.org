@@ -99,7 +99,7 @@ I named this function after the kids show Wow Wow Wubzy simply because it sounde
   )
 #+END_SRC
 
-** Modes
+** Modal
 *** Major Mode
 **** CC Mode
 #+BEGIN_SRC emacs-lisp
@@ -2283,13 +2283,18 @@ and LibreOffice's look kinda throws me off (still very good software though!). S
 Why is this not a major mode you ask? Well, because of Org Mode you fucking troglodyte.
 
 Features:
+- Table of Contents
+- List formatting
 - References (MLA, APA)
   - Citing
   - List sources
 - Footnotes
-- Table of Contents
 - Hyphenation
-- List formatting
+
+#+BEGIN_SRC emacs-lisp
+(defun toc-insert()
+  )
+#+END_SRC
 
 #+BEGIN_SRC emacs-lisp
 (define-minor-mode delta-mode
@@ -2305,7 +2310,7 @@ Features:
 ** Eleanor
 This minor mode is named after the little sister that had belonged to Delta, Eleanor Lamb. I named this mode after her because if you look out the big windows of Rapture, you see a
 beautiful, glowing, yet deteriorating city. You realize that there is more that could be out there. That's when I decided to have Eleanor be the name of the mode that helps the
-user manage and adjust windows.
+user manage their workspace.
 
 Features:
 - Resizing
