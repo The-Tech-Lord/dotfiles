@@ -2290,12 +2290,41 @@ Features:
   - List sources
 - Footnotes
 - Hyphenation
+- Auto Page Creation (Manual)
 
+*** Eves
+**** Table of Contents
 #+BEGIN_SRC emacs-lisp
 (defun toc-insert()
   )
 #+END_SRC
 
+**** List Formatting
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+**** References
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+**** Footnotes
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+**** Hypenation
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+**** Auto Page
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+*** Definition
 #+BEGIN_SRC emacs-lisp
 (define-minor-mode delta-mode
   "aaaaauuuuuuuggggghhhh"
