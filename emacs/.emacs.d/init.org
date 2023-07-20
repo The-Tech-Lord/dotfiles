@@ -207,6 +207,9 @@ The plan here is that when a git window is opened, it won't display the line num
 This is where you'll start to see my "wild" side. People have ventured here, only few returning with stories of a wacky, wild adventure. The horrors that one would see could not be
 described with mere words. Others have sought out to witness for themselves the tortures the other adventurers have faced. Soon, it'll be known that it was their greatest mistake.
 
+Binding Ideas:
+- Simulating F13 and higher with repeated ESC prefixes
+
 ** Decodes
 These parasites were taking up valuable land and resources so I needed to snip their umbilical cord.
 
@@ -2273,9 +2276,9 @@ This minor mode is named after the main protagonist of Bioshock 2, the Big Daddy
 to traverse through (Eleanor Lamb saves her mother from drowning and all the little sisters are alive, the ending I got). For clarity, I got the idea from a quote from the
 character Grace Holloway, "You had me under a gun... yet you just walk away? No monster alive turns the other cheek. No monster does that. A thinking man does that."
 
-I wanted to create this mode so that I can write more personal documents within Emacs without missing out on features that are included in other Word Processors (e.g., MS Word,
-Libre Writer). I didn't want to have to pay for MS Word (though I may still have to if I ever want to do more complex document foramtting or am working with others) and
-LibreOffice's look kinda throws me off (still very good software though!). So I thought, "why not just make that in my own config?", and here we are.
+I wanted to create this mode so that I can write more within Emacs without missing out on features, or extending existing features, that are included in other Word Processors
+(e.g., MS Word, Libre Writer). I didn't want to have to pay for MS Word (though I may still have to if I ever want to do more complex document foramtting or am working with others)
+and LibreOffice's look kinda throws me off (still very good software though!). So I thought, "why not just make that in my own config?", and here we are.
 
 Why is this not a major mode you ask? Well, because of Org Mode you fucking troglodyte.
 
@@ -2287,7 +2290,7 @@ Features:
 - Table of Contents
 - Hyphenation
 - List formatting
-  
+
 #+BEGIN_SRC emacs-lisp
 (define-minor-mode delta-mode
   "aaaaauuuuuuuggggghhhh"
