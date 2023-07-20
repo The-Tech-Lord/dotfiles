@@ -2264,14 +2264,18 @@ Acts like the therapist you could never afford.
 * Plasmids
 I love the Bioshock series and felt like naming mode definitions after it. Some of these modes were made to help free up some global keybindings.
 
+** God Mode
+idk thought it could be handy sometime.
+What does it do? I guess complex shit.
+
 ** Delta
 This minor mode is named after the main protagonist of Bioshock 2, the Big Daddy, Delta. I chose Delta because it would be reminiscent of the Good ending route the player chooses
 to traverse through (Eleanor Lamb saves her mother from drowning and all the little sisters are alive, the ending I got). For clarity, I got the idea from a quote from the
 character Grace Holloway, "You had me under a gun... yet you just walk away? No monster alive turns the other cheek. No monster does that. A thinking man does that."
 
 I wanted to create this mode so that I can write more personal documents within Emacs without missing out on features that are included in other Word Processors (e.g., MS Word,
-Libre Writer). I didn't want to have to pay for MS Word (though I may still have to if I'm ever working with others) and LibreOffice's look kinda throws me off (still very good
-software though!). So I thought, "why not just make that in my own config?", and here we are.
+Libre Writer). I didn't want to have to pay for MS Word (though I may still have to if I ever want to do more complex document foramtting or am working with others) and
+LibreOffice's look kinda throws me off (still very good software though!). So I thought, "why not just make that in my own config?", and here we are.
 
 Why is this not a major mode you ask? Well, because of Org Mode you fucking troglodyte.
 
@@ -2279,7 +2283,11 @@ Features:
 - References (MLA, APA)
   - Citing
   - List sources
-
+- Footnotes
+- Table of Contents
+- Hyphenation
+- List formatting
+  
 #+BEGIN_SRC emacs-lisp
 (define-minor-mode delta-mode
   "aaaaauuuuuuuggggghhhh"
@@ -2338,8 +2346,8 @@ Features:
 This minor mode is named after the main main antagonist of Bioshock, Fontaine. I decided on this because of the fake persona he had created, Atlas. After thinking about that, I
 thought he'd perfectly fit the theme of this mode, Manipulation.
 
-This mode makes text manipulation easier and also be able to provide more varied keybindings. It'll allow movement of many sentences and paragraphs without having to use convoluted
-keybindings that break your pinky.  Of course for simple manipulations, such as correcting 'theer' to 'there', would just need a simple global keybinding or manual correction.
+This mode makes text manipulation easier and also be able to provide more varied keybindings. It'll allow movement of a large amount of sentences and paragraphs without having to
+use convoluted keybindings that break your pinky.
 
 Features:
 - Transposing
