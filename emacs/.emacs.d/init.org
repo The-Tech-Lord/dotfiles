@@ -2420,6 +2420,24 @@ use convoluted keybindings that break your pinky.
   )
 #+END_SRC
 
+** Markdown Mode
+*** Audio Diary
+I created this mode since I couldn't really find a "good" major mode package so I just went and decided to make my own.
+
+**** Features
+- Highlighting
+
+*** Little Sisters
+**** Highlighting
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+*** Big Daddy
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
 * Hooks
 ** Starup
 #+BEGIN_SRC emacs-lisp
