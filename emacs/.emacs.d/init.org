@@ -2285,6 +2285,10 @@ or working) and LibreOffice's look kinda throws me off (still very good software
 
 Why is this not a major mode you ask? Well, because of Org Mode you fucking troglodyte.
 
+Some big idea I have for this little project is that I may create a file format named orgx, reminiscent of docx. Would this be very unnecessary? Absolutely! Am I still going to try
+and do it? FUCK YEAH!!! I'll most likely make this a package since this does seem like something that would definitely benefit other users, but first I'm going to make sure it'll
+work on my own Windows machine first lol.
+
 **** Features
 - Table of Contents
 - List formatting
@@ -2363,7 +2367,7 @@ to have on hand.
 (define-minor-mode eleanor-mode
   "The Rapture dream is over, but in waking, I am reborn"
   :init-value nil
-  :lighter " Free"
+  :lighter " Eleanor"
   :keymap
   '(([C-M-w] . split-window-below)
 	)
