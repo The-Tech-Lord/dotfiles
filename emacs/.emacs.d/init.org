@@ -2310,8 +2310,6 @@ This feature is based on the MS Word list insertion tool.
 #+END_SRC
 
 **** References
-Now I can write my academic papers!
-
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
