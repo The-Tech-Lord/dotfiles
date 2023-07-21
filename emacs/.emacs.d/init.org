@@ -36,6 +36,9 @@ You'll soon see from my config below that I'm also an organization junkie.
 #+END_SRC
 
 * Settings
+Technically, any customization that happens in this file is a "setting." To give clarity of what any customizations that are under Settings, they can be thought of as more
+"surface-level" customizations.
+
 ** Emacs
 *** Startup Screen
 #+begin_src emacs-lisp
@@ -2360,7 +2363,7 @@ to have on hand.
 **** Features
 - Resizing
 - Splitting
-- Swapping
+- Window Swapping
 
 *** Big Sister
 #+BEGIN_SRC emacs-lisp
@@ -2374,9 +2377,12 @@ to have on hand.
   )
 #+END_SRC
 
-** Killing Mode
+** Jack
 *** Audio Diary
-This mode makes killing and deleting lots of text more convient.
+This minor mode is named after the main protagonist of Bioshock, Jack. I couldn't really find a fitting character for this mode so I decided to go with Jack. There's not really
+anyone I can think of that just kills everyone besides the Splicers I guess.
+
+I created this mode to free up some keybindings but it also allows me to keep deleting stuff with some easier keybindings.
 
 **** Features
 - Words
@@ -2388,10 +2394,10 @@ This mode makes killing and deleting lots of text more convient.
 
 *** Big Daddy
 #+BEGIN_SRC emacs-lisp
-(define-minor-mode unnamed
-  "Text"
+(define-minor-mode jack-mode
+  "I chose to batter that man with a golf club"
   :init-value nil
-  :lighter " N/A"
+  :lighter " Jack"
   :keymap
   '(([C-M-w] . split-window-below)
 	)
