@@ -2271,11 +2271,6 @@ Acts like the therapist you could never afford.
 I love the Bioshock series and felt like naming mode definitions after it. Some of these modes were made to help free up some global keybindings. Also who said I couldn't have fun
 with my configuration file? Kinda thought that people are a bit "too" serious when naming some stuff (though feel free to call me out on some hypocrisies here haha).
 
-** God Mode
-*** Audio Diary
-idk thought it could be handy sometime.
-What does it do? I guess complex shit.
-
 ** Delta
 *** Audio Diary
 This minor mode is named after the main protagonist of Bioshock 2, the Big Daddy, Delta. I chose Delta because it would be reminiscent of the Good ending route that I had gotten
@@ -2445,6 +2440,11 @@ I created this mode since I couldn't really find a "good" major mode package so 
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
+
+** God Mode
+*** Audio Diary
+idk thought it could be handy sometime.
+What does it do? I guess complex shit.
 
 * Hooks
 ** Starup
