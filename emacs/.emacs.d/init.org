@@ -2293,15 +2293,16 @@ work on my own Windows machine first lol.
 - References (MLA, APA)
   - Citing
   - List sources
+	- Search
 - Footnotes
 - Hyphenation
 - Page Marker
+- Ribbon
 
 *** Little Sisters
 **** Table of Contents
 #+BEGIN_SRC emacs-lisp
-(defun toc-insert()
-  )
+
 #+END_SRC
 
 **** List Formatting
@@ -2312,6 +2313,12 @@ This feature is based on the MS Word list insertion tool.
 #+END_SRC
 
 **** References
+***** Citing
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+***** Sources
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
@@ -2328,6 +2335,13 @@ This feature is based on the MS Word list insertion tool.
 
 **** Page Marker
 This will essentially place a marker that allows Emacs to discern where to start ending and beginning a page.
+
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+**** Ribbon
+A togglable ribbon, similar to Microsoft Word's.
 
 #+BEGIN_SRC emacs-lisp
 
