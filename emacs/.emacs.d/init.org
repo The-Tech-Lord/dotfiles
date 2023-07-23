@@ -2316,6 +2316,9 @@ This feature is based on the MS Word list insertion tool.
 #+END_SRC
 
 **** References
+This is really just an Emacs implementation of Microsoft Word's source management feature. What? You thought I could just make my own without any reference? You expect too much of
+me. Really.
+
 ***** Sources
 ****** Creation
 ******* Book
@@ -2403,18 +2406,25 @@ This feature is based on the MS Word list insertion tool.
 
 #+END_SRC
 
-****** List Sources
-List sources as well as search through them and sort your sources view.
+****** Insertion
+Allows the selection of a source and insertion of a source; either in the form of a citation (according to style: e.g., APA) or insert a part of a source (e.g., link, author).
 
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
 
-****** Insertion
-Allows the selection of a source and insertion in an available citation style.
+****** Source Manager
+List sources as well as search and sort according to various aspects (e.g., source type).
 
 #+BEGIN_SRC emacs-lisp
-
+(define-minor-mode source-manager
+  "Text"
+  :init-value nil
+  :lighter "Source"
+  :keymaps
+  '(([C-M-w] . split-window-below)
+	)
+  )
 #+END_SRC
 
 ***** Citing
@@ -2478,6 +2488,7 @@ to have on hand.
 - Resizing
 - Splitting
 - Window Swapping
+- Tab management
 
 *** Big Sister
 #+BEGIN_SRC emacs-lisp
