@@ -2293,14 +2293,17 @@ work on my own Windows machine first lol.
 - References (MLA, APA)
   - Citing
   - List sources
-	- Search
 - Footnotes
+  - Insert at a specificed page
 - Hyphenation
 - Page Marker
 - Ribbon
 
 *** Little Sisters
 **** Table of Contents
+I wanted to take a stab at making my own Table of Contents insertion tool since the popular one seems to not be maintained anymore (toc-org) and it just doens't work for some
+reason. It'll insert a table of contents wherever there is a header that's named "Table of Contents" or a header that is tagged with TOC (case insensitive).
+
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
@@ -2313,12 +2316,114 @@ This feature is based on the MS Word list insertion tool.
 #+END_SRC
 
 **** References
-***** Citing
+***** Sources
+****** Creation
+******* Book
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
 
-***** Sources
+******* Book Section
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+******* Journal Article
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+******* Article in a Periodical
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+******* Conference Proceedings
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+******* Report
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+******* Website
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+******* Document from Website
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+******* Electronic Source
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+******* Art
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+******* Sound Recording
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+******* Performance
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+******* Film
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+******* Interview
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+******* Patent
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+******* Case
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+******* Miscellaneous
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+****** List Sources
+List sources as well as search through them and sort your sources view.
+
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+****** Insertion
+Allows the selection of a source and insertion in an available citation style.
+
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+***** Citing
+****** MLA Format 9th Edition
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+****** APA Format 7th Edition
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
