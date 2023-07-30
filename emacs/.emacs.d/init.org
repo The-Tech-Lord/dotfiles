@@ -40,12 +40,13 @@ Technically, any customization that happens in this file is a "setting." To give
 "surface-level" customizations.
 
 ** Emacs
-*** Startup Screen
+*** Startup
 #+begin_src emacs-lisp
 (setq inhibit-splash-screen t)                     ;; Startup Screen
 #+end_src
 
-*** User Interface
+*** Display
+**** UI
 #+BEGIN_SRC emacs-lisp
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
@@ -54,7 +55,7 @@ Technically, any customization that happens in this file is a "setting." To give
 (global-display-line-numbers-mode)
 #+END_SRC
 
-*** Tabs
+**** Tabs
 #+BEGIN_SRC emacs-lisp
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode t)
@@ -2489,6 +2490,7 @@ to have on hand.
 - Splitting
 - Window Swapping
 - Tab management
+- Frame management
 
 *** Big Sister
 #+BEGIN_SRC emacs-lisp

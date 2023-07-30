@@ -23,7 +23,7 @@
  '(custom-safe-themes
  '("b1a691bb67bd8bd85b76998caf2386c9a7b2ac98a116534071364ed6489b695d" "fa49766f2acb82e0097e7512ae4a1d6f4af4d6f4655a48170d0a00bcb7183970" "3e374bb5eb46eb59dbd92578cae54b16de138bc2e8a31a2451bf6fdb0f3fd81b" "19a2c0b92a6aa1580f1be2deb7b8a8e3a4857b6c6ccf522d00547878837267e7" "2ff9ac386eac4dffd77a33e93b0c8236bb376c5a5df62e36d4bfa821d56e4e20" "72ed8b6bffe0bfa8d097810649fd57d2b598deef47c992920aef8b5d9599eefe" "d80952c58cf1b06d936b1392c38230b74ae1a2a6729594770762dc0779ac66b7" default))
  '(package-selected-packages
-   '(toc-org csharp-mode vimrc-mode gruvbox-theme)
+   '(csharp-mode vimrc-mode gruvbox-theme)
    )
  )
 
@@ -245,7 +245,7 @@
 (global-unset-key (kbd "C-M-@"))    ;; mark-sexp
 (global-unset-key (kbd "C-M-SPC"))    ;; mark-sexp
 
-(global-unset-key (kbd "M-,"))    ;; xref-pop-marker-stack
+(global-unset-key (kbd "M-,"))    ;; xref-pop-marker-stack
 (global-unset-key (kbd "C-x C-@"))    ;; pop-global-mark
 (global-unset-key (kbd "C-x C-SPC"))    ;; pop-global-mark
 
@@ -300,7 +300,7 @@
 (global-set-key (kbd "M-s R") 'query-replace-regexp)
 
 (define-prefix-command 'hi-prfx)
-(global-set-key (kbd "M-p") 'hi-prfx)
+(global-set-key (kbd "M-l") 'hi-prfx)
 
 (global-unset-key (kbd "M-s h ."))    ;; highlight-symbol-at-point
 (global-unset-key (kbd "M-s h p"))    ;; highlight-phrase
@@ -312,12 +312,12 @@
 (global-unset-key (kbd "M-s h f"))    ;; hi-lock-find-patterns
 (global-unset-key (kbd "M-s h w"))    ;; hi-lock-write-interactive-patterns
 
-(global-set-key (kbd "M-p h") 'highlight-symbol-at-point)
-(global-set-key (kbd "M-p p") 'highlight-phrase)
+(global-set-key (kbd "M-l h") 'highlight-symbol-at-point)
+(global-set-key (kbd "M-l p") 'highlight-phrase)
 
-(global-set-key (kbd "M-p x") 'highlight-regexp)
-(global-set-key (kbd "M-p l") 'highlight-lines-matching-regexp)
-(global-set-key (kbd "M-p u") 'unhighlight-regexp)
+(global-set-key (kbd "M-l x") 'highlight-regexp)
+(global-set-key (kbd "M-l l") 'highlight-lines-matching-regexp)
+(global-set-key (kbd "M-l u") 'unhighlight-regexp)
 
 (global-unset-key (kbd "C-M-o"))    ;; split-line
 
@@ -337,6 +337,9 @@
 (global-set-key (kbd "C-x C-y") 'transpose-lines)
 (global-set-key (kbd "C-x C-u") 'transpose-sentences)
 
+(define-prefix-command 'indent-prfx)
+(global-set-key (kbd "M-i") 'indent-prfx)
+
 (global-unset-key (kbd "M-j"))    ;; default-indent-new-line
 (global-unset-key (kbd "C-M-j"))    ;; default-indent-new-line
 
@@ -346,15 +349,15 @@
 
 
 
-
+(global-set-key (kbd "M-i TAB") 'indent-rigidly)
+(global-set-key (kbd "M-i r") 'indent-region)
+(global-set-key (kbd "M-i c") 'move-past-close-and-reindent)
 
 (global-unset-key (kbd "C-x ;"))    ;; comment-set-column
 (global-unset-key (kbd "M-;"))    ;; comment-dwim
 
 (global-unset-key (kbd "C-q"))    ;; quoted-insert
 (global-unset-key (kbd "C-x C-d"))    ;; list-directory
-
-(global-set-key (kbd "C-x g") 'glasses-mode)
 
 (define-prefix-command 'frames-prfx)
 (global-set-key (kbd "C-f") 'frames-prfx)
@@ -588,8 +591,8 @@
 (global-set-key (kbd "C-v M-i") 'vc-register)
 
 (global-set-key (kbd "C-v v") 'vc-next-action)
-(global-set-key (kbd "C-v P") 'vc-update)
 (global-set-key (kbd "C-v p") 'vc-push)
+(global-set-key (kbd "C-v P") 'vc-update)
 (global-set-key (kbd "C-v M") 'vc-merge)
 (global-set-key (kbd "C-v U") 'vc-revert)
 
@@ -660,6 +663,9 @@
 
 
 
+(define-prefix-command 'abbrev-prfx)
+(global-set-key (kbd "M-a") 'abbrev-prfx)
+
 (global-unset-key (kbd "C-x a g"))    ;; add-global-abbrev
 (global-unset-key (kbd "C-x a -"))    ;; inverse-add-global-abbrev
 (global-unset-key (kbd "C-x a i g"))    ;; inverse-add-global-abbrev
@@ -678,13 +684,12 @@
 
 (global-unset-key (kbd "C-M-/"))    ;; dabbrev-completion
 
+(global-set-key (kbd "M-a /") 'abbrev-expand)
+(global-set-key (kbd "M-a e") 'expand-abbrev)
+(global-set-key (kbd "M-a n") 'expand-jump-to-next-slot)
+(global-set-key (kbd "M-a p") 'expand-jump-to-previous-slot)
 
-
-
-
-
-
-
+(global-set-key (kbd "M-a C-/") 'dabbrev-completion)
 
 (define-prefix-command 'register-prfx)
 (global-set-key (kbd "M-t") 'register-prfx)
@@ -769,6 +774,8 @@
 (global-unset-key (kbd "M-("))    ;; insert-parentheses
 (global-unset-key (kbd "C-x i"))    ;; insert-file
 
+(global-set-key (kbd "M-p") 'insert-parentheses)
+
 (global-unset-key (kbd "C-M-i"))    ;; complete-symbol
 
 (define-prefix-command 'narrow-prfx)
@@ -786,6 +793,11 @@
 (global-set-key (kbd "M-n p") 'narrow-to-page)
 (global-set-key (kbd "M-n w") 'widen)
 
+(global-set-key (kbd "C-x g") 'glasses-mode)
+
+(define-prefix-command 'd/encoding-prfx)
+(global-set-key (kbd "C-z c") 'd/encoding-prfx)
+
 (global-unset-key (kbd "C-x RET F"))    ;; set-file-name-coding-system
 (global-unset-key (kbd "C-x RET k"))    ;; set-keyboard-coding-system
 (global-unset-key (kbd "C-x RET t"))    ;; set-terminal-coding-system
@@ -800,10 +812,35 @@
 (global-unset-key (kbd "C-x RET l"))    ;; set-language-environment
 (global-unset-key (kbd "C-x RET C-\\"))    ;; set-input-method
 
+(global-set-key (kbd "C-z c f") 'set-file-name-coding-system)
+(global-set-key (kbd "C-z c k") 'set-keyboard-coding-system)
+(global-set-key (kbd "C-z c t") 'set-terminal-coding-system)
+(global-set-key (kbd "C-z c s") 'set-selection-coding-system)
+
+(global-set-key (kbd "C-z c b") 'set-buffer-file-coding-system)
+(global-set-key (kbd "C-z c p") 'set-buffer-process-coding-system)
+(global-set-key (kbd "C-z c r") 'revert-buffer-with-coding-system)
+
+(global-set-key (kbd "C-z c S") 'set-next-selection-coding-system)
+(global-set-key (kbd "C-z c u") 'universal-coding-system-argument)
+(global-set-key (kbd "C-z c e") 'set-language-environment)
+(global-set-key (kbd "C-z c /") 'set-input-method)
+
+(define-prefix-command 'lang-prfx)
+(global-set-key (kbd "C-z z") 'lang-prfx)
+
 (global-unset-key (kbd "M-$"))    ;; ispell-word
 
 (global-unset-key (kbd "C-x 8 RET"))    ;; insert-char
 (global-unset-key (kbd "C-x \\"))    ;; activate-transient-input-method
+
+(global-set-key (kbd "C-z z w") 'ispell-word)
+
+(global-set-key (kbd "C-z z i") 'insert-char)
+(global-set-key (kbd "C-z z /") 'activate-transient-input-method)
+
+(define-prefix-command 'commando-prfx)
+(global-set-key (kbd "C-z x") 'commando-prfx)
 
 (global-unset-key (kbd "M-!"))    ;; shell-command
 (global-unset-key (kbd "M-&"))    ;; async-shell-command
@@ -818,11 +855,14 @@
 (global-unset-key (kbd "M-ESC :"))    ;; eval-expression
 (global-unset-key (kbd "C-x C-e"))    ;; eval-last-sexp
 
+(global-set-key (kbd "C-z x s") 'shell-command)
+(global-set-key (kbd "C-z x a") 'async-shell-command)
+(global-set-key (kbd "C-z x r") 'shell-command-on-region)
+(global-set-key (kbd "C-z x R") 'repeat-complex-command)
 
+(global-set-key (kbd "C-z x x") 'exit-recursive-edit)
 
-
-
-
+(global-set-key (kbd "C-z x :") 'eval-expression)
 
 ;; (global-unset-key (kbd "<f1> C-a"))    ;; about-emacs
 ;; (global-unset-key (kbd "<f1> C-c"))    ;; describe-copying
@@ -987,20 +1027,23 @@
 
 
 
+(define-prefix-command 'autofill-prfx)
+(global-set-key (kbd "C-q") 'autofill-prfx)
+
 (global-unset-key (kbd "C-x ."))    ;; set-fill-prefix
 (global-unset-key (kbd "C-x f"))    ;; set-fill-column
 
 (global-unset-key (kbd "M-q"))    ;; fill-paragraph
 
-(global-set-key (kbd "C-x a a") 'auto-fill-mode)
+(global-set-key (kbd "C-q a") 'auto-fill-mode)
 
-(global-set-key (kbd "C-x a .") 'set-fill-prefix)
-(global-set-key (kbd "C-x a f") 'set-fill-column)
+(global-set-key (kbd "C-q .") 'set-fill-prefix)
+(global-set-key (kbd "C-q f") 'set-fill-column)
 
-(global-set-key (kbd "C-x a p") 'fill-paragraph)
-(global-set-key (kbd "C-x a r") 'fill-region)
-(global-set-key (kbd "C-x a P") 'fill-region-as-paragraph)
-(global-set-key (kbd "C-x a c") 'center-line)
+(global-set-key (kbd "C-q p") 'fill-paragraph)
+(global-set-key (kbd "C-q r") 'fill-region)
+(global-set-key (kbd "C-q P") 'fill-region-as-paragraph)
+(global-set-key (kbd "C-q c") 'center-line)
 
 (with-eval-after-load 'rect
   (define-key rectangle-mark-mode-map (kbd "C-o") nil)    ;; open-rectangle
@@ -1081,11 +1124,41 @@
 
 (global-set-key (kbd "C-` C-D") 'doctor)
 
+(define-minor-mode unnamed
+  "Text"
+  :init-value nil
+  :lighter " N/A"
+  :keymap
+  '(([C-M-w] . split-window-below)
+	)
+  )
 
+(define-minor-mode atlas-mode
+  "Would you kindly"
+  :init-value nil
+  :lighter " Atlas"
+  :keymap
+  '(([C-M w] . split-window-below)
+	)
+  )
 
+(define-minor-mode delta-mode
+  "aaaaauuuuuuuggggghhhh"
+  :init-value nil
+  :lighter " Delta"
+  :keymap
+  '(([C-M-w] . split-window-below)
+	)
+  )
 
-
-
+(define-minor-mode eleanor-mode
+  "The Rapture dream is over, but in waking, I am reborn"
+  :init-value nil
+  :lighter " Free"
+  :keymap
+  '(([C-M-w] . split-window-below)
+	)
+  )
 
 (defun wow-wow-wubzy()
   )
@@ -1134,6 +1207,7 @@
 
 (add-hook 'org-mode-hook
 		  'turn-on-auto-fill
+		  'agenda-unbind
 		  )
 
 
