@@ -28,11 +28,18 @@ open would start to ramp up my laptop's fans. This goes back to when I was using
 You'll soon see from my config below that I'm also an organization junkie.
 
 * Packages
+** Init
 #+BEGIN_SRC emacs-lisp
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
+#+END_SRC
+
+** Auto Installation
+#+BEGIN_SRC emacs-lisp
+(require 'use-package)
+(require 'eldoc-box)
 #+END_SRC
 
 * Settings
@@ -205,6 +212,22 @@ The plan here is that when a git window is opened, it won't display the line num
 **** Whitespace Mode
 #+BEGIN_SRC emacs-lisp
 
+#+END_SRC
+
+**** Lsp-Mode
+#+BEGIN_SRC emacs-lisp
+;; (use-package lsp-mode
+;;   :hook ((python-mode) . lsp-deferred)
+;;   :commands lsp)
+
+;; (use-package lsp-pyright
+;;   :hook (python-mode . (lambda () (require 'lsp-pyright)))
+;;   :init (when (executable-find "python3")
+;;           (setq lsp-pyright-python-executable-cmd "python3")))
+
+;; (use-package lsp-jedi
+;;   :hook (python-mode . (lambda () (require 'lsp-jedi)))
+;;   :init (when (executable-find "python3")))
 #+END_SRC
 
 * Bindings
@@ -2646,7 +2669,10 @@ What does it do? I guess complex shit.
 
 **** Python
 #+BEGIN_SRC emacs-lisp
-
+(add-hook 'python-mode-hook
+		  'eglot-ensure
+		  'python-mode-settings
+		  )
 #+END_SRC
 
 **** C#
@@ -2658,6 +2684,13 @@ What does it do? I guess complex shit.
 **** Hexl
 #+BEGIN_SRC emacs-lisp
 
+#+END_SRC
+
+**** Eglot
+#+BEGIN_SRC emacs-lisp
+(add-hook 'eglot-managed-mode-hook
+		  #'eldoc-box-hover-mode t
+		  )
 #+END_SRC
 
 ** The Founding Fathers
