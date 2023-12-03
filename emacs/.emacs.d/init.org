@@ -27,6 +27,11 @@ open would start to ramp up my laptop's fans. This goes back to when I was using
 
 You'll soon see from my config below that I'm also an organization junkie.
 
+* Tasks
+** TODO Add a spell checker (Windows, Linux)
+** TODO Adjust keybindings for greater usability in various workflows
+** TODO Create the minor modes
+
 * Packages
 ** Init
 #+BEGIN_SRC emacs-lisp
@@ -382,7 +387,7 @@ https://emacs.stackexchange.com/questions/220/how-to-bind-c-i-as-different-from-
 ****** Alignment
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-r"))    ;; move-to-window-line-top-bottom
-(global-unset-key (kbd "C-l"))    ;; recenter-top-bottom
+;;(global-unset-key (kbd "C-l"))    ;; recenter-top-bottom
 (global-unset-key (kbd "C-M-l"))    ;; reposition-window
 #+END_SRC
 
@@ -2022,6 +2027,11 @@ The Founding Fathers is a funny little thing I decided to refer to functions of 
 
 #+END_SRC
 
+******* Babel
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
 ***** ToDo Mode
 ****** Unbinded
 #+BEGIN_SRC emacs-lisp
@@ -2076,6 +2086,9 @@ The Founding Fathers is a funny little thing I decided to refer to functions of 
 Though "local" refers to Major modes, I decided to include others that I think "relate" to the concept of "local."
 
 **** Auto Fill Mode
+Auto Fill mode can be thought of as Microsoft Word's text formatting abilities. When you get to the end of a line, it will put the overflowing text on the next line and being able
+to set the alignment of your text.
+
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'autofill-prfx)
 (global-set-key (kbd "C-q") 'autofill-prfx)
@@ -2311,17 +2324,27 @@ Some big idea I have for this little project is that I may create a file format 
 and do it? FUCK YEAH!!! I'll most likely make this a package since this does seem like something that would definitely benefit other users, but first I'm going to make sure it'll
 work on my own Windows machine first lol.
 
-**** Features
-- Table of Contents
-- List formatting
-- References (MLA, APA)
-  - Citing
-  - List sources
-- Footnotes
-  - Insert at a specificed page
-- Hyphenation
-- Page Marker
-- Ribbon
+**** Features and Documentation
+***** Table of Contents
+
+***** List formatting
+
+***** References (MLA, APA)
+
+****** Citing
+
+****** List sources
+
+***** Footnotes
+
+****** Insert at a specificed page
+
+***** Hyphenation
+
+***** Page Marker
+Automatically place the page character after a certain amount of lines have been surpassed, either from the last marker or from the beginning of the Org file
+
+***** Ribbon
 
 *** Little Sisters
 **** Table of Contents
@@ -2606,6 +2629,9 @@ What does it do? I guess complex shit.
 #+BEGIN_SRC emacs-lisp
 (add-hook 'emacs-startup-hook
 		  'wow-wow-wubzy
+		  )
+(add-hook 'after-init-hook
+		  'global-company-mode
 		  )
 #+END_sRC
 
