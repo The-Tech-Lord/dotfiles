@@ -1901,6 +1901,8 @@ Non-user created prefixes
 **** CC Mode
 ***** CC Common
 ****** Hungry Delete
+Hungry Delete is a function that will either delete the whitespace up to a non-whitespace character or delete the preceeding/proceeding character.
+
 #+BEGIN_SRC emacs-lisp
 (defun cc-hungry-delete()
   (local-unset-key (kbd "C-c DEL"))    ;; c-hungry-delete-backwards
@@ -2496,8 +2498,6 @@ List sources as well as search and sort according to various aspects (e.g., sour
 #+END_SRC
 
 **** Page Marker
-This will essentially place a marker that allows Emacs to discern where to start ending and beginning a page.
-
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
