@@ -75,11 +75,6 @@ Plug 'yuezk/vim-js'
 Plug 'mhinz/vim-signify'
 #+END_SRC
 
-** Other Plugins
-#+BEGIN_SRC vimrc
-Plug 'vimsence/vimsence'
-#+END_SRC
-
 #+BEGIN_SRC vimrc
 call plug#end()
 #+END_SRC
@@ -149,18 +144,6 @@ let g:gruvbox_vert_split = 'bg1'
 #+BEGIN_SRC vimrc
 let g:tokyonight_style = 'night'
 let g:tokyonight_enable_italic = 0
-#+END_SRC
-
-*** Vimsence [ Discord Presence ]
-#+BEGIN_SRC vimrc
-let g:vimsense_client_id = '552207212840353822'
-let g:vimsense_small_text = 'Vim'
-let g:vimsense_small_image = 'vim'
-let g:vimsense_editing_details = 'Editing: {}'
-let g:vimsense_editing_state = 'Working on: {}'
-let g:vimsense_file_explorer_text = 'In NERDTree'
-let g:vimsense_file_explorer_details = 'Looking for files'
-let g:vimsense_custom_icons = {'filetype': 'iconname'}
 #+END_SRC
 
 * Vim Commands
