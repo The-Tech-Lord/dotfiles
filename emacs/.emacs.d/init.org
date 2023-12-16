@@ -31,6 +31,7 @@ You'll soon see from my config below that I'm also an organization junkie.
 ** TODO Add a spell checker (Windows, Linux)
 ** TODO Adjust keybindings for greater usability in various workflows
 ** TODO Create the minor modes
+** TODO Create bindings for package manager
 
 * Packages
 ** Init
@@ -233,6 +234,11 @@ The plan here is that when a git window is opened, it won't display the line num
 ;; (use-package lsp-jedi
 ;;   :hook (python-mode . (lambda () (require 'lsp-jedi)))
 ;;   :init (when (executable-find "python3")))
+#+END_SRC
+
+**** ELDOC-BOX
+#+BEGIN_SRC emacs-lisp
+
 #+END_SRC
 
 * Bindings
@@ -2715,7 +2721,6 @@ What does it do? I guess complex shit.
 **** Eglot
 #+BEGIN_SRC emacs-lisp
 (add-hook 'eglot-managed-mode-hook
-		  #'eldoc-box-hover-mode t
 		  )
 #+END_SRC
 

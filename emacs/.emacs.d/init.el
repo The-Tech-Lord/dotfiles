@@ -3,6 +3,9 @@
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
+(require 'use-package)
+(require 'eldoc-box)
+
 (setq inhibit-splash-screen t)                     ;; Startup Screen
 
 (scroll-bar-mode -1)
@@ -29,6 +32,9 @@
 
 (custom-set-faces
    )
+
+(defun wow-wow-wubzy()
+  )
 
 (setq c-default-style "linux")    ;; Makes curly braces format how they're supposed to
 
@@ -76,6 +82,21 @@
 (setq org-edit-src-content-indentation '0)
 
 
+
+
+
+;; (use-package lsp-mode
+;;   :hook ((python-mode) . lsp-deferred)
+;;   :commands lsp)
+
+;; (use-package lsp-pyright
+;;   :hook (python-mode . (lambda () (require 'lsp-pyright)))
+;;   :init (when (executable-find "python3")
+;;           (setq lsp-pyright-python-executable-cmd "python3")))
+
+;; (use-package lsp-jedi
+;;   :hook (python-mode . (lambda () (require 'lsp-jedi)))
+;;   :init (when (executable-find "python3")))
 
 
 
@@ -163,7 +184,7 @@
 (global-unset-key (kbd "ESC C-<up>"))    ;; backward-up-list
 
 (global-unset-key (kbd "M-r"))    ;; move-to-window-line-top-bottom
-(global-unset-key (kbd "C-l"))    ;; recenter-top-bottom
+;;(global-unset-key (kbd "C-l"))    ;; recenter-top-bottom
 (global-unset-key (kbd "C-M-l"))    ;; reposition-window
 
 (global-unset-key (kbd "M-g c"))    ;; goto-char
@@ -764,7 +785,7 @@
 (global-unset-key (kbd "C-x C-k x"))    ;; kmacro-to-register
 
 (define-prefix-command 'bookmark-prfx)
-(global-set-key (kbd "C-x b") 'bookmark-prfx)
+(global-set-key (kbd "M-b") 'bookmark-prfx)
 
 (global-unset-key (kbd "C-x r m"))    ;; bookmark-set
 (global-unset-key (kbd "C-x r M"))    ;; bookmark-set-no-overwrite
@@ -1013,6 +1034,8 @@
 
 
 
+
+
 (global-unset-key (kbd "C-x m"))    ;; compose-mail
 
 
@@ -1124,10 +1147,89 @@
 
 (global-set-key (kbd "C-` C-D") 'doctor)
 
-(define-minor-mode unnamed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(define-minor-mode source-manager
   "Text"
   :init-value nil
-  :lighter " N/A"
+  :lighter "Source"
+  :keymaps
+  '(([C-M-w] . split-window-below)
+	)
+  )
+
+
+
+
+
+
+
+
+
+
+
+
+
+(define-minor-mode delta-mode
+  "aaaaauuuuuuuggggghhhh"
+  :init-value nil
+  :lighter " Delta"
+  :keymap
+  '(([C-M-w] . split-window-below)
+	)
+  )
+
+(define-minor-mode eleanor-mode
+  "The Rapture dream is over, but in waking, I am reborn"
+  :init-value nil
+  :lighter " Eleanor"
+  :keymap
+  '(([C-M-w] . split-window-below)
+	)
+  )
+
+(define-minor-mode jack-mode
+  "I chose to batter that man with a golf club"
+  :init-value nil
+  :lighter " Jack"
   :keymap
   '(([C-M-w] . split-window-below)
 	)
@@ -1142,29 +1244,15 @@
 	)
   )
 
-(define-minor-mode delta-mode
-  "aaaaauuuuuuuggggghhhh"
-  :init-value nil
-  :lighter " Delta"
-  :keymap
-  '(([C-M-w] . split-window-below)
-	)
-  )
 
-(define-minor-mode eleanor-mode
-  "The Rapture dream is over, but in waking, I am reborn"
-  :init-value nil
-  :lighter " Free"
-  :keymap
-  '(([C-M-w] . split-window-below)
-	)
-  )
 
-(defun wow-wow-wubzy()
-  )
+
 
 (add-hook 'emacs-startup-hook
 		  'wow-wow-wubzy
+		  )
+(add-hook 'after-init-hook
+		  'global-company-mode
 		  )
 
 (add-hook 'c-initialization-hook
@@ -1199,11 +1287,17 @@
 		  'awk-mode-settings
 		  )
 
+(add-hook 'python-mode-hook
+		  'eglot-ensure
+		  'python-mode-settings
+		  )
 
 
 
 
 
+(add-hook 'eglot-managed-mode-hook
+		  )
 
 (add-hook 'org-mode-hook
 		  'turn-on-auto-fill

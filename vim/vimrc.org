@@ -75,6 +75,7 @@ Plug 'yuezk/vim-js'
 Plug 'mhinz/vim-signify'
 #+END_SRC
 
+** Vim Plug End
 #+BEGIN_SRC vimrc
 call plug#end()
 #+END_SRC
