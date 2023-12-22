@@ -221,22 +221,6 @@ The plan here is that when a git window is opened, it won't display the line num
 
 #+END_SRC
 
-**** Lsp-Mode
-#+BEGIN_SRC emacs-lisp
-;; (use-package lsp-mode
-;;   :hook ((python-mode) . lsp-deferred)
-;;   :commands lsp)
-
-;; (use-package lsp-pyright
-;;   :hook (python-mode . (lambda () (require 'lsp-pyright)))
-;;   :init (when (executable-find "python3")
-;;           (setq lsp-pyright-python-executable-cmd "python3")))
-
-;; (use-package lsp-jedi
-;;   :hook (python-mode . (lambda () (require 'lsp-jedi)))
-;;   :init (when (executable-find "python3")))
-#+END_SRC
-
 **** ELDOC-BOX
 #+BEGIN_SRC emacs-lisp
 
@@ -266,6 +250,8 @@ https://emacs.stackexchange.com/questions/220/how-to-bind-c-i-as-different-from-
 **** Movement
 ***** Unbinding
 ****** Basic
+These movement bindings are so cursed, why would anyone decide to use them for practical use?!?
+
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-f"))    ;; forward-char
 (global-unset-key (kbd "C-b"))    ;; backward-char
@@ -274,6 +260,8 @@ https://emacs.stackexchange.com/questions/220/how-to-bind-c-i-as-different-from-
 #+END_SRC
 
 ****** Chunks
+Named this little category "Chunks" because I can now refer to commands that effect more than one character without having to provide dedicated lvl 6 headers everywhere.
+
 ******* Words
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-f"))    ;; forward-word
@@ -442,8 +430,6 @@ https://emacs.stackexchange.com/questions/220/how-to-bind-c-i-as-different-from-
 #+END_SRC
 
 ****** Chunks
-Named this little category "Chunks" because I can now refer to commands that effect more than one character without having to provide dedicated lvl 6 headers everywhere.
-
 ******* Words
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-d"))    ;; kill-word
