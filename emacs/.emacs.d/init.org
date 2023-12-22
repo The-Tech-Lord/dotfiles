@@ -27,6 +27,14 @@ open would start to ramp up my laptop's fans. This goes back to when I was using
 
 You'll soon see from my config below that I'm also an organization junkie.
 
+** Packages I've Installed
+*** Modes
+- csharp-mode: Major mode for C#
+- vimrc-mode: Major mode for vimrc configuration files
+  
+*** Themes
+- gruvbox-theme: If you aren't using Gruvbox, what are you doing with your life?
+
 * Tasks
 ** TODO Add a spell checker (Windows, Linux)
 ** TODO Adjust keybindings for greater usability in various workflows
@@ -83,13 +91,6 @@ Technically, any customization that happens in this file is a "setting." To give
 
 ** Custom
 *** Variables
-Modes:
-- csharp-mode: Major mode for C#
-- vimrc-mode: Major mode for vimrc configuration files
-  
-Themes:
-- gruvbox-theme: If you aren't using Gruvbox, what are you doing with your life?
-
 #+BEGIN_SRC emacs-lisp
 (custom-set-variables
  '(custom-enabled-themes '(gruvbox-dark-medium))
@@ -2331,6 +2332,10 @@ Why is this not a major mode you ask? Well, because of Org Mode you fucking trog
 Some big idea I have for this little project is that I may create a file format named orgx, reminiscent of docx. Would this be very unnecessary? Absolutely! Am I still going to try
 and do it? FUCK YEAH!!! I'll most likely make this a package since this does seem like something that would definitely benefit other users, but first I'm going to make sure it'll
 work on my own Windows machine first lol.
+
+**** How I'd like to execute the Word-like feature of orgx
+What I'd like to do is utilize the tar file or some sort of archiving feature and allow Emacs to open it and allow the user to open up the sole org file and be able to use
+Word-like features, such as rendering images.
 
 **** Features and Documentation
 ***** Table of Contents
