@@ -40,6 +40,7 @@ You'll soon see from my config below that I'm also an organization junkie.
 ** TODO Adjust keybindings for greater usability in various workflows
 ** TODO Create the minor modes
 ** TODO Create bindings for package manager
+** TODO Create a more UI main method for creating Tasks with Org mode
 
 * Packages
 ** Init
@@ -83,6 +84,11 @@ Technically, any customization that happens in this file is a "setting." To give
 (setq backward-delete-char-untabify-method nil)
 #+END_SRC
 
+*** Agenda
+#+BEGIN_SRC emacs-lisp
+(setq org-agenda-span 'month)
+#+END_SRC
+
 *** Other
 #+BEGIN_SRC emacs-lisp
 (setq make-backup-files nil)
@@ -100,6 +106,9 @@ Technically, any customization that happens in this file is a "setting." To give
    '(csharp-mode vimrc-mode gruvbox-theme)
    )
  )
+
+;;(setq haki-region "#2e8b6d")
+;;(load-theme 'haki t)
 #+END_SRC
 
 *** Faces
@@ -146,6 +155,7 @@ I named this function after the kids show Wow Wow Wubzy simply because it sounde
 ***** Java
 #+BEGIN_SRC emacs-lisp
 (defun java-mode-settings()
+  (setq c-basic-offset 4)
   )
 #+END_SRC
 
@@ -207,6 +217,11 @@ I named this function after the kids show Wow Wow Wubzy simply because it sounde
 #+BEGIN_SRC emacs-lisp
 (setq org-src-preserve-indentation t)
 (setq org-edit-src-content-indentation '0)
+#+END_SRC
+
+**** Dired
+#+BEGIN_SRC emacs-lisp
+(setq ls-lisp-dirs-first t)
 #+END_SRC
 
 **** Version Control
@@ -2319,9 +2334,10 @@ Some big idea I have for this little project is that I may create a file format 
 and do it? FUCK YEAH!!! I'll most likely make this a package since this does seem like something that would definitely benefit other users, but first I'm going to make sure it'll
 work on my own Windows machine first lol.
 
-**** How I'd like to execute the Word-like feature of orgx
-What I'd like to do is utilize the tar file or some sort of archiving feature and allow Emacs to open it and allow the user to open up the sole org file and be able to use
-Word-like features, such as rendering images.
+**** Orgx
+***** Image Rendering
+Due to the way that archive files (e.g., tarball) work, simply putting in the path of an image and rendering it while inside the archive file will not render the image. In order to
+do this, a temporary replication of the file structure that leads to the image will need to be created (sort of like a swap file in a way).
 
 **** Features and Documentation
 ***** Table of Contents
@@ -2711,8 +2727,7 @@ What does it do? I guess complex shit.
 
 **** Eglot
 #+BEGIN_SRC emacs-lisp
-(add-hook 'eglot-managed-mode-hook
-		  )
+
 #+END_SRC
 
 ** The Founding Fathers
