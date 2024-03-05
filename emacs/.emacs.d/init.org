@@ -36,8 +36,8 @@ You'll soon see from my config below that I'm also an organization junkie.
 - gruvbox-theme: If you aren't using Gruvbox, what are you doing with your life?
 
 * Tasks
-** TODO Add a spell checker (Windows, Linux)
-** TODO Adjust keybindings for greater usability in various workflows
+** DONE Add a spell checker (Windows, Linux)
+** IN-PROGRESS Adjust keybindings for greater usability in various workflows
 ** TODO Create the minor modes
 ** TODO Create bindings for package manager
 ** TODO Create a more UI main method for creating Tasks with Org mode
@@ -86,7 +86,15 @@ Technically, any customization that happens in this file is a "setting." To give
 
 *** Agenda
 #+BEGIN_SRC emacs-lisp
-(setq org-agenda-span 'month)
+(setq org-agenda-span month)
+(setq org-priority-highest A)
+(setq org-priority-lowest G)
+(setq org-priority-default D)
+#+END_SRC
+
+*** FlySpell
+#+BEGIN_SRC emacs-lisp
+(setq-default ispell-program-name "C:/msys64/usr/bin/aspell.exe")
 #+END_SRC
 
 *** Other
@@ -200,8 +208,8 @@ I named this function after the kids show Wow Wow Wubzy simply because it sounde
 ****** Keywords
 #+BEGIN_SRC emacs-lisp
 (setq org-todo-keywords
-		'((sequence "TODO" "IN-PROGRESS" "NEAR-COMP" "|" "DONE")
-		  (sequence "BUG" "MINOR" "MAJOR" "|" "FIXED" "HOTFIX")
+		'((sequence "TODO(t)" "IN-PROGRESS(i)" "NEAR-COMP(n)" "|" "DONE(d!)")
+		  (sequence "BUG(b)" "MINOR" "MAJOR" "|" "FIXED(f@!)" "HOTFIX(h@!)")
 		  (sequence "Heh")))
 #+END_SRC
 
@@ -397,7 +405,6 @@ Named this little category "Chunks" because I can now refer to commands that eff
 ****** Alignment
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-r"))    ;; move-to-window-line-top-bottom
-;;(global-unset-key (kbd "C-l"))    ;; recenter-top-bottom
 (global-unset-key (kbd "C-M-l"))    ;; reposition-window
 #+END_SRC
 
@@ -412,20 +419,53 @@ Named this little category "Chunks" because I can now refer to commands that eff
 ****** Other
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-g TAB"))    ;; move-to-column
-(global-unset-key (kbd "<Scroll Lock>"))    ;; scroll-lock-mode
 #+END_SRC
 
 ***** Binding
+****** Chunks
+******* Words
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<right>") 'forward-word)
+(global-set-key (kbd "C-<left>") 'backward-word)
+#+END_SRC
+
+******* Sentences
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-M-<right>") 'forward-sentence)
+(global-set-key (kbd "C-M-<left>") 'backward-sentence)
+#+END_SRC
+
+******* Paragraphs
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-M-<down>") 'forward-paragraph)
+(global-set-key (kbd "C-M-<up>") 'backward-paragraph)
+#+END_SRC
+
+******* Defun
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-{") 'beginning-of-defun)
+(global-set-key (kbd "C-}") 'end-of-defun)
+#+END_SRC
+
 ****** Whitespace
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-M-a") 'back-to-indentation)
+(global-set-key (kbd "C-<") 'back-to-indentation)
+(global-set-key (kbd "C->") 'tab-to-tab-stop)
+#+END_SRC
+
+****** Lists
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-S-k") 'up-list)
+(global-set-key (kbd "C-S-j") 'backward-up-list)
+(global-set-key (kbd "C-S-l") 'forward-list)
+(global-set-key (kbd "C-S-h") 'backward-list)
 #+END_SRC
 
 ****** Scrolling
 ******* Begend
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-<prior>") 'beginning-of-buffer)
-(global-set-key (kbd "C-<next>") 'end-of-buffer)
+(global-set-key (kbd "C-S-b") 'beginning-of-buffer)
+(global-set-key (kbd "C-S-n") 'end-of-buffer)
 #+END_SRC
 
 **** Killing
@@ -466,7 +506,7 @@ doing their work in linear fashion.
 #+END_SRC
 
 ******* Moisty
-Named this header after the phrase, by MoistCr1TiKaL, "Hey!, Sex?". I decided to rename this header to "Moisty" as it encompases the hilarity of his content; and also the original
+Named this header after the phrase, by MoistCr1TiKaL, "Hey!, Sex?". I decided to rename this header to "Moisty" as it encompasses the hilarity of his content; and also the original
 "Hey. Sex?" header name bothered me.
 
 #+BEGIN_SRC emacs-lisp
@@ -485,6 +525,7 @@ Apparently Yank in Emacs is paste while in Vim it's copy...I don't know how I fe
 (global-unset-key (kbd "C-y"))    ;; yank
 (global-unset-key (kbd "S-<insert>"))    ;; yank
 (global-unset-key (kbd "S-<insertchar>"))    ;; yank
+(global-unset-key (kbd "M-y"))   ;; yank-pop
 #+END_SRC
 
 ******* Undo
@@ -520,24 +561,43 @@ Apparently Yank in Emacs is paste while in Vim it's copy...I don't know how I fe
 ***** Binded
 ****** Kill Ring
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-'") 'kill-ring-save)
+(global-set-key (kbd "M-/") 'kill-ring-save)
+(global-set-key (kbd "C-M-/") 'append-next-kill)
 #+END_SRC
 
 ****** Region
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-.") 'kill-region)
+(global-set-key (kbd "M-.") 'kill-region)
+#+END_SRC
+
+****** Chunks
+******* Words
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-M-h") 'backward-kill-word)
+(global-set-key (kbd "C-M-j") 'kill-word)
+#+END_SRC
+
+******* Straights
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-M-k") 'backward-kill-sentence)
+(global-set-key (kbd "C-M-l") 'kill-sentence)
+(global-set-key (kbd "C-M-n") 'kill-whole-line)
 #+END_SRC
 
 ****** Pacifist
 ******* Yank
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-;") 'yank)
+(global-set-key (kbd "M-;") 'yank)
+(global-set-key (kbd "M-'") 'yank-pop)
 #+END_SRC
 
 ******* Deletion
 ******** Whitespace
 #+BEGIN_SRC emacs-lisp
-
+(global-set-key (kbd "C-M-y") 'delete-indentation)
+(global-set-key (kbd "C-M-u") 'delete-horizontal-space)
+(global-set-key (kbd "C-M-b") 'delete-blank-lines)
+(global-set-key (kbd "C-M-p") 'just-one-space)
 #+END_SRC
 
 **** Marking
@@ -651,7 +711,7 @@ wouldn't allow rebinding a practical possibility.
 
 ****** Xref
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-."))    ;; xref-find-definitions
+;;(global-unset-key (kbd "M-."))    ;; xref-find-definitions
 (global-unset-key (kbd "M-?"))    ;; xref-find-references
 (global-unset-key (kbd "C-M-."))    ;; xref-find-apropos
 #+END_SRC
@@ -767,7 +827,7 @@ and categorize as I had trouble of what would belong here as a lot of commands d
 #+END_SRC
 
 **** Indenting
-Used M-i beacuse 1) indenting wouldn't be often used, hence the Meta stroke, and 2) felt that C-i would probably cause problems if I did ever use it; it's also just slightly easier
+Used M-i because 1) indenting wouldn't be often used, hence the Meta stroke, and 2) felt that C-i would probably cause problems if I did ever use it; it's also just slightly easier
 to type M-i.
 
 #+BEGIN_SRC emacs-lisp
@@ -793,7 +853,7 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 ***** Binded
 ****** Newline
 #+BEGIN_SRC emacs-lisp
-
+(global-set-key (kbd "M-i RET") 'default-indent-new-line)
 #+END_SRC
 
 ****** Formatting
@@ -807,7 +867,12 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 ***** Unbinded
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-x ;"))    ;; comment-set-column
-(global-unset-key (kbd "M-;"))    ;; comment-dwim
+;;(global-unset-key (kbd "M-;"))    ;; comment-dwim
+#+END_SRC
+
+***** Binded
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-x ;") 'comment-dwim)
 #+END_SRC
 
 **** Other
@@ -1080,8 +1145,8 @@ When called, I can continuously press [ or ] to switch between buffers.
 ***** Binded
 ****** Switching
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-b <left>") 'previous-buffer)
-(global-set-key (kbd "C-b <right>") 'next-buffer)
+(global-set-key (kbd "C-b C-<left>") 'previous-buffer)
+(global-set-key (kbd "C-b C-<right>") 'next-buffer)
 #+END_SRC
 
 ****** Management
@@ -1366,8 +1431,6 @@ When called, I can continuously press [ or ] to switch between buffers.
 (global-set-key (kbd "C-p C-f") 'project-find-file)
 (global-set-key (kbd "C-p g") 'project-find-regexp)
 (global-set-key (kbd "C-p d") 'project-find-dir)
-(global-set-key (kbd "C-p F") 'project-or-external-find-file)
-(global-set-key (kbd "C-p G") 'project-or-external-find-regexp)
 (global-set-key (kbd "C-p r") 'project-query-replace-regexp)
 #+END_SRC
 
@@ -1389,11 +1452,6 @@ When called, I can continuously press [ or ] to switch between buffers.
 
 *** Quality of Life
 **** Abbrev
-#+BEGIN_SRC emacs-lisp
-(define-prefix-command 'abbrev-prfx)
-(global-set-key (kbd "M-a") 'abbrev-prfx)
-#+END_SRC
-
 ***** Unbinded
 ****** Creation
 ******* Global
@@ -1413,7 +1471,7 @@ When called, I can continuously press [ or ] to switch between buffers.
 
 ****** Expansion
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-/"))    ;; abbrev-expand
+;;(global-unset-key (kbd "M-/"))    ;; abbrev-expand
 (global-unset-key (kbd "C-x '"))    ;; expand-abbrev
 (global-unset-key (kbd "C-x a '"))    ;; expand-abbrev
 (global-unset-key (kbd "C-x a e"))    ;; expand-abbrev
@@ -1429,21 +1487,21 @@ When called, I can continuously press [ or ] to switch between buffers.
 ***** Binded
 ****** Expansion
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-a /") 'abbrev-expand)
-(global-set-key (kbd "M-a e") 'expand-abbrev)
-(global-set-key (kbd "M-a n") 'expand-jump-to-next-slot)
-(global-set-key (kbd "M-a p") 'expand-jump-to-previous-slot)
+;; (global-set-key (kbd "M-a /") 'abbrev-expand)
+;; (global-set-key (kbd "M-a e") 'expand-abbrev)
+;; (global-set-key (kbd "M-a n") 'expand-jump-to-next-slot)
+;; (global-set-key (kbd "M-a p") 'expand-jump-to-previous-slot)
 #+END_SRC
 
 ****** Completion
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-a C-/") 'dabbrev-completion)
+;; (global-set-key (kbd "M-a C-/") 'dabbrev-completion)
 #+END_SRC
 
 **** Registers
 #+BEGIN_SRC emacs-lisp
 (define-prefix-command 'register-prfx)
-(global-set-key (kbd "M-t") 'register-prfx)
+(global-set-key (kbd "C-M-r") 'register-prfx)
 #+END_SRC
 
 ***** Unbinded
@@ -1485,29 +1543,29 @@ When called, I can continuously press [ or ] to switch between buffers.
 ****** Manipulation
 ******* Storing
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-t n") 'number-to-register)
+(global-set-key (kbd "C-M-r n") 'number-to-register)
 #+END_SRC
 
 ******* Copying
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-t x") 'copy-to-register)
+(global-set-key (kbd "C-M-r x") 'copy-to-register)
 #+END_SRC
 
 ******* Values
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-t +") 'increment-register)
+(global-set-key (kbd "C-M-r +") 'increment-register)
 #+END_SRC
 
 ****** Insertion
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-t i") 'insert-register)
-(global-set-key (kbd "M-t j") 'jump-to-register)
+(global-set-key (kbd "C-M-r i") 'insert-register)
+(global-set-key (kbd "C-M-r j") 'jump-to-register)
 #+END_SRC
 
 ****** Other
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-t f") 'frameset-to-register)
-(global-set-key (kbd "M-t w") 'window-configuration-to-register)
+(global-set-key (kbd "C-M-r f") 'frameset-to-register)
+(global-set-key (kbd "C-M-r w") 'window-configuration-to-register)
 #+END_SRC
 
 **** Macros
@@ -1576,11 +1634,6 @@ When called, I can continuously press [ or ] to switch between buffers.
 #+END_SRC
 
 **** Bookmarks
-#+BEGIN_SRC emacs-lisp
-(define-prefix-command 'bookmark-prfx)
-(global-set-key (kbd "M-b") 'bookmark-prfx)
-#+END_SRC
-
 ***** Unbinded
 ****** General
 #+BEGIN_SRC emacs-lisp
@@ -1593,13 +1646,13 @@ When called, I can continuously press [ or ] to switch between buffers.
 **** Insertion
 ***** Unbinded
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-("))    ;; insert-parentheses
+;;(global-unset-key (kbd "M-("))    ;; insert-parentheses
 (global-unset-key (kbd "C-x i"))    ;; insert-file
 #+END_SRC
 
 ***** Binded
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-p") 'insert-parentheses)
+;;(global-set-key (kbd "M-p") 'insert-parentheses)
 #+END_SRC
 
 **** Completion
@@ -1609,11 +1662,6 @@ When called, I can continuously press [ or ] to switch between buffers.
 #+END_SRC
 
 **** Narrowing
-#+BEGIN_SRC emacs-lisp
-(define-prefix-command 'narrow-prfx)
-(global-set-key (kbd "M-n") 'narrow-prfx)
-#+END_SRC
-
 ***** Unbinded
 ****** Chunks
 #+BEGIN_SRC emacs-lisp
@@ -1631,16 +1679,16 @@ When called, I can continuously press [ or ] to switch between buffers.
 ***** Binded
 ****** Chunks
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-n d") 'narrow-to-defun)
-(global-set-key (kbd "M-n r") 'narrow-to-region)
-(global-set-key (kbd "M-n p") 'narrow-to-page)
-(global-set-key (kbd "M-n w") 'widen)
+;; (global-set-key (kbd "M-n d") 'narrow-to-defun)
+;; (global-set-key (kbd "M-n r") 'narrow-to-region)
+;; (global-set-key (kbd "M-n p") 'narrow-to-page)
+;; (global-set-key (kbd "M-n w") 'widen)
 #+END_SRC
 
 **** Other
 ***** Binded
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-x g") 'glasses-mode)
+(global-set-key (kbd "C-x C-g") 'glasses-mode)
 #+END_SRC
 
 *** Systems
@@ -2614,6 +2662,14 @@ use convoluted keybindings that break your pinky.
   )
 #+END_SRC
 
+** Todo Mode
+*** Audio Diary
+
+*** Big Daddy
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
 ** Markdown Mode
 *** Audio Diary
 I created this mode since I couldn't really find a "good" major mode package so I just went and decided to make my own.
@@ -2638,17 +2694,28 @@ idk thought it could be handy sometime.
 What does it do? I guess complex shit.
 
 * Hooks
-** Starup
+** Startup
 #+BEGIN_SRC emacs-lisp
 (add-hook 'emacs-startup-hook
 		  'wow-wow-wubzy
 		  )
-(add-hook 'after-init-hook
-		  'global-company-mode
-		  )
-#+END_sRC
+;;(add-hook 'after-init-hook
+		  ;;'global-company-mode
+;;		  )
+#+END_SRC
 
 ** Development
+#+BEGIN_SRC emacs-lisp
+(defun prog_init()
+  (flyspell-prog-mode)
+  (company-mode)
+  )
+
+(add-hook 'prog-mode-hook
+		  'prog_init
+		  )
+#+END_SRC
+
 *** Major Mode
 **** CC Mode
 #+BEGIN_SRC emacs-lisp
@@ -2735,7 +2802,6 @@ What does it do? I guess complex shit.
 #+BEGIN_SRC emacs-lisp
 (add-hook 'org-mode-hook
 		  'turn-on-auto-fill
-		  'agenda-unbind
 		  )
 #+END_SRC
 
@@ -2752,6 +2818,14 @@ What does it do? I guess complex shit.
 *** nXML Mode
 #+BEGIN_SRC emacs-lisp
 
+#+END_SRC
+
+** Text Mode
+#+BEGIN_SRC emacs-lisp
+(add-hook 'text-mode-hook
+		  'flyspell-mode
+		  'flyspell-buffer
+		  )
 #+END_SRC
 
 ** Windows
