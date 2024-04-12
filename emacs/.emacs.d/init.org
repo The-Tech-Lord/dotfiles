@@ -38,23 +38,59 @@ You'll soon see from my config below that I'm also an organization junkie.
 * Tasks
 ** DONE Add a spell checker (Windows, Linux)
 ** IN-PROGRESS Adjust keybindings for greater usability in various workflows
-** TODO Create the minor modes
 ** TODO Create bindings for package manager
-** TODO Create a more UI main method for creating Tasks with Org mode
+** DONE Setup up pdf-tools
+** TODO Setup clangd
+** TODO Setup Java Eclipse LSP
+
+* Projects
+** TODO Create the Plasmids [/]
+- [ ] Delta
+- [ ] Eleanor
+- [ ] Jack
+- [ ] Atlas
+- [ ] Markdown Mode
+  
+** TODO Create an Emacs TODO Interface
+** TODO Create an Array Display function/minor mode
+Display how an array will look in a child frame or separate window.
+
+Example:
+int characters[2][5];
+
+This will display a child frame that would show this:
+{
+  {0, 0, 0, 0, 0},
+  {0, 0, 0, 0, 0}
+}
 
 * Packages
-** Init
+** Package Repositories
 #+BEGIN_SRC emacs-lisp
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '(("melpa" . "https://melpa.org/packages/")
+								 ("melpa-stable" . "https://stable.melpa.org/packages/")))
 (package-initialize)
 #+END_SRC
 
 ** Auto Installation
+Theme(s):
+  - Gruvbox: gruvbox-theme
+  
+Major Modes:
+  - C#: csharp-mode
+  - Vimrc: vimrc-mode
+
+Language Server Protocol:
+  - Python: jedi-language-server (https://github.com/pappasam/jedi-language-server)
+  - Java  : Eclipse JDT Language Server (https://github.com/eclipse-jdtls/eclipse.jdt.ls)
+  - C/C++ : clangd (https://clangd.llvm.org/installation)
+  - C#    : omnisharp (https://github.com/OmniSharp/omnisharp-roslyn)
+
+
 #+BEGIN_SRC emacs-lisp
-(require 'use-package)
-(require 'eldoc-box)
+(package-selected-packages
+ '(csharp-mode vimrc-mode gruvbox-theme jedi-language-server))
 #+END_SRC
 
 * Settings
@@ -63,9 +99,9 @@ Technically, any customization that happens in this file is a "setting." To give
 
 ** Emacs
 *** Startup
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
 (setq inhibit-splash-screen t)                     ;; Startup Screen
-#+end_src
+#+END_SRC
 
 *** Display
 **** UI
@@ -73,56 +109,48 @@ Technically, any customization that happens in this file is a "setting." To give
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-(setq column-number-mode t)
+#+END_SRC
+
+***** Lines
+- TODO: Variable `display-line-numbers-width` between file line sizes
+
+#+BEGIN_SRC emacs-lisp
+(setq-default column-number-mode t)
 (global-display-line-numbers-mode)
 #+END_SRC
 
-**** Tabs
+**** Tabs (Tab Character)
+- `tab-width`: Used to adjust the distance between tab stops.
+- `indent-tabs-mode`: Toggles whether indentation can insert TAB characters.
+- `backward-delete-char-untabify-method`: Holds the method used to delete whitespace.
+
 #+BEGIN_SRC emacs-lisp
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode t)
-(setq backward-delete-char-untabify-method nil)
-#+END_SRC
-
-*** Agenda
-#+BEGIN_SRC emacs-lisp
-(setq org-agenda-span month)
-(setq org-priority-highest A)
-(setq org-priority-lowest G)
-(setq org-priority-default D)
-#+END_SRC
-
-*** FlySpell
-#+BEGIN_SRC emacs-lisp
-(setq-default ispell-program-name "C:/msys64/usr/bin/aspell.exe")
+(setq-default backward-delete-char-untabify-method nil)
 #+END_SRC
 
 *** Other
 #+BEGIN_SRC emacs-lisp
-(setq make-backup-files nil)
+(setq-default make-backup-files nil)
 (setq-default fill-column 180)
+#+END_SRC
+
+*** Themes
+#+BEGIN_SRC emacs-lisp
+(load-theme 'gruvbox-dark-medium)
+
+;;(setq haki-region "#2e8b6d")
+;;(load-theme 'haki t)
 #+END_SRC
 
 ** Custom
 *** Variables
 #+BEGIN_SRC emacs-lisp
 (custom-set-variables
- '(custom-enabled-themes '(gruvbox-dark-medium))
  '(custom-safe-themes
- '("b1a691bb67bd8bd85b76998caf2386c9a7b2ac98a116534071364ed6489b695d" "fa49766f2acb82e0097e7512ae4a1d6f4af4d6f4655a48170d0a00bcb7183970" "3e374bb5eb46eb59dbd92578cae54b16de138bc2e8a31a2451bf6fdb0f3fd81b" "19a2c0b92a6aa1580f1be2deb7b8a8e3a4857b6c6ccf522d00547878837267e7" "2ff9ac386eac4dffd77a33e93b0c8236bb376c5a5df62e36d4bfa821d56e4e20" "72ed8b6bffe0bfa8d097810649fd57d2b598deef47c992920aef8b5d9599eefe" "d80952c58cf1b06d936b1392c38230b74ae1a2a6729594770762dc0779ac66b7" default))
- '(package-selected-packages
-   '(csharp-mode vimrc-mode gruvbox-theme)
-   )
+   '("b1a691bb67bd8bd85b76998caf2386c9a7b2ac98a116534071364ed6489b695d" "fa49766f2acb82e0097e7512ae4a1d6f4af4d6f4655a48170d0a00bcb7183970" "3e374bb5eb46eb59dbd92578cae54b16de138bc2e8a31a2451bf6fdb0f3fd81b" "19a2c0b92a6aa1580f1be2deb7b8a8e3a4857b6c6ccf522d00547878837267e7" "2ff9ac386eac4dffd77a33e93b0c8236bb376c5a5df62e36d4bfa821d56e4e20" "72ed8b6bffe0bfa8d097810649fd57d2b598deef47c992920aef8b5d9599eefe" "d80952c58cf1b06d936b1392c38230b74ae1a2a6729594770762dc0779ac66b7" default))
  )
-
-;;(setq haki-region "#2e8b6d")
-;;(load-theme 'haki t)
-#+END_SRC
-
-*** Faces
-#+BEGIN_SRC emacs-lisp
-(custom-set-faces
-   )
 #+END_SRC
 
 *** Startup
@@ -136,71 +164,9 @@ I named this function after the kids show Wow Wow Wubzy simply because it sounde
 
 ** Modal
 *** Major Mode
-**** CC Mode
+**** Dired
 #+BEGIN_SRC emacs-lisp
-(setq c-default-style "linux")    ;; Makes curly braces format how they're supposed to
-#+END_SRC
-
-***** C
-#+BEGIN_SRC emacs-lisp
-(defun c-mode-settings()
-  (setq c-basic-offset 4)
-  )
-#+END_SRC
-
-***** C++
-#+BEGIN_SRC emacs-lisp
-(defun cpp-mode-settings()
-  )
-#+END_SRC
-
-***** Obj-C
-#+BEGIN_SRC emacs-lisp
-(defun objc-mode-settings()
-  )
-#+END_SRC
-
-***** Java
-#+BEGIN_SRC emacs-lisp
-(defun java-mode-settings()
-  (setq c-basic-offset 4)
-  )
-#+END_SRC
-
-***** Idl
-#+BEGIN_SRC emacs-lisp
-(defun idl-mode-settings()
-  )
-#+END_SRC
-
-***** Pike
-#+BEGIN_SRC emacs-lisp
-(defun pike-mode-settings()
-  )
-#+END_SRC
-
-***** Awk
-#+BEGIN_SRC emacs-lisp
-(defun awk-mode-settings()
-  )
-#+END_SRC
-
-**** Monty Python
-#+BEGIN_SRC emacs-lisp
-(defun python-mode-settings()
-  )
-#+END_SRC
-
-**** Microsoft Java
-#+BEGIN_SRC emacs-lisp
-(defun cs-mode-settings()
-  )
-#+END_SRC
-
-**** Hexl Mode
-#+BEGIN_SRC emacs-lisp
-(defun hexl-mode-settings()
-  )
+(setq-default ls-lisp-dirs-first t)
 #+END_SRC
 
 **** Org Mode
@@ -208,7 +174,7 @@ I named this function after the kids show Wow Wow Wubzy simply because it sounde
 ****** Keywords
 #+BEGIN_SRC emacs-lisp
 (setq org-todo-keywords
-		'((sequence "TODO(t)" "IN-PROGRESS(i)" "NEAR-COMP(n)" "|" "DONE(d!)")
+		'((sequence "TODO(t)" "IN-PROGRESS(i)" "NEAR-COMP(n)" "|" "DONE(d!)" "INCOMPLETE(c)" "OVERDUE(o!)")
 		  (sequence "BUG(b)" "MINOR" "MAJOR" "|" "FIXED(f@!)" "HOTFIX(h@!)")
 		  (sequence "Heh")))
 #+END_SRC
@@ -227,15 +193,103 @@ I named this function after the kids show Wow Wow Wubzy simply because it sounde
 (setq org-edit-src-content-indentation '0)
 #+END_SRC
 
-**** Dired
+***** Agenda
+****** Agenda View
 #+BEGIN_SRC emacs-lisp
-(setq ls-lisp-dirs-first t)
+(setq org-agenda-span 'month)
 #+END_SRC
 
-**** Version Control
+****** Priorities
+#+BEGIN_SRC emacs-lisp
+(setq org-priority-highest '?A)
+(setq org-priority-lowest '?E)
+(setq org-priority-default '?C)
+#+END_SRC
+
+**** Development
+#+BEGIN_SRC emacs-lisp
+(defun prog_init()
+  (flyspell-prog-mode)
+  (company-mode)
+  )
+#+END_SRC
+
+***** CC Mode
+#+BEGIN_SRC emacs-lisp
+(setq c-default-style "linux")    ;; Makes curly braces format how they're supposed to
+#+END_SRC
+
+****** C
+#+BEGIN_SRC emacs-lisp
+(defun c-mode-settings()
+  (setq c-basic-offset 4)
+  )
+#+END_SRC
+
+****** C++
+#+BEGIN_SRC emacs-lisp
+(defun cpp-mode-settings()
+  )
+#+END_SRC
+
+****** Obj-C
+#+BEGIN_SRC emacs-lisp
+(defun objc-mode-settings()
+  )
+#+END_SRC
+
+****** Java
+#+BEGIN_SRC emacs-lisp
+(defun java-mode-settings()
+  (setq c-basic-offset 4)
+  )
+#+END_SRC
+
+****** Idl
+#+BEGIN_SRC emacs-lisp
+(defun idl-mode-settings()
+  )
+#+END_SRC
+
+****** Pike
+#+BEGIN_SRC emacs-lisp
+(defun pike-mode-settings()
+  )
+#+END_SRC
+
+****** Awk
+#+BEGIN_SRC emacs-lisp
+(defun awk-mode-settings()
+  )
+#+END_SRC
+
+***** Monty Python
+#+BEGIN_SRC emacs-lisp
+(defun python-mode-settings()
+  )
+#+END_SRC
+
+***** Microsoft Java
+#+BEGIN_SRC emacs-lisp
+(defun cs-mode-settings()
+  )
+#+END_SRC
+
+***** Hexl Mode
+#+BEGIN_SRC emacs-lisp
+(defun hexl-mode-settings()
+  )
+#+END_SRC
+
+***** Version Control
 The plan here is that when a git window is opened, it won't display the line numbers.
 #+BEGIN_SRC emacs-lisp
 
+#+END_SRC
+
+**** FlySpell
+#+BEGIN_SRC emacs-lisp
+(setq-default ispell-program-name "C:/msys64/usr/bin/aspell.exe")
 #+END_SRC
 
 *** Minor Mode
@@ -1055,9 +1109,9 @@ Even though the GNU Emacs manual states that M-j and C-M-j are mapped to comment
 ******* Adjustment
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-w =") 'balance-windows)
-(global-set-key (kbd "C-w <left>") 'shrink-window-horizontally)
-(global-set-key (kbd "C-w ^") 'enlarge-window)
-(global-set-key (kbd "C-w <right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "C-w C-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "C-w C-<up>") 'enlarge-window)
+(global-set-key (kbd "C-w C-<right>") 'enlarge-window-horizontally)
 #+END_SRC
 
 ******* Splitting
@@ -1446,6 +1500,11 @@ When called, I can continuously press [ or ] to switch between buffers.
 #+END_SRC
 
 ***** Binded
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+**** Eldoc
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
@@ -2662,14 +2721,6 @@ use convoluted keybindings that break your pinky.
   )
 #+END_SRC
 
-** Todo Mode
-*** Audio Diary
-
-*** Big Daddy
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
 ** Markdown Mode
 *** Audio Diary
 I created this mode since I couldn't really find a "good" major mode package so I just went and decided to make my own.
@@ -2706,11 +2757,6 @@ What does it do? I guess complex shit.
 
 ** Development
 #+BEGIN_SRC emacs-lisp
-(defun prog_init()
-  (flyspell-prog-mode)
-  (company-mode)
-  )
-
 (add-hook 'prog-mode-hook
 		  'prog_init
 		  )
@@ -2837,10 +2883,10 @@ What does it do? I guess complex shit.
 
 ** Rectangle
 #+BEGIN_SRC emacs-lisp
-(add-hook 'rectangle-mark-mode-hook
-		  'rect-util-unbind
-		  'rect-util-bind
-		  )
+;; (add-hook 'rectangle-mark-mode-hook
+;; 		  'rect-util-unbind
+;; 		  'rect-util-bind
+;; 		  )
 #+END_SRC
 
 ** Ammusements
