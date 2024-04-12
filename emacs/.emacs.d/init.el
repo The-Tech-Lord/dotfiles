@@ -1,39 +1,63 @@
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '(("melpa" . "https://melpa.org/packages/")
+								 ("melpa-stable" . "https://stable.melpa.org/packages/")))
 (package-initialize)
 
-(require 'use-package)
-(require 'eldoc-box)
+(package-selected-packages
+ '(csharp-mode vimrc-mode gruvbox-theme jedi-language-server))
 
 (setq inhibit-splash-screen t)                     ;; Startup Screen
 
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-(setq column-number-mode t)
+
+(setq-default column-number-mode t)
 (global-display-line-numbers-mode)
 
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode t)
-(setq backward-delete-char-untabify-method nil)
+(setq-default backward-delete-char-untabify-method nil)
 
-(setq make-backup-files nil)
+(setq-default make-backup-files nil)
 (setq-default fill-column 180)
 
+(load-theme 'gruvbox-dark-medium)
+
+;;(setq haki-region "#2e8b6d")
+;;(load-theme 'haki t)
+
 (custom-set-variables
- '(custom-enabled-themes '(gruvbox-dark-medium))
  '(custom-safe-themes
- '("b1a691bb67bd8bd85b76998caf2386c9a7b2ac98a116534071364ed6489b695d" "fa49766f2acb82e0097e7512ae4a1d6f4af4d6f4655a48170d0a00bcb7183970" "3e374bb5eb46eb59dbd92578cae54b16de138bc2e8a31a2451bf6fdb0f3fd81b" "19a2c0b92a6aa1580f1be2deb7b8a8e3a4857b6c6ccf522d00547878837267e7" "2ff9ac386eac4dffd77a33e93b0c8236bb376c5a5df62e36d4bfa821d56e4e20" "72ed8b6bffe0bfa8d097810649fd57d2b598deef47c992920aef8b5d9599eefe" "d80952c58cf1b06d936b1392c38230b74ae1a2a6729594770762dc0779ac66b7" default))
- '(package-selected-packages
-   '(csharp-mode vimrc-mode gruvbox-theme)
-   )
+   '("b1a691bb67bd8bd85b76998caf2386c9a7b2ac98a116534071364ed6489b695d" "fa49766f2acb82e0097e7512ae4a1d6f4af4d6f4655a48170d0a00bcb7183970" "3e374bb5eb46eb59dbd92578cae54b16de138bc2e8a31a2451bf6fdb0f3fd81b" "19a2c0b92a6aa1580f1be2deb7b8a8e3a4857b6c6ccf522d00547878837267e7" "2ff9ac386eac4dffd77a33e93b0c8236bb376c5a5df62e36d4bfa821d56e4e20" "72ed8b6bffe0bfa8d097810649fd57d2b598deef47c992920aef8b5d9599eefe" "d80952c58cf1b06d936b1392c38230b74ae1a2a6729594770762dc0779ac66b7" default))
  )
 
-(custom-set-faces
-   )
-
 (defun wow-wow-wubzy()
+  )
+
+(setq-default ls-lisp-dirs-first t)
+
+(setq org-todo-keywords
+		'((sequence "TODO(t)" "IN-PROGRESS(i)" "NEAR-COMP(n)" "|" "DONE(d!)" "INCOMPLETE(c)" "OVERDUE(o!)")
+		  (sequence "BUG(b)" "MINOR" "MAJOR" "|" "FIXED(f@!)" "HOTFIX(h@!)")
+		  (sequence "Heh")))
+
+(setq org-todo-keyword-faces
+	  '(("TODO" . org-warning) ("IN-PROGRESS" . "yellow") ("NEAR-COMP" . "orange") ("DONE" . "green")
+		("BUG" . org-warning) ("FIXED" . "green")))
+
+(setq org-src-preserve-indentation t)
+(setq org-edit-src-content-indentation '0)
+
+(setq org-agenda-span 'month)
+
+(setq org-priority-highest '?A)
+(setq org-priority-lowest '?E)
+(setq org-priority-default '?C)
+
+(defun prog_init()
+  (flyspell-prog-mode)
+  (company-mode)
   )
 
 (setq c-default-style "linux")    ;; Makes curly braces format how they're supposed to
@@ -49,6 +73,7 @@
   )
 
 (defun java-mode-settings()
+  (setq c-basic-offset 4)
   )
 
 (defun idl-mode-settings()
@@ -69,34 +94,11 @@
 (defun hexl-mode-settings()
   )
 
-(setq org-todo-keywords
-		'((sequence "TODO" "IN-PROGRESS" "NEAR-COMP" "|" "DONE")
-		  (sequence "BUG" "MINOR" "MAJOR" "|" "FIXED" "HOTFIX")
-		  (sequence "Heh")))
-
-(setq org-todo-keyword-faces
-	  '(("TODO" . org-warning) ("IN-PROGRESS" . "yellow") ("NEAR-COMP" . "orange") ("DONE" . "green")
-		("BUG" . org-warning) ("FIXED" . "green")))
-
-(setq org-src-preserve-indentation t)
-(setq org-edit-src-content-indentation '0)
 
 
+(setq-default ispell-program-name "C:/msys64/usr/bin/aspell.exe")
 
 
-
-;; (use-package lsp-mode
-;;   :hook ((python-mode) . lsp-deferred)
-;;   :commands lsp)
-
-;; (use-package lsp-pyright
-;;   :hook (python-mode . (lambda () (require 'lsp-pyright)))
-;;   :init (when (executable-find "python3")
-;;           (setq lsp-pyright-python-executable-cmd "python3")))
-
-;; (use-package lsp-jedi
-;;   :hook (python-mode . (lambda () (require 'lsp-jedi)))
-;;   :init (when (executable-find "python3")))
 
 
 
@@ -184,7 +186,6 @@
 (global-unset-key (kbd "ESC C-<up>"))    ;; backward-up-list
 
 (global-unset-key (kbd "M-r"))    ;; move-to-window-line-top-bottom
-;;(global-unset-key (kbd "C-l"))    ;; recenter-top-bottom
 (global-unset-key (kbd "C-M-l"))    ;; reposition-window
 
 (global-unset-key (kbd "M-g c"))    ;; goto-char
@@ -193,12 +194,29 @@
 (global-unset-key (kbd "C-x n g"))    ;; goto-line-relative
 
 (global-unset-key (kbd "M-g TAB"))    ;; move-to-column
-(global-unset-key (kbd "<Scroll Lock>"))    ;; scroll-lock-mode
 
-(global-set-key (kbd "C-M-a") 'back-to-indentation)
+(global-set-key (kbd "C-<right>") 'forward-word)
+(global-set-key (kbd "C-<left>") 'backward-word)
 
-(global-set-key (kbd "C-<prior>") 'beginning-of-buffer)
-(global-set-key (kbd "C-<next>") 'end-of-buffer)
+(global-set-key (kbd "C-M-<right>") 'forward-sentence)
+(global-set-key (kbd "C-M-<left>") 'backward-sentence)
+
+(global-set-key (kbd "C-M-<down>") 'forward-paragraph)
+(global-set-key (kbd "C-M-<up>") 'backward-paragraph)
+
+(global-set-key (kbd "C-{") 'beginning-of-defun)
+(global-set-key (kbd "C-}") 'end-of-defun)
+
+(global-set-key (kbd "C-<") 'back-to-indentation)
+(global-set-key (kbd "C->") 'tab-to-tab-stop)
+
+(global-set-key (kbd "C-S-k") 'up-list)
+(global-set-key (kbd "C-S-j") 'backward-up-list)
+(global-set-key (kbd "C-S-l") 'forward-list)
+(global-set-key (kbd "C-S-h") 'backward-list)
+
+(global-set-key (kbd "C-S-b") 'beginning-of-buffer)
+(global-set-key (kbd "C-S-n") 'end-of-buffer)
 
 (global-unset-key (kbd "M-w"))    ;; kill-ring-save
 (global-unset-key (kbd "C-<insert>"))    ;; kill-ring-save
@@ -226,6 +244,7 @@
 (global-unset-key (kbd "C-y"))    ;; yank
 (global-unset-key (kbd "S-<insert>"))    ;; yank
 (global-unset-key (kbd "S-<insertchar>"))    ;; yank
+(global-unset-key (kbd "M-y"))   ;; yank-pop
 
 (global-unset-key (kbd "C-_"))    ;; undo
 (global-unset-key (kbd "C-x u"))    ;; undo
@@ -244,13 +263,25 @@
 (global-unset-key (kbd "M-<mouse-2>"))    ;; mouse-yank-secondary
 (global-unset-key (kbd "M-<mouse-3>"))    ;; mouse-secondary-save-then-kill
 
-(global-set-key (kbd "M-'") 'kill-ring-save)
+(global-set-key (kbd "M-/") 'kill-ring-save)
+(global-set-key (kbd "C-M-/") 'append-next-kill)
 
-(global-set-key (kbd "C-.") 'kill-region)
+(global-set-key (kbd "M-.") 'kill-region)
 
-(global-set-key (kbd "C-;") 'yank)
+(global-set-key (kbd "C-M-h") 'backward-kill-word)
+(global-set-key (kbd "C-M-j") 'kill-word)
 
+(global-set-key (kbd "C-M-k") 'backward-kill-sentence)
+(global-set-key (kbd "C-M-l") 'kill-sentence)
+(global-set-key (kbd "C-M-n") 'kill-whole-line)
 
+(global-set-key (kbd "M-;") 'yank)
+(global-set-key (kbd "M-'") 'yank-pop)
+
+(global-set-key (kbd "C-M-y") 'delete-indentation)
+(global-set-key (kbd "C-M-u") 'delete-horizontal-space)
+(global-set-key (kbd "C-M-b") 'delete-blank-lines)
+(global-set-key (kbd "C-M-p") 'just-one-space)
 
 (define-prefix-command 'mark-prfx)
 (global-set-key (kbd "M-SPC") 'mark-prfx)
@@ -302,7 +333,7 @@
 (global-unset-key (kbd "C-x C-v"))    ;; find-alternate-file
 (global-unset-key (kbd "C-x C-r"))    ;; find-file-read-only
 
-(global-unset-key (kbd "M-."))    ;; xref-find-definitions
+;;(global-unset-key (kbd "M-."))    ;; xref-find-definitions
 (global-unset-key (kbd "M-?"))    ;; xref-find-references
 (global-unset-key (kbd "C-M-."))    ;; xref-find-apropos
 
@@ -368,14 +399,16 @@
 (global-unset-key (kbd "C-M-\\"))    ;; indent-region
 (global-unset-key (kbd "M-)"))    ;; move-past-close-and-reindent
 
-
+(global-set-key (kbd "M-i RET") 'default-indent-new-line)
 
 (global-set-key (kbd "M-i TAB") 'indent-rigidly)
 (global-set-key (kbd "M-i r") 'indent-region)
 (global-set-key (kbd "M-i c") 'move-past-close-and-reindent)
 
 (global-unset-key (kbd "C-x ;"))    ;; comment-set-column
-(global-unset-key (kbd "M-;"))    ;; comment-dwim
+;;(global-unset-key (kbd "M-;"))    ;; comment-dwim
+
+(global-set-key (kbd "C-x ;") 'comment-dwim)
 
 (global-unset-key (kbd "C-q"))    ;; quoted-insert
 (global-unset-key (kbd "C-x C-d"))    ;; list-directory
@@ -473,9 +506,9 @@
 (global-unset-key (kbd "C-x 6 <f2>"))    ;; 2C-two-columns
 
 (global-set-key (kbd "C-w =") 'balance-windows)
-(global-set-key (kbd "C-w <left>") 'shrink-window-horizontally)
-(global-set-key (kbd "C-w ^") 'enlarge-window)
-(global-set-key (kbd "C-w <right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "C-w C-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "C-w C-<up>") 'enlarge-window)
+(global-set-key (kbd "C-w C-<right>") 'enlarge-window-horizontally)
 
 (global-set-key (kbd "C-w [") 'split-window-below)
 (global-set-key (kbd "C-w ]") 'split-window-right)
@@ -519,8 +552,8 @@
 (global-unset-key (kbd "C-x x u"))    ;; rename-uniquely
 (global-unset-key (kbd "C-x x i"))    ;; insert-buffer
 
-(global-set-key (kbd "C-b <left>") 'previous-buffer)
-(global-set-key (kbd "C-b <right>") 'next-buffer)
+(global-set-key (kbd "C-b C-<left>") 'previous-buffer)
+(global-set-key (kbd "C-b C-<right>") 'next-buffer)
 
 (global-set-key (kbd "C-b s") 'save-some-buffers)
 (global-set-key (kbd "C-b l") 'list-buffers)
@@ -672,8 +705,6 @@
 (global-set-key (kbd "C-p C-f") 'project-find-file)
 (global-set-key (kbd "C-p g") 'project-find-regexp)
 (global-set-key (kbd "C-p d") 'project-find-dir)
-(global-set-key (kbd "C-p F") 'project-or-external-find-file)
-(global-set-key (kbd "C-p G") 'project-or-external-find-regexp)
 (global-set-key (kbd "C-p r") 'project-query-replace-regexp)
 
 (global-unset-key (kbd "C-x `"))    ;; next-error
@@ -684,8 +715,7 @@
 
 
 
-(define-prefix-command 'abbrev-prfx)
-(global-set-key (kbd "M-a") 'abbrev-prfx)
+
 
 (global-unset-key (kbd "C-x a g"))    ;; add-global-abbrev
 (global-unset-key (kbd "C-x a -"))    ;; inverse-add-global-abbrev
@@ -696,7 +726,7 @@
 (global-unset-key (kbd "C-x a C-a"))    ;; add-mode-abbrev
 (global-unset-key (kbd "C-x a i l"))    ;; inverse-add-mode-abbrev
 
-(global-unset-key (kbd "M-/"))    ;; abbrev-expand
+;;(global-unset-key (kbd "M-/"))    ;; abbrev-expand
 (global-unset-key (kbd "C-x '"))    ;; expand-abbrev
 (global-unset-key (kbd "C-x a '"))    ;; expand-abbrev
 (global-unset-key (kbd "C-x a e"))    ;; expand-abbrev
@@ -705,15 +735,15 @@
 
 (global-unset-key (kbd "C-M-/"))    ;; dabbrev-completion
 
-(global-set-key (kbd "M-a /") 'abbrev-expand)
-(global-set-key (kbd "M-a e") 'expand-abbrev)
-(global-set-key (kbd "M-a n") 'expand-jump-to-next-slot)
-(global-set-key (kbd "M-a p") 'expand-jump-to-previous-slot)
+;; (global-set-key (kbd "M-a /") 'abbrev-expand)
+;; (global-set-key (kbd "M-a e") 'expand-abbrev)
+;; (global-set-key (kbd "M-a n") 'expand-jump-to-next-slot)
+;; (global-set-key (kbd "M-a p") 'expand-jump-to-previous-slot)
 
-(global-set-key (kbd "M-a C-/") 'dabbrev-completion)
+;; (global-set-key (kbd "M-a C-/") 'dabbrev-completion)
 
 (define-prefix-command 'register-prfx)
-(global-set-key (kbd "M-t") 'register-prfx)
+(global-set-key (kbd "C-M-r") 'register-prfx)
 
 (global-unset-key (kbd "C-x r C-@"))    ;; point-to-register
 (global-unset-key (kbd "C-x r C-SPC"))    ;; point-to-register
@@ -733,17 +763,17 @@
 (global-unset-key (kbd "C-x r w"))    ;; window-configuration-to-register
 (global-unset-key (kbd "C-x r ESC"))    ;; Prefix Command
 
-(global-set-key (kbd "M-t n") 'number-to-register)
+(global-set-key (kbd "C-M-r n") 'number-to-register)
 
-(global-set-key (kbd "M-t x") 'copy-to-register)
+(global-set-key (kbd "C-M-r x") 'copy-to-register)
 
-(global-set-key (kbd "M-t +") 'increment-register)
+(global-set-key (kbd "C-M-r +") 'increment-register)
 
-(global-set-key (kbd "M-t i") 'insert-register)
-(global-set-key (kbd "M-t j") 'jump-to-register)
+(global-set-key (kbd "C-M-r i") 'insert-register)
+(global-set-key (kbd "C-M-r j") 'jump-to-register)
 
-(global-set-key (kbd "M-t f") 'frameset-to-register)
-(global-set-key (kbd "M-t w") 'window-configuration-to-register)
+(global-set-key (kbd "C-M-r f") 'frameset-to-register)
+(global-set-key (kbd "C-M-r w") 'window-configuration-to-register)
 
 (global-unset-key (kbd "C-x ("))    ;; kmacro-start-macro
 (global-unset-key (kbd "C-x C-k s"))    ;; kmacro-start-macro
@@ -784,23 +814,17 @@
 (global-unset-key (kbd "C-x C-k C-v"))    ;; kmacro-view-macro-repeat
 (global-unset-key (kbd "C-x C-k x"))    ;; kmacro-to-register
 
-(define-prefix-command 'bookmark-prfx)
-(global-set-key (kbd "M-b") 'bookmark-prfx)
-
 (global-unset-key (kbd "C-x r m"))    ;; bookmark-set
 (global-unset-key (kbd "C-x r M"))    ;; bookmark-set-no-overwrite
 (global-unset-key (kbd "C-x r b"))    ;; bookmark-jump
 (global-unset-key (kbd "C-x r l"))    ;; bookmark-bmenu-list
 
-(global-unset-key (kbd "M-("))    ;; insert-parentheses
+;;(global-unset-key (kbd "M-("))    ;; insert-parentheses
 (global-unset-key (kbd "C-x i"))    ;; insert-file
 
-(global-set-key (kbd "M-p") 'insert-parentheses)
+;;(global-set-key (kbd "M-p") 'insert-parentheses)
 
 (global-unset-key (kbd "C-M-i"))    ;; complete-symbol
-
-(define-prefix-command 'narrow-prfx)
-(global-set-key (kbd "M-n") 'narrow-prfx)
 
 (global-unset-key (kbd "C-x n d"))    ;; narrow-to-defun
 (global-unset-key (kbd "C-x n n"))    ;; narrow-to-region
@@ -809,12 +833,12 @@
 
 (global-unset-key (kbd "C-x $"))    ;; set-selective-display
 
-(global-set-key (kbd "M-n d") 'narrow-to-defun)
-(global-set-key (kbd "M-n r") 'narrow-to-region)
-(global-set-key (kbd "M-n p") 'narrow-to-page)
-(global-set-key (kbd "M-n w") 'widen)
+;; (global-set-key (kbd "M-n d") 'narrow-to-defun)
+;; (global-set-key (kbd "M-n r") 'narrow-to-region)
+;; (global-set-key (kbd "M-n p") 'narrow-to-page)
+;; (global-set-key (kbd "M-n w") 'widen)
 
-(global-set-key (kbd "C-x g") 'glasses-mode)
+(global-set-key (kbd "C-x C-g") 'glasses-mode)
 
 (define-prefix-command 'd/encoding-prfx)
 (global-set-key (kbd "C-z c") 'd/encoding-prfx)
@@ -1251,8 +1275,12 @@
 (add-hook 'emacs-startup-hook
 		  'wow-wow-wubzy
 		  )
-(add-hook 'after-init-hook
-		  'global-company-mode
+;;(add-hook 'after-init-hook
+		  ;;'global-company-mode
+;;		  )
+
+(add-hook 'prog-mode-hook
+		  'prog_init
 		  )
 
 (add-hook 'c-initialization-hook
@@ -1296,12 +1324,10 @@
 
 
 
-(add-hook 'eglot-managed-mode-hook
-		  )
+
 
 (add-hook 'org-mode-hook
 		  'turn-on-auto-fill
-		  'agenda-unbind
 		  )
 
 
@@ -1309,14 +1335,19 @@
 
 
 
+
+(add-hook 'text-mode-hook
+		  'flyspell-mode
+		  'flyspell-buffer
+		  )
 
 (add-hook 'window-setup-hook
 		  'toggle-frame-maximized t
 		  )
 
-(add-hook 'rectangle-mark-mode-hook
-		  'rect-util-unbind
-		  'rect-util-bind
-		  )
+;; (add-hook 'rectangle-mark-mode-hook
+;; 		  'rect-util-unbind
+;; 		  'rect-util-bind
+;; 		  )
 
 
