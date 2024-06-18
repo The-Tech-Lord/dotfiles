@@ -50,8 +50,13 @@ You'll soon see from my config below that I'm also an organization junkie.
 - [ ] Jack
 - [ ] Atlas
 - [ ] Markdown Mode
-  
+
+** TODO Allow multiple times for a task to be completed in a day in order for a habit to be fulfilled
+Great for a habit that needs multiple instances (e.g., brushing your teeth, making your bed)
+
 ** TODO Create an Emacs TODO Interface
+- Change deadlines of multiple tasks and events
+  
 ** TODO Create an Array Display function/minor mode
 Display how an array will look in a child frame or separate window.
 
@@ -64,12 +69,15 @@ This will display a child frame that would show this:
   {0, 0, 0, 0, 0}
 }
 
+** Games
+*** TODO Wordle
+
 * Packages
 ** Package Repositories
 #+BEGIN_SRC emacs-lisp
 (require 'package)
-(add-to-list 'package-archives '(("melpa" . "https://melpa.org/packages/")
-								 ("melpa-stable" . "https://stable.melpa.org/packages/")))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 #+END_SRC
 
@@ -89,7 +97,7 @@ Language Server Protocol:
 
 
 #+BEGIN_SRC emacs-lisp
-(package-selected-packages
+(setq package-selected-packages
  '(csharp-mode vimrc-mode gruvbox-theme jedi-language-server))
 #+END_SRC
 
@@ -136,14 +144,6 @@ Technically, any customization that happens in this file is a "setting." To give
 (setq-default fill-column 180)
 #+END_SRC
 
-*** Themes
-#+BEGIN_SRC emacs-lisp
-(load-theme 'gruvbox-dark-medium)
-
-;;(setq haki-region "#2e8b6d")
-;;(load-theme 'haki t)
-#+END_SRC
-
 ** Custom
 *** Variables
 #+BEGIN_SRC emacs-lisp
@@ -151,6 +151,14 @@ Technically, any customization that happens in this file is a "setting." To give
  '(custom-safe-themes
    '("b1a691bb67bd8bd85b76998caf2386c9a7b2ac98a116534071364ed6489b695d" "fa49766f2acb82e0097e7512ae4a1d6f4af4d6f4655a48170d0a00bcb7183970" "3e374bb5eb46eb59dbd92578cae54b16de138bc2e8a31a2451bf6fdb0f3fd81b" "19a2c0b92a6aa1580f1be2deb7b8a8e3a4857b6c6ccf522d00547878837267e7" "2ff9ac386eac4dffd77a33e93b0c8236bb376c5a5df62e36d4bfa821d56e4e20" "72ed8b6bffe0bfa8d097810649fd57d2b598deef47c992920aef8b5d9599eefe" "d80952c58cf1b06d936b1392c38230b74ae1a2a6729594770762dc0779ac66b7" default))
  )
+#+END_SRC
+
+*** Themes
+#+BEGIN_SRC emacs-lisp
+(load-theme 'gruvbox-dark-medium t)
+
+;;(setq haki-region "#2e8b6d")
+;;(load-theme 'haki t)
 #+END_SRC
 
 *** Startup
