@@ -47,44 +47,6 @@ You'll soon see from my config below that I'm also an organization junkie.
 *** TODO Setup clangd
 *** TODO Setup Java Eclipse LSP
 
-* Project Ideas
-** Productivity
-*** TODO Calendar
-- Resemble Google Calendar in a way
-  - Display events/appointments/dates/etc in day, month, and year format
-	- Display dates in day format as time blocks
-
-*** TODO Allow multiple times for a task to be completed in a day in order for a habit to be fulfilled
-Great for a habit that needs multiple instances (e.g., brushing your teeth, making your bed)
-- Can have extra completions
-  
-*** TODO Create an Emacs TODO Interface
-- Change deadlines of multiple tasks and events
-
-*** TODO Create a local dictionary package
-
-** Games
-*** TODO Wordle
-*** TODO MonkeyType
-*** TODO Angry Birds
-*** TODO Launching Game
-
-** Programming
-*** TODO Create an Array Display function/minor mode
-Display how an array will look in a child frame or separate window.
-
-Example:
-int characters[2][5];
-
-This will display a child frame that would show this:
-{
-  {0, 0, 0, 0, 0},
-  {0, 0, 0, 0, 0}
-}
-
-** Other
-*** TODO IMDb Package
-
 * Packages
 ** Package Repositories
 #+BEGIN_SRC emacs-lisp
