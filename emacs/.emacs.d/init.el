@@ -38,7 +38,7 @@
 (setq-default ls-lisp-dirs-first t)
 
 (setq org-todo-keywords
-		'((sequence "TODO(t)" "IN-PROGRESS(i)" "NEAR-COMP(n)" "|" "DONE(d!)" "INCOMPLETE(c)" "OVERDUE(o!)")
+		'((sequence "TODO(t)" "IN-PROGRESS(i!)" "NEAR-COMP(n!)" "|" "DONE(d!)" "INCOMPLETE(c!)" "OVERDUE(o!)" "NEVER-DID(e)")
 		  (sequence "BUG(b)" "MINOR" "MAJOR" "|" "FIXED(f@!)" "HOTFIX(h@!)")
 		  (sequence "Heh")))
 
@@ -102,9 +102,9 @@
 
 
 
-(define-key input-decode-map [?\C-i] [C-i])    ;; TAB
-(define-key input-decode-map [?\C-m] [C-m])    ;; RET
-(define-key input-decode-map [?\C-\[] [C-\[])    ;; ESC
+;;(define-key input-decode-map [?\C-i] [C-i])    ;; TAB
+;;(define-key input-decode-map [?\C-m] [C-m])    ;; RET
+;;(define-key input-decode-map [?\C-\[] [C-\[])    ;; ESC
 
 (global-unset-key (kbd "C-f"))    ;; forward-char
 (global-unset-key (kbd "C-b"))    ;; backward-char

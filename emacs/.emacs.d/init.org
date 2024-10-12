@@ -157,7 +157,7 @@ I named this function after the kids show Wow Wow Wubzy simply because it sounde
 ****** Keywords
 #+BEGIN_SRC emacs-lisp
 (setq org-todo-keywords
-		'((sequence "TODO(t)" "IN-PROGRESS(i)" "NEAR-COMP(n)" "|" "DONE(d!)" "INCOMPLETE(c)" "OVERDUE(o!)")
+		'((sequence "TODO(t)" "IN-PROGRESS(i!)" "NEAR-COMP(n!)" "|" "DONE(d!)" "INCOMPLETE(c!)" "OVERDUE(o!)" "NEVER-DID(e)")
 		  (sequence "BUG(b)" "MINOR" "MAJOR" "|" "FIXED(f@!)" "HOTFIX(h@!)")
 		  (sequence "Heh")))
 #+END_SRC
