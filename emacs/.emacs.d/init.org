@@ -211,14 +211,14 @@ I named this function after the kids show Wow Wow Wubzy simply because it sounde
 
 ****** C++
 #+BEGIN_SRC emacs-lisp
-(defun cpp-mode-settings()
-  )
+;; (defun cpp-mode-settings()
+;;   )
 #+END_SRC
 
 ****** Obj-C
 #+BEGIN_SRC emacs-lisp
-(defun objc-mode-settings()
-  )
+;; (defun objc-mode-settings()
+;;   )
 #+END_SRC
 
 ****** Java
@@ -230,38 +230,38 @@ I named this function after the kids show Wow Wow Wubzy simply because it sounde
 
 ****** Idl
 #+BEGIN_SRC emacs-lisp
-(defun idl-mode-settings()
-  )
+;; (defun idl-mode-settings()
+;;   )
 #+END_SRC
 
 ****** Pike
 #+BEGIN_SRC emacs-lisp
-(defun pike-mode-settings()
-  )
+;; (defun pike-mode-settings()
+;;   )
 #+END_SRC
 
 ****** Awk
 #+BEGIN_SRC emacs-lisp
-(defun awk-mode-settings()
-  )
+;; (defun awk-mode-settings()
+;;   )
 #+END_SRC
 
 ***** Monty Python
 #+BEGIN_SRC emacs-lisp
-(defun python-mode-settings()
-  )
+;; (defun python-mode-settings()
+;;   )
 #+END_SRC
 
 ***** Microsoft Java
 #+BEGIN_SRC emacs-lisp
-(defun cs-mode-settings()
-  )
+;; (defun cs-mode-settings()
+;;   )
 #+END_SRC
 
 ***** Hexl Mode
 #+BEGIN_SRC emacs-lisp
-(defun hexl-mode-settings()
-  )
+;; (defun hexl-mode-settings()
+;;   )
 #+END_SRC
 
 ***** Version Control
