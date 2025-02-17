@@ -66,37 +66,37 @@
   (setq c-basic-offset 4)
   )
 
-(defun cpp-mode-settings()
-  )
+;; (defun cpp-mode-settings()
+;;   )
 
-(defun objc-mode-settings()
-  )
+;; (defun objc-mode-settings()
+;;   )
 
 (defun java-mode-settings()
   (setq c-basic-offset 4)
   )
 
-(defun idl-mode-settings()
-  )
+;; (defun idl-mode-settings()
+;;   )
 
-(defun pike-mode-settings()
-  )
+;; (defun pike-mode-settings()
+;;   )
 
-(defun awk-mode-settings()
-  )
+;; (defun awk-mode-settings()
+;;   )
 
-(defun python-mode-settings()
-  )
+;; (defun python-mode-settings()
+;;   )
 
-(defun cs-mode-settings()
-  )
+;; (defun cs-mode-settings()
+;;   )
 
-(defun hexl-mode-settings()
-  )
+;; (defun hexl-mode-settings()
+;;   )
 
 
 
-(setq-default ispell-program-name "C:/msys64/usr/bin/aspell.exe")
+(setq-default ispell-program-name "C:/msys64/mingw64/bin/aspell.exe")
 
 
 
