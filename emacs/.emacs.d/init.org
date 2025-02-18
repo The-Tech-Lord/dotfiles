@@ -43,9 +43,42 @@ You'll soon see from my config below that I'm also an organization junkie.
 ** TODO Create bindings for package manager
 ** DONE Setup up pdf-tools
 
-** Programming
-*** TODO Setup clangd
-*** TODO Setup Java Eclipse LSP
+* Setup
+** Programming Environment
+*** Python
+**** Windows
+Software: Python, pip, Pyright
+
+1.
+   
+*** C
+**** Windows
+Software: gcc
+
+1.
+
+*** C++
+**** Windows
+Software: Visual Studio Build Tools, LLVM, clang, gcc
+
+1. Install LLVM installer and have it setup the user PATH variable
+2. Install Visual Studio Builds Tools 20XX with the "Desktop development with C++" module
+
+*** Lua
+
+*** Haskell
+
+*** Perl
+
+*** VHDL
+
+*** Verilog
+
+** Spell Checking
+*** Windows
+Software: MSYS2, aspell
+
+1. Install `aspell` through MSYS2
 
 * Packages
 ** Package Repositories
@@ -272,7 +305,7 @@ The plan here is that when a git window is opened, it won't display the line num
 
 **** FlySpell
 #+BEGIN_SRC emacs-lisp
-(setq-default ispell-program-name "C:/msys64/usr/bin/aspell.exe")
+(setq-default ispell-program-name "C:/msys64/mingw64/bin/aspell.exe")
 #+END_SRC
 
 *** Minor Mode
