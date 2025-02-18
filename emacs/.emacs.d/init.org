@@ -35,22 +35,23 @@ You'll soon see from my config below that I'm also an organization junkie.
 *** Themes
 - gruvbox-theme: If you aren't using Gruvbox, what are you doing with your life?
 
-* Tasks
-** DONE Add a spell checker (Windows, Linux)
-** IN-PROGRESS Adjust keybindings for greater usability in various workflows
-- [ ] Simulating F13 and higher with repeated ESC prefixes
-  
-** TODO Create bindings for package manager
-** DONE Setup up pdf-tools
-
 * Setup
 ** Programming Environment
 *** Python
 **** Windows
 Software: Python, pip, Pyright
 
-1.
-   
+1. Install Pyright through pip
+
+*** Java
+**** Windows
+Software: Eclipse JDT (https://github.com/eclipse-jdtls/eclipse.jdt.ls), Java SDK
+
+1. Clone Eclipse JDT LS repository through release tags
+2. Add Java SDK to PATH environment variable
+3. Build repository with `/.mvnw clean verify -DskipTests=true`
+4. Add `../org.eclipse.jdt.ls.product/target/repository` to PATH variable
+
 *** C
 **** Windows
 Software: gcc
@@ -65,14 +66,46 @@ Software: Visual Studio Build Tools, LLVM, clang, gcc
 2. Install Visual Studio Builds Tools 20XX with the "Desktop development with C++" module
 
 *** Lua
+**** Windows
+Software: Lua interpreter
+
+1.
 
 *** Haskell
+**** Windows
+Software: GHCup, Haskell LSP
 
+1. Install Haskell LSP and compiler with GHCup
+   
 *** Perl
+**** Windows
+Software:
+
+1.
 
 *** VHDL
+**** Windows
+Software:
+
+1.
 
 *** Verilog
+**** Windows
+Software:
+
+1.
+
+*** HTML
+**** Windows
+Software:
+
+1.
+
+*** CSS
+**** Windows
+Software:
+
+1.
 
 ** Spell Checking
 *** Windows
@@ -2793,6 +2826,7 @@ What does it do? I guess complex shit.
 ***** C++
 #+BEGIN_SRC emacs-lisp
 (add-hook 'c++-mode-hook
+		  'eglot-ensure
 		  'cpp-mode-settings
 		  )
 #+END_SRC
@@ -2807,6 +2841,7 @@ What does it do? I guess complex shit.
 ***** Java Mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'java-mode-hook
+		  'eglot-ensure
 		  'java-mode-settings
 		  )
 #+END_SRC
