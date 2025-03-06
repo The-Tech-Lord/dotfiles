@@ -47,6 +47,7 @@ Software: Python, pip, Pyright
 **** Windows
 Software: Eclipse JDT (https://github.com/eclipse-jdtls/eclipse.jdt.ls), Java SDK
 
+Setup Java LSP
 1. Clone Eclipse JDT LS repository through release tags
 2. Add Java SDK to PATH environment variable
 3. Build repository with `/.mvnw clean verify -DskipTests=true`
@@ -54,14 +55,15 @@ Software: Eclipse JDT (https://github.com/eclipse-jdtls/eclipse.jdt.ls), Java SD
 
 *** C
 **** Windows
-Software: gcc
+Software: GCC
 
 1.
 
 *** C++
 **** Windows
-Software: Visual Studio Build Tools, LLVM, clang, gcc
+Software: Visual Studio Build Tools, LLVM, clang, GCC
 
+Setup clang and clangd
 1. Install LLVM installer and have it setup the user PATH variable
 2. Install Visual Studio Builds Tools 20XX with the "Desktop development with C++" module
 
@@ -73,13 +75,13 @@ Software: Lua interpreter
 
 *** Haskell
 **** Windows
-Software: GHCup, Haskell LSP
+Software: GHCup, HLS
 
-1. Install Haskell LSP and compiler with GHCup
+1. Use GHCup to install Haskell compiler and HLS
    
 *** Perl
 **** Windows
-Software:
+Software: Strawberry Perl
 
 1.
 
@@ -179,6 +181,18 @@ Technically, any customization that happens in this file is a "setting." To give
 (setq-default backward-delete-char-untabify-method nil)
 #+END_SRC
 
+*** Clang-Format
+#+BEGIN_SRC emacs-lisp
+(load-file "C:/Program Files/LLVM/share/clang/clang-format.el")
+(use-package clang-format)
+(setq clang-format-style "file")
+(setq clang-format-fallbackk-style "LLVM")
+
+(setenv "PATH" (concat "C:/Program Files/LLVM/bin/"
+					   (getenv "PATH")))
+(add-to-list 'exec-path "C:/Program Files/LLVM/bin/")
+#+END_SRC
+
 *** Other
 #+BEGIN_SRC emacs-lisp
 (setq-default make-backup-files nil)
@@ -265,7 +279,7 @@ I named this function after the kids show Wow Wow Wubzy simply because it sounde
 
 ***** CC Mode
 #+BEGIN_SRC emacs-lisp
-(setq c-default-style "linux")    ;; Makes curly braces format how they're supposed to
+(setq c-default-style "linux")
 #+END_SRC
 
 ****** C
@@ -277,8 +291,9 @@ I named this function after the kids show Wow Wow Wubzy simply because it sounde
 
 ****** C++
 #+BEGIN_SRC emacs-lisp
-;; (defun cpp-mode-settings()
-;;   )
+(defun cpp-mode-settings()
+  (setq c-bsaic-offset 4)
+   )
 #+END_SRC
 
 ****** Obj-C
@@ -2819,6 +2834,7 @@ What does it do? I guess complex shit.
 ***** C
 #+BEGIN_SRC emacs-lisp
 (add-hook 'c-mode-hook
+		  'eglot-ensure
 		  'c-mode-settings
 		  )
 #+END_SRC
