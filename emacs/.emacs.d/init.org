@@ -183,14 +183,10 @@ Technically, any customization that happens in this file is a "setting." To give
 
 *** Clang-Format
 #+BEGIN_SRC emacs-lisp
-(load-file "C:/Program Files/LLVM/share/clang/clang-format.el")
-(use-package clang-format)
-(setq clang-format-style "file")
-(setq clang-format-fallbackk-style "LLVM")
-
-(setenv "PATH" (concat "C:/Program Files/LLVM/bin/"
-					   (getenv "PATH")))
-(add-to-list 'exec-path "C:/Program Files/LLVM/bin/")
+(use-package clang-format
+  :init
+  (setq clang-format-style "file")
+  (setq clang-format-fallbackk-style "LLVM"))
 #+END_SRC
 
 *** Other
