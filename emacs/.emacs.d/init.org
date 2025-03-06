@@ -183,10 +183,10 @@ Technically, any customization that happens in this file is a "setting." To give
 
 *** Clang-Format
 #+BEGIN_SRC emacs-lisp
-(use-package clang-format
-  :init
-  (setq clang-format-style "file")
-  (setq clang-format-fallbackk-style "LLVM"))
+;; (use-package clang-format
+;;   :init
+;;   (setq clang-format-style "file")
+;;   (setq clang-format-fallbackk-style "LLVM"))
 #+END_SRC
 
 *** Other
@@ -275,7 +275,7 @@ I named this function after the kids show Wow Wow Wubzy simply because it sounde
 
 ***** CC Mode
 #+BEGIN_SRC emacs-lisp
-(setq c-default-style "linux")
+(setq c-default-style "stroustrup")
 #+END_SRC
 
 ****** C
@@ -288,8 +288,8 @@ I named this function after the kids show Wow Wow Wubzy simply because it sounde
 ****** C++
 #+BEGIN_SRC emacs-lisp
 (defun cpp-mode-settings()
-  (setq c-bsaic-offset 4)
-   )
+  (setq c-basic-offset 4)
+  )
 #+END_SRC
 
 ****** Obj-C
