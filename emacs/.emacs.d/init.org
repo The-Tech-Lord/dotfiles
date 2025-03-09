@@ -27,14 +27,6 @@ open would start to ramp up my laptop's fans. This goes back to when I was using
 
 You'll soon see from my config below that I'm also an organization junkie.
 
-** Packages I've Installed
-*** Modes
-- csharp-mode: Major mode for C#
-- vimrc-mode: Major mode for vimrc configuration files
-  
-*** Themes
-- gruvbox-theme: If you aren't using Gruvbox, what are you doing with your life?
-
 * Setup
 ** Programming Environment
 *** Python
@@ -125,28 +117,14 @@ Software: MSYS2, aspell
 #+END_SRC
 
 ** Auto Installation
-Theme(s):
-  - Gruvbox: gruvbox-theme
-  
-Major Modes:
-  - C#: csharp-mode
-  - Vimrc: vimrc-mode
-
-Language Server Protocol:
-  - Python: jedi-language-server (https://github.com/pappasam/jedi-language-server)
-  - Java  : Eclipse JDT Language Server (https://github.com/eclipse-jdtls/eclipse.jdt.ls)
-  - C/C++ : clangd (https://clangd.llvm.org/installation)
-  - C#    : omnisharp (https://github.com/OmniSharp/omnisharp-roslyn)
-
-
 #+BEGIN_SRC emacs-lisp
 (setq package-selected-packages
- '(csharp-mode vimrc-mode gruvbox-theme jedi-language-server))
+ '(gruvbox-theme vimrc-mode))
 #+END_SRC
 
 * Settings
-Technically, any customization that happens in this file is a "setting." To give clarity of what any customizations that are under Settings, they can be thought of as more
-"surface-level" customizations.
+Technically, any customization that happens in this file is a "setting." To give clarity of what any customization that are under
+Settings, they can be thought of as more "surface-level" customizations.
 
 ** Emacs
 *** Startup
@@ -181,18 +159,10 @@ Technically, any customization that happens in this file is a "setting." To give
 (setq-default backward-delete-char-untabify-method nil)
 #+END_SRC
 
-*** Clang-Format
-#+BEGIN_SRC emacs-lisp
-;; (use-package clang-format
-;;   :init
-;;   (setq clang-format-style "file")
-;;   (setq clang-format-fallbackk-style "LLVM"))
-#+END_SRC
-
 *** Other
 #+BEGIN_SRC emacs-lisp
 (setq-default make-backup-files nil)
-(setq-default fill-column 180)
+(setq-default fill-column 140)
 #+END_SRC
 
 ** Custom
@@ -217,8 +187,7 @@ Technically, any customization that happens in this file is a "setting." To give
 I named this function after the kids show Wow Wow Wubzy simply because it sounded fun to use. This function will handle the customization of the launch screen.
 
 #+BEGIN_SRC emacs-lisp
-(defun wow-wow-wubzy()
-  )
+
 #+END_SRC
 
 ** Modal
@@ -280,65 +249,22 @@ I named this function after the kids show Wow Wow Wubzy simply because it sounde
 
 ****** C
 #+BEGIN_SRC emacs-lisp
-(defun c-mode-settings()
-  (setq c-basic-offset 4)
-  )
+
 #+END_SRC
 
 ****** C++
 #+BEGIN_SRC emacs-lisp
-(defun cpp-mode-settings()
-  (setq c-basic-offset 4)
-  )
-#+END_SRC
 
-****** Obj-C
-#+BEGIN_SRC emacs-lisp
-;; (defun objc-mode-settings()
-;;   )
 #+END_SRC
 
 ****** Java
 #+BEGIN_SRC emacs-lisp
-(defun java-mode-settings()
-  (setq c-basic-offset 4)
-  )
-#+END_SRC
 
-****** Idl
-#+BEGIN_SRC emacs-lisp
-;; (defun idl-mode-settings()
-;;   )
-#+END_SRC
-
-****** Pike
-#+BEGIN_SRC emacs-lisp
-;; (defun pike-mode-settings()
-;;   )
-#+END_SRC
-
-****** Awk
-#+BEGIN_SRC emacs-lisp
-;; (defun awk-mode-settings()
-;;   )
 #+END_SRC
 
 ***** Monty Python
 #+BEGIN_SRC emacs-lisp
-;; (defun python-mode-settings()
-;;   )
-#+END_SRC
 
-***** Microsoft Java
-#+BEGIN_SRC emacs-lisp
-;; (defun cs-mode-settings()
-;;   )
-#+END_SRC
-
-***** Hexl Mode
-#+BEGIN_SRC emacs-lisp
-;; (defun hexl-mode-settings()
-;;   )
 #+END_SRC
 
 ***** Version Control
@@ -599,9 +525,7 @@ Named this little category "Chunks" because I can now refer to commands that eff
 ******* Words
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-d"))    ;; kill-word
-(global-unset-key (kbd "C-<delete>"))    ;; kill-word
 (global-unset-key (kbd "M-DEL"))    ;; backward-kill-word
-(global-unset-key (kbd "C-<backspace>"))    ;; backward-kill-word
 #+END_SRC
 
 ******* Straights
@@ -684,8 +608,8 @@ Apparently Yank in Emacs is paste while in Vim it's copy...I don't know how I fe
 ****** Chunks
 ******* Words
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-M-h") 'backward-kill-word)
-(global-set-key (kbd "C-M-j") 'kill-word)
+;(global-set-key (kbd "C-M-h") 'backward-kill-word)
+;(global-set-key (kbd "C-M-j") 'kill-word)
 #+END_SRC
 
 ******* Straights
@@ -772,7 +696,7 @@ Made the prefix M-SPC because it would be similar to C-SPC, that already takes c
 (global-set-key (kbd "M-SPC p") 'pop-global-mark)
 #+END_SRC
 
-**** Rectangles
+**** Rectangle
 ***** Unbinded
 ****** Setting
 #+BEGIN_SRC emacs-lisp
@@ -1941,58 +1865,6 @@ When called, I can continuously press [ or ] to switch between buffers.
 #+END_SRC
 
 *** Other
-**** Help
-***** Unbinded
-#+BEGIN_SRC emacs-lisp
-;; (global-unset-key (kbd "<f1> C-a"))    ;; about-emacs
-;; (global-unset-key (kbd "<f1> C-c"))    ;; describe-copying
-;; (global-unset-key (kbd "<f1> C-d"))    ;; view-emcas-debugging
-;; (global-unset-key (kbd "<f1> C-e"))    ;; view-external-packages
-;; (global-unset-key (kbd "<f1> C-f"))    ;; view-emacs-FAQ
-;; (global-unset-key (kbd "<f1> C-h"))    ;; help-for-help
-;; (global-unset-key (kbd "<f1> RET"))    ;; view-order-manuals
-;; (global-unset-key (kbd "<f1> C-n"))    ;; view-emacs-news
-;; (global-unset-key (kbd "<f1> C-o"))    ;; describe-distribution
-;; (global-unset-key (kbd "<f1> C-p"))    ;; view-emacs-problems
-;; (global-unset-key (kbd "<f1> C-s"))    ;; search-forward-help-for-help
-;; (global-unset-key (kbd "<f1> C-t"))    ;; view-emacs-todo
-;; (global-unset-key (kbd "<f1> C-w"))    ;; describe-no-warranty
-;; (global-unset-key (kbd "<f1> C-\\"))    ;; describe-input-method
-;; (global-unset-key (kbd "<f1> ."))    ;; display-local-help
-;; (global-unset-key (kbd "<f1> 4"))    ;; Prefix Command
-;; (global-unset-key (kbd "<f1> ?"))    ;; help-for-help
-;; (global-unset-key (kbd "<f1> C"))    ;; describe-coding-system
-;; (global-unset-key (kbd "<f1> F"))    ;; Info-goto-emacs-command-code
-;; (global-unset-key (kbd "<f1> I"))    ;; describe-input-method
-;; (global-unset-key (kbd "<f1> K"))    ;; Info-goto-emacs-key-command-node
-;; (global-unset-key (kbd "<f1> L"))    ;; describe-language-environment
-;; (global-unset-key (kbd "<f1> P"))    ;; describe-package
-;; (global-unset-key (kbd "<f1> R"))    ;; info-display-manual
-;; (global-unset-key (kbd "<f1> S"))    ;; info-lookup-symbol
-;; (global-unset-key (kbd "<f1> a"))    ;; apropos-command
-;; (global-unset-key (kbd "<f1> b"))    ;; describe-bindings
-;; (global-unset-key (kbd "<f1> c"))    ;; describe-key-briefly
-;; (global-unset-key (kbd "<f1> d"))    ;; apropos-documentation
-;; (global-unset-key (kbd "<f1> e"))    ;; view-ech-area-messages
-;; (global-unset-key (kbd "<f1> f"))    ;; describe-function
-;; (global-unset-key (kbd "<f1> g"))    ;; describe-gnu-project
-;; (global-unset-key (kbd "<f1> h"))    ;; view-hello-file
-;; (global-unset-key (kbd "<f1> i"))    ;; info
-;; (global-unset-key (kbd "<f1> k"))    ;; describe-key
-;; (global-unset-key (kbd "<f1> l"))    ;; view-lossage
-;; (global-unset-key (kbd "<f1> m"))    ;; describe-mode
-;; (global-unset-key (kbd "<f1> n"))    ;; view-emacs-news
-;; (global-unset-key (kbd "<f1> o"))    ;; describe-symbol
-;; (global-unset-key (kbd "<f1> p"))    ;; finder-by-keyword
-;; (global-unset-key (kbd "<f1> q"))    ;; help-quit
-;; (global-unset-key (kbd "<f1> r"))    ;; info-emacs-manual
-;; (global-unset-key (kbd "<f1> s"))    ;; describe-syntax
-;; (global-unset-key (kbd "<f1> t"))    ;; help-with-tutorial
-;; (global-unset-key (kbd "<f1> v"))    ;; describe-variable
-;; (global-unset-key (kbd "<f1> w"))    ;; where-is
-;; (global-unset-key (kbd "<f1> x"))    ;; describe-command
-#+END_SRC
-
 **** Menus
 ***** Unbinded
 ****** General
@@ -2008,18 +1880,6 @@ When called, I can continuously press [ or ] to switch between buffers.
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-<down-mouse-2>"))    ;; facemenu-menu
 (global-unset-key (kbd "S-<down-mouse-1>"))    ;; mouse-appearance-menu
-#+END_SRC
-
-**** Prefixes
-***** Unbinded
-Non-user created prefixes
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-x *"))    ;; calc-dispatch
-(global-unset-key (kbd "C-x 4"))    ;; ctrl-x-4-prefix
-(global-unset-key (kbd "C-x 5"))    ;; ctrl-x-5-prefix
-(global-unset-key (kbd "C-x 6"))    ;; 2C-command
-(global-unset-key (kbd "C-x C-k"))    ;; kmacro-keymap
-(global-unset-key (kbd "C-x v"))    ;; vc-prefix-map
 #+END_SRC
 
 **** Compensation
@@ -2044,27 +1904,9 @@ Non-user created prefixes
 
 #+END_SRC
 
-**** Informative
-***** Unbinded
-****** Counting
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "M-="))    ;; count-words-region
-(global-unset-key (kbd "C-x l"))    ;; count-lines-page
-#+END_SRC
-
-****** Cursor
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-x ="))    ;; what-cursor-position
-#+END_SRC
-
 **** Sakura
 ***** Unbinded
 #+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-M-<mouse-1>"))    ;; mouse-set-point
-(global-unset-key (kbd "M-~"))    ;; not-modified
-(global-unset-key (kbd "C-x C-n"))    ;; set-goal-column
-(global-unset-key (kbd "C-x x f"))    ;; font-lock-update
-(global-unset-key (kbd "C-x x t"))    ;; toggle-truncate-lines
 (global-unset-key (kbd "M-ESC ESC"))    ;; keyboard-escape-quit
 #+END_SRC
 
@@ -2092,92 +1934,7 @@ Hungry Delete is a function that will either delete the whitespace up to a non-w
 ****** Main Function
 #+BEGIN_SRC emacs-lisp
 (defun cc-common-bindings()
-  'cc-hungry-delete
-  )
-#+END_SRC
-
-***** C Lang
-****** General
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-****** Main Function
-#+BEGIN_SRC emacs-lisp
-(defun c-mode-bindings()
-  )
-#+END_SRC
-
-***** C++
-****** General
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-****** Main Function
-#+BEGIN_SRC emacs-lisp
-(defun cpp-mode-bindings()
-  )
-#+END_SRC
-
-***** Obj-C
-****** General
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-****** Main Function
-#+BEGIN_SRC emacs-lisp
-(defun objc-mode-bindings()
-  )
-#+END_SRC
-
-***** Java
-****** General
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-****** Main Function
-#+BEGIN_SRC emacs-lisp
-(defun java-mode-bindings()
-  )
-#+END_SRC
-
-***** Idl
-****** General
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-****** Main Function
-#+BEGIN_SRC emacs-lisp
-(defun idl-mode-bindings()
-  )
-#+END_SRC
-
-***** Pike
-****** General
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-****** Main Function
-#+BEGIN_SRC emacs-lisp
-(defun pike-mode-bindings()
-  )
-#+END_SRC
-
-***** Awk
-****** General
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-****** Main Function
-#+BEGIN_SRC emacs-lisp
-(defun awk-mode-bindings()
-  )
+  'cc-hungry-delete)
 #+END_SRC
 
 **** The Founding Fathers
@@ -2202,56 +1959,6 @@ The Founding Fathers is a funny little thing I decided to refer to functions of 
 #+END_SRC
 
 ******* Babel
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-***** ToDo Mode
-****** Unbinded
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-****** Binded
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-***** RMail
-****** Unbinded
-******* Composing
-#+BEGIN_SRC emacs-lisp
-(global-unset-key (kbd "C-x m"))    ;; compose-mail
-#+END_SRC
-
-******* Management
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-****** Binded
-******* Composing
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-******* Management
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-***** nXML Mode
-****** Unbinded
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-****** Binded
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-***** Shell Mode
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
@@ -2804,100 +2511,43 @@ What does it do? I guess complex shit.
 * Hooks
 ** Startup
 #+BEGIN_SRC emacs-lisp
-(add-hook 'emacs-startup-hook
-		  'wow-wow-wubzy
-		  )
-;;(add-hook 'after-init-hook
-		  ;;'global-company-mode
-;;		  )
+
 #+END_SRC
 
-** Development
+** Nerd Shit
 #+BEGIN_SRC emacs-lisp
 (add-hook 'prog-mode-hook
-		  'prog_init
-		  )
+		  'eglot-ensure)
 #+END_SRC
 
 *** Major Mode
 **** CC Mode
+`c-initialization-hook`
 #+BEGIN_SRC emacs-lisp
-(add-hook 'c-initialization-hook
-  		  'cc-common-bindings
-		  )
+
 #+END_SRC
 
 ***** C
 #+BEGIN_SRC emacs-lisp
-(add-hook 'c-mode-hook
-		  'eglot-ensure
-		  'c-mode-settings
-		  )
+
 #+END_SRC
 
 ***** C++
 #+BEGIN_SRC emacs-lisp
-(add-hook 'c++-mode-hook
-		  'eglot-ensure
-		  'cpp-mode-settings
-		  )
+
 #+END_SRC
 
-***** Obj-C
+***** Java
 #+BEGIN_SRC emacs-lisp
-(add-hook 'objc-mode-hook
-		  'objc-mode-settings
-		  )
-#+END_SRC
 
-***** Java Mode
-#+BEGIN_SRC emacs-lisp
-(add-hook 'java-mode-hook
-		  'eglot-ensure
-		  'java-mode-settings
-		  )
-#+END_SRC
-
-***** Idl Mode
-#+BEGIN_SRC emacs-lisp
-(add-hook 'idl-mode-hook
-		  'idl-mode-settings
-		  )
-#+END_SRC
-
-***** Pike Mode
-#+BEGIN_SRC emacs-lisp
-(add-hook 'pike-mode-hook
-		  'pike-mode-settings
-		  )
-#+END_SRC
-
-***** Awk Mode
-#+BEGIN_SRC emacs-lisp
-(add-hook 'awk-mode-hook
-		  'awk-mode-settings
-		  )
 #+END_SRC
 
 **** Python
-#+BEGIN_SRC emacs-lisp
-(add-hook 'python-mode-hook
-		  'eglot-ensure
-		  'python-mode-settings
-		  )
-#+END_SRC
-
-**** C#
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
 
 *** Minor Mode
-**** Hexl
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
 **** Eglot
 #+BEGIN_SRC emacs-lisp
 
@@ -2907,16 +2557,10 @@ What does it do? I guess complex shit.
 *** Org Mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'org-mode-hook
-		  'turn-on-auto-fill
-		  )
+		  'turn-on-auto-fill)
 #+END_SRC
 
 *** ToDo Mode
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-*** RMail
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
@@ -2930,28 +2574,11 @@ What does it do? I guess complex shit.
 #+BEGIN_SRC emacs-lisp
 (add-hook 'text-mode-hook
 		  'flyspell-mode
-		  'flyspell-buffer
-		  )
+		  'flyspell-buffer)
 #+END_SRC
 
 ** Windows
 #+BEGIN_SRC emacs-lisp
 (add-hook 'window-setup-hook
-		  'toggle-frame-maximized t
-		  )
+		  'toggle-frame-maximized t)
 #+END_SRC
-
-** Rectangle
-#+BEGIN_SRC emacs-lisp
-;; (add-hook 'rectangle-mark-mode-hook
-;; 		  'rect-util-unbind
-;; 		  'rect-util-bind
-;; 		  )
-#+END_SRC
-
-** Ammusements
-*** Pong
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
