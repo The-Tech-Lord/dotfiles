@@ -4,7 +4,7 @@
 (package-initialize)
 
 (setq package-selected-packages
- '(csharp-mode vimrc-mode gruvbox-theme jedi-language-server))
+ '(gruvbox-theme vimrc-mode))
 
 (setq inhibit-splash-screen t)                     ;; Startup Screen
 
@@ -20,7 +20,7 @@
 (setq-default backward-delete-char-untabify-method nil)
 
 (setq-default make-backup-files nil)
-(setq-default fill-column 180)
+(setq-default fill-column 140)
 
 (custom-set-variables
  '(custom-safe-themes
@@ -32,8 +32,7 @@
 ;;(setq haki-region "#2e8b6d")
 ;;(load-theme 'haki t)
 
-(defun wow-wow-wubzy()
-  )
+
 
 (setq-default ls-lisp-dirs-first t)
 
@@ -60,39 +59,15 @@
   (company-mode)
   )
 
-(setq c-default-style "linux")    ;; Makes curly braces format how they're supposed to
+(setq c-default-style "stroustrup")
 
-(defun c-mode-settings()
-  (setq c-basic-offset 4)
-  )
 
-;; (defun cpp-mode-settings()
-;;   )
 
-;; (defun objc-mode-settings()
-;;   )
 
-(defun java-mode-settings()
-  (setq c-basic-offset 4)
-  )
 
-;; (defun idl-mode-settings()
-;;   )
 
-;; (defun pike-mode-settings()
-;;   )
 
-;; (defun awk-mode-settings()
-;;   )
 
-;; (defun python-mode-settings()
-;;   )
-
-;; (defun cs-mode-settings()
-;;   )
-
-;; (defun hexl-mode-settings()
-;;   )
 
 
 
@@ -227,9 +202,7 @@
 (global-unset-key (kbd "S-<delete>"))    ;; kill-region
 
 (global-unset-key (kbd "M-d"))    ;; kill-word
-(global-unset-key (kbd "C-<delete>"))    ;; kill-word
 (global-unset-key (kbd "M-DEL"))    ;; backward-kill-word
-(global-unset-key (kbd "C-<backspace>"))    ;; backward-kill-word
 
 (global-unset-key (kbd "M-k"))    ;; kill-sentence
 (global-unset-key (kbd "C-DEL"))    ;; backward-kill-sentence
@@ -268,8 +241,8 @@
 
 (global-set-key (kbd "M-.") 'kill-region)
 
-(global-set-key (kbd "C-M-h") 'backward-kill-word)
-(global-set-key (kbd "C-M-j") 'kill-word)
+;(global-set-key (kbd "C-M-h") 'backward-kill-word)
+;(global-set-key (kbd "C-M-j") 'kill-word)
 
 (global-set-key (kbd "C-M-k") 'backward-kill-sentence)
 (global-set-key (kbd "C-M-l") 'kill-sentence)
@@ -909,54 +882,6 @@
 
 ;; (global-set-key (kbd "C-z x :") 'eval-expression)
 
-;; (global-unset-key (kbd "<f1> C-a"))    ;; about-emacs
-;; (global-unset-key (kbd "<f1> C-c"))    ;; describe-copying
-;; (global-unset-key (kbd "<f1> C-d"))    ;; view-emcas-debugging
-;; (global-unset-key (kbd "<f1> C-e"))    ;; view-external-packages
-;; (global-unset-key (kbd "<f1> C-f"))    ;; view-emacs-FAQ
-;; (global-unset-key (kbd "<f1> C-h"))    ;; help-for-help
-;; (global-unset-key (kbd "<f1> RET"))    ;; view-order-manuals
-;; (global-unset-key (kbd "<f1> C-n"))    ;; view-emacs-news
-;; (global-unset-key (kbd "<f1> C-o"))    ;; describe-distribution
-;; (global-unset-key (kbd "<f1> C-p"))    ;; view-emacs-problems
-;; (global-unset-key (kbd "<f1> C-s"))    ;; search-forward-help-for-help
-;; (global-unset-key (kbd "<f1> C-t"))    ;; view-emacs-todo
-;; (global-unset-key (kbd "<f1> C-w"))    ;; describe-no-warranty
-;; (global-unset-key (kbd "<f1> C-\\"))    ;; describe-input-method
-;; (global-unset-key (kbd "<f1> ."))    ;; display-local-help
-;; (global-unset-key (kbd "<f1> 4"))    ;; Prefix Command
-;; (global-unset-key (kbd "<f1> ?"))    ;; help-for-help
-;; (global-unset-key (kbd "<f1> C"))    ;; describe-coding-system
-;; (global-unset-key (kbd "<f1> F"))    ;; Info-goto-emacs-command-code
-;; (global-unset-key (kbd "<f1> I"))    ;; describe-input-method
-;; (global-unset-key (kbd "<f1> K"))    ;; Info-goto-emacs-key-command-node
-;; (global-unset-key (kbd "<f1> L"))    ;; describe-language-environment
-;; (global-unset-key (kbd "<f1> P"))    ;; describe-package
-;; (global-unset-key (kbd "<f1> R"))    ;; info-display-manual
-;; (global-unset-key (kbd "<f1> S"))    ;; info-lookup-symbol
-;; (global-unset-key (kbd "<f1> a"))    ;; apropos-command
-;; (global-unset-key (kbd "<f1> b"))    ;; describe-bindings
-;; (global-unset-key (kbd "<f1> c"))    ;; describe-key-briefly
-;; (global-unset-key (kbd "<f1> d"))    ;; apropos-documentation
-;; (global-unset-key (kbd "<f1> e"))    ;; view-ech-area-messages
-;; (global-unset-key (kbd "<f1> f"))    ;; describe-function
-;; (global-unset-key (kbd "<f1> g"))    ;; describe-gnu-project
-;; (global-unset-key (kbd "<f1> h"))    ;; view-hello-file
-;; (global-unset-key (kbd "<f1> i"))    ;; info
-;; (global-unset-key (kbd "<f1> k"))    ;; describe-key
-;; (global-unset-key (kbd "<f1> l"))    ;; view-lossage
-;; (global-unset-key (kbd "<f1> m"))    ;; describe-mode
-;; (global-unset-key (kbd "<f1> n"))    ;; view-emacs-news
-;; (global-unset-key (kbd "<f1> o"))    ;; describe-symbol
-;; (global-unset-key (kbd "<f1> p"))    ;; finder-by-keyword
-;; (global-unset-key (kbd "<f1> q"))    ;; help-quit
-;; (global-unset-key (kbd "<f1> r"))    ;; info-emacs-manual
-;; (global-unset-key (kbd "<f1> s"))    ;; describe-syntax
-;; (global-unset-key (kbd "<f1> t"))    ;; help-with-tutorial
-;; (global-unset-key (kbd "<f1> v"))    ;; describe-variable
-;; (global-unset-key (kbd "<f1> w"))    ;; where-is
-;; (global-unset-key (kbd "<f1> x"))    ;; describe-command
-
 (global-unset-key (kbd "<f10>"))    ;; menu-bar-open
 (global-unset-key (kbd "M-`"))    ;; tmm-menubar
 (global-unset-key (kbd "S-<f10>"))    ;; context-menu-open
@@ -965,13 +890,6 @@
 
 (global-unset-key (kbd "C-<down-mouse-2>"))    ;; facemenu-menu
 (global-unset-key (kbd "S-<down-mouse-1>"))    ;; mouse-appearance-menu
-
-(global-unset-key (kbd "C-x *"))    ;; calc-dispatch
-(global-unset-key (kbd "C-x 4"))    ;; ctrl-x-4-prefix
-(global-unset-key (kbd "C-x 5"))    ;; ctrl-x-5-prefix
-(global-unset-key (kbd "C-x 6"))    ;; 2C-command
-(global-unset-key (kbd "C-x C-k"))    ;; kmacro-keymap
-(global-unset-key (kbd "C-x v"))    ;; vc-prefix-map
 
 (defun text-scaler()
   )
@@ -985,16 +903,6 @@
 
 
 
-(global-unset-key (kbd "M-="))    ;; count-words-region
-(global-unset-key (kbd "C-x l"))    ;; count-lines-page
-
-(global-unset-key (kbd "C-x ="))    ;; what-cursor-position
-
-(global-unset-key (kbd "C-M-<mouse-1>"))    ;; mouse-set-point
-(global-unset-key (kbd "M-~"))    ;; not-modified
-(global-unset-key (kbd "C-x C-n"))    ;; set-goal-column
-(global-unset-key (kbd "C-x x f"))    ;; font-lock-update
-(global-unset-key (kbd "C-x x t"))    ;; toggle-truncate-lines
 (global-unset-key (kbd "M-ESC ESC"))    ;; keyboard-escape-quit
 
 (defun cc-hungry-delete()
@@ -1010,61 +918,7 @@
   )
 
 (defun cc-common-bindings()
-  'cc-hungry-delete
-  )
-
-
-
-(defun c-mode-bindings()
-  )
-
-
-
-(defun cpp-mode-bindings()
-  )
-
-
-
-(defun objc-mode-bindings()
-  )
-
-
-
-(defun java-mode-bindings()
-  )
-
-
-
-(defun idl-mode-bindings()
-  )
-
-
-
-(defun pike-mode-bindings()
-  )
-
-
-
-(defun awk-mode-bindings()
-  )
-
-
-
-
-
-
-
-
-
-
-
-
-
-(global-unset-key (kbd "C-x m"))    ;; compose-mail
-
-
-
-
+  'cc-hungry-delete)
 
 
 
@@ -1272,53 +1126,16 @@
 
 
 
-(add-hook 'emacs-startup-hook
-		  'wow-wow-wubzy
-		  )
-;;(add-hook 'after-init-hook
-		  ;;'global-company-mode
-;;		  )
+
 
 (add-hook 'prog-mode-hook
-		  'prog_init
-		  )
+		  'eglot-ensure)
 
-(add-hook 'c-initialization-hook
-  		  'cc-common-bindings
-		  )
 
-(add-hook 'c-mode-hook
-		  'c-mode-settings
-		  )
 
-(add-hook 'c++-mode-hook
-		  'cpp-mode-settings
-		  )
 
-(add-hook 'objc-mode-hook
-		  'objc-mode-settings
-		  )
 
-(add-hook 'java-mode-hook
-		  'java-mode-settings
-		  )
 
-(add-hook 'idl-mode-hook
-		  'idl-mode-settings
-		  )
-
-(add-hook 'pike-mode-hook
-		  'pike-mode-settings
-		  )
-
-(add-hook 'awk-mode-hook
-		  'awk-mode-settings
-		  )
-
-(add-hook 'python-mode-hook
-		  'eglot-ensure
-		  'python-mode-settings
-		  )
 
 
 
@@ -1327,10 +1144,7 @@
 
 
 (add-hook 'org-mode-hook
-		  'turn-on-auto-fill
-		  )
-
-
+		  'turn-on-auto-fill)
 
 
 
@@ -1338,16 +1152,7 @@
 
 (add-hook 'text-mode-hook
 		  'flyspell-mode
-		  'flyspell-buffer
-		  )
+		  'flyspell-buffer)
 
 (add-hook 'window-setup-hook
-		  'toggle-frame-maximized t
-		  )
-
-;; (add-hook 'rectangle-mark-mode-hook
-;; 		  'rect-util-unbind
-;; 		  'rect-util-bind
-;; 		  )
-
-
+		  'toggle-frame-maximized t)
